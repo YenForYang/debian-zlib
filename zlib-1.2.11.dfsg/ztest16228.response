@@ -1,0 +1,12 @@
+-g
+-Wformat
+-Wformat-security
+-D_FORTIFY_SOURCE=2
+-Wall
+-D_REENTRANT
+-O3
+-DUNALIGNED_OK
+-D_LARGEFILE64_SOURCE=1
+-oztest16228
+-qopt-report-file=ztest16228.optrpt
+ztest16228.c

@@ -1,0 +1,1238 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+Intel(R) C Intel(R) 64 Compiler for applications running on Intel(R) 64, Version 19.0.1.144 Build 20181018
+
+Compiler options: -I. -O3 -diag-disable=10013,10385,10237,10346 -fabi-version=13 -falign-functions -falign-loops -fbuiltin -fdata-sections -ffunction-sections -ffat-lto-objects -fpermissive -gcc-name=gcc.intel -gnu-prefix=x86_64-linux-gnu- -gxx-name=g++.intel -inline-level=2 -inline-min-caller-growth=0 -ipo -march=native -no-inline-max-per-compile -no-inline-max-per-routine -no-inline-max-size -no-inline-max-total-size -par-schedule-auto -parallel -qopt-matmul -qopt-mem-layout-trans -qopt-multi-version-aggressive -qopt-prefetch -qoverride-limits -static-intel -qopt-report=5 -qno-opt-report-embed -g -Wformat -Wformat-security -Wall -O3 -qopt-report-file=example64.o.optrpt -D_FORTIFY_SOURCE=2 -D_REENTRANT -DUNALIGNED_OK -D_LARGEFILE64_SOURCE=1 -D_FILE_OFFSET_BITS=64 -c -o example64.o -Wl,--as-needed,--relax,--gc-sections,-O,2 -pipe
+
+    Report from: Interprocedural optimizations [ipo]
+
+  WHOLE PROGRAM (SAFE) [EITHER METHOD]: false
+  WHOLE PROGRAM (SEEN) [TABLE METHOD]: false
+  WHOLE PROGRAM (READ) [OBJECT READER METHOD]: false
+
+INLINING OPTION VALUES:
+  -inline-factor: 100
+  -inline-min-size: 30
+  -inline-max-size: disabled (user-specified)
+  -inline-max-total-size: disabled (user-specified)
+  -inline-max-per-routine: disabled (user-specified)
+  -inline-max-per-compile: disabled (user-specified)
+
+In the inlining report below:
+   "sz" refers to the "size" of the routine. The smaller a routine's size,
+      the more likely it is to be inlined.
+   "isz" refers to the "inlined size" of the routine. This is the amount
+      the calling routine will grow if the called routine is inlined into it.
+      The compiler generally limits the amount a routine can grow by having
+      routines inlined into it.
+
+Begin optimization report for: main()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (main()) [1/14=7.1%] test/example.c(548,1)
+  -> EXTERN: (554,9) zlibVersion(void)
+  -> INLINE: (555,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (556,9) exit(int)
+  -> EXTERN: (558,16) strcmp(const char *, const char *)
+  -> EXTERN: (558,23) zlibVersion(void)
+  -> INLINE: (559,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> INLINE: (562,5) printf(const char *__restrict__, ...) (isz = 5) (sz = 12)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(107,10) __printf_chk(int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(107,56) __builtin_va_arg_pack(void)
+  -> EXTERN: (563,40) zlibCompileFlags(void)
+  -> EXTERN: (565,23) calloc(size_t, size_t)
+  -> EXTERN: (566,23) calloc(size_t, size_t)
+  -> INLINE: (571,9) printf(const char *__restrict__, ...) (isz = 5) (sz = 12)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(107,10) __printf_chk(int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(107,56) __builtin_va_arg_pack(void)
+  -> EXTERN: (572,9) exit(int)
+  -> INLINE: (579,5) test_compress() (isz = 69) (sz = 80)
+    -> EXTERN: (93,24) strlen(const char *)
+    -> EXTERN: (95,11) compress(Bytef *, uLongf *, const Bytef *, uLong)
+    -> INLINE: (96,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (96,5) exit(int)
+    -> INLINE (MANUAL): (98,5) strcpy(char *__restrict__, const char *__restrict__) (isz = 6) (sz = 15)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(90,10) __builtin___strcpy_chk(char *, const char *, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(90,49) __builtin_object_size(const void *, int)
+    -> EXTERN: (100,11) uncompress(Bytef *, uLongf *, const Bytef *, uLong)
+    -> INLINE: (101,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (101,5) exit(int)
+    -> EXTERN: (103,9) strcmp(const char *, const char *)
+    -> INLINE: (104,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (105,9) exit(int)
+    -> INLINE: (107,9) printf(const char *__restrict__, ...) (isz = 5) (sz = 12)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(107,10) __printf_chk(int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(107,56) __builtin_va_arg_pack(void)
+  -> INLINE: (581,5) test_gzio() (isz = 257) (sz = 266)
+    -> EXTERN: (123,20) strlen(const char *)
+    -> EXTERN: (127,12) gzopen64(const char *, const char *)
+    -> INLINE: (129,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (130,9) exit(int)
+    -> EXTERN: (132,5) gzputc(gzFile, int)
+    -> EXTERN: (133,9) gzputs(gzFile, const char *)
+    -> INLINE: (134,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (134,45) gzerror(gzFile, int *)
+    -> EXTERN: (135,9) exit(int)
+    -> EXTERN: (137,9) gzprintf(gzFile, const char *, ...)
+    -> INLINE: (138,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (138,47) gzerror(gzFile, int *)
+    -> EXTERN: (139,9) exit(int)
+    -> EXTERN: (141,5) gzseek64(gzFile, off64_t, int)
+    -> EXTERN: (142,5) gzclose(gzFile)
+    -> EXTERN: (144,12) gzopen64(const char *, const char *)
+    -> INLINE: (146,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (147,9) exit(int)
+    -> INLINE (MANUAL): (149,5) strcpy(char *__restrict__, const char *__restrict__) (isz = 6) (sz = 15)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(90,10) __builtin___strcpy_chk(char *, const char *, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(90,49) __builtin_object_size(const void *, int)
+    -> EXTERN: (151,9) gzread(gzFile, voidp, unsigned int)
+    -> INLINE: (152,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (152,45) gzerror(gzFile, int *)
+    -> EXTERN: (153,9) exit(int)
+    -> EXTERN: (155,9) strcmp(const char *, const char *)
+    -> INLINE: (156,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (157,9) exit(int)
+    -> INLINE: (159,9) printf(const char *__restrict__, ...) (isz = 5) (sz = 12)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(107,10) __printf_chk(int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(107,56) __builtin_va_arg_pack(void)
+    -> EXTERN: (162,11) gzseek64(gzFile, off64_t, int)
+    -> EXTERN: (163,21) gztell64(gzFile)
+    -> INLINE: (164,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (165,34) gztell64(gzFile)
+    -> EXTERN: (166,9) exit(int)
+    -> EXTERN: (169,9) gzgetc(gzFile)
+    -> INLINE: (170,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (171,9) exit(int)
+    -> EXTERN: (174,9) gzungetc(int, gzFile)
+    -> INLINE: (175,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (176,9) exit(int)
+    -> EXTERN: (179,5) gzgets(gzFile, char *, int)
+    -> EXTERN: (180,9) strlen(const char *)
+    -> INLINE: (181,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (181,58) gzerror(gzFile, int *)
+    -> EXTERN: (182,9) exit(int)
+    -> EXTERN: (184,9) strcmp(const char *, const char *)
+    -> INLINE: (185,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (186,9) exit(int)
+    -> INLINE: (188,9) printf(const char *__restrict__, ...) (isz = 5) (sz = 12)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(107,10) __printf_chk(int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(107,56) __builtin_va_arg_pack(void)
+    -> EXTERN: (191,5) gzclose(gzFile)
+  -> INLINE: (585,5) test_deflate() (isz = 103) (sz = 110)
+    -> EXTERN: (206,24) strlen(const char *)
+    -> EXTERN: (212,11) deflateInit_(z_streamp, int, const char *, int)
+    -> INLINE: (213,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (213,5) exit(int)
+    -> EXTERN: (220,15) deflate(z_streamp, int)
+    -> INLINE: (221,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (221,9) exit(int)
+    -> EXTERN: (226,15) deflate(z_streamp, int)
+    -> INLINE: (228,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (228,9) exit(int)
+    -> EXTERN: (231,11) deflateEnd(z_streamp)
+    -> INLINE: (232,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (232,5) exit(int)
+  -> INLINE: (586,5) test_inflate() (isz = 95) (sz = 106)
+    -> INLINE (MANUAL): (245,5) strcpy(char *__restrict__, const char *__restrict__) (isz = 6) (sz = 15)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(90,10) __builtin___strcpy_chk(char *, const char *, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(90,49) __builtin_object_size(const void *, int)
+    -> EXTERN: (255,11) inflateInit_(z_streamp, const char *, int)
+    -> INLINE: (256,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (256,5) exit(int)
+    -> EXTERN: (260,15) inflate(z_streamp, int)
+    -> INLINE: (262,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (262,9) exit(int)
+    -> EXTERN: (265,11) inflateEnd(z_streamp)
+    -> INLINE: (266,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (266,5) exit(int)
+    -> EXTERN: (268,9) strcmp(const char *, const char *)
+    -> INLINE: (269,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (270,9) exit(int)
+    -> INLINE: (272,9) printf(const char *__restrict__, ...) (isz = 5) (sz = 12)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(107,10) __printf_chk(int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(107,56) __builtin_va_arg_pack(void)
+  -> INLINE: (588,5) test_large_deflate() (isz = 140) (sz = 151)
+    -> EXTERN: (290,11) deflateInit_(z_streamp, int, const char *, int)
+    -> INLINE: (291,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (291,5) exit(int)
+    -> EXTERN: (301,11) deflate(z_streamp, int)
+    -> INLINE: (302,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (302,5) exit(int)
+    -> INLINE: (304,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (305,9) exit(int)
+    -> EXTERN: (309,5) deflateParams(z_streamp, int, int)
+    -> EXTERN: (312,11) deflate(z_streamp, int)
+    -> INLINE: (313,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (313,5) exit(int)
+    -> EXTERN: (316,5) deflateParams(z_streamp, int, int)
+    -> EXTERN: (319,11) deflate(z_streamp, int)
+    -> INLINE: (320,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (320,5) exit(int)
+    -> EXTERN: (322,11) deflate(z_streamp, int)
+    -> INLINE: (324,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (325,9) exit(int)
+    -> EXTERN: (327,11) deflateEnd(z_streamp)
+    -> INLINE: (328,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (328,5) exit(int)
+  -> INLINE: (589,5) test_large_inflate() (isz = 87) (sz = 98)
+    -> INLINE (MANUAL): (341,5) strcpy(char *__restrict__, const char *__restrict__) (isz = 6) (sz = 15)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(90,10) __builtin___strcpy_chk(char *, const char *, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(90,49) __builtin_object_size(const void *, int)
+    -> EXTERN: (350,11) inflateInit_(z_streamp, const char *, int)
+    -> INLINE: (351,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (351,5) exit(int)
+    -> EXTERN: (356,15) inflate(z_streamp, int)
+    -> INLINE: (358,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (358,9) exit(int)
+    -> EXTERN: (361,11) inflateEnd(z_streamp)
+    -> INLINE: (362,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (362,5) exit(int)
+    -> INLINE: (365,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (366,9) exit(int)
+    -> INLINE: (368,9) printf(const char *__restrict__, ...) (isz = 5) (sz = 12)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(107,10) __printf_chk(int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(107,56) __builtin_va_arg_pack(void)
+  -> INLINE: (591,5) test_flush() (isz = 105) (sz = 112)
+    -> EXTERN: (381,22) strlen(const char *)
+    -> EXTERN: (387,11) deflateInit_(z_streamp, int, const char *, int)
+    -> INLINE: (388,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (388,5) exit(int)
+    -> EXTERN: (394,11) deflate(z_streamp, int)
+    -> INLINE: (395,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (395,5) exit(int)
+    -> EXTERN: (400,11) deflate(z_streamp, int)
+    -> INLINE: (402,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (402,9) exit(int)
+    -> EXTERN: (404,11) deflateEnd(z_streamp)
+    -> INLINE: (405,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (405,5) exit(int)
+  -> INLINE: (592,5) test_sync() (isz = 104) (sz = 115)
+    -> INLINE (MANUAL): (420,5) strcpy(char *__restrict__, const char *__restrict__) (isz = 6) (sz = 15)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(90,10) __builtin___strcpy_chk(char *, const char *, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(90,49) __builtin_object_size(const void *, int)
+    -> EXTERN: (429,11) inflateInit_(z_streamp, const char *, int)
+    -> INLINE: (430,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (430,5) exit(int)
+    -> EXTERN: (435,11) inflate(z_streamp, int)
+    -> INLINE: (436,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (436,5) exit(int)
+    -> EXTERN: (439,11) inflateSync(z_streamp)
+    -> INLINE: (440,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (440,5) exit(int)
+    -> EXTERN: (442,11) inflate(z_streamp, int)
+    -> INLINE: (444,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (446,9) exit(int)
+    -> EXTERN: (448,11) inflateEnd(z_streamp)
+    -> INLINE: (449,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (449,5) exit(int)
+    -> INLINE: (451,5) printf(const char *__restrict__, ...) (isz = 5) (sz = 12)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(107,10) __printf_chk(int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(107,56) __builtin_va_arg_pack(void)
+  -> INLINE: (595,5) test_dict_deflate() (isz = 91) (sz = 98)
+    -> EXTERN: (468,11) deflateInit_(z_streamp, int, const char *, int)
+    -> INLINE: (469,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (469,5) exit(int)
+    -> EXTERN: (471,11) deflateSetDictionary(z_streamp, const Bytef *, uInt)
+    -> INLINE: (473,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (473,5) exit(int)
+    -> EXTERN: (480,31) strlen(const char *)
+    -> EXTERN: (482,11) deflate(z_streamp, int)
+    -> INLINE: (484,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (485,9) exit(int)
+    -> EXTERN: (487,11) deflateEnd(z_streamp)
+    -> INLINE: (488,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (488,5) exit(int)
+  -> INLINE: (596,5) test_dict_inflate() (isz = 110) (sz = 121)
+    -> INLINE (MANUAL): (501,5) strcpy(char *__restrict__, const char *__restrict__) (isz = 6) (sz = 15)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(90,10) __builtin___strcpy_chk(char *, const char *, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(90,49) __builtin_object_size(const void *, int)
+    -> EXTERN: (510,11) inflateInit_(z_streamp, const char *, int)
+    -> INLINE: (511,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (511,5) exit(int)
+    -> EXTERN: (517,15) inflate(z_streamp, int)
+    -> INLINE: (521,17) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (522,17) exit(int)
+    -> EXTERN: (524,19) inflateSetDictionary(z_streamp, const Bytef *, uInt)
+    -> INLINE: (527,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (527,9) exit(int)
+    -> EXTERN: (530,11) inflateEnd(z_streamp)
+    -> INLINE: (531,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (531,5) exit(int)
+    -> EXTERN: (533,9) strcmp(const char *, const char *)
+    -> INLINE: (534,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (535,9) exit(int)
+    -> INLINE: (537,9) printf(const char *__restrict__, ...) (isz = 5) (sz = 12)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(107,10) __printf_chk(int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(107,56) __builtin_va_arg_pack(void)
+  -> EXTERN: (598,5) free(void *)
+  -> EXTERN: (599,5) free(void *)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at test/example.c(218,5) inlined into test/example.c(585,5)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at test/example.c(258,5) inlined into test/example.c(586,5)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at test/example.c(228,9) inlined into test/example.c(585,5)
+   remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+   remark #17102: loop was not parallelized: not a parallelization candidate
+LOOP END
+
+LOOP BEGIN at test/example.c(358,9) inlined into test/example.c(589,5)
+   remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+   remark #17102: loop was not parallelized: not a parallelization candidate
+LOOP END
+
+LOOP BEGIN at test/example.c(527,9) inlined into test/example.c(596,5)
+   remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+   remark #17102: loop was not parallelized: not a parallelization candidate
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(90,10):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (1, 0)
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(90,10):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (1, 0)
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(90,10):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (1, 0)
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(90,10):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (1, 0)
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(90,10):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (1, 0)
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(90,10):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (1, 0)
+test/example.c(548,1):remark #34051: REGISTER ALLOCATION : [main] test/example.c:548
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   11[ rax rdx rcx rbx rsi rdi r8 r12-r15]
+        
+    Routine temporaries
+        Total         :     875
+            Global    :     148
+            Local     :     727
+        Regenerable   :     520
+        Spilled       :       5
+        
+    Routine stack
+        Variables     :     920 bytes*
+            Reads     :      14 [1.07e+01 ~ 2.3%]
+            Writes    :      71 [6.50e+01 ~ 14.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: fprintf(FILE *__restrict__, const char *__restrict__, ...)
+
+    Report from: Interprocedural optimizations [ipo]
+
+NEVER EMIT DEFINITION FUNCTION: (fprintf(FILE *__restrict__, const char *__restrict__, ...))/usr/include/x86_64-linux-gnu/bits/stdio2.h(99,1)
+
+===========================================================================
+
+Begin optimization report for: printf(const char *__restrict__, ...)
+
+    Report from: Interprocedural optimizations [ipo]
+
+NEVER EMIT DEFINITION FUNCTION: (printf(const char *__restrict__, ...))/usr/include/x86_64-linux-gnu/bits/stdio2.h(106,1)
+
+===========================================================================
+
+Begin optimization report for: strcpy(char *__restrict__, const char *__restrict__)
+
+    Report from: Interprocedural optimizations [ipo]
+
+NEVER EMIT DEFINITION FUNCTION: (strcpy(char *__restrict__, const char *__restrict__))/usr/include/x86_64-linux-gnu/bits/string_fortified.h(89,1)
+
+===========================================================================
+
+Begin optimization report for: test_compress()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (test_compress()) [5/14=35.7%] test/example.c(91,1)
+  -> EXTERN: (93,24) strlen(const char *)
+  -> EXTERN: (95,11) compress(Bytef *, uLongf *, const Bytef *, uLong)
+  -> EXTERN: (96,5) exit(int)
+  -> INLINE: (96,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> INLINE (MANUAL): (98,5) strcpy(char *__restrict__, const char *__restrict__) (isz = 6) (sz = 15)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(90,10) __builtin___strcpy_chk(char *, const char *, unsigned long)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(90,49) __builtin_object_size(const void *, int)
+  -> EXTERN: (100,11) uncompress(Bytef *, uLongf *, const Bytef *, uLong)
+  -> EXTERN: (101,5) exit(int)
+  -> INLINE: (101,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (103,9) strcmp(const char *, const char *)
+  -> INLINE: (104,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (105,9) exit(int)
+  -> INLINE: (107,9) printf(const char *__restrict__, ...) (isz = 5) (sz = 12)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(107,10) __printf_chk(int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(107,56) __builtin_va_arg_pack(void)
+
+
+    Report from: Code generation optimizations [cg]
+
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(90,10):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (1, 0)
+test/example.c(91,1):remark #34051: REGISTER ALLOCATION : [test_compress] test/example.c:91
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    8[ rax rdx rcx rbx rbp rsi rdi r8]
+        
+    Routine temporaries
+        Total         :      71
+            Global    :      15
+            Local     :      56
+        Regenerable   :      31
+        Spilled       :       2
+        
+    Routine stack
+        Variables     :      16 bytes*
+            Reads     :       1 [9.50e-01 ~ 1.9%]
+            Writes    :       2 [2.00e+00 ~ 3.9%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: test_gzio()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (test_gzio()) [6/14=42.9%] test/example.c(118,1)
+  -> EXTERN: (123,20) strlen(const char *)
+  -> EXTERN: (127,12) gzopen64(const char *, const char *)
+  -> INLINE: (129,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (130,9) exit(int)
+  -> EXTERN: (132,5) gzputc(gzFile, int)
+  -> EXTERN: (133,9) gzputs(gzFile, const char *)
+  -> INLINE: (134,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (134,45) gzerror(gzFile, int *)
+  -> EXTERN: (135,9) exit(int)
+  -> EXTERN: (137,9) gzprintf(gzFile, const char *, ...)
+  -> INLINE: (138,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (138,47) gzerror(gzFile, int *)
+  -> EXTERN: (139,9) exit(int)
+  -> EXTERN: (141,5) gzseek64(gzFile, off64_t, int)
+  -> EXTERN: (142,5) gzclose(gzFile)
+  -> EXTERN: (144,12) gzopen64(const char *, const char *)
+  -> INLINE: (146,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (147,9) exit(int)
+  -> INLINE (MANUAL): (149,5) strcpy(char *__restrict__, const char *__restrict__) (isz = 6) (sz = 15)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(90,10) __builtin___strcpy_chk(char *, const char *, unsigned long)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(90,49) __builtin_object_size(const void *, int)
+  -> EXTERN: (151,9) gzread(gzFile, voidp, unsigned int)
+  -> INLINE: (152,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (152,45) gzerror(gzFile, int *)
+  -> EXTERN: (153,9) exit(int)
+  -> EXTERN: (155,9) strcmp(const char *, const char *)
+  -> INLINE: (156,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (157,9) exit(int)
+  -> INLINE: (159,9) printf(const char *__restrict__, ...) (isz = 5) (sz = 12)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(107,10) __printf_chk(int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(107,56) __builtin_va_arg_pack(void)
+  -> EXTERN: (162,11) gzseek64(gzFile, off64_t, int)
+  -> EXTERN: (163,21) gztell64(gzFile)
+  -> INLINE: (164,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (165,34) gztell64(gzFile)
+  -> EXTERN: (166,9) exit(int)
+  -> EXTERN: (169,9) gzgetc(gzFile)
+  -> INLINE: (170,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (171,9) exit(int)
+  -> EXTERN: (174,9) gzungetc(int, gzFile)
+  -> INLINE: (175,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (176,9) exit(int)
+  -> EXTERN: (179,5) gzgets(gzFile, char *, int)
+  -> EXTERN: (180,9) strlen(const char *)
+  -> INLINE: (181,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (181,58) gzerror(gzFile, int *)
+  -> EXTERN: (182,9) exit(int)
+  -> EXTERN: (184,9) strcmp(const char *, const char *)
+  -> INLINE: (185,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (186,9) exit(int)
+  -> INLINE: (188,9) printf(const char *__restrict__, ...) (isz = 5) (sz = 12)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(107,10) __printf_chk(int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(107,56) __builtin_va_arg_pack(void)
+  -> EXTERN: (191,5) gzclose(gzFile)
+
+
+    Report from: Code generation optimizations [cg]
+
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(90,10):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (1, 0)
+test/example.c(118,1):remark #34051: REGISTER ALLOCATION : [test_gzio] test/example.c:118
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   11[ rax rdx rcx rbp rsi rdi r8 r12-r15]
+        
+    Routine temporaries
+        Total         :     206
+            Global    :      45
+            Local     :     161
+        Regenerable   :      93
+        Spilled       :       5
+        
+    Routine stack
+        Variables     :       4 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: test_deflate()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (test_deflate()) [7/14=50.0%] test/example.c(203,1)
+  -> EXTERN: (206,24) strlen(const char *)
+  -> EXTERN: (212,11) deflateInit_(z_streamp, int, const char *, int)
+  -> EXTERN: (213,5) exit(int)
+  -> INLINE: (213,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (220,15) deflate(z_streamp, int)
+  -> EXTERN: (221,9) exit(int)
+  -> INLINE: (221,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (226,15) deflate(z_streamp, int)
+  -> EXTERN: (228,9) exit(int)
+  -> INLINE: (228,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (231,11) deflateEnd(z_streamp)
+  -> EXTERN: (232,5) exit(int)
+  -> INLINE: (232,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at test/example.c(218,5)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at test/example.c(228,9)
+   remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+   remark #17102: loop was not parallelized: not a parallelization candidate
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+test/example.c(203,1):remark #34051: REGISTER ALLOCATION : [test_deflate] test/example.c:203
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    9[ rax rdx rcx rbp rsi rdi r8 r12-r13]
+        
+    Routine temporaries
+        Total         :      79
+            Global    :      20
+            Local     :      59
+        Regenerable   :      45
+        Spilled       :       3
+        
+    Routine stack
+        Variables     :     112 bytes*
+            Reads     :       3 [3.90e+00 ~ 5.2%]
+            Writes    :       9 [9.62e+00 ~ 12.8%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: test_inflate()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (test_inflate()) [8/14=57.1%] test/example.c(241,1)
+  -> INLINE (MANUAL): (245,5) strcpy(char *__restrict__, const char *__restrict__) (isz = 6) (sz = 15)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(90,10) __builtin___strcpy_chk(char *, const char *, unsigned long)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(90,49) __builtin_object_size(const void *, int)
+  -> EXTERN: (255,11) inflateInit_(z_streamp, const char *, int)
+  -> EXTERN: (256,5) exit(int)
+  -> INLINE: (256,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (260,15) inflate(z_streamp, int)
+  -> EXTERN: (262,9) exit(int)
+  -> INLINE: (262,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (265,11) inflateEnd(z_streamp)
+  -> EXTERN: (266,5) exit(int)
+  -> INLINE: (266,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (268,9) strcmp(const char *, const char *)
+  -> INLINE: (269,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (270,9) exit(int)
+  -> INLINE: (272,9) printf(const char *__restrict__, ...) (isz = 5) (sz = 12)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(107,10) __printf_chk(int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(107,56) __builtin_va_arg_pack(void)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at test/example.c(258,5)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(90,10):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (1, 0)
+test/example.c(241,1):remark #34051: REGISTER ALLOCATION : [test_inflate] test/example.c:241
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    9[ rax rdx rcx rbx rbp rsi rdi r8 r15]
+        
+    Routine temporaries
+        Total         :      78
+            Global    :      18
+            Local     :      60
+        Regenerable   :      42
+        Spilled       :       3
+        
+    Routine stack
+        Variables     :     112 bytes*
+            Reads     :       3 [3.18e+00 ~ 4.7%]
+            Writes    :       8 [8.36e+00 ~ 12.3%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: test_large_deflate()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (test_large_deflate()) [9/14=64.3%] test/example.c(282,1)
+  -> EXTERN: (290,11) deflateInit_(z_streamp, int, const char *, int)
+  -> EXTERN: (291,5) exit(int)
+  -> INLINE: (291,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (301,11) deflate(z_streamp, int)
+  -> EXTERN: (302,5) exit(int)
+  -> INLINE: (302,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> INLINE: (304,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (305,9) exit(int)
+  -> EXTERN: (309,5) deflateParams(z_streamp, int, int)
+  -> EXTERN: (312,11) deflate(z_streamp, int)
+  -> EXTERN: (313,5) exit(int)
+  -> INLINE: (313,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (316,5) deflateParams(z_streamp, int, int)
+  -> EXTERN: (319,11) deflate(z_streamp, int)
+  -> EXTERN: (320,5) exit(int)
+  -> INLINE: (320,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (322,11) deflate(z_streamp, int)
+  -> INLINE: (324,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (325,9) exit(int)
+  -> EXTERN: (327,11) deflateEnd(z_streamp)
+  -> EXTERN: (328,5) exit(int)
+  -> INLINE: (328,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+
+
+    Report from: Code generation optimizations [cg]
+
+test/example.c(282,1):remark #34051: REGISTER ALLOCATION : [test_large_deflate] test/example.c:282
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   10[ rax rdx rcx rbx rbp rsi rdi r8 r12 r14]
+        
+    Routine temporaries
+        Total         :     115
+            Global    :      25
+            Local     :      90
+        Regenerable   :      67
+        Spilled       :       4
+        
+    Routine stack
+        Variables     :     112 bytes*
+            Reads     :       1 [9.02e-01 ~ 1.2%]
+            Writes    :      11 [1.01e+01 ~ 13.2%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: test_large_inflate()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (test_large_inflate()) [10/14=71.4%] test/example.c(337,1)
+  -> INLINE (MANUAL): (341,5) strcpy(char *__restrict__, const char *__restrict__) (isz = 6) (sz = 15)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(90,10) __builtin___strcpy_chk(char *, const char *, unsigned long)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(90,49) __builtin_object_size(const void *, int)
+  -> EXTERN: (350,11) inflateInit_(z_streamp, const char *, int)
+  -> EXTERN: (351,5) exit(int)
+  -> INLINE: (351,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (356,15) inflate(z_streamp, int)
+  -> EXTERN: (358,9) exit(int)
+  -> INLINE: (358,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (361,11) inflateEnd(z_streamp)
+  -> EXTERN: (362,5) exit(int)
+  -> INLINE: (362,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> INLINE: (365,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (366,9) exit(int)
+  -> INLINE: (368,9) printf(const char *__restrict__, ...) (isz = 5) (sz = 12)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(107,10) __printf_chk(int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(107,56) __builtin_va_arg_pack(void)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at test/example.c(358,9)
+   remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+   remark #17102: loop was not parallelized: not a parallelization candidate
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(90,10):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (1, 0)
+test/example.c(337,1):remark #34051: REGISTER ALLOCATION : [test_large_inflate] test/example.c:337
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   10[ rax rdx rcx rbx rbp rsi rdi r8 r14-r15]
+        
+    Routine temporaries
+        Total         :      79
+            Global    :      20
+            Local     :      59
+        Regenerable   :      41
+        Spilled       :       4
+        
+    Routine stack
+        Variables     :     112 bytes*
+            Reads     :       1 [5.01e-01 ~ 0.7%]
+            Writes    :       9 [1.03e+01 ~ 14.4%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: test_flush()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (test_flush()) [11/14=78.6%] test/example.c(378,1)
+  -> EXTERN: (381,22) strlen(const char *)
+  -> EXTERN: (387,11) deflateInit_(z_streamp, int, const char *, int)
+  -> EXTERN: (388,5) exit(int)
+  -> INLINE: (388,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (394,11) deflate(z_streamp, int)
+  -> EXTERN: (395,5) exit(int)
+  -> INLINE: (395,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (400,11) deflate(z_streamp, int)
+  -> EXTERN: (402,9) exit(int)
+  -> INLINE: (402,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (404,11) deflateEnd(z_streamp)
+  -> EXTERN: (405,5) exit(int)
+  -> INLINE: (405,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+
+
+    Report from: Code generation optimizations [cg]
+
+test/example.c(378,1):remark #34051: REGISTER ALLOCATION : [test_flush] test/example.c:378
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    9[ rax rdx rcx rbx rbp rsi rdi r8 r12]
+        
+    Routine temporaries
+        Total         :      78
+            Global    :      19
+            Local     :      59
+        Regenerable   :      42
+        Spilled       :       3
+        
+    Routine stack
+        Variables     :     112 bytes*
+            Reads     :       1 [7.57e-01 ~ 1.3%]
+            Writes    :       8 [7.70e+00 ~ 12.8%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: test_sync()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (test_sync()) [12/14=85.7%] test/example.c(416,1)
+  -> INLINE (MANUAL): (420,5) strcpy(char *__restrict__, const char *__restrict__) (isz = 6) (sz = 15)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(90,10) __builtin___strcpy_chk(char *, const char *, unsigned long)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(90,49) __builtin_object_size(const void *, int)
+  -> EXTERN: (429,11) inflateInit_(z_streamp, const char *, int)
+  -> EXTERN: (430,5) exit(int)
+  -> INLINE: (430,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (435,11) inflate(z_streamp, int)
+  -> EXTERN: (436,5) exit(int)
+  -> INLINE: (436,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (439,11) inflateSync(z_streamp)
+  -> EXTERN: (440,5) exit(int)
+  -> INLINE: (440,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (442,11) inflate(z_streamp, int)
+  -> INLINE: (444,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (446,9) exit(int)
+  -> EXTERN: (448,11) inflateEnd(z_streamp)
+  -> EXTERN: (449,5) exit(int)
+  -> INLINE: (449,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> INLINE: (451,5) printf(const char *__restrict__, ...) (isz = 5) (sz = 12)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(107,10) __printf_chk(int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(107,56) __builtin_va_arg_pack(void)
+
+
+    Report from: Code generation optimizations [cg]
+
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(90,10):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (1, 0)
+test/example.c(416,1):remark #34051: REGISTER ALLOCATION : [test_sync] test/example.c:416
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    9[ rax rdx rcx rbx rsi rdi r8 r13-r14]
+        
+    Routine temporaries
+        Total         :      91
+            Global    :      21
+            Local     :      70
+        Regenerable   :      49
+        Spilled       :       3
+        
+    Routine stack
+        Variables     :     112 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       8 [7.80e+00 ~ 12.6%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: test_dict_deflate()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (test_dict_deflate()) [13/14=92.9%] test/example.c(460,1)
+  -> EXTERN: (468,11) deflateInit_(z_streamp, int, const char *, int)
+  -> EXTERN: (469,5) exit(int)
+  -> INLINE: (469,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (471,11) deflateSetDictionary(z_streamp, const Bytef *, uInt)
+  -> EXTERN: (473,5) exit(int)
+  -> INLINE: (473,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (480,31) strlen(const char *)
+  -> EXTERN: (482,11) deflate(z_streamp, int)
+  -> INLINE: (484,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (485,9) exit(int)
+  -> EXTERN: (487,11) deflateEnd(z_streamp)
+  -> EXTERN: (488,5) exit(int)
+  -> INLINE: (488,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+
+
+    Report from: Code generation optimizations [cg]
+
+test/example.c(460,1):remark #34051: REGISTER ALLOCATION : [test_dict_deflate] test/example.c:460
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    8[ rax rdx rcx rsi rdi r8 r12-r13]
+        
+    Routine temporaries
+        Total         :      76
+            Global    :      18
+            Local     :      58
+        Regenerable   :      42
+        Spilled       :       2
+        
+    Routine stack
+        Variables     :     112 bytes*
+            Reads     :       1 [9.02e-01 ~ 1.7%]
+            Writes    :       7 [6.61e+00 ~ 12.3%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: test_dict_inflate()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (test_dict_inflate()) [14/14=100.0%] test/example.c(497,1)
+  -> INLINE (MANUAL): (501,5) strcpy(char *__restrict__, const char *__restrict__) (isz = 6) (sz = 15)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(90,10) __builtin___strcpy_chk(char *, const char *, unsigned long)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(90,49) __builtin_object_size(const void *, int)
+  -> EXTERN: (510,11) inflateInit_(z_streamp, const char *, int)
+  -> EXTERN: (511,5) exit(int)
+  -> INLINE: (511,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (517,15) inflate(z_streamp, int)
+  -> INLINE: (521,17) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (522,17) exit(int)
+  -> EXTERN: (524,19) inflateSetDictionary(z_streamp, const Bytef *, uInt)
+  -> EXTERN: (527,9) exit(int)
+  -> INLINE: (527,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (530,11) inflateEnd(z_streamp)
+  -> EXTERN: (531,5) exit(int)
+  -> INLINE: (531,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (533,9) strcmp(const char *, const char *)
+  -> INLINE: (534,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (535,9) exit(int)
+  -> INLINE: (537,9) printf(const char *__restrict__, ...) (isz = 5) (sz = 12)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(107,10) __printf_chk(int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(107,56) __builtin_va_arg_pack(void)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at test/example.c(527,9)
+   remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+   remark #17102: loop was not parallelized: not a parallelization candidate
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(90,10):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (1, 0)
+test/example.c(497,1):remark #34051: REGISTER ALLOCATION : [test_dict_inflate] test/example.c:497
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    8[ rax rdx rcx rbp rsi rdi r8 r12]
+        
+    Routine temporaries
+        Total         :      90
+            Global    :      19
+            Local     :      71
+        Regenerable   :      50
+        Spilled       :       2
+        
+    Routine stack
+        Variables     :     112 bytes*
+            Reads     :       1 [3.20e-01 ~ 0.5%]
+            Writes    :       7 [6.90e+00 ~ 10.1%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================

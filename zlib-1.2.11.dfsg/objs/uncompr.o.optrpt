@@ -1,0 +1,129 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+Intel(R) C Intel(R) 64 Compiler for applications running on Intel(R) 64, Version 19.0.1.144 Build 20181018
+
+Compiler options: -O3 -diag-disable=10013,10385,10237,10346 -fabi-version=13 -falign-functions -falign-loops -fbuiltin -fdata-sections -ffunction-sections -ffat-lto-objects -fpermissive -gcc-name=gcc.intel -gnu-prefix=x86_64-linux-gnu- -gxx-name=g++.intel -inline-level=2 -inline-min-caller-growth=0 -ipo -march=native -no-inline-max-per-compile -no-inline-max-per-routine -no-inline-max-size -no-inline-max-total-size -par-schedule-auto -parallel -qopt-matmul -qopt-mem-layout-trans -qopt-multi-version-aggressive -qopt-prefetch -qoverride-limits -static-intel -qopt-report=5 -qno-opt-report-embed -g -Wformat -Wformat-security -Wall -O3 -fpic -qopt-report-file=objs/uncompr.o.optrpt -D_FORTIFY_SOURCE=2 -D_REENTRANT -DUNALIGNED_OK -D_LARGEFILE64_SOURCE=1 -DPIC -c -o objs/uncompr.o -Wl,--as-needed,--relax,--gc-sections,-O,2 -pipe
+
+    Report from: Interprocedural optimizations [ipo]
+
+  WHOLE PROGRAM (SAFE) [EITHER METHOD]: false
+  WHOLE PROGRAM (SEEN) [TABLE METHOD]: false
+  WHOLE PROGRAM (READ) [OBJECT READER METHOD]: false
+
+INLINING OPTION VALUES:
+  -inline-factor: 100
+  -inline-min-size: 30
+  -inline-max-size: disabled (user-specified)
+  -inline-max-total-size: disabled (user-specified)
+  -inline-max-per-routine: disabled (user-specified)
+  -inline-max-per-compile: disabled (user-specified)
+
+In the inlining report below:
+   "sz" refers to the "size" of the routine. The smaller a routine's size,
+      the more likely it is to be inlined.
+   "isz" refers to the "inlined size" of the routine. This is the amount
+      the calling routine will grow if the called routine is inlined into it.
+      The compiler generally limits the amount a routine can grow by having
+      routines inlined into it.
+
+Begin optimization report for: uncompress()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (uncompress()) [1/2=50.0%] uncompr.c(91,1)
+  -> (92,12) uncompress2() (isz = 96) (sz = 110)
+     [[ Unable to inline callsite  <1>]]
+
+
+    Report from: Code generation optimizations [cg]
+
+uncompr.c(91,1):remark #34051: REGISTER ALLOCATION : [uncompress] uncompr.c:91
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    5[ rax rdx rcx rsi rdi]
+        
+    Routine temporaries
+        Total         :      22
+            Global    :       8
+            Local     :      14
+        Regenerable   :       2
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :       8 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       1 [1.00e+00 ~ 5.6%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: uncompress2()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (uncompress2()) [2/2=100.0%] uncompr.c(32,1)
+  -> EXTERN: (55,11) inflateInit_(z_streamp, const char *, int)
+  -> EXTERN: (70,15) inflate(z_streamp, int)
+  -> EXTERN: (79,5) inflateEnd(z_streamp)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at uncompr.c(59,5)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+uncompr.c(32,1):remark #34051: REGISTER ALLOCATION : [uncompress2] uncompr.c:32
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   11[ rax rdx rcx rbx rbp rsi rdi r12-r15]
+        
+    Routine temporaries
+        Total         :      50
+            Global    :      18
+            Local     :      32
+        Regenerable   :      15
+        Spilled       :       6
+        
+    Routine stack
+        Variables     :     113 bytes*
+            Reads     :       5 [1.28e+01 ~ 7.7%]
+            Writes    :       9 [1.22e+01 ~ 7.3%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINING FOOTNOTES:
+
+<1> Inlining the function will lead to incorrect program behavior.
+

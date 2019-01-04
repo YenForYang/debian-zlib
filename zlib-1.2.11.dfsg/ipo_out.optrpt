@@ -1,0 +1,88 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+Intel(R) C Intel(R) 64 Compiler for applications running on Intel(R) 64, Version 19.0.1.144 Build 20181018
+
+Compiler options: -march=native -O3 -parallel -inline-level=2 -gcc-name=gcc.intel -gxx-name=g++.intel -gnu-prefix=x86_64-linux-gnu- -X -I/opt/intel/compilers_and_libraries/linux/pstl/include -I/opt/intel/compilers_and_libraries/linux/tbb/include -isystem/opt/intel/include/intel64 -isystem/opt/intel/include/icc -isystem/opt/intel/include -isystem/usr/local/include -isystem/usr/lib/gcc/x86_64-linux-gnu/8/include -isystem/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed -isystem/usr/include -isystem/usr/include/x86_64-linux-gnu -isystem/usr/include/asm-generic -isystem/usr/include/x86_64-linux-gnu/bits -Wp,-# -qoverride-limits -falign-loops -qopt-matmul -qopt-mem-layout-trans -qopt-prefetch -qopt-multi-version-aggressive -fpermissive -no-inline-max-per-compile -no-inline-max-per-routine -no-inline-max-size -no-inline-max-total-size -inline-min-caller-growth=0 -fabi-version=13 -par-schedule-auto -ipo -Wl,--as-needed,--relax,--gc-sections,-O,2 -DHAVE_LIMITS_H -DHAVE_FCNTL_H -diag-disable=10237,10148,10121,10013 -static-intel -Qlocation,fpp,/opt/intel/compilers_and_libraries/linux/pkg_bin/intel64 -shared -g -O2 -fdebug-prefix-map=/dev/shm/zlib/zlib-1.2.11.dfsg=. -Wformat -march=native -pipe -Wformat-security -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -D_REENTRANT -O3 -DUNALIGNED_OK -fPIC -o ztest18686.so
+
+    Report from: Interprocedural optimizations [ipo]
+
+  WHOLE PROGRAM (SAFE) [EITHER METHOD]: false
+  WHOLE PROGRAM (SEEN) [TABLE METHOD]: false
+  WHOLE PROGRAM (READ) [OBJECT READER METHOD]: false
+
+INLINING OPTION VALUES:
+  -inline-factor: 100
+  -inline-min-size: 30
+  -inline-max-size: disabled (user-specified)
+  -inline-max-total-size: disabled (user-specified)
+  -inline-max-per-routine: disabled (user-specified)
+  -inline-max-per-compile: disabled (user-specified)
+
+In the inlining report below:
+   "sz" refers to the "size" of the routine. The smaller a routine's size,
+      the more likely it is to be inlined.
+   "isz" refers to the "inlined size" of the routine. This is the amount
+      the calling routine will grow if the called routine is inlined into it.
+      The compiler generally limits the amount a routine can grow by having
+      routines inlined into it.
+
+Begin optimization report for: hello()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (hello()) [1/1=100.0%] ztest18686.c(2,13)
+  -> EXTERN: (2,21) getchar()
+
+
+    Report from: Code generation optimizations [cg]
+
+ztest18686.c(2,13):remark #34051: REGISTER ALLOCATION : [hello] ztest18686.c:2
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    0[ reg_null]
+        
+    Routine temporaries
+        Total         :       6
+            Global    :       0
+            Local     :       6
+        Regenerable   :       0
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+    Report from: Profile guided optimizations [pgo]
+
+
+
+Profile feedback used a statically estimated profile for the following routines:
+
+  File: ztest18686.c
+        hello()[Line     2]
+
+
+  0 out of 1 routine(s) used training profile data for PGO feedback
+  0 out of 1 routine(s) were unable to use training profile data for PGO feedback
+  0 out of 1 routine(s) were unable to find training profile data for PGO feedback
+  1 out of 1 routine(s) used a static estimate profile for PGO feedback
+
+
+

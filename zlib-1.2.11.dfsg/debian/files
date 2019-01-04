@@ -1,0 +1,6 @@
+lib32z1-dev_1.2.11.dfsg-1_amd64.deb libdevel optional
+lib32z1_1.2.11.dfsg-1_amd64.deb libs optional
+zlib1g-dbg_1.2.11.dfsg-1_amd64.deb debug extra
+zlib1g-dev_1.2.11.dfsg-1_amd64.deb libdevel optional
+zlib1g-udeb_1.2.11.dfsg-1_amd64.udeb debian-installer optional
+zlib1g_1.2.11.dfsg-1_amd64.deb libs required

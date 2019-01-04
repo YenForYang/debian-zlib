@@ -1,0 +1,730 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+Intel(R) C Intel(R) 64 Compiler for applications running on Intel(R) 64, Version 19.0.1.144 Build 20181018
+
+Compiler options: -O3 -diag-disable=10013,10385,10237,10346 -fabi-version=13 -falign-functions -falign-loops -fbuiltin -fdata-sections -ffunction-sections -ffat-lto-objects -fpermissive -gcc-name=gcc.intel -gnu-prefix=x86_64-linux-gnu- -gxx-name=g++.intel -inline-level=2 -inline-min-caller-growth=0 -ipo -march=native -no-inline-max-per-compile -no-inline-max-per-routine -no-inline-max-size -no-inline-max-total-size -par-schedule-auto -parallel -qopt-matmul -qopt-mem-layout-trans -qopt-multi-version-aggressive -qopt-prefetch -qoverride-limits -static-intel -qopt-report=5 -qno-opt-report-embed -g -Wformat -Wformat-security -Wall -O3 -qopt-report-file=crc32.o.optrpt -D_FORTIFY_SOURCE=2 -D_REENTRANT -DUNALIGNED_OK -D_LARGEFILE64_SOURCE=1 -c -o crc32.o -Wl,--as-needed,--relax,--gc-sections,-O,2 -pipe
+
+    Report from: Interprocedural optimizations [ipo]
+
+  WHOLE PROGRAM (SAFE) [EITHER METHOD]: false
+  WHOLE PROGRAM (SEEN) [TABLE METHOD]: false
+  WHOLE PROGRAM (READ) [OBJECT READER METHOD]: false
+
+INLINING OPTION VALUES:
+  -inline-factor: 100
+  -inline-min-size: 30
+  -inline-max-size: disabled (user-specified)
+  -inline-max-total-size: disabled (user-specified)
+  -inline-max-per-routine: disabled (user-specified)
+  -inline-max-per-compile: disabled (user-specified)
+
+In the inlining report below:
+   "sz" refers to the "size" of the routine. The smaller a routine's size,
+      the more likely it is to be inlined.
+   "isz" refers to the "inlined size" of the routine. This is the amount
+      the calling routine will grow if the called routine is inlined into it.
+      The compiler generally limits the amount a routine can grow by having
+      routines inlined into it.
+
+Begin optimization report for: get_crc_table()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (get_crc_table()) [1/10=10.0%] crc32.c(189,1)
+
+
+    Report from: Code generation optimizations [cg]
+
+crc32.c(189,1):remark #34051: REGISTER ALLOCATION : [get_crc_table] crc32.c:189
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    1[ rax]
+        
+    Routine temporaries
+        Total         :       8
+            Global    :       0
+            Local     :       8
+        Regenerable   :       2
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: crc32_z()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (crc32_z()) [2/10=20.0%] crc32.c(206,1)
+  -> INLINE: (220,20) crc32_little() (isz = 274) (sz = 285)
+  -> INLINE: (222,20) crc32_big() (isz = 274) (sz = 285)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at crc32.c(276,5) inlined into crc32.c(220,20)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between c (277:9) and c (277:9)
+   remark #17106: parallel dependence: assumed FLOW dependence between c (277:9) and c (277:9)
+   remark #17106: parallel dependence: assumed ANTI dependence between c (277:9) and c (277:9)
+   remark #17106: parallel dependence: assumed FLOW dependence between c (277:9) and c (277:9)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria   [ crc32.c(278,9) ]
+LOOP END
+
+LOOP BEGIN at crc32.c(282,5) inlined into crc32.c(220,20)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between c (283:9) and c (283:9)
+   remark #17106: parallel dependence: assumed FLOW dependence between c (283:9) and c (283:9)
+   remark #17106: parallel dependence: assumed FLOW dependence between c (283:9) and c (283:9)
+   remark #17106: parallel dependence: assumed ANTI dependence between c (283:9) and c (283:9)
+   remark #25427: Loop Statements Reordered
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between c (283:9) and c (283:9)
+   remark #15346: vector dependence: assumed FLOW dependence between c (283:9) and c (283:9)
+   remark #15346: vector dependence: assumed FLOW dependence between c (283:9) and c (283:9)
+   remark #15346: vector dependence: assumed ANTI dependence between c (283:9) and c (283:9)
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 2
+LOOP END
+
+LOOP BEGIN at crc32.c(286,5) inlined into crc32.c(220,20)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between c (287:9) and c (287:9)
+   remark #17106: parallel dependence: assumed FLOW dependence between c (287:9) and c (287:9)
+   remark #17106: parallel dependence: assumed FLOW dependence between c (287:9) and c (287:9)
+   remark #17106: parallel dependence: assumed ANTI dependence between c (287:9) and c (287:9)
+   remark #25427: Loop Statements Reordered
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between c (287:9) and c (287:9)
+   remark #15346: vector dependence: assumed FLOW dependence between c (287:9) and c (287:9)
+   remark #15346: vector dependence: assumed FLOW dependence between c (287:9) and c (287:9)
+   remark #15346: vector dependence: assumed ANTI dependence between c (287:9) and c (287:9)
+   remark #25439: unrolled with remainder by 2  
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 2
+LOOP END
+
+LOOP BEGIN at crc32.c(286,5) inlined into crc32.c(220,20)
+<Remainder>
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 2
+LOOP END
+
+LOOP BEGIN at crc32.c(292,5) inlined into crc32.c(220,20)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between c (293:9) and c (293:9)
+   remark #17106: parallel dependence: assumed FLOW dependence between c (293:9) and c (293:9)
+   remark #17106: parallel dependence: assumed ANTI dependence between c (293:9) and c (293:9)
+   remark #17106: parallel dependence: assumed FLOW dependence between c (293:9) and c (293:9)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between c (293:9) and c (293:9)
+   remark #15346: vector dependence: assumed FLOW dependence between c (293:9) and c (293:9)
+   remark #15346: vector dependence: assumed ANTI dependence between c (293:9) and c (293:9)
+   remark #15346: vector dependence: assumed FLOW dependence between c (293:9) and c (293:9)
+   remark #25439: unrolled with remainder by 2  
+LOOP END
+
+LOOP BEGIN at crc32.c(292,5) inlined into crc32.c(220,20)
+<Remainder>
+LOOP END
+
+LOOP BEGIN at crc32.c(316,5) inlined into crc32.c(222,20)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between c (317:9) and c (317:9)
+   remark #17106: parallel dependence: assumed FLOW dependence between c (317:9) and c (317:9)
+   remark #17106: parallel dependence: assumed ANTI dependence between c (317:9) and c (317:9)
+   remark #17106: parallel dependence: assumed FLOW dependence between c (317:9) and c (317:9)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria   [ crc32.c(318,9) ]
+LOOP END
+
+LOOP BEGIN at crc32.c(322,5) inlined into crc32.c(222,20)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between c (323:9) and c (323:9)
+   remark #17106: parallel dependence: assumed FLOW dependence between c (323:9) and c (323:9)
+   remark #17106: parallel dependence: assumed FLOW dependence between c (323:9) and c (323:9)
+   remark #17106: parallel dependence: assumed ANTI dependence between c (323:9) and c (323:9)
+   remark #25427: Loop Statements Reordered
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between c (323:9) and c (323:9)
+   remark #15346: vector dependence: assumed FLOW dependence between c (323:9) and c (323:9)
+   remark #15346: vector dependence: assumed FLOW dependence between c (323:9) and c (323:9)
+   remark #15346: vector dependence: assumed ANTI dependence between c (323:9) and c (323:9)
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 2
+LOOP END
+
+LOOP BEGIN at crc32.c(326,5) inlined into crc32.c(222,20)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between c (327:9) and c (327:9)
+   remark #17106: parallel dependence: assumed FLOW dependence between c (327:9) and c (327:9)
+   remark #17106: parallel dependence: assumed FLOW dependence between c (327:9) and c (327:9)
+   remark #17106: parallel dependence: assumed ANTI dependence between c (327:9) and c (327:9)
+   remark #25427: Loop Statements Reordered
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between c (327:9) and c (327:9)
+   remark #15346: vector dependence: assumed FLOW dependence between c (327:9) and c (327:9)
+   remark #15346: vector dependence: assumed FLOW dependence between c (327:9) and c (327:9)
+   remark #15346: vector dependence: assumed ANTI dependence between c (327:9) and c (327:9)
+   remark #25439: unrolled with remainder by 2  
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 2
+LOOP END
+
+LOOP BEGIN at crc32.c(326,5) inlined into crc32.c(222,20)
+<Remainder>
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 2
+LOOP END
+
+LOOP BEGIN at crc32.c(332,5) inlined into crc32.c(222,20)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between c (333:9) and c (333:9)
+   remark #17106: parallel dependence: assumed FLOW dependence between c (333:9) and c (333:9)
+   remark #17106: parallel dependence: assumed ANTI dependence between c (333:9) and c (333:9)
+   remark #17106: parallel dependence: assumed FLOW dependence between c (333:9) and c (333:9)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between c (333:9) and c (333:9)
+   remark #15346: vector dependence: assumed FLOW dependence between c (333:9) and c (333:9)
+   remark #15346: vector dependence: assumed ANTI dependence between c (333:9) and c (333:9)
+   remark #15346: vector dependence: assumed FLOW dependence between c (333:9) and c (333:9)
+   remark #25439: unrolled with remainder by 2  
+LOOP END
+
+LOOP BEGIN at crc32.c(332,5) inlined into crc32.c(222,20)
+<Remainder>
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+crc32.c(206,1):remark #34051: REGISTER ALLOCATION : [crc32_z] crc32.c:206
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    9[ rax rdx rcx rsi rdi r8-r11]
+        
+    Routine temporaries
+        Total         :     219
+            Global    :      23
+            Local     :     196
+        Regenerable   :       2
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: crc32()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (crc32()) [3/10=30.0%] crc32.c(241,1)
+  -> INLINE: (242,12) crc32_z() (isz = 564) (sz = 577)
+    -> INLINE: (220,20) crc32_little() (isz = 274) (sz = 285)
+    -> INLINE: (222,20) crc32_big() (isz = 274) (sz = 285)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at crc32.c(316,5) inlined into crc32.c(242,12)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between c (317:9) and c (317:9)
+   remark #17106: parallel dependence: assumed FLOW dependence between c (317:9) and c (317:9)
+   remark #17106: parallel dependence: assumed ANTI dependence between c (317:9) and c (317:9)
+   remark #17106: parallel dependence: assumed FLOW dependence between c (317:9) and c (317:9)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria   [ crc32.c(318,9) ]
+LOOP END
+
+LOOP BEGIN at crc32.c(322,5) inlined into crc32.c(242,12)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between c (323:9) and c (323:9)
+   remark #17106: parallel dependence: assumed FLOW dependence between c (323:9) and c (323:9)
+   remark #17106: parallel dependence: assumed FLOW dependence between c (323:9) and c (323:9)
+   remark #17106: parallel dependence: assumed ANTI dependence between c (323:9) and c (323:9)
+   remark #25427: Loop Statements Reordered
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between c (323:9) and c (323:9)
+   remark #15346: vector dependence: assumed FLOW dependence between c (323:9) and c (323:9)
+   remark #15346: vector dependence: assumed FLOW dependence between c (323:9) and c (323:9)
+   remark #15346: vector dependence: assumed ANTI dependence between c (323:9) and c (323:9)
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 2
+LOOP END
+
+LOOP BEGIN at crc32.c(326,5) inlined into crc32.c(242,12)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between c (327:9) and c (327:9)
+   remark #17106: parallel dependence: assumed FLOW dependence between c (327:9) and c (327:9)
+   remark #17106: parallel dependence: assumed FLOW dependence between c (327:9) and c (327:9)
+   remark #17106: parallel dependence: assumed ANTI dependence between c (327:9) and c (327:9)
+   remark #25427: Loop Statements Reordered
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between c (327:9) and c (327:9)
+   remark #15346: vector dependence: assumed FLOW dependence between c (327:9) and c (327:9)
+   remark #15346: vector dependence: assumed FLOW dependence between c (327:9) and c (327:9)
+   remark #15346: vector dependence: assumed ANTI dependence between c (327:9) and c (327:9)
+   remark #25439: unrolled with remainder by 2  
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 2
+LOOP END
+
+LOOP BEGIN at crc32.c(326,5) inlined into crc32.c(242,12)
+<Remainder>
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 2
+LOOP END
+
+LOOP BEGIN at crc32.c(332,5) inlined into crc32.c(242,12)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between c (333:9) and c (333:9)
+   remark #17106: parallel dependence: assumed FLOW dependence between c (333:9) and c (333:9)
+   remark #17106: parallel dependence: assumed ANTI dependence between c (333:9) and c (333:9)
+   remark #17106: parallel dependence: assumed FLOW dependence between c (333:9) and c (333:9)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between c (333:9) and c (333:9)
+   remark #15346: vector dependence: assumed FLOW dependence between c (333:9) and c (333:9)
+   remark #15346: vector dependence: assumed ANTI dependence between c (333:9) and c (333:9)
+   remark #15346: vector dependence: assumed FLOW dependence between c (333:9) and c (333:9)
+   remark #25439: unrolled with remainder by 2  
+LOOP END
+
+LOOP BEGIN at crc32.c(332,5) inlined into crc32.c(242,12)
+<Remainder>
+LOOP END
+
+LOOP BEGIN at crc32.c(276,5) inlined into crc32.c(242,12)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between c (277:9) and c (277:9)
+   remark #17106: parallel dependence: assumed FLOW dependence between c (277:9) and c (277:9)
+   remark #17106: parallel dependence: assumed ANTI dependence between c (277:9) and c (277:9)
+   remark #17106: parallel dependence: assumed FLOW dependence between c (277:9) and c (277:9)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria   [ crc32.c(278,9) ]
+LOOP END
+
+LOOP BEGIN at crc32.c(282,5) inlined into crc32.c(242,12)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between c (283:9) and c (283:9)
+   remark #17106: parallel dependence: assumed FLOW dependence between c (283:9) and c (283:9)
+   remark #17106: parallel dependence: assumed FLOW dependence between c (283:9) and c (283:9)
+   remark #17106: parallel dependence: assumed ANTI dependence between c (283:9) and c (283:9)
+   remark #25427: Loop Statements Reordered
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between c (283:9) and c (283:9)
+   remark #15346: vector dependence: assumed FLOW dependence between c (283:9) and c (283:9)
+   remark #15346: vector dependence: assumed FLOW dependence between c (283:9) and c (283:9)
+   remark #15346: vector dependence: assumed ANTI dependence between c (283:9) and c (283:9)
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 2
+LOOP END
+
+LOOP BEGIN at crc32.c(286,5) inlined into crc32.c(242,12)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between c (287:9) and c (287:9)
+   remark #17106: parallel dependence: assumed FLOW dependence between c (287:9) and c (287:9)
+   remark #17106: parallel dependence: assumed FLOW dependence between c (287:9) and c (287:9)
+   remark #17106: parallel dependence: assumed ANTI dependence between c (287:9) and c (287:9)
+   remark #25427: Loop Statements Reordered
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between c (287:9) and c (287:9)
+   remark #15346: vector dependence: assumed FLOW dependence between c (287:9) and c (287:9)
+   remark #15346: vector dependence: assumed FLOW dependence between c (287:9) and c (287:9)
+   remark #15346: vector dependence: assumed ANTI dependence between c (287:9) and c (287:9)
+   remark #25439: unrolled with remainder by 2  
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 2
+LOOP END
+
+LOOP BEGIN at crc32.c(286,5) inlined into crc32.c(242,12)
+<Remainder>
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 2
+LOOP END
+
+LOOP BEGIN at crc32.c(292,5) inlined into crc32.c(242,12)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between c (293:9) and c (293:9)
+   remark #17106: parallel dependence: assumed FLOW dependence between c (293:9) and c (293:9)
+   remark #17106: parallel dependence: assumed ANTI dependence between c (293:9) and c (293:9)
+   remark #17106: parallel dependence: assumed FLOW dependence between c (293:9) and c (293:9)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between c (293:9) and c (293:9)
+   remark #15346: vector dependence: assumed FLOW dependence between c (293:9) and c (293:9)
+   remark #15346: vector dependence: assumed ANTI dependence between c (293:9) and c (293:9)
+   remark #15346: vector dependence: assumed FLOW dependence between c (293:9) and c (293:9)
+   remark #25439: unrolled with remainder by 2  
+LOOP END
+
+LOOP BEGIN at crc32.c(292,5) inlined into crc32.c(242,12)
+<Remainder>
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+crc32.c(241,1):remark #34051: REGISTER ALLOCATION : [crc32] crc32.c:241
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    9[ rax rdx rcx rsi rdi r8-r11]
+        
+    Routine temporaries
+        Total         :     220
+            Global    :      25
+            Local     :     195
+        Regenerable   :       1
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: crc32_little()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (crc32_little()) crc32.c(270,1)
+
+===========================================================================
+
+Begin optimization report for: crc32_big()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (crc32_big()) crc32.c(310,1)
+
+===========================================================================
+
+Begin optimization report for: gf2_matrix_square()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (gf2_matrix_square()) crc32.c(364,1)
+
+===========================================================================
+
+Begin optimization report for: gf2_matrix_times()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (gf2_matrix_times()) crc32.c(347,1)
+
+===========================================================================
+
+Begin optimization report for: crc32_combine_()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (crc32_combine_()) crc32.c(376,1)
+
+===========================================================================
+
+Begin optimization report for: crc32_combine()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (crc32_combine()) [9/10=90.0%] crc32.c(432,1)
+  -> INLINE: (433,12) crc32_combine_() (isz = 224) (sz = 236)
+    -> INLINE: (395,5) gf2_matrix_square() (isz = 15) (sz = 22)
+      -> INLINE: (368,21) gf2_matrix_times() (isz = 15) (sz = 24)
+    -> INLINE: (398,5) gf2_matrix_square() (isz = 15) (sz = 22)
+      -> INLINE: (368,21) gf2_matrix_times() (isz = 15) (sz = 24)
+    -> INLINE: (404,9) gf2_matrix_square() (isz = 15) (sz = 22)
+      -> INLINE: (368,21) gf2_matrix_times() (isz = 15) (sz = 24)
+    -> INLINE: (406,20) gf2_matrix_times() (isz = 15) (sz = 24)
+    -> INLINE: (414,9) gf2_matrix_square() (isz = 15) (sz = 22)
+      -> INLINE: (368,21) gf2_matrix_times() (isz = 15) (sz = 24)
+    -> INLINE: (416,20) gf2_matrix_times() (isz = 15) (sz = 24)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at crc32.c(389,5) inlined into crc32.c(433,12)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between row (390:9) and row (391:9)
+   remark #17106: parallel dependence: assumed FLOW dependence between row (391:9) and row (390:9)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between row (390:9) and row (391:9)
+   remark #15346: vector dependence: assumed FLOW dependence between row (391:9) and row (390:9)
+   remark #25439: unrolled with remainder by 2  
+LOOP END
+
+LOOP BEGIN at crc32.c(389,5) inlined into crc32.c(433,12)
+<Remainder>
+LOOP END
+
+LOOP BEGIN at crc32.c(367,5) inlined into crc32.c(433,12)
+   remark #17108: loop was not parallelized: insufficient computational work
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive   [ crc32.c(351,5) ]
+   remark #25015: Estimate of max trip count of loop=32
+
+   LOOP BEGIN at crc32.c(351,5) inlined into crc32.c(433,12)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15523: loop was not vectorized: loop control variable mat was found, but loop iteration count cannot be computed before executing the loop
+      remark #25478: While Loop Unrolled by 8  
+      remark #25015: Estimate of max trip count of loop=4
+   LOOP END
+LOOP END
+
+LOOP BEGIN at crc32.c(367,5) inlined into crc32.c(433,12)
+   remark #17108: loop was not parallelized: insufficient computational work
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive   [ crc32.c(351,5) ]
+   remark #25015: Estimate of max trip count of loop=32
+
+   LOOP BEGIN at crc32.c(351,5) inlined into crc32.c(433,12)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15523: loop was not vectorized: loop control variable mat was found, but loop iteration count cannot be computed before executing the loop
+      remark #25478: While Loop Unrolled by 8  
+      remark #25015: Estimate of max trip count of loop=4
+   LOOP END
+LOOP END
+
+LOOP BEGIN at crc32.c(367,5) inlined into crc32.c(433,12)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at crc32.c(367,5) inlined into crc32.c(433,12)
+      remark #17108: loop was not parallelized: insufficient computational work
+      remark #15541: outer loop was not auto-vectorized: consider using SIMD directive   [ crc32.c(351,5) ]
+      remark #25015: Estimate of max trip count of loop=32
+
+      LOOP BEGIN at crc32.c(351,5) inlined into crc32.c(433,12)
+         remark #17102: loop was not parallelized: not a parallelization candidate
+         remark #15523: loop was not vectorized: loop control variable mat was found, but loop iteration count cannot be computed before executing the loop
+         remark #25478: While Loop Unrolled by 8  
+         remark #25015: Estimate of max trip count of loop=4
+      LOOP END
+   LOOP END
+
+   LOOP BEGIN at crc32.c(351,5) inlined into crc32.c(433,12)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15523: loop was not vectorized: loop control variable mat was found, but loop iteration count cannot be computed before executing the loop
+      remark #25478: While Loop Unrolled by 8  
+      remark #25015: Estimate of max trip count of loop=4
+   LOOP END
+
+   LOOP BEGIN at crc32.c(367,5) inlined into crc32.c(433,12)
+      remark #17108: loop was not parallelized: insufficient computational work
+      remark #15541: outer loop was not auto-vectorized: consider using SIMD directive   [ crc32.c(351,5) ]
+      remark #25015: Estimate of max trip count of loop=32
+
+      LOOP BEGIN at crc32.c(351,5) inlined into crc32.c(433,12)
+         remark #17102: loop was not parallelized: not a parallelization candidate
+         remark #15523: loop was not vectorized: loop control variable mat was found, but loop iteration count cannot be computed before executing the loop
+         remark #25478: While Loop Unrolled by 8  
+         remark #25015: Estimate of max trip count of loop=4
+      LOOP END
+   LOOP END
+
+   LOOP BEGIN at crc32.c(351,5) inlined into crc32.c(433,12)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15523: loop was not vectorized: loop control variable mat was found, but loop iteration count cannot be computed before executing the loop
+      remark #25478: While Loop Unrolled by 8  
+      remark #25015: Estimate of max trip count of loop=4
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+crc32.c(432,1):remark #34051: REGISTER ALLOCATION : [crc32_combine] crc32.c:432
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    9[ rax rdx rcx rsi rdi r8-r11]
+        
+    Routine temporaries
+        Total         :     124
+            Global    :      34
+            Local     :      90
+        Regenerable   :       2
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :     512 bytes*
+            Reads     :      52 [7.56e+02 ~ 10.7%]
+            Writes    :       8 [2.46e+02 ~ 3.5%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: crc32_combine64()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (crc32_combine64()) [10/10=100.0%] crc32.c(440,1)
+  -> INLINE: (441,12) crc32_combine_() (isz = 224) (sz = 236)
+    -> INLINE: (395,5) gf2_matrix_square() (isz = 15) (sz = 22)
+      -> INLINE: (368,21) gf2_matrix_times() (isz = 15) (sz = 24)
+    -> INLINE: (398,5) gf2_matrix_square() (isz = 15) (sz = 22)
+      -> INLINE: (368,21) gf2_matrix_times() (isz = 15) (sz = 24)
+    -> INLINE: (404,9) gf2_matrix_square() (isz = 15) (sz = 22)
+      -> INLINE: (368,21) gf2_matrix_times() (isz = 15) (sz = 24)
+    -> INLINE: (406,20) gf2_matrix_times() (isz = 15) (sz = 24)
+    -> INLINE: (414,9) gf2_matrix_square() (isz = 15) (sz = 22)
+      -> INLINE: (368,21) gf2_matrix_times() (isz = 15) (sz = 24)
+    -> INLINE: (416,20) gf2_matrix_times() (isz = 15) (sz = 24)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at crc32.c(389,5) inlined into crc32.c(441,12)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between row (390:9) and row (391:9)
+   remark #17106: parallel dependence: assumed FLOW dependence between row (391:9) and row (390:9)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between row (390:9) and row (391:9)
+   remark #15346: vector dependence: assumed FLOW dependence between row (391:9) and row (390:9)
+   remark #25439: unrolled with remainder by 2  
+LOOP END
+
+LOOP BEGIN at crc32.c(389,5) inlined into crc32.c(441,12)
+<Remainder>
+LOOP END
+
+LOOP BEGIN at crc32.c(367,5) inlined into crc32.c(441,12)
+   remark #17108: loop was not parallelized: insufficient computational work
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive   [ crc32.c(351,5) ]
+   remark #25015: Estimate of max trip count of loop=32
+
+   LOOP BEGIN at crc32.c(351,5) inlined into crc32.c(441,12)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15523: loop was not vectorized: loop control variable mat was found, but loop iteration count cannot be computed before executing the loop
+      remark #25478: While Loop Unrolled by 8  
+      remark #25015: Estimate of max trip count of loop=4
+   LOOP END
+LOOP END
+
+LOOP BEGIN at crc32.c(367,5) inlined into crc32.c(441,12)
+   remark #17108: loop was not parallelized: insufficient computational work
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive   [ crc32.c(351,5) ]
+   remark #25015: Estimate of max trip count of loop=32
+
+   LOOP BEGIN at crc32.c(351,5) inlined into crc32.c(441,12)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15523: loop was not vectorized: loop control variable mat was found, but loop iteration count cannot be computed before executing the loop
+      remark #25478: While Loop Unrolled by 8  
+      remark #25015: Estimate of max trip count of loop=4
+   LOOP END
+LOOP END
+
+LOOP BEGIN at crc32.c(367,5) inlined into crc32.c(441,12)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at crc32.c(367,5) inlined into crc32.c(441,12)
+      remark #17108: loop was not parallelized: insufficient computational work
+      remark #15541: outer loop was not auto-vectorized: consider using SIMD directive   [ crc32.c(351,5) ]
+      remark #25015: Estimate of max trip count of loop=32
+
+      LOOP BEGIN at crc32.c(351,5) inlined into crc32.c(441,12)
+         remark #17102: loop was not parallelized: not a parallelization candidate
+         remark #15523: loop was not vectorized: loop control variable mat was found, but loop iteration count cannot be computed before executing the loop
+         remark #25478: While Loop Unrolled by 8  
+         remark #25015: Estimate of max trip count of loop=4
+      LOOP END
+   LOOP END
+
+   LOOP BEGIN at crc32.c(351,5) inlined into crc32.c(441,12)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15523: loop was not vectorized: loop control variable mat was found, but loop iteration count cannot be computed before executing the loop
+      remark #25478: While Loop Unrolled by 8  
+      remark #25015: Estimate of max trip count of loop=4
+   LOOP END
+
+   LOOP BEGIN at crc32.c(367,5) inlined into crc32.c(441,12)
+      remark #17108: loop was not parallelized: insufficient computational work
+      remark #15541: outer loop was not auto-vectorized: consider using SIMD directive   [ crc32.c(351,5) ]
+      remark #25015: Estimate of max trip count of loop=32
+
+      LOOP BEGIN at crc32.c(351,5) inlined into crc32.c(441,12)
+         remark #17102: loop was not parallelized: not a parallelization candidate
+         remark #15523: loop was not vectorized: loop control variable mat was found, but loop iteration count cannot be computed before executing the loop
+         remark #25478: While Loop Unrolled by 8  
+         remark #25015: Estimate of max trip count of loop=4
+      LOOP END
+   LOOP END
+
+   LOOP BEGIN at crc32.c(351,5) inlined into crc32.c(441,12)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15523: loop was not vectorized: loop control variable mat was found, but loop iteration count cannot be computed before executing the loop
+      remark #25478: While Loop Unrolled by 8  
+      remark #25015: Estimate of max trip count of loop=4
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+crc32.c(440,1):remark #34051: REGISTER ALLOCATION : [crc32_combine64] crc32.c:440
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    9[ rax rdx rcx rsi rdi r8-r11]
+        
+    Routine temporaries
+        Total         :     124
+            Global    :      34
+            Local     :      90
+        Regenerable   :       2
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :     512 bytes*
+            Reads     :      52 [7.56e+02 ~ 10.7%]
+            Writes    :       8 [2.46e+02 ~ 3.5%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================

@@ -1,0 +1,170 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+Intel(R) C Intel(R) 64 Compiler for applications running on Intel(R) 64, Version 19.0.1.144 Build 20181018
+
+Compiler options: -O3 -diag-disable=10013,10385,10237,10346 -fabi-version=13 -falign-functions -falign-loops -fbuiltin -fdata-sections -ffunction-sections -ffat-lto-objects -fpermissive -gcc-name=gcc.intel -gnu-prefix=x86_64-linux-gnu- -gxx-name=g++.intel -inline-level=2 -inline-min-caller-growth=0 -ipo -march=native -no-inline-max-per-compile -no-inline-max-per-routine -no-inline-max-size -no-inline-max-total-size -par-schedule-auto -parallel -qopt-matmul -qopt-mem-layout-trans -qopt-multi-version-aggressive -qopt-prefetch -qoverride-limits -static-intel -qopt-report=5 -qno-opt-report-embed -g -Wformat -Wformat-security -Wall -O3 -fpic -qopt-report-file=objs/inftrees.o.optrpt -D_FORTIFY_SOURCE=2 -D_REENTRANT -DUNALIGNED_OK -D_LARGEFILE64_SOURCE=1 -DPIC -c -o objs/inftrees.o -Wl,--as-needed,--relax,--gc-sections,-O,2 -pipe
+
+    Report from: Interprocedural optimizations [ipo]
+
+  WHOLE PROGRAM (SAFE) [EITHER METHOD]: false
+  WHOLE PROGRAM (SEEN) [TABLE METHOD]: false
+  WHOLE PROGRAM (READ) [OBJECT READER METHOD]: false
+
+INLINING OPTION VALUES:
+  -inline-factor: 100
+  -inline-min-size: 30
+  -inline-max-size: disabled (user-specified)
+  -inline-max-total-size: disabled (user-specified)
+  -inline-max-per-routine: disabled (user-specified)
+  -inline-max-per-compile: disabled (user-specified)
+
+In the inlining report below:
+   "sz" refers to the "size" of the routine. The smaller a routine's size,
+      the more likely it is to be inlined.
+   "isz" refers to the "inlined size" of the routine. This is the amount
+      the calling routine will grow if the called routine is inlined into it.
+      The compiler generally limits the amount a routine can grow by having
+      routines inlined into it.
+
+Begin optimization report for: inflate_table()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (inflate_table()) [1/1=100.0%] inftrees.c(39,1)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at inftrees.c(107,5)
+   remark #17108: loop was not parallelized: insufficient computational work
+   remark #15388: vectorization support: reference count[len] has aligned access   [ inftrees.c(108,9) ]
+   remark #15305: vectorization support: vector length 8
+   remark #15427: loop was completely unrolled
+   remark #15399: vectorization support: unroll factor set to 2
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15449: unmasked aligned unit stride stores: 1 
+   remark #15475: --- begin vector cost summary ---
+   remark #15476: scalar cost: 2 
+   remark #15477: vector cost: 0.370 
+   remark #15478: estimated potential speedup: 5.330 
+   remark #15488: --- end vector cost summary ---
+LOOP END
+
+LOOP BEGIN at inftrees.c(109,5)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed FLOW dependence between count[*(lens+sym*2)] (110:9) and count[*(lens+sym*2)] (110:9)
+   remark #15346: vector dependence: assumed ANTI dependence between count[*(lens+sym*2)] (110:9) and count[*(lens+sym*2)] (110:9)
+   remark #25439: unrolled with remainder by 2  
+LOOP END
+
+LOOP BEGIN at inftrees.c(109,5)
+<Remainder>
+LOOP END
+
+LOOP BEGIN at inftrees.c(114,5)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria   [ inftrees.c(114,35) ]
+LOOP END
+
+LOOP BEGIN at inftrees.c(126,5)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria   [ inftrees.c(126,30) ]
+   remark #25015: Estimate of max trip count of loop=16
+LOOP END
+
+LOOP BEGIN at inftrees.c(132,5)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between left (134:9) and left (134:9)
+   remark #17106: parallel dependence: assumed FLOW dependence between left (134:9) and left (134:9)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria   [ inftrees.c(135,30) ]
+LOOP END
+
+LOOP BEGIN at inftrees.c(142,5)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed FLOW dependence between offs[len+1] (143:9) and offs[len] (143:9)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed FLOW dependence between offs[len+1] (143:9) and offs[len] (143:9)
+   remark #25436: completely unrolled by 14  
+LOOP END
+
+LOOP BEGIN at inftrees.c(146,5)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between lens[sym] (147:39) and work[offs[*(lens+sym*2)]] (147:29)
+   remark #17106: parallel dependence: assumed FLOW dependence between work[offs[*(lens+sym*2)]] (147:29) and lens[sym] (147:39)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between lens[sym] (147:39) and work[offs[*(lens+sym*2)]] (147:29)
+   remark #15346: vector dependence: assumed FLOW dependence between work[offs[*(lens+sym*2)]] (147:29) and lens[sym] (147:39)
+   remark #25439: unrolled with remainder by 2  
+LOOP END
+
+LOOP BEGIN at inftrees.c(146,5)
+<Remainder>
+LOOP END
+
+LOOP BEGIN at inftrees.c(209,5)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at inftrees.c(233,9)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15523: loop was not vectorized: loop control variable fill was found, but loop iteration count cannot be computed before executing the loop
+      remark #25478: While Loop Unrolled by 8  
+   LOOP END
+
+   LOOP BEGIN at inftrees.c(241,9)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+   LOOP END
+
+   LOOP BEGIN at inftrees.c(269,13)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15523: loop was not vectorized: loop control variable curr was found, but loop iteration count cannot be computed before executing the loop
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+inftrees.c(236,43):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (1, 0)
+inftrees.c(236,43):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (1, 0)
+inftrees.c(236,43):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (1, 0)
+inftrees.c(236,43):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (1, 0)
+inftrees.c(236,43):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (1, 0)
+inftrees.c(236,43):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (1, 0)
+inftrees.c(236,43):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (1, 0)
+inftrees.c(236,43):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (1, 0)
+inftrees.c(121,12):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (1, 0)
+inftrees.c(122,12):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (1, 0)
+inftrees.c(297,22):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (1, 0)
+inftrees.c(39,1):remark #34051: REGISTER ALLOCATION : [inflate_table] inftrees.c:39
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   16[ rax rdx rcx rbx rbp rsi rdi r8-r15 zmm0]
+        
+    Routine temporaries
+        Total         :     216
+            Global    :      77
+            Local     :     139
+        Regenerable   :      10
+        Spilled       :      35
+        
+    Routine stack
+        Variables     :      68 bytes*
+            Reads     :      28 [1.91e+01 ~ 7.9%]
+            Writes    :      37 [1.39e+01 ~ 5.7%]
+        Spills        :     208 bytes*
+            Reads     :      67 [8.14e+00 ~ 3.3%]
+            Writes    :      41 [4.75e+00 ~ 2.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================

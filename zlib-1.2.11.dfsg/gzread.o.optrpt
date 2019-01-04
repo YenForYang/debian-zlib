@@ -1,0 +1,2364 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+Intel(R) C Intel(R) 64 Compiler for applications running on Intel(R) 64, Version 19.0.1.144 Build 20181018
+
+Compiler options: -O3 -diag-disable=10013,10385,10237,10346 -fabi-version=13 -falign-functions -falign-loops -fbuiltin -fdata-sections -ffunction-sections -ffat-lto-objects -fpermissive -gcc-name=gcc.intel -gnu-prefix=x86_64-linux-gnu- -gxx-name=g++.intel -inline-level=2 -inline-min-caller-growth=0 -ipo -march=native -no-inline-max-per-compile -no-inline-max-per-routine -no-inline-max-size -no-inline-max-total-size -par-schedule-auto -parallel -qopt-matmul -qopt-mem-layout-trans -qopt-multi-version-aggressive -qopt-prefetch -qoverride-limits -static-intel -qopt-report=5 -qno-opt-report-embed -g -Wformat -Wformat-security -Wall -O3 -qopt-report-file=gzread.o.optrpt -D_FORTIFY_SOURCE=2 -D_REENTRANT -DUNALIGNED_OK -D_LARGEFILE64_SOURCE=1 -c -o gzread.o -Wl,--as-needed,--relax,--gc-sections,-O,2 -pipe
+
+    Report from: Interprocedural optimizations [ipo]
+
+  WHOLE PROGRAM (SAFE) [EITHER METHOD]: false
+  WHOLE PROGRAM (SEEN) [TABLE METHOD]: false
+  WHOLE PROGRAM (READ) [OBJECT READER METHOD]: false
+
+INLINING OPTION VALUES:
+  -inline-factor: 100
+  -inline-min-size: 30
+  -inline-max-size: disabled (user-specified)
+  -inline-max-total-size: disabled (user-specified)
+  -inline-max-per-routine: disabled (user-specified)
+  -inline-max-per-compile: disabled (user-specified)
+
+In the inlining report below:
+   "sz" refers to the "size" of the routine. The smaller a routine's size,
+      the more likely it is to be inlined.
+   "isz" refers to the "inlined size" of the routine. This is the amount
+      the calling routine will grow if the called routine is inlined into it.
+      The compiler generally limits the amount a routine can grow by having
+      routines inlined into it.
+
+Begin optimization report for: read(int, void *, size_t)
+
+    Report from: Interprocedural optimizations [ipo]
+
+NEVER EMIT DEFINITION FUNCTION: (read(int, void *, size_t))/usr/include/x86_64-linux-gnu/bits/unistd.h(35,1)
+
+===========================================================================
+
+Begin optimization report for: memcpy(void *__restrict__, const void *__restrict__, size_t)
+
+    Report from: Interprocedural optimizations [ipo]
+
+NEVER EMIT DEFINITION FUNCTION: (memcpy(void *__restrict__, const void *__restrict__, size_t))/usr/include/x86_64-linux-gnu/bits/string_fortified.h(33,1)
+
+===========================================================================
+
+Begin optimization report for: gz_load()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (gz_load()) gzread.c(26,1)
+
+===========================================================================
+
+Begin optimization report for: gz_look()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (gz_look()) gzread.c(93,1)
+
+===========================================================================
+
+Begin optimization report for: gz_decomp()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (gz_decomp()) gzread.c(177,1)
+
+===========================================================================
+
+Begin optimization report for: gz_avail()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (gz_avail()) gzread.c(58,1)
+
+===========================================================================
+
+Begin optimization report for: gz_skip()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (gz_skip()) gzread.c(262,1)
+
+===========================================================================
+
+Begin optimization report for: gz_fetch()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (gz_fetch()) gzread.c(231,1)
+
+===========================================================================
+
+Begin optimization report for: gz_read()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (gz_read()) gzread.c(298,1)
+
+===========================================================================
+
+Begin optimization report for: gzread()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (gzread()) [10/17=58.8%] gzread.c(379,1)
+  -> EXTERN: (395,9) gz_error(gz_statep, int, const char *)
+  -> INLINE: (400,11) gz_read() (isz = 930) (sz = 946)
+    -> INLINE: (309,13) gz_skip() (isz = 46) (sz = 56)
+      -> INLINE: (284,17) gz_fetch() (isz = 544) (sz = 556)
+        -> INLINE: (237,17) gz_look() (isz = 249) (sz = 262)
+          -> EXTERN: (99,38) malloc(size_t)
+          -> EXTERN: (100,39) malloc(size_t)
+          -> EXTERN: (102,13) free(void *)
+          -> EXTERN: (103,13) free(void *)
+          -> EXTERN: (104,13) gz_error(gz_statep, int, const char *)
+          -> EXTERN: (115,13) inflateInit2_(z_streamp, int, const char *, int)
+          -> EXTERN: (116,13) free(void *)
+          -> EXTERN: (117,13) free(void *)
+          -> EXTERN: (119,13) gz_error(gz_statep, int, const char *)
+          -> INLINE: (126,13) gz_avail() (isz = 103) (sz = 112)
+            -> INLINE: (73,13) gz_load() (isz = 42) (sz = 56)
+              -> INLINE (MANUAL): (35,15) read(int, void *, size_t) (isz = 41) (sz = 54)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(36,7) __builtin_object_size(const void *, int)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(38,12) __builtin_constant_p(...)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,9) __read_chk(int, void *, size_t, size_t)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,44) __builtin_object_size(const void *, int)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(41,22) __builtin_object_size(const void *, int)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,9) __read_chk_warn(int, void *, size_t, size_t)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,49) __builtin_object_size(const void *, int)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(44,10) __read_alias(int, void *, size_t)
+              -> EXTERN: (41,9) gz_error(gz_statep, int, const char *)
+              -> EXTERN: (41,34) strerror(int)
+              -> EXTERN: (41,34) __errno_location(void)
+          -> EXTERN: (141,9) inflateReset(z_streamp)
+          -> INLINE (MANUAL): (161,9) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+        -> INLINE: (243,17) gz_load() (isz = 42) (sz = 56)
+          -> INLINE (MANUAL): (35,15) read(int, void *, size_t) (isz = 41) (sz = 54)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(36,7) __builtin_object_size(const void *, int)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(38,12) __builtin_constant_p(...)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,9) __read_chk(int, void *, size_t, size_t)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,44) __builtin_object_size(const void *, int)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(41,22) __builtin_object_size(const void *, int)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,9) __read_chk_warn(int, void *, size_t, size_t)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,49) __builtin_object_size(const void *, int)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(44,10) __read_alias(int, void *, size_t)
+          -> EXTERN: (41,9) gz_error(gz_statep, int, const char *)
+          -> EXTERN: (41,34) strerror(int)
+          -> EXTERN: (41,34) __errno_location(void)
+        -> INLINE: (251,17) gz_decomp() (isz = 86) (sz = 97)
+          -> INLINE: (186,36) gz_avail() (isz = 103) (sz = 112)
+            -> INLINE: (73,13) gz_load() (isz = 42) (sz = 56)
+              -> INLINE (MANUAL): (35,15) read(int, void *, size_t) (isz = 41) (sz = 54)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(36,7) __builtin_object_size(const void *, int)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(38,12) __builtin_constant_p(...)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,9) __read_chk(int, void *, size_t, size_t)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,44) __builtin_object_size(const void *, int)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(41,22) __builtin_object_size(const void *, int)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,9) __read_chk_warn(int, void *, size_t, size_t)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,49) __builtin_object_size(const void *, int)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(44,10) __read_alias(int, void *, size_t)
+              -> EXTERN: (41,9) gz_error(gz_statep, int, const char *)
+              -> EXTERN: (41,34) __errno_location(void)
+              -> EXTERN: (41,34) strerror(int)
+          -> EXTERN: (189,13) gz_error(gz_statep, int, const char *)
+          -> EXTERN: (194,15) inflate(z_streamp, int)
+          -> EXTERN: (196,13) gz_error(gz_statep, int, const char *)
+          -> EXTERN: (201,13) gz_error(gz_statep, int, const char *)
+          -> EXTERN: (205,13) gz_error(gz_statep, int, const char *)
+    -> INLINE (MANUAL): (325,13) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+    -> INLINE: (340,17) gz_fetch() (isz = 544) (sz = 556)
+      -> INLINE: (237,17) gz_look() (isz = 249) (sz = 262)
+        -> EXTERN: (99,38) malloc(size_t)
+        -> EXTERN: (100,39) malloc(size_t)
+        -> EXTERN: (102,13) free(void *)
+        -> EXTERN: (103,13) free(void *)
+        -> EXTERN: (104,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (115,13) inflateInit2_(z_streamp, int, const char *, int)
+        -> EXTERN: (116,13) free(void *)
+        -> EXTERN: (117,13) free(void *)
+        -> EXTERN: (119,13) gz_error(gz_statep, int, const char *)
+        -> INLINE: (126,13) gz_avail() (isz = 103) (sz = 112)
+          -> INLINE: (73,13) gz_load() (isz = 42) (sz = 56)
+            -> INLINE (MANUAL): (35,15) read(int, void *, size_t) (isz = 41) (sz = 54)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(36,7) __builtin_object_size(const void *, int)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(38,12) __builtin_constant_p(...)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,9) __read_chk(int, void *, size_t, size_t)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,44) __builtin_object_size(const void *, int)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(41,22) __builtin_object_size(const void *, int)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,9) __read_chk_warn(int, void *, size_t, size_t)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,49) __builtin_object_size(const void *, int)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(44,10) __read_alias(int, void *, size_t)
+            -> EXTERN: (41,9) gz_error(gz_statep, int, const char *)
+            -> EXTERN: (41,34) strerror(int)
+            -> EXTERN: (41,34) __errno_location(void)
+        -> EXTERN: (141,9) inflateReset(z_streamp)
+        -> INLINE (MANUAL): (161,9) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+      -> INLINE: (243,17) gz_load() (isz = 42) (sz = 56)
+        -> INLINE (MANUAL): (35,15) read(int, void *, size_t) (isz = 41) (sz = 54)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(36,7) __builtin_object_size(const void *, int)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(38,12) __builtin_constant_p(...)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,9) __read_chk(int, void *, size_t, size_t)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,44) __builtin_object_size(const void *, int)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(41,22) __builtin_object_size(const void *, int)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,9) __read_chk_warn(int, void *, size_t, size_t)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,49) __builtin_object_size(const void *, int)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(44,10) __read_alias(int, void *, size_t)
+        -> EXTERN: (41,9) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (41,34) strerror(int)
+        -> EXTERN: (41,34) __errno_location(void)
+      -> INLINE: (251,17) gz_decomp() (isz = 86) (sz = 97)
+        -> INLINE: (186,36) gz_avail() (isz = 103) (sz = 112)
+          -> INLINE: (73,13) gz_load() (isz = 42) (sz = 56)
+            -> INLINE (MANUAL): (35,15) read(int, void *, size_t) (isz = 41) (sz = 54)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(36,7) __builtin_object_size(const void *, int)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(38,12) __builtin_constant_p(...)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,9) __read_chk(int, void *, size_t, size_t)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,44) __builtin_object_size(const void *, int)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(41,22) __builtin_object_size(const void *, int)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,9) __read_chk_warn(int, void *, size_t, size_t)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,49) __builtin_object_size(const void *, int)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(44,10) __read_alias(int, void *, size_t)
+            -> EXTERN: (41,9) gz_error(gz_statep, int, const char *)
+            -> EXTERN: (41,34) __errno_location(void)
+            -> EXTERN: (41,34) strerror(int)
+        -> EXTERN: (189,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (194,15) inflate(z_streamp, int)
+        -> EXTERN: (196,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (201,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (205,13) gz_error(gz_statep, int, const char *)
+    -> INLINE: (349,17) gz_load() (isz = 42) (sz = 56)
+      -> INLINE (MANUAL): (35,15) read(int, void *, size_t) (isz = 41) (sz = 54)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(36,7) __builtin_object_size(const void *, int)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(38,12) __builtin_constant_p(...)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,9) __read_chk(int, void *, size_t, size_t)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,44) __builtin_object_size(const void *, int)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(41,22) __builtin_object_size(const void *, int)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,9) __read_chk_warn(int, void *, size_t, size_t)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,49) __builtin_object_size(const void *, int)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(44,10) __read_alias(int, void *, size_t)
+      -> EXTERN: (41,9) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (41,34) strerror(int)
+      -> EXTERN: (41,34) __errno_location(void)
+    -> INLINE: (357,17) gz_decomp() (isz = 86) (sz = 97)
+      -> INLINE: (186,36) gz_avail() (isz = 103) (sz = 112)
+        -> INLINE: (73,13) gz_load() (isz = 42) (sz = 56)
+          -> INLINE (MANUAL): (35,15) read(int, void *, size_t) (isz = 41) (sz = 54)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(36,7) __builtin_object_size(const void *, int)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(38,12) __builtin_constant_p(...)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,9) __read_chk(int, void *, size_t, size_t)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,44) __builtin_object_size(const void *, int)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(41,22) __builtin_object_size(const void *, int)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,9) __read_chk_warn(int, void *, size_t, size_t)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,49) __builtin_object_size(const void *, int)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(44,10) __read_alias(int, void *, size_t)
+          -> EXTERN: (41,9) gz_error(gz_statep, int, const char *)
+          -> EXTERN: (41,34) __errno_location(void)
+          -> EXTERN: (41,34) strerror(int)
+      -> EXTERN: (189,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (194,15) inflate(z_streamp, int)
+      -> EXTERN: (196,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (201,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (205,13) gz_error(gz_statep, int, const char *)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(400,11)
+   remark #25401: memcopy(with guard) generated
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between *q (65:9) and *p (70:18)
+   remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (65:9)
+   remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+
+   LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(400,11)
+   <Multiversioned v2>
+      remark #17104: loop was not parallelized: existence of parallel dependence
+      remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (70:18)
+      remark #17106: parallel dependence: assumed ANTI dependence between *q (70:18) and *p (70:18)
+      remark #15304: loop was not vectorized: non-vectorizable loop instance from multiversioning
+      remark #25439: unrolled with remainder by 2  
+   LOOP END
+
+   LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(400,11)
+   <Remainder, Multiversioned v2>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gzread.c(30,6) inlined into gzread.c(400,11)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzread.c(183,5) inlined into gzread.c(400,11)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(400,11)
+      remark #25401: memcopy(with guard) generated
+      remark #17104: loop was not parallelized: existence of parallel dependence
+      remark #17106: parallel dependence: assumed ANTI dependence between *q (65:9) and *p (70:18)
+      remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (65:9)
+      remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+
+      LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(400,11)
+      <Multiversioned v2>
+         remark #17104: loop was not parallelized: existence of parallel dependence
+         remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (70:18)
+         remark #17106: parallel dependence: assumed ANTI dependence between *q (70:18) and *p (70:18)
+         remark #15304: loop was not vectorized: non-vectorizable loop instance from multiversioning
+         remark #25439: unrolled with remainder by 2  
+      LOOP END
+
+      LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(400,11)
+      <Remainder, Multiversioned v2>
+      LOOP END
+   LOOP END
+
+   LOOP BEGIN at gzread.c(30,6) inlined into gzread.c(400,11)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gzread.c(30,6) inlined into gzread.c(400,11)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzread.c(30,6) inlined into gzread.c(400,11)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzread.c(183,5) inlined into gzread.c(400,11)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(400,11)
+      remark #25401: memcopy(with guard) generated
+      remark #17104: loop was not parallelized: existence of parallel dependence
+      remark #17106: parallel dependence: assumed ANTI dependence between *q (65:9) and *p (70:18)
+      remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (65:9)
+      remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+
+      LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(400,11)
+      <Multiversioned v2>
+         remark #17104: loop was not parallelized: existence of parallel dependence
+         remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (70:18)
+         remark #17106: parallel dependence: assumed ANTI dependence between *q (70:18) and *p (70:18)
+         remark #15304: loop was not vectorized: non-vectorizable loop instance from multiversioning
+         remark #25439: unrolled with remainder by 2  
+      LOOP END
+
+      LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(400,11)
+      <Remainder, Multiversioned v2>
+      LOOP END
+   LOOP END
+
+   LOOP BEGIN at gzread.c(30,6) inlined into gzread.c(400,11)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(400,11)
+   remark #25401: memcopy(with guard) generated
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between *q (65:9) and *p (70:18)
+   remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (65:9)
+   remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+
+   LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(400,11)
+   <Multiversioned v2>
+      remark #17104: loop was not parallelized: existence of parallel dependence
+      remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (70:18)
+      remark #17106: parallel dependence: assumed ANTI dependence between *q (70:18) and *p (70:18)
+      remark #15304: loop was not vectorized: non-vectorizable loop instance from multiversioning
+      remark #25439: unrolled with remainder by 2  
+   LOOP END
+
+   LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(400,11)
+   <Remainder, Multiversioned v2>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gzread.c(30,6) inlined into gzread.c(400,11)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzread.c(183,5) inlined into gzread.c(400,11)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(400,11)
+      remark #25401: memcopy(with guard) generated
+      remark #17104: loop was not parallelized: existence of parallel dependence
+      remark #17106: parallel dependence: assumed ANTI dependence between *q (65:9) and *p (70:18)
+      remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (65:9)
+      remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+
+      LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(400,11)
+      <Multiversioned v2>
+         remark #17104: loop was not parallelized: existence of parallel dependence
+         remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (70:18)
+         remark #17106: parallel dependence: assumed ANTI dependence between *q (70:18) and *p (70:18)
+         remark #15304: loop was not vectorized: non-vectorizable loop instance from multiversioning
+         remark #25439: unrolled with remainder by 2  
+      LOOP END
+
+      LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(400,11)
+      <Remainder, Multiversioned v2>
+      LOOP END
+   LOOP END
+
+   LOOP BEGIN at gzread.c(30,6) inlined into gzread.c(400,11)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gzread.c(30,6) inlined into gzread.c(400,11)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at gzread.c(266,5) inlined into gzread.c(400,11)
+   remark #15536: loop was not vectorized: inner loop throttling prevents vectorization of this outer loop. Refer to inner loop message for more details.   [ gzread.c(254,31) ]
+   remark #17102: loop was not parallelized: not a parallelization candidate
+
+   LOOP BEGIN at gzread.c(254,31) inlined into gzread.c(400,11)
+      remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+      remark #17102: loop was not parallelized: not a parallelization candidate
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gzread.c(368,14) inlined into gzread.c(400,11)
+   remark #15536: loop was not vectorized: inner loop throttling prevents vectorization of this outer loop. Refer to inner loop message for more details.   [ gzread.c(254,31) ]
+   remark #17102: loop was not parallelized: not a parallelization candidate
+
+   LOOP BEGIN at gzread.c(254,31) inlined into gzread.c(400,11)
+      remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+      remark #17102: loop was not parallelized: not a parallelization candidate
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+gzread.c(379,1):remark #34051: REGISTER ALLOCATION : [gzread] gzread.c:379
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   15[ rax rdx rcx rbx rbp rsi rdi r8-r15]
+        
+    Routine temporaries
+        Total         :     479
+            Global    :     157
+            Local     :     322
+        Regenerable   :      87
+        Spilled       :      15
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :     104 bytes*
+            Reads     :     197 [1.49e+00 ~ 2.2%]
+            Writes    :      42 [1.37e+00 ~ 2.1%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: gzfread()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (gzfread()) [11/17=64.7%] gzread.c(416,1)
+  -> EXTERN: (433,9) gz_error(gz_statep, int, const char *)
+  -> INLINE: (438,18) gz_read() (isz = 930) (sz = 946)
+    -> INLINE: (309,13) gz_skip() (isz = 46) (sz = 56)
+      -> INLINE: (284,17) gz_fetch() (isz = 544) (sz = 556)
+        -> INLINE: (237,17) gz_look() (isz = 249) (sz = 262)
+          -> EXTERN: (99,38) malloc(size_t)
+          -> EXTERN: (100,39) malloc(size_t)
+          -> EXTERN: (102,13) free(void *)
+          -> EXTERN: (103,13) free(void *)
+          -> EXTERN: (104,13) gz_error(gz_statep, int, const char *)
+          -> EXTERN: (115,13) inflateInit2_(z_streamp, int, const char *, int)
+          -> EXTERN: (116,13) free(void *)
+          -> EXTERN: (117,13) free(void *)
+          -> EXTERN: (119,13) gz_error(gz_statep, int, const char *)
+          -> INLINE: (126,13) gz_avail() (isz = 103) (sz = 112)
+            -> INLINE: (73,13) gz_load() (isz = 42) (sz = 56)
+              -> INLINE (MANUAL): (35,15) read(int, void *, size_t) (isz = 41) (sz = 54)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(36,7) __builtin_object_size(const void *, int)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(38,12) __builtin_constant_p(...)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,9) __read_chk(int, void *, size_t, size_t)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,44) __builtin_object_size(const void *, int)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(41,22) __builtin_object_size(const void *, int)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,9) __read_chk_warn(int, void *, size_t, size_t)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,49) __builtin_object_size(const void *, int)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(44,10) __read_alias(int, void *, size_t)
+              -> EXTERN: (41,9) gz_error(gz_statep, int, const char *)
+              -> EXTERN: (41,34) strerror(int)
+              -> EXTERN: (41,34) __errno_location(void)
+          -> EXTERN: (141,9) inflateReset(z_streamp)
+          -> INLINE (MANUAL): (161,9) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+        -> INLINE: (243,17) gz_load() (isz = 42) (sz = 56)
+          -> INLINE (MANUAL): (35,15) read(int, void *, size_t) (isz = 41) (sz = 54)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(36,7) __builtin_object_size(const void *, int)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(38,12) __builtin_constant_p(...)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,9) __read_chk(int, void *, size_t, size_t)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,44) __builtin_object_size(const void *, int)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(41,22) __builtin_object_size(const void *, int)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,9) __read_chk_warn(int, void *, size_t, size_t)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,49) __builtin_object_size(const void *, int)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(44,10) __read_alias(int, void *, size_t)
+          -> EXTERN: (41,9) gz_error(gz_statep, int, const char *)
+          -> EXTERN: (41,34) strerror(int)
+          -> EXTERN: (41,34) __errno_location(void)
+        -> INLINE: (251,17) gz_decomp() (isz = 86) (sz = 97)
+          -> INLINE: (186,36) gz_avail() (isz = 103) (sz = 112)
+            -> INLINE: (73,13) gz_load() (isz = 42) (sz = 56)
+              -> INLINE (MANUAL): (35,15) read(int, void *, size_t) (isz = 41) (sz = 54)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(36,7) __builtin_object_size(const void *, int)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(38,12) __builtin_constant_p(...)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,9) __read_chk(int, void *, size_t, size_t)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,44) __builtin_object_size(const void *, int)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(41,22) __builtin_object_size(const void *, int)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,9) __read_chk_warn(int, void *, size_t, size_t)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,49) __builtin_object_size(const void *, int)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(44,10) __read_alias(int, void *, size_t)
+              -> EXTERN: (41,9) gz_error(gz_statep, int, const char *)
+              -> EXTERN: (41,34) __errno_location(void)
+              -> EXTERN: (41,34) strerror(int)
+          -> EXTERN: (189,13) gz_error(gz_statep, int, const char *)
+          -> EXTERN: (194,15) inflate(z_streamp, int)
+          -> EXTERN: (196,13) gz_error(gz_statep, int, const char *)
+          -> EXTERN: (201,13) gz_error(gz_statep, int, const char *)
+          -> EXTERN: (205,13) gz_error(gz_statep, int, const char *)
+    -> INLINE (MANUAL): (325,13) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+    -> INLINE: (340,17) gz_fetch() (isz = 544) (sz = 556)
+      -> INLINE: (237,17) gz_look() (isz = 249) (sz = 262)
+        -> EXTERN: (99,38) malloc(size_t)
+        -> EXTERN: (100,39) malloc(size_t)
+        -> EXTERN: (102,13) free(void *)
+        -> EXTERN: (103,13) free(void *)
+        -> EXTERN: (104,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (115,13) inflateInit2_(z_streamp, int, const char *, int)
+        -> EXTERN: (116,13) free(void *)
+        -> EXTERN: (117,13) free(void *)
+        -> EXTERN: (119,13) gz_error(gz_statep, int, const char *)
+        -> INLINE: (126,13) gz_avail() (isz = 103) (sz = 112)
+          -> INLINE: (73,13) gz_load() (isz = 42) (sz = 56)
+            -> INLINE (MANUAL): (35,15) read(int, void *, size_t) (isz = 41) (sz = 54)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(36,7) __builtin_object_size(const void *, int)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(38,12) __builtin_constant_p(...)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,9) __read_chk(int, void *, size_t, size_t)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,44) __builtin_object_size(const void *, int)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(41,22) __builtin_object_size(const void *, int)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,9) __read_chk_warn(int, void *, size_t, size_t)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,49) __builtin_object_size(const void *, int)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(44,10) __read_alias(int, void *, size_t)
+            -> EXTERN: (41,9) gz_error(gz_statep, int, const char *)
+            -> EXTERN: (41,34) strerror(int)
+            -> EXTERN: (41,34) __errno_location(void)
+        -> EXTERN: (141,9) inflateReset(z_streamp)
+        -> INLINE (MANUAL): (161,9) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+      -> INLINE: (243,17) gz_load() (isz = 42) (sz = 56)
+        -> INLINE (MANUAL): (35,15) read(int, void *, size_t) (isz = 41) (sz = 54)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(36,7) __builtin_object_size(const void *, int)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(38,12) __builtin_constant_p(...)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,9) __read_chk(int, void *, size_t, size_t)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,44) __builtin_object_size(const void *, int)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(41,22) __builtin_object_size(const void *, int)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,9) __read_chk_warn(int, void *, size_t, size_t)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,49) __builtin_object_size(const void *, int)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(44,10) __read_alias(int, void *, size_t)
+        -> EXTERN: (41,9) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (41,34) strerror(int)
+        -> EXTERN: (41,34) __errno_location(void)
+      -> INLINE: (251,17) gz_decomp() (isz = 86) (sz = 97)
+        -> INLINE: (186,36) gz_avail() (isz = 103) (sz = 112)
+          -> INLINE: (73,13) gz_load() (isz = 42) (sz = 56)
+            -> INLINE (MANUAL): (35,15) read(int, void *, size_t) (isz = 41) (sz = 54)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(36,7) __builtin_object_size(const void *, int)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(38,12) __builtin_constant_p(...)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,9) __read_chk(int, void *, size_t, size_t)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,44) __builtin_object_size(const void *, int)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(41,22) __builtin_object_size(const void *, int)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,9) __read_chk_warn(int, void *, size_t, size_t)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,49) __builtin_object_size(const void *, int)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(44,10) __read_alias(int, void *, size_t)
+            -> EXTERN: (41,9) gz_error(gz_statep, int, const char *)
+            -> EXTERN: (41,34) __errno_location(void)
+            -> EXTERN: (41,34) strerror(int)
+        -> EXTERN: (189,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (194,15) inflate(z_streamp, int)
+        -> EXTERN: (196,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (201,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (205,13) gz_error(gz_statep, int, const char *)
+    -> INLINE: (349,17) gz_load() (isz = 42) (sz = 56)
+      -> INLINE (MANUAL): (35,15) read(int, void *, size_t) (isz = 41) (sz = 54)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(36,7) __builtin_object_size(const void *, int)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(38,12) __builtin_constant_p(...)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,9) __read_chk(int, void *, size_t, size_t)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,44) __builtin_object_size(const void *, int)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(41,22) __builtin_object_size(const void *, int)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,9) __read_chk_warn(int, void *, size_t, size_t)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,49) __builtin_object_size(const void *, int)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(44,10) __read_alias(int, void *, size_t)
+      -> EXTERN: (41,9) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (41,34) strerror(int)
+      -> EXTERN: (41,34) __errno_location(void)
+    -> INLINE: (357,17) gz_decomp() (isz = 86) (sz = 97)
+      -> INLINE: (186,36) gz_avail() (isz = 103) (sz = 112)
+        -> INLINE: (73,13) gz_load() (isz = 42) (sz = 56)
+          -> INLINE (MANUAL): (35,15) read(int, void *, size_t) (isz = 41) (sz = 54)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(36,7) __builtin_object_size(const void *, int)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(38,12) __builtin_constant_p(...)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,9) __read_chk(int, void *, size_t, size_t)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,44) __builtin_object_size(const void *, int)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(41,22) __builtin_object_size(const void *, int)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,9) __read_chk_warn(int, void *, size_t, size_t)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,49) __builtin_object_size(const void *, int)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(44,10) __read_alias(int, void *, size_t)
+          -> EXTERN: (41,9) gz_error(gz_statep, int, const char *)
+          -> EXTERN: (41,34) __errno_location(void)
+          -> EXTERN: (41,34) strerror(int)
+      -> EXTERN: (189,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (194,15) inflate(z_streamp, int)
+      -> EXTERN: (196,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (201,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (205,13) gz_error(gz_statep, int, const char *)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(438,18)
+   remark #25401: memcopy(with guard) generated
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between *q (65:9) and *p (70:18)
+   remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (65:9)
+   remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+
+   LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(438,18)
+   <Multiversioned v2>
+      remark #17104: loop was not parallelized: existence of parallel dependence
+      remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (70:18)
+      remark #17106: parallel dependence: assumed ANTI dependence between *q (70:18) and *p (70:18)
+      remark #15304: loop was not vectorized: non-vectorizable loop instance from multiversioning
+      remark #25439: unrolled with remainder by 2  
+   LOOP END
+
+   LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(438,18)
+   <Remainder, Multiversioned v2>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gzread.c(30,6) inlined into gzread.c(438,18)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzread.c(183,5) inlined into gzread.c(438,18)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(438,18)
+      remark #25401: memcopy(with guard) generated
+      remark #17104: loop was not parallelized: existence of parallel dependence
+      remark #17106: parallel dependence: assumed ANTI dependence between *q (65:9) and *p (70:18)
+      remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (65:9)
+      remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+
+      LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(438,18)
+      <Multiversioned v2>
+         remark #17104: loop was not parallelized: existence of parallel dependence
+         remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (70:18)
+         remark #17106: parallel dependence: assumed ANTI dependence between *q (70:18) and *p (70:18)
+         remark #15304: loop was not vectorized: non-vectorizable loop instance from multiversioning
+         remark #25439: unrolled with remainder by 2  
+      LOOP END
+
+      LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(438,18)
+      <Remainder, Multiversioned v2>
+      LOOP END
+   LOOP END
+
+   LOOP BEGIN at gzread.c(30,6) inlined into gzread.c(438,18)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gzread.c(30,6) inlined into gzread.c(438,18)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzread.c(30,6) inlined into gzread.c(438,18)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzread.c(183,5) inlined into gzread.c(438,18)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(438,18)
+      remark #25401: memcopy(with guard) generated
+      remark #17104: loop was not parallelized: existence of parallel dependence
+      remark #17106: parallel dependence: assumed ANTI dependence between *q (65:9) and *p (70:18)
+      remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (65:9)
+      remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+
+      LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(438,18)
+      <Multiversioned v2>
+         remark #17104: loop was not parallelized: existence of parallel dependence
+         remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (70:18)
+         remark #17106: parallel dependence: assumed ANTI dependence between *q (70:18) and *p (70:18)
+         remark #15304: loop was not vectorized: non-vectorizable loop instance from multiversioning
+         remark #25439: unrolled with remainder by 2  
+      LOOP END
+
+      LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(438,18)
+      <Remainder, Multiversioned v2>
+      LOOP END
+   LOOP END
+
+   LOOP BEGIN at gzread.c(30,6) inlined into gzread.c(438,18)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(438,18)
+   remark #25401: memcopy(with guard) generated
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between *q (65:9) and *p (70:18)
+   remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (65:9)
+   remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+
+   LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(438,18)
+   <Multiversioned v2>
+      remark #17104: loop was not parallelized: existence of parallel dependence
+      remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (70:18)
+      remark #17106: parallel dependence: assumed ANTI dependence between *q (70:18) and *p (70:18)
+      remark #15304: loop was not vectorized: non-vectorizable loop instance from multiversioning
+      remark #25439: unrolled with remainder by 2  
+   LOOP END
+
+   LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(438,18)
+   <Remainder, Multiversioned v2>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gzread.c(30,6) inlined into gzread.c(438,18)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzread.c(183,5) inlined into gzread.c(438,18)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(438,18)
+      remark #25401: memcopy(with guard) generated
+      remark #17104: loop was not parallelized: existence of parallel dependence
+      remark #17106: parallel dependence: assumed ANTI dependence between *q (65:9) and *p (70:18)
+      remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (65:9)
+      remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+
+      LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(438,18)
+      <Multiversioned v2>
+         remark #17104: loop was not parallelized: existence of parallel dependence
+         remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (70:18)
+         remark #17106: parallel dependence: assumed ANTI dependence between *q (70:18) and *p (70:18)
+         remark #15304: loop was not vectorized: non-vectorizable loop instance from multiversioning
+         remark #25439: unrolled with remainder by 2  
+      LOOP END
+
+      LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(438,18)
+      <Remainder, Multiversioned v2>
+      LOOP END
+   LOOP END
+
+   LOOP BEGIN at gzread.c(30,6) inlined into gzread.c(438,18)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gzread.c(30,6) inlined into gzread.c(438,18)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at gzread.c(266,5) inlined into gzread.c(438,18)
+   remark #15536: loop was not vectorized: inner loop throttling prevents vectorization of this outer loop. Refer to inner loop message for more details.   [ gzread.c(254,31) ]
+   remark #17102: loop was not parallelized: not a parallelization candidate
+
+   LOOP BEGIN at gzread.c(254,31) inlined into gzread.c(438,18)
+      remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+      remark #17102: loop was not parallelized: not a parallelization candidate
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gzread.c(368,14) inlined into gzread.c(438,18)
+   remark #15536: loop was not vectorized: inner loop throttling prevents vectorization of this outer loop. Refer to inner loop message for more details.   [ gzread.c(254,31) ]
+   remark #17102: loop was not parallelized: not a parallelization candidate
+
+   LOOP BEGIN at gzread.c(254,31) inlined into gzread.c(438,18)
+      remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+      remark #17102: loop was not parallelized: not a parallelization candidate
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+gzread.c(416,1):remark #34051: REGISTER ALLOCATION : [gzfread] gzread.c:416
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   15[ rax rdx rcx rbx rbp rsi rdi r8-r15]
+        
+    Routine temporaries
+        Total         :     486
+            Global    :     157
+            Local     :     329
+        Regenerable   :      88
+        Spilled       :      16
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :     104 bytes*
+            Reads     :     193 [3.26e-01 ~ 0.8%]
+            Writes    :      52 [2.99e-01 ~ 0.7%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: gzgetc()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (gzgetc()) [12/17=70.6%] gzread.c(449,1)
+  -> INLINE: (472,11) gz_read() (isz = 930) (sz = 946)
+    -> INLINE: (309,13) gz_skip() (isz = 46) (sz = 56)
+      -> INLINE: (284,17) gz_fetch() (isz = 544) (sz = 556)
+        -> INLINE: (237,17) gz_look() (isz = 249) (sz = 262)
+          -> EXTERN: (99,38) malloc(size_t)
+          -> EXTERN: (100,39) malloc(size_t)
+          -> EXTERN: (102,13) free(void *)
+          -> EXTERN: (103,13) free(void *)
+          -> EXTERN: (104,13) gz_error(gz_statep, int, const char *)
+          -> EXTERN: (115,13) inflateInit2_(z_streamp, int, const char *, int)
+          -> EXTERN: (116,13) free(void *)
+          -> EXTERN: (117,13) free(void *)
+          -> EXTERN: (119,13) gz_error(gz_statep, int, const char *)
+          -> INLINE: (126,13) gz_avail() (isz = 103) (sz = 112)
+            -> INLINE: (73,13) gz_load() (isz = 42) (sz = 56)
+              -> INLINE (MANUAL): (35,15) read(int, void *, size_t) (isz = 41) (sz = 54)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(36,7) __builtin_object_size(const void *, int)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(38,12) __builtin_constant_p(...)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,9) __read_chk(int, void *, size_t, size_t)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,44) __builtin_object_size(const void *, int)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(41,22) __builtin_object_size(const void *, int)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,9) __read_chk_warn(int, void *, size_t, size_t)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,49) __builtin_object_size(const void *, int)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(44,10) __read_alias(int, void *, size_t)
+              -> EXTERN: (41,9) gz_error(gz_statep, int, const char *)
+              -> EXTERN: (41,34) strerror(int)
+              -> EXTERN: (41,34) __errno_location(void)
+          -> EXTERN: (141,9) inflateReset(z_streamp)
+          -> INLINE (MANUAL): (161,9) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+        -> INLINE: (243,17) gz_load() (isz = 42) (sz = 56)
+          -> INLINE (MANUAL): (35,15) read(int, void *, size_t) (isz = 41) (sz = 54)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(36,7) __builtin_object_size(const void *, int)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(38,12) __builtin_constant_p(...)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,9) __read_chk(int, void *, size_t, size_t)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,44) __builtin_object_size(const void *, int)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(41,22) __builtin_object_size(const void *, int)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,9) __read_chk_warn(int, void *, size_t, size_t)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,49) __builtin_object_size(const void *, int)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(44,10) __read_alias(int, void *, size_t)
+          -> EXTERN: (41,9) gz_error(gz_statep, int, const char *)
+          -> EXTERN: (41,34) strerror(int)
+          -> EXTERN: (41,34) __errno_location(void)
+        -> INLINE: (251,17) gz_decomp() (isz = 86) (sz = 97)
+          -> INLINE: (186,36) gz_avail() (isz = 103) (sz = 112)
+            -> INLINE: (73,13) gz_load() (isz = 42) (sz = 56)
+              -> INLINE (MANUAL): (35,15) read(int, void *, size_t) (isz = 41) (sz = 54)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(36,7) __builtin_object_size(const void *, int)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(38,12) __builtin_constant_p(...)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,9) __read_chk(int, void *, size_t, size_t)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,44) __builtin_object_size(const void *, int)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(41,22) __builtin_object_size(const void *, int)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,9) __read_chk_warn(int, void *, size_t, size_t)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,49) __builtin_object_size(const void *, int)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(44,10) __read_alias(int, void *, size_t)
+              -> EXTERN: (41,9) gz_error(gz_statep, int, const char *)
+              -> EXTERN: (41,34) __errno_location(void)
+              -> EXTERN: (41,34) strerror(int)
+          -> EXTERN: (189,13) gz_error(gz_statep, int, const char *)
+          -> EXTERN: (194,15) inflate(z_streamp, int)
+          -> EXTERN: (196,13) gz_error(gz_statep, int, const char *)
+          -> EXTERN: (201,13) gz_error(gz_statep, int, const char *)
+          -> EXTERN: (205,13) gz_error(gz_statep, int, const char *)
+    -> INLINE (MANUAL): (325,13) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+    -> INLINE: (340,17) gz_fetch() (isz = 544) (sz = 556)
+      -> INLINE: (237,17) gz_look() (isz = 249) (sz = 262)
+        -> EXTERN: (99,38) malloc(size_t)
+        -> EXTERN: (100,39) malloc(size_t)
+        -> EXTERN: (102,13) free(void *)
+        -> EXTERN: (103,13) free(void *)
+        -> EXTERN: (104,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (115,13) inflateInit2_(z_streamp, int, const char *, int)
+        -> EXTERN: (116,13) free(void *)
+        -> EXTERN: (117,13) free(void *)
+        -> EXTERN: (119,13) gz_error(gz_statep, int, const char *)
+        -> INLINE: (126,13) gz_avail() (isz = 103) (sz = 112)
+          -> INLINE: (73,13) gz_load() (isz = 42) (sz = 56)
+            -> INLINE (MANUAL): (35,15) read(int, void *, size_t) (isz = 41) (sz = 54)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(36,7) __builtin_object_size(const void *, int)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(38,12) __builtin_constant_p(...)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,9) __read_chk(int, void *, size_t, size_t)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,44) __builtin_object_size(const void *, int)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(41,22) __builtin_object_size(const void *, int)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,9) __read_chk_warn(int, void *, size_t, size_t)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,49) __builtin_object_size(const void *, int)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(44,10) __read_alias(int, void *, size_t)
+            -> EXTERN: (41,9) gz_error(gz_statep, int, const char *)
+            -> EXTERN: (41,34) strerror(int)
+            -> EXTERN: (41,34) __errno_location(void)
+        -> EXTERN: (141,9) inflateReset(z_streamp)
+        -> INLINE (MANUAL): (161,9) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+      -> INLINE: (243,17) gz_load() (isz = 42) (sz = 56)
+        -> INLINE (MANUAL): (35,15) read(int, void *, size_t) (isz = 41) (sz = 54)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(36,7) __builtin_object_size(const void *, int)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(38,12) __builtin_constant_p(...)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,9) __read_chk(int, void *, size_t, size_t)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,44) __builtin_object_size(const void *, int)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(41,22) __builtin_object_size(const void *, int)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,9) __read_chk_warn(int, void *, size_t, size_t)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,49) __builtin_object_size(const void *, int)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(44,10) __read_alias(int, void *, size_t)
+        -> EXTERN: (41,9) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (41,34) strerror(int)
+        -> EXTERN: (41,34) __errno_location(void)
+      -> INLINE: (251,17) gz_decomp() (isz = 86) (sz = 97)
+        -> INLINE: (186,36) gz_avail() (isz = 103) (sz = 112)
+          -> INLINE: (73,13) gz_load() (isz = 42) (sz = 56)
+            -> INLINE (MANUAL): (35,15) read(int, void *, size_t) (isz = 41) (sz = 54)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(36,7) __builtin_object_size(const void *, int)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(38,12) __builtin_constant_p(...)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,9) __read_chk(int, void *, size_t, size_t)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,44) __builtin_object_size(const void *, int)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(41,22) __builtin_object_size(const void *, int)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,9) __read_chk_warn(int, void *, size_t, size_t)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,49) __builtin_object_size(const void *, int)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(44,10) __read_alias(int, void *, size_t)
+            -> EXTERN: (41,9) gz_error(gz_statep, int, const char *)
+            -> EXTERN: (41,34) __errno_location(void)
+            -> EXTERN: (41,34) strerror(int)
+        -> EXTERN: (189,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (194,15) inflate(z_streamp, int)
+        -> EXTERN: (196,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (201,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (205,13) gz_error(gz_statep, int, const char *)
+    -> INLINE: (349,17) gz_load() (isz = 42) (sz = 56)
+      -> INLINE (MANUAL): (35,15) read(int, void *, size_t) (isz = 41) (sz = 54)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(36,7) __builtin_object_size(const void *, int)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(38,12) __builtin_constant_p(...)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,9) __read_chk(int, void *, size_t, size_t)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,44) __builtin_object_size(const void *, int)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(41,22) __builtin_object_size(const void *, int)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,9) __read_chk_warn(int, void *, size_t, size_t)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,49) __builtin_object_size(const void *, int)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(44,10) __read_alias(int, void *, size_t)
+      -> EXTERN: (41,9) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (41,34) strerror(int)
+      -> EXTERN: (41,34) __errno_location(void)
+    -> INLINE: (357,17) gz_decomp() (isz = 86) (sz = 97)
+      -> INLINE: (186,36) gz_avail() (isz = 103) (sz = 112)
+        -> INLINE: (73,13) gz_load() (isz = 42) (sz = 56)
+          -> INLINE (MANUAL): (35,15) read(int, void *, size_t) (isz = 41) (sz = 54)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(36,7) __builtin_object_size(const void *, int)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(38,12) __builtin_constant_p(...)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,9) __read_chk(int, void *, size_t, size_t)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,44) __builtin_object_size(const void *, int)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(41,22) __builtin_object_size(const void *, int)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,9) __read_chk_warn(int, void *, size_t, size_t)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,49) __builtin_object_size(const void *, int)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(44,10) __read_alias(int, void *, size_t)
+          -> EXTERN: (41,9) gz_error(gz_statep, int, const char *)
+          -> EXTERN: (41,34) __errno_location(void)
+          -> EXTERN: (41,34) strerror(int)
+      -> EXTERN: (189,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (194,15) inflate(z_streamp, int)
+      -> EXTERN: (196,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (201,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (205,13) gz_error(gz_statep, int, const char *)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(472,11)
+   remark #25401: memcopy(with guard) generated
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between *q (65:9) and *p (70:18)
+   remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (65:9)
+   remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+
+   LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(472,11)
+   <Multiversioned v2>
+      remark #17104: loop was not parallelized: existence of parallel dependence
+      remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (70:18)
+      remark #17106: parallel dependence: assumed ANTI dependence between *q (70:18) and *p (70:18)
+      remark #15304: loop was not vectorized: non-vectorizable loop instance from multiversioning
+      remark #25439: unrolled with remainder by 2  
+   LOOP END
+
+   LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(472,11)
+   <Remainder, Multiversioned v2>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gzread.c(30,6) inlined into gzread.c(472,11)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzread.c(183,5) inlined into gzread.c(472,11)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(472,11)
+      remark #25401: memcopy(with guard) generated
+      remark #17104: loop was not parallelized: existence of parallel dependence
+      remark #17106: parallel dependence: assumed ANTI dependence between *q (65:9) and *p (70:18)
+      remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (65:9)
+      remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+
+      LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(472,11)
+      <Multiversioned v2>
+         remark #17104: loop was not parallelized: existence of parallel dependence
+         remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (70:18)
+         remark #17106: parallel dependence: assumed ANTI dependence between *q (70:18) and *p (70:18)
+         remark #15304: loop was not vectorized: non-vectorizable loop instance from multiversioning
+         remark #25439: unrolled with remainder by 2  
+      LOOP END
+
+      LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(472,11)
+      <Remainder, Multiversioned v2>
+      LOOP END
+   LOOP END
+
+   LOOP BEGIN at gzread.c(30,6) inlined into gzread.c(472,11)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gzread.c(30,6) inlined into gzread.c(472,11)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzread.c(30,6) inlined into gzread.c(472,11)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzread.c(183,5) inlined into gzread.c(472,11)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(472,11)
+      remark #25401: memcopy(with guard) generated
+      remark #17104: loop was not parallelized: existence of parallel dependence
+      remark #17106: parallel dependence: assumed ANTI dependence between *q (65:9) and *p (70:18)
+      remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (65:9)
+      remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+
+      LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(472,11)
+      <Multiversioned v2>
+         remark #17104: loop was not parallelized: existence of parallel dependence
+         remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (70:18)
+         remark #17106: parallel dependence: assumed ANTI dependence between *q (70:18) and *p (70:18)
+         remark #15304: loop was not vectorized: non-vectorizable loop instance from multiversioning
+         remark #25439: unrolled with remainder by 2  
+      LOOP END
+
+      LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(472,11)
+      <Remainder, Multiversioned v2>
+      LOOP END
+   LOOP END
+
+   LOOP BEGIN at gzread.c(30,6) inlined into gzread.c(472,11)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(472,11)
+   remark #25401: memcopy(with guard) generated
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between *q (65:9) and *p (70:18)
+   remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (65:9)
+   remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+
+   LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(472,11)
+   <Multiversioned v2>
+      remark #17104: loop was not parallelized: existence of parallel dependence
+      remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (70:18)
+      remark #17106: parallel dependence: assumed ANTI dependence between *q (70:18) and *p (70:18)
+      remark #15304: loop was not vectorized: non-vectorizable loop instance from multiversioning
+      remark #25439: unrolled with remainder by 2  
+   LOOP END
+
+   LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(472,11)
+   <Remainder, Multiversioned v2>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gzread.c(30,6) inlined into gzread.c(472,11)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzread.c(183,5) inlined into gzread.c(472,11)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(472,11)
+      remark #25401: memcopy(with guard) generated
+      remark #17104: loop was not parallelized: existence of parallel dependence
+      remark #17106: parallel dependence: assumed ANTI dependence between *q (65:9) and *p (70:18)
+      remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (65:9)
+      remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+
+      LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(472,11)
+      <Multiversioned v2>
+         remark #17104: loop was not parallelized: existence of parallel dependence
+         remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (70:18)
+         remark #17106: parallel dependence: assumed ANTI dependence between *q (70:18) and *p (70:18)
+         remark #15304: loop was not vectorized: non-vectorizable loop instance from multiversioning
+         remark #25439: unrolled with remainder by 2  
+      LOOP END
+
+      LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(472,11)
+      <Remainder, Multiversioned v2>
+      LOOP END
+   LOOP END
+
+   LOOP BEGIN at gzread.c(30,6) inlined into gzread.c(472,11)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gzread.c(30,6) inlined into gzread.c(472,11)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at gzread.c(266,5) inlined into gzread.c(472,11)
+   remark #15536: loop was not vectorized: inner loop throttling prevents vectorization of this outer loop. Refer to inner loop message for more details.   [ gzread.c(254,31) ]
+   remark #17102: loop was not parallelized: not a parallelization candidate
+
+   LOOP BEGIN at gzread.c(254,31) inlined into gzread.c(472,11)
+      remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+      remark #17102: loop was not parallelized: not a parallelization candidate
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gzread.c(368,14) inlined into gzread.c(472,11)
+   remark #15536: loop was not vectorized: inner loop throttling prevents vectorization of this outer loop. Refer to inner loop message for more details.   [ gzread.c(254,31) ]
+   remark #17102: loop was not parallelized: not a parallelization candidate
+
+   LOOP BEGIN at gzread.c(254,31) inlined into gzread.c(472,11)
+      remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+      remark #17102: loop was not parallelized: not a parallelization candidate
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+gzread.c(449,1):remark #34051: REGISTER ALLOCATION : [gzgetc] gzread.c:449
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   15[ rax rdx rcx rbx rbp rsi rdi r8-r15]
+        
+    Routine temporaries
+        Total         :     475
+            Global    :     156
+            Local     :     319
+        Regenerable   :      81
+        Spilled       :      14
+        
+    Routine stack
+        Variables     :       1 bytes*
+            Reads     :       1 [4.36e-02 ~ 0.1%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :      96 bytes*
+            Reads     :     193 [6.35e-01 ~ 1.5%]
+            Writes    :      40 [5.47e-01 ~ 1.3%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: gzgetc_()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (gzgetc_()) [13/17=76.5%] gzread.c(478,1)
+  -> INLINE: (479,12) gzgetc() (isz = 1525) (sz = 1535)
+    -> INLINE: (472,11) gz_read() (isz = 930) (sz = 946)
+      -> INLINE: (309,13) gz_skip() (isz = 46) (sz = 56)
+        -> INLINE: (284,17) gz_fetch() (isz = 544) (sz = 556)
+          -> INLINE: (237,17) gz_look() (isz = 249) (sz = 262)
+            -> EXTERN: (99,38) malloc(size_t)
+            -> EXTERN: (100,39) malloc(size_t)
+            -> EXTERN: (102,13) free(void *)
+            -> EXTERN: (103,13) free(void *)
+            -> EXTERN: (104,13) gz_error(gz_statep, int, const char *)
+            -> EXTERN: (115,13) inflateInit2_(z_streamp, int, const char *, int)
+            -> EXTERN: (116,13) free(void *)
+            -> EXTERN: (117,13) free(void *)
+            -> EXTERN: (119,13) gz_error(gz_statep, int, const char *)
+            -> INLINE: (126,13) gz_avail() (isz = 103) (sz = 112)
+              -> INLINE: (73,13) gz_load() (isz = 42) (sz = 56)
+                -> INLINE (MANUAL): (35,15) read(int, void *, size_t) (isz = 41) (sz = 54)
+                  -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(36,7) __builtin_object_size(const void *, int)
+                  -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(38,12) __builtin_constant_p(...)
+                  -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,9) __read_chk(int, void *, size_t, size_t)
+                  -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,44) __builtin_object_size(const void *, int)
+                  -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(41,22) __builtin_object_size(const void *, int)
+                  -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,9) __read_chk_warn(int, void *, size_t, size_t)
+                  -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,49) __builtin_object_size(const void *, int)
+                  -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(44,10) __read_alias(int, void *, size_t)
+                -> EXTERN: (41,9) gz_error(gz_statep, int, const char *)
+                -> EXTERN: (41,34) strerror(int)
+                -> EXTERN: (41,34) __errno_location(void)
+            -> EXTERN: (141,9) inflateReset(z_streamp)
+            -> INLINE (MANUAL): (161,9) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+          -> INLINE: (243,17) gz_load() (isz = 42) (sz = 56)
+            -> INLINE (MANUAL): (35,15) read(int, void *, size_t) (isz = 41) (sz = 54)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(36,7) __builtin_object_size(const void *, int)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(38,12) __builtin_constant_p(...)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,9) __read_chk(int, void *, size_t, size_t)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,44) __builtin_object_size(const void *, int)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(41,22) __builtin_object_size(const void *, int)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,9) __read_chk_warn(int, void *, size_t, size_t)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,49) __builtin_object_size(const void *, int)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(44,10) __read_alias(int, void *, size_t)
+            -> EXTERN: (41,9) gz_error(gz_statep, int, const char *)
+            -> EXTERN: (41,34) strerror(int)
+            -> EXTERN: (41,34) __errno_location(void)
+          -> INLINE: (251,17) gz_decomp() (isz = 86) (sz = 97)
+            -> INLINE: (186,36) gz_avail() (isz = 103) (sz = 112)
+              -> INLINE: (73,13) gz_load() (isz = 42) (sz = 56)
+                -> INLINE (MANUAL): (35,15) read(int, void *, size_t) (isz = 41) (sz = 54)
+                  -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(36,7) __builtin_object_size(const void *, int)
+                  -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(38,12) __builtin_constant_p(...)
+                  -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,9) __read_chk(int, void *, size_t, size_t)
+                  -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,44) __builtin_object_size(const void *, int)
+                  -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(41,22) __builtin_object_size(const void *, int)
+                  -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,9) __read_chk_warn(int, void *, size_t, size_t)
+                  -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,49) __builtin_object_size(const void *, int)
+                  -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(44,10) __read_alias(int, void *, size_t)
+                -> EXTERN: (41,9) gz_error(gz_statep, int, const char *)
+                -> EXTERN: (41,34) __errno_location(void)
+                -> EXTERN: (41,34) strerror(int)
+            -> EXTERN: (189,13) gz_error(gz_statep, int, const char *)
+            -> EXTERN: (194,15) inflate(z_streamp, int)
+            -> EXTERN: (196,13) gz_error(gz_statep, int, const char *)
+            -> EXTERN: (201,13) gz_error(gz_statep, int, const char *)
+            -> EXTERN: (205,13) gz_error(gz_statep, int, const char *)
+      -> INLINE (MANUAL): (325,13) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+      -> INLINE: (340,17) gz_fetch() (isz = 544) (sz = 556)
+        -> INLINE: (237,17) gz_look() (isz = 249) (sz = 262)
+          -> EXTERN: (99,38) malloc(size_t)
+          -> EXTERN: (100,39) malloc(size_t)
+          -> EXTERN: (102,13) free(void *)
+          -> EXTERN: (103,13) free(void *)
+          -> EXTERN: (104,13) gz_error(gz_statep, int, const char *)
+          -> EXTERN: (115,13) inflateInit2_(z_streamp, int, const char *, int)
+          -> EXTERN: (116,13) free(void *)
+          -> EXTERN: (117,13) free(void *)
+          -> EXTERN: (119,13) gz_error(gz_statep, int, const char *)
+          -> INLINE: (126,13) gz_avail() (isz = 103) (sz = 112)
+            -> INLINE: (73,13) gz_load() (isz = 42) (sz = 56)
+              -> INLINE (MANUAL): (35,15) read(int, void *, size_t) (isz = 41) (sz = 54)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(36,7) __builtin_object_size(const void *, int)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(38,12) __builtin_constant_p(...)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,9) __read_chk(int, void *, size_t, size_t)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,44) __builtin_object_size(const void *, int)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(41,22) __builtin_object_size(const void *, int)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,9) __read_chk_warn(int, void *, size_t, size_t)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,49) __builtin_object_size(const void *, int)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(44,10) __read_alias(int, void *, size_t)
+              -> EXTERN: (41,9) gz_error(gz_statep, int, const char *)
+              -> EXTERN: (41,34) strerror(int)
+              -> EXTERN: (41,34) __errno_location(void)
+          -> EXTERN: (141,9) inflateReset(z_streamp)
+          -> INLINE (MANUAL): (161,9) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+        -> INLINE: (243,17) gz_load() (isz = 42) (sz = 56)
+          -> INLINE (MANUAL): (35,15) read(int, void *, size_t) (isz = 41) (sz = 54)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(36,7) __builtin_object_size(const void *, int)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(38,12) __builtin_constant_p(...)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,9) __read_chk(int, void *, size_t, size_t)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,44) __builtin_object_size(const void *, int)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(41,22) __builtin_object_size(const void *, int)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,9) __read_chk_warn(int, void *, size_t, size_t)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,49) __builtin_object_size(const void *, int)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(44,10) __read_alias(int, void *, size_t)
+          -> EXTERN: (41,9) gz_error(gz_statep, int, const char *)
+          -> EXTERN: (41,34) strerror(int)
+          -> EXTERN: (41,34) __errno_location(void)
+        -> INLINE: (251,17) gz_decomp() (isz = 86) (sz = 97)
+          -> INLINE: (186,36) gz_avail() (isz = 103) (sz = 112)
+            -> INLINE: (73,13) gz_load() (isz = 42) (sz = 56)
+              -> INLINE (MANUAL): (35,15) read(int, void *, size_t) (isz = 41) (sz = 54)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(36,7) __builtin_object_size(const void *, int)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(38,12) __builtin_constant_p(...)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,9) __read_chk(int, void *, size_t, size_t)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,44) __builtin_object_size(const void *, int)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(41,22) __builtin_object_size(const void *, int)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,9) __read_chk_warn(int, void *, size_t, size_t)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,49) __builtin_object_size(const void *, int)
+                -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(44,10) __read_alias(int, void *, size_t)
+              -> EXTERN: (41,9) gz_error(gz_statep, int, const char *)
+              -> EXTERN: (41,34) __errno_location(void)
+              -> EXTERN: (41,34) strerror(int)
+          -> EXTERN: (189,13) gz_error(gz_statep, int, const char *)
+          -> EXTERN: (194,15) inflate(z_streamp, int)
+          -> EXTERN: (196,13) gz_error(gz_statep, int, const char *)
+          -> EXTERN: (201,13) gz_error(gz_statep, int, const char *)
+          -> EXTERN: (205,13) gz_error(gz_statep, int, const char *)
+      -> INLINE: (349,17) gz_load() (isz = 42) (sz = 56)
+        -> INLINE (MANUAL): (35,15) read(int, void *, size_t) (isz = 41) (sz = 54)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(36,7) __builtin_object_size(const void *, int)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(38,12) __builtin_constant_p(...)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,9) __read_chk(int, void *, size_t, size_t)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,44) __builtin_object_size(const void *, int)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(41,22) __builtin_object_size(const void *, int)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,9) __read_chk_warn(int, void *, size_t, size_t)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,49) __builtin_object_size(const void *, int)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(44,10) __read_alias(int, void *, size_t)
+        -> EXTERN: (41,9) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (41,34) strerror(int)
+        -> EXTERN: (41,34) __errno_location(void)
+      -> INLINE: (357,17) gz_decomp() (isz = 86) (sz = 97)
+        -> INLINE: (186,36) gz_avail() (isz = 103) (sz = 112)
+          -> INLINE: (73,13) gz_load() (isz = 42) (sz = 56)
+            -> INLINE (MANUAL): (35,15) read(int, void *, size_t) (isz = 41) (sz = 54)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(36,7) __builtin_object_size(const void *, int)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(38,12) __builtin_constant_p(...)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,9) __read_chk(int, void *, size_t, size_t)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,44) __builtin_object_size(const void *, int)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(41,22) __builtin_object_size(const void *, int)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,9) __read_chk_warn(int, void *, size_t, size_t)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,49) __builtin_object_size(const void *, int)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(44,10) __read_alias(int, void *, size_t)
+            -> EXTERN: (41,9) gz_error(gz_statep, int, const char *)
+            -> EXTERN: (41,34) __errno_location(void)
+            -> EXTERN: (41,34) strerror(int)
+        -> EXTERN: (189,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (194,15) inflate(z_streamp, int)
+        -> EXTERN: (196,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (201,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (205,13) gz_error(gz_statep, int, const char *)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(479,12)
+   remark #25401: memcopy(with guard) generated
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between *q (65:9) and *p (70:18)
+   remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (65:9)
+   remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+
+   LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(479,12)
+   <Multiversioned v2>
+      remark #17104: loop was not parallelized: existence of parallel dependence
+      remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (70:18)
+      remark #17106: parallel dependence: assumed ANTI dependence between *q (70:18) and *p (70:18)
+      remark #15304: loop was not vectorized: non-vectorizable loop instance from multiversioning
+      remark #25439: unrolled with remainder by 2  
+   LOOP END
+
+   LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(479,12)
+   <Remainder, Multiversioned v2>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gzread.c(30,6) inlined into gzread.c(479,12)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzread.c(183,5) inlined into gzread.c(479,12)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(479,12)
+      remark #25401: memcopy(with guard) generated
+      remark #17104: loop was not parallelized: existence of parallel dependence
+      remark #17106: parallel dependence: assumed ANTI dependence between *q (65:9) and *p (70:18)
+      remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (65:9)
+      remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+
+      LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(479,12)
+      <Multiversioned v2>
+         remark #17104: loop was not parallelized: existence of parallel dependence
+         remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (70:18)
+         remark #17106: parallel dependence: assumed ANTI dependence between *q (70:18) and *p (70:18)
+         remark #15304: loop was not vectorized: non-vectorizable loop instance from multiversioning
+         remark #25439: unrolled with remainder by 2  
+      LOOP END
+
+      LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(479,12)
+      <Remainder, Multiversioned v2>
+      LOOP END
+   LOOP END
+
+   LOOP BEGIN at gzread.c(30,6) inlined into gzread.c(479,12)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gzread.c(30,6) inlined into gzread.c(479,12)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzread.c(30,6) inlined into gzread.c(479,12)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzread.c(183,5) inlined into gzread.c(479,12)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(479,12)
+      remark #25401: memcopy(with guard) generated
+      remark #17104: loop was not parallelized: existence of parallel dependence
+      remark #17106: parallel dependence: assumed ANTI dependence between *q (65:9) and *p (70:18)
+      remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (65:9)
+      remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+
+      LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(479,12)
+      <Multiversioned v2>
+         remark #17104: loop was not parallelized: existence of parallel dependence
+         remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (70:18)
+         remark #17106: parallel dependence: assumed ANTI dependence between *q (70:18) and *p (70:18)
+         remark #15304: loop was not vectorized: non-vectorizable loop instance from multiversioning
+         remark #25439: unrolled with remainder by 2  
+      LOOP END
+
+      LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(479,12)
+      <Remainder, Multiversioned v2>
+      LOOP END
+   LOOP END
+
+   LOOP BEGIN at gzread.c(30,6) inlined into gzread.c(479,12)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(479,12)
+   remark #25401: memcopy(with guard) generated
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between *q (65:9) and *p (70:18)
+   remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (65:9)
+   remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+
+   LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(479,12)
+   <Multiversioned v2>
+      remark #17104: loop was not parallelized: existence of parallel dependence
+      remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (70:18)
+      remark #17106: parallel dependence: assumed ANTI dependence between *q (70:18) and *p (70:18)
+      remark #15304: loop was not vectorized: non-vectorizable loop instance from multiversioning
+      remark #25439: unrolled with remainder by 2  
+   LOOP END
+
+   LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(479,12)
+   <Remainder, Multiversioned v2>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gzread.c(30,6) inlined into gzread.c(479,12)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzread.c(183,5) inlined into gzread.c(479,12)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(479,12)
+      remark #25401: memcopy(with guard) generated
+      remark #17104: loop was not parallelized: existence of parallel dependence
+      remark #17106: parallel dependence: assumed ANTI dependence between *q (65:9) and *p (70:18)
+      remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (65:9)
+      remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+
+      LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(479,12)
+      <Multiversioned v2>
+         remark #17104: loop was not parallelized: existence of parallel dependence
+         remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (70:18)
+         remark #17106: parallel dependence: assumed ANTI dependence between *q (70:18) and *p (70:18)
+         remark #15304: loop was not vectorized: non-vectorizable loop instance from multiversioning
+         remark #25439: unrolled with remainder by 2  
+      LOOP END
+
+      LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(479,12)
+      <Remainder, Multiversioned v2>
+      LOOP END
+   LOOP END
+
+   LOOP BEGIN at gzread.c(30,6) inlined into gzread.c(479,12)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gzread.c(30,6) inlined into gzread.c(479,12)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at gzread.c(266,5) inlined into gzread.c(479,12)
+   remark #15536: loop was not vectorized: inner loop throttling prevents vectorization of this outer loop. Refer to inner loop message for more details.   [ gzread.c(254,31) ]
+   remark #17102: loop was not parallelized: not a parallelization candidate
+
+   LOOP BEGIN at gzread.c(254,31) inlined into gzread.c(479,12)
+      remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+      remark #17102: loop was not parallelized: not a parallelization candidate
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gzread.c(368,14) inlined into gzread.c(479,12)
+   remark #15536: loop was not vectorized: inner loop throttling prevents vectorization of this outer loop. Refer to inner loop message for more details.   [ gzread.c(254,31) ]
+   remark #17102: loop was not parallelized: not a parallelization candidate
+
+   LOOP BEGIN at gzread.c(254,31) inlined into gzread.c(479,12)
+      remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+      remark #17102: loop was not parallelized: not a parallelization candidate
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+gzread.c(478,1):remark #34051: REGISTER ALLOCATION : [gzgetc_] gzread.c:478
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   15[ rax rdx rcx rbx rbp rsi rdi r8-r15]
+        
+    Routine temporaries
+        Total         :     471
+            Global    :     156
+            Local     :     315
+        Regenerable   :      79
+        Spilled       :      14
+        
+    Routine stack
+        Variables     :       1 bytes*
+            Reads     :       1 [4.36e-02 ~ 0.1%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :      96 bytes*
+            Reads     :     193 [6.35e-01 ~ 1.5%]
+            Writes    :      40 [5.47e-01 ~ 1.3%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: gzungetc()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (gzungetc()) [14/17=82.4%] gzread.c(486,1)
+  -> INLINE: (502,13) gz_skip() (isz = 46) (sz = 56)
+    -> INLINE: (284,17) gz_fetch() (isz = 544) (sz = 556)
+      -> INLINE: (237,17) gz_look() (isz = 249) (sz = 262)
+        -> EXTERN: (99,38) malloc(size_t)
+        -> EXTERN: (100,39) malloc(size_t)
+        -> EXTERN: (102,13) free(void *)
+        -> EXTERN: (103,13) free(void *)
+        -> EXTERN: (104,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (115,13) inflateInit2_(z_streamp, int, const char *, int)
+        -> EXTERN: (116,13) free(void *)
+        -> EXTERN: (117,13) free(void *)
+        -> EXTERN: (119,13) gz_error(gz_statep, int, const char *)
+        -> INLINE: (126,13) gz_avail() (isz = 103) (sz = 112)
+          -> INLINE: (73,13) gz_load() (isz = 42) (sz = 56)
+            -> INLINE (MANUAL): (35,15) read(int, void *, size_t) (isz = 41) (sz = 54)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(36,7) __builtin_object_size(const void *, int)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(38,12) __builtin_constant_p(...)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,9) __read_chk(int, void *, size_t, size_t)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,44) __builtin_object_size(const void *, int)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(41,22) __builtin_object_size(const void *, int)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,9) __read_chk_warn(int, void *, size_t, size_t)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,49) __builtin_object_size(const void *, int)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(44,10) __read_alias(int, void *, size_t)
+            -> EXTERN: (41,9) gz_error(gz_statep, int, const char *)
+            -> EXTERN: (41,34) strerror(int)
+            -> EXTERN: (41,34) __errno_location(void)
+        -> EXTERN: (141,9) inflateReset(z_streamp)
+        -> INLINE (MANUAL): (161,9) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+      -> INLINE: (243,17) gz_load() (isz = 42) (sz = 56)
+        -> INLINE (MANUAL): (35,15) read(int, void *, size_t) (isz = 41) (sz = 54)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(36,7) __builtin_object_size(const void *, int)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(38,12) __builtin_constant_p(...)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,9) __read_chk(int, void *, size_t, size_t)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,44) __builtin_object_size(const void *, int)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(41,22) __builtin_object_size(const void *, int)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,9) __read_chk_warn(int, void *, size_t, size_t)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,49) __builtin_object_size(const void *, int)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(44,10) __read_alias(int, void *, size_t)
+        -> EXTERN: (41,9) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (41,34) strerror(int)
+        -> EXTERN: (41,34) __errno_location(void)
+      -> INLINE: (251,17) gz_decomp() (isz = 86) (sz = 97)
+        -> INLINE: (186,36) gz_avail() (isz = 103) (sz = 112)
+          -> INLINE: (73,13) gz_load() (isz = 42) (sz = 56)
+            -> INLINE (MANUAL): (35,15) read(int, void *, size_t) (isz = 41) (sz = 54)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(36,7) __builtin_object_size(const void *, int)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(38,12) __builtin_constant_p(...)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,9) __read_chk(int, void *, size_t, size_t)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,44) __builtin_object_size(const void *, int)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(41,22) __builtin_object_size(const void *, int)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,9) __read_chk_warn(int, void *, size_t, size_t)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,49) __builtin_object_size(const void *, int)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(44,10) __read_alias(int, void *, size_t)
+            -> EXTERN: (41,9) gz_error(gz_statep, int, const char *)
+            -> EXTERN: (41,34) __errno_location(void)
+            -> EXTERN: (41,34) strerror(int)
+        -> EXTERN: (189,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (194,15) inflate(z_streamp, int)
+        -> EXTERN: (196,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (201,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (205,13) gz_error(gz_statep, int, const char *)
+  -> EXTERN: (522,9) gz_error(gz_statep, int, const char *)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(502,13)
+   remark #25401: memcopy(with guard) generated
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between *q (65:9) and *p (70:18)
+   remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (65:9)
+   remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+
+   LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(502,13)
+   <Multiversioned v2>
+      remark #17104: loop was not parallelized: existence of parallel dependence
+      remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (70:18)
+      remark #17106: parallel dependence: assumed ANTI dependence between *q (70:18) and *p (70:18)
+      remark #15304: loop was not vectorized: non-vectorizable loop instance from multiversioning
+      remark #25439: unrolled with remainder by 2  
+   LOOP END
+
+   LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(502,13)
+   <Remainder, Multiversioned v2>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gzread.c(30,6) inlined into gzread.c(502,13)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzread.c(183,5) inlined into gzread.c(502,13)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(502,13)
+      remark #25401: memcopy(with guard) generated
+      remark #17104: loop was not parallelized: existence of parallel dependence
+      remark #17106: parallel dependence: assumed ANTI dependence between *q (65:9) and *p (70:18)
+      remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (65:9)
+      remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+
+      LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(502,13)
+      <Multiversioned v2>
+         remark #17104: loop was not parallelized: existence of parallel dependence
+         remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (70:18)
+         remark #17106: parallel dependence: assumed ANTI dependence between *q (70:18) and *p (70:18)
+         remark #15304: loop was not vectorized: non-vectorizable loop instance from multiversioning
+         remark #25439: unrolled with remainder by 2  
+      LOOP END
+
+      LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(502,13)
+      <Remainder, Multiversioned v2>
+      LOOP END
+   LOOP END
+
+   LOOP BEGIN at gzread.c(30,6) inlined into gzread.c(502,13)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gzread.c(30,6) inlined into gzread.c(502,13)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzread.c(530,9)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15523: loop was not vectorized: loop control variable dest was found, but loop iteration count cannot be computed before executing the loop
+   remark #25478: While Loop Unrolled by 2  
+LOOP END
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at gzread.c(266,5) inlined into gzread.c(502,13)
+   remark #15536: loop was not vectorized: inner loop throttling prevents vectorization of this outer loop. Refer to inner loop message for more details.   [ gzread.c(254,31) ]
+   remark #17102: loop was not parallelized: not a parallelization candidate
+
+   LOOP BEGIN at gzread.c(254,31) inlined into gzread.c(502,13)
+      remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+      remark #17102: loop was not parallelized: not a parallelization candidate
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+gzread.c(486,1):remark #34051: REGISTER ALLOCATION : [gzungetc] gzread.c:486
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   15[ rax rdx rcx rbx rbp rsi rdi r8-r15]
+        
+    Routine temporaries
+        Total         :     232
+            Global    :      76
+            Local     :     156
+        Regenerable   :      40
+        Spilled       :      11
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :      72 bytes*
+            Reads     :      72 [1.90e-01 ~ 0.5%]
+            Writes    :      12 [2.03e-01 ~ 0.5%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: gzgets()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (gzgets()) [15/17=88.2%] gzread.c(547,1)
+  -> INLINE: (566,13) gz_skip() (isz = 46) (sz = 56)
+    -> INLINE: (284,17) gz_fetch() (isz = 544) (sz = 556)
+      -> INLINE: (237,17) gz_look() (isz = 249) (sz = 262)
+        -> EXTERN: (99,38) malloc(size_t)
+        -> EXTERN: (100,39) malloc(size_t)
+        -> EXTERN: (102,13) free(void *)
+        -> EXTERN: (103,13) free(void *)
+        -> EXTERN: (104,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (115,13) inflateInit2_(z_streamp, int, const char *, int)
+        -> EXTERN: (116,13) free(void *)
+        -> EXTERN: (117,13) free(void *)
+        -> EXTERN: (119,13) gz_error(gz_statep, int, const char *)
+        -> INLINE: (126,13) gz_avail() (isz = 103) (sz = 112)
+          -> INLINE: (73,13) gz_load() (isz = 42) (sz = 56)
+            -> INLINE (MANUAL): (35,15) read(int, void *, size_t) (isz = 41) (sz = 54)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(36,7) __builtin_object_size(const void *, int)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(38,12) __builtin_constant_p(...)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,9) __read_chk(int, void *, size_t, size_t)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,44) __builtin_object_size(const void *, int)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(41,22) __builtin_object_size(const void *, int)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,9) __read_chk_warn(int, void *, size_t, size_t)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,49) __builtin_object_size(const void *, int)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(44,10) __read_alias(int, void *, size_t)
+            -> EXTERN: (41,9) gz_error(gz_statep, int, const char *)
+            -> EXTERN: (41,34) strerror(int)
+            -> EXTERN: (41,34) __errno_location(void)
+        -> EXTERN: (141,9) inflateReset(z_streamp)
+        -> INLINE (MANUAL): (161,9) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+      -> INLINE: (243,17) gz_load() (isz = 42) (sz = 56)
+        -> INLINE (MANUAL): (35,15) read(int, void *, size_t) (isz = 41) (sz = 54)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(36,7) __builtin_object_size(const void *, int)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(38,12) __builtin_constant_p(...)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,9) __read_chk(int, void *, size_t, size_t)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,44) __builtin_object_size(const void *, int)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(41,22) __builtin_object_size(const void *, int)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,9) __read_chk_warn(int, void *, size_t, size_t)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,49) __builtin_object_size(const void *, int)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(44,10) __read_alias(int, void *, size_t)
+        -> EXTERN: (41,9) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (41,34) strerror(int)
+        -> EXTERN: (41,34) __errno_location(void)
+      -> INLINE: (251,17) gz_decomp() (isz = 86) (sz = 97)
+        -> INLINE: (186,36) gz_avail() (isz = 103) (sz = 112)
+          -> INLINE: (73,13) gz_load() (isz = 42) (sz = 56)
+            -> INLINE (MANUAL): (35,15) read(int, void *, size_t) (isz = 41) (sz = 54)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(36,7) __builtin_object_size(const void *, int)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(38,12) __builtin_constant_p(...)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,9) __read_chk(int, void *, size_t, size_t)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,44) __builtin_object_size(const void *, int)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(41,22) __builtin_object_size(const void *, int)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,9) __read_chk_warn(int, void *, size_t, size_t)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,49) __builtin_object_size(const void *, int)
+              -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(44,10) __read_alias(int, void *, size_t)
+            -> EXTERN: (41,9) gz_error(gz_statep, int, const char *)
+            -> EXTERN: (41,34) __errno_location(void)
+            -> EXTERN: (41,34) strerror(int)
+        -> EXTERN: (189,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (194,15) inflate(z_streamp, int)
+        -> EXTERN: (196,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (201,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (205,13) gz_error(gz_statep, int, const char *)
+  -> INLINE: (577,35) gz_fetch() (isz = 544) (sz = 556)
+    -> INLINE: (237,17) gz_look() (isz = 249) (sz = 262)
+      -> EXTERN: (99,38) malloc(size_t)
+      -> EXTERN: (100,39) malloc(size_t)
+      -> EXTERN: (102,13) free(void *)
+      -> EXTERN: (103,13) free(void *)
+      -> EXTERN: (104,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (115,13) inflateInit2_(z_streamp, int, const char *, int)
+      -> EXTERN: (116,13) free(void *)
+      -> EXTERN: (117,13) free(void *)
+      -> EXTERN: (119,13) gz_error(gz_statep, int, const char *)
+      -> INLINE: (126,13) gz_avail() (isz = 103) (sz = 112)
+        -> INLINE: (73,13) gz_load() (isz = 42) (sz = 56)
+          -> INLINE (MANUAL): (35,15) read(int, void *, size_t) (isz = 41) (sz = 54)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(36,7) __builtin_object_size(const void *, int)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(38,12) __builtin_constant_p(...)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,9) __read_chk(int, void *, size_t, size_t)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,44) __builtin_object_size(const void *, int)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(41,22) __builtin_object_size(const void *, int)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,9) __read_chk_warn(int, void *, size_t, size_t)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,49) __builtin_object_size(const void *, int)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(44,10) __read_alias(int, void *, size_t)
+          -> EXTERN: (41,9) gz_error(gz_statep, int, const char *)
+          -> EXTERN: (41,34) strerror(int)
+          -> EXTERN: (41,34) __errno_location(void)
+      -> EXTERN: (141,9) inflateReset(z_streamp)
+      -> INLINE (MANUAL): (161,9) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+    -> INLINE: (243,17) gz_load() (isz = 42) (sz = 56)
+      -> INLINE (MANUAL): (35,15) read(int, void *, size_t) (isz = 41) (sz = 54)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(36,7) __builtin_object_size(const void *, int)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(38,12) __builtin_constant_p(...)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,9) __read_chk(int, void *, size_t, size_t)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,44) __builtin_object_size(const void *, int)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(41,22) __builtin_object_size(const void *, int)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,9) __read_chk_warn(int, void *, size_t, size_t)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,49) __builtin_object_size(const void *, int)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(44,10) __read_alias(int, void *, size_t)
+      -> EXTERN: (41,9) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (41,34) strerror(int)
+      -> EXTERN: (41,34) __errno_location(void)
+    -> INLINE: (251,17) gz_decomp() (isz = 86) (sz = 97)
+      -> INLINE: (186,36) gz_avail() (isz = 103) (sz = 112)
+        -> INLINE: (73,13) gz_load() (isz = 42) (sz = 56)
+          -> INLINE (MANUAL): (35,15) read(int, void *, size_t) (isz = 41) (sz = 54)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(36,7) __builtin_object_size(const void *, int)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(38,12) __builtin_constant_p(...)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,9) __read_chk(int, void *, size_t, size_t)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,44) __builtin_object_size(const void *, int)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(41,22) __builtin_object_size(const void *, int)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,9) __read_chk_warn(int, void *, size_t, size_t)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,49) __builtin_object_size(const void *, int)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(44,10) __read_alias(int, void *, size_t)
+          -> EXTERN: (41,9) gz_error(gz_statep, int, const char *)
+          -> EXTERN: (41,34) __errno_location(void)
+          -> EXTERN: (41,34) strerror(int)
+      -> EXTERN: (189,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (194,15) inflate(z_streamp, int)
+      -> EXTERN: (196,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (201,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (205,13) gz_error(gz_statep, int, const char *)
+  -> EXTERN: (586,32) memchr(const void *, int, size_t)
+  -> INLINE (MANUAL): (591,9) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(566,13)
+   remark #25401: memcopy(with guard) generated
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between *q (65:9) and *p (70:18)
+   remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (65:9)
+   remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+
+   LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(566,13)
+   <Multiversioned v2>
+      remark #17104: loop was not parallelized: existence of parallel dependence
+      remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (70:18)
+      remark #17106: parallel dependence: assumed ANTI dependence between *q (70:18) and *p (70:18)
+      remark #15304: loop was not vectorized: non-vectorizable loop instance from multiversioning
+      remark #25439: unrolled with remainder by 2  
+   LOOP END
+
+   LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(566,13)
+   <Remainder, Multiversioned v2>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gzread.c(30,6) inlined into gzread.c(566,13)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzread.c(183,5) inlined into gzread.c(566,13)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(566,13)
+      remark #25401: memcopy(with guard) generated
+      remark #17104: loop was not parallelized: existence of parallel dependence
+      remark #17106: parallel dependence: assumed ANTI dependence between *q (65:9) and *p (70:18)
+      remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (65:9)
+      remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+
+      LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(566,13)
+      <Multiversioned v2>
+         remark #17104: loop was not parallelized: existence of parallel dependence
+         remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (70:18)
+         remark #17106: parallel dependence: assumed ANTI dependence between *q (70:18) and *p (70:18)
+         remark #15304: loop was not vectorized: non-vectorizable loop instance from multiversioning
+         remark #25439: unrolled with remainder by 2  
+      LOOP END
+
+      LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(566,13)
+      <Remainder, Multiversioned v2>
+      LOOP END
+   LOOP END
+
+   LOOP BEGIN at gzread.c(30,6) inlined into gzread.c(566,13)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gzread.c(30,6) inlined into gzread.c(566,13)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(577,35)
+   remark #25401: memcopy(with guard) generated
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between *q (65:9) and *p (70:18)
+   remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (65:9)
+   remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+
+   LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(577,35)
+   <Multiversioned v2>
+      remark #17104: loop was not parallelized: existence of parallel dependence
+      remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (70:18)
+      remark #17106: parallel dependence: assumed ANTI dependence between *q (70:18) and *p (70:18)
+      remark #15304: loop was not vectorized: non-vectorizable loop instance from multiversioning
+      remark #25439: unrolled with remainder by 2  
+   LOOP END
+
+   LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(577,35)
+   <Remainder, Multiversioned v2>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gzread.c(30,6) inlined into gzread.c(577,35)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzread.c(183,5) inlined into gzread.c(577,35)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(577,35)
+      remark #25401: memcopy(with guard) generated
+      remark #17104: loop was not parallelized: existence of parallel dependence
+      remark #17106: parallel dependence: assumed ANTI dependence between *q (65:9) and *p (70:18)
+      remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (65:9)
+      remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+
+      LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(577,35)
+      <Multiversioned v2>
+         remark #17104: loop was not parallelized: existence of parallel dependence
+         remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (70:18)
+         remark #17106: parallel dependence: assumed ANTI dependence between *q (70:18) and *p (70:18)
+         remark #15304: loop was not vectorized: non-vectorizable loop instance from multiversioning
+         remark #25439: unrolled with remainder by 2  
+      LOOP END
+
+      LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(577,35)
+      <Remainder, Multiversioned v2>
+      LOOP END
+   LOOP END
+
+   LOOP BEGIN at gzread.c(30,6) inlined into gzread.c(577,35)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gzread.c(30,6) inlined into gzread.c(577,35)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at gzread.c(266,5) inlined into gzread.c(566,13)
+   remark #15536: loop was not vectorized: inner loop throttling prevents vectorization of this outer loop. Refer to inner loop message for more details.   [ gzread.c(254,31) ]
+   remark #17102: loop was not parallelized: not a parallelization candidate
+
+   LOOP BEGIN at gzread.c(254,31) inlined into gzread.c(566,13)
+      remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+      remark #17102: loop was not parallelized: not a parallelization candidate
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gzread.c(597,14)
+   remark #15536: loop was not vectorized: inner loop throttling prevents vectorization of this outer loop. Refer to inner loop message for more details.   [ gzread.c(254,31) ]
+   remark #17102: loop was not parallelized: not a parallelization candidate
+
+   LOOP BEGIN at gzread.c(254,31) inlined into gzread.c(577,35)
+      remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+      remark #17102: loop was not parallelized: not a parallelization candidate
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+gzread.c(547,1):remark #34051: REGISTER ALLOCATION : [gzgets] gzread.c:547
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   15[ rax rdx rcx rbx rbp rsi rdi r8-r15]
+        
+    Routine temporaries
+        Total         :     398
+            Global    :     127
+            Local     :     271
+        Regenerable   :      69
+        Spilled       :      16
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :     112 bytes*
+            Reads     :     157 [6.52e-01 ~ 1.3%]
+            Writes    :      30 [9.63e-01 ~ 1.9%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: gzdirect()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (gzdirect()) [16/17=94.1%] gzread.c(609,1)
+  -> INLINE: (620,15) gz_look() (isz = 249) (sz = 262)
+    -> EXTERN: (99,38) malloc(size_t)
+    -> EXTERN: (100,39) malloc(size_t)
+    -> EXTERN: (102,13) free(void *)
+    -> EXTERN: (103,13) free(void *)
+    -> EXTERN: (104,13) gz_error(gz_statep, int, const char *)
+    -> EXTERN: (115,13) inflateInit2_(z_streamp, int, const char *, int)
+    -> EXTERN: (116,13) free(void *)
+    -> EXTERN: (117,13) free(void *)
+    -> EXTERN: (119,13) gz_error(gz_statep, int, const char *)
+    -> INLINE: (126,13) gz_avail() (isz = 103) (sz = 112)
+      -> INLINE: (73,13) gz_load() (isz = 42) (sz = 56)
+        -> INLINE (MANUAL): (35,15) read(int, void *, size_t) (isz = 41) (sz = 54)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(36,7) __builtin_object_size(const void *, int)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(38,12) __builtin_constant_p(...)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,9) __read_chk(int, void *, size_t, size_t)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(39,44) __builtin_object_size(const void *, int)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(41,22) __builtin_object_size(const void *, int)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,9) __read_chk_warn(int, void *, size_t, size_t)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(42,49) __builtin_object_size(const void *, int)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/unistd.h:(44,10) __read_alias(int, void *, size_t)
+        -> EXTERN: (41,9) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (41,34) __errno_location(void)
+        -> EXTERN: (41,34) strerror(int)
+    -> EXTERN: (141,9) inflateReset(z_streamp)
+    -> INLINE (MANUAL): (161,9) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(620,15)
+   remark #25401: memcopy(with guard) generated
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between *q (65:9) and *p (70:18)
+   remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (65:9)
+   remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+
+   LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(620,15)
+   <Multiversioned v2>
+      remark #17104: loop was not parallelized: existence of parallel dependence
+      remark #17106: parallel dependence: assumed FLOW dependence between *p (70:18) and *q (70:18)
+      remark #17106: parallel dependence: assumed ANTI dependence between *q (70:18) and *p (70:18)
+      remark #15304: loop was not vectorized: non-vectorizable loop instance from multiversioning
+      remark #25439: unrolled with remainder by 2  
+   LOOP END
+
+   LOOP BEGIN at gzread.c(65,9) inlined into gzread.c(620,15)
+   <Remainder, Multiversioned v2>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gzread.c(30,6) inlined into gzread.c(620,15)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+gzread.c(609,1):remark #34051: REGISTER ALLOCATION : [gzdirect] gzread.c:609
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   14[ rax rdx rcx rbx rbp rsi rdi r8-r10 r12-r15]
+        
+    Routine temporaries
+        Total         :      99
+            Global    :      35
+            Local     :      64
+        Regenerable   :      16
+        Spilled       :       6
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :      24 bytes*
+            Reads     :       6 [5.26e-03 ~ 0.0%]
+            Writes    :       3 [5.26e-03 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: gzclose_r()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (gzclose_r()) [17/17=100.0%] gzread.c(629,1)
+  -> EXTERN: (644,9) inflateEnd(z_streamp)
+  -> EXTERN: (645,9) free(void *)
+  -> EXTERN: (646,9) free(void *)
+  -> EXTERN: (649,5) gz_error(gz_statep, int, const char *)
+  -> EXTERN: (650,5) free(void *)
+  -> EXTERN: (651,11) close(int)
+  -> EXTERN: (652,5) free(void *)
+
+
+    Report from: Code generation optimizations [cg]
+
+gzread.c(629,1):remark #34051: REGISTER ALLOCATION : [gzclose_r] gzread.c:629
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    8[ rax rdx rcx rsi rdi r13-r15]
+        
+    Routine temporaries
+        Total         :      33
+            Global    :      10
+            Local     :      23
+        Regenerable   :       7
+        Spilled       :       3
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================

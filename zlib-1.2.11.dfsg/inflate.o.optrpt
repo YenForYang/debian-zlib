@@ -1,0 +1,1317 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+Intel(R) C Intel(R) 64 Compiler for applications running on Intel(R) 64, Version 19.0.1.144 Build 20181018
+
+Compiler options: -O3 -diag-disable=10013,10385,10237,10346 -fabi-version=13 -falign-functions -falign-loops -fbuiltin -fdata-sections -ffunction-sections -ffat-lto-objects -fpermissive -gcc-name=gcc.intel -gnu-prefix=x86_64-linux-gnu- -gxx-name=g++.intel -inline-level=2 -inline-min-caller-growth=0 -ipo -march=native -no-inline-max-per-compile -no-inline-max-per-routine -no-inline-max-size -no-inline-max-total-size -par-schedule-auto -parallel -qopt-matmul -qopt-mem-layout-trans -qopt-multi-version-aggressive -qopt-prefetch -qoverride-limits -static-intel -qopt-report=5 -qno-opt-report-embed -g -Wformat -Wformat-security -Wall -O3 -qopt-report-file=inflate.o.optrpt -D_FORTIFY_SOURCE=2 -D_REENTRANT -DUNALIGNED_OK -D_LARGEFILE64_SOURCE=1 -c -o inflate.o -Wl,--as-needed,--relax,--gc-sections,-O,2 -pipe
+
+    Report from: Interprocedural optimizations [ipo]
+
+  WHOLE PROGRAM (SAFE) [EITHER METHOD]: false
+  WHOLE PROGRAM (SEEN) [TABLE METHOD]: false
+  WHOLE PROGRAM (READ) [OBJECT READER METHOD]: false
+
+INLINING OPTION VALUES:
+  -inline-factor: 100
+  -inline-min-size: 30
+  -inline-max-size: disabled (user-specified)
+  -inline-max-total-size: disabled (user-specified)
+  -inline-max-per-routine: disabled (user-specified)
+  -inline-max-per-compile: disabled (user-specified)
+
+In the inlining report below:
+   "sz" refers to the "size" of the routine. The smaller a routine's size,
+      the more likely it is to be inlined.
+   "isz" refers to the "inlined size" of the routine. This is the amount
+      the calling routine will grow if the called routine is inlined into it.
+      The compiler generally limits the amount a routine can grow by having
+      routines inlined into it.
+
+Begin optimization report for: memcpy(void *__restrict__, const void *__restrict__, size_t)
+
+    Report from: Interprocedural optimizations [ipo]
+
+NEVER EMIT DEFINITION FUNCTION: (memcpy(void *__restrict__, const void *__restrict__, size_t))/usr/include/x86_64-linux-gnu/bits/string_fortified.h(33,1)
+
+===========================================================================
+
+Begin optimization report for: inflateStateCheck()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (inflateStateCheck()) inflate.c(107,1)
+
+===========================================================================
+
+Begin optimization report for: inflateResetKeep()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (inflateResetKeep()) [3/23=13.0%] inflate.c(121,1)
+  -> INLINE: (124,9) inflateStateCheck() (isz = 25) (sz = 34)
+
+
+    Report from: Code generation optimizations [cg]
+
+inflate.c(121,1):remark #34051: REGISTER ALLOCATION : [inflateResetKeep] inflate.c:121
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    4[ rax rdx rcx rdi]
+        
+    Routine temporaries
+        Total         :      18
+            Global    :      11
+            Local     :       7
+        Regenerable   :       4
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: inflateReset()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (inflateReset()) [4/23=17.4%] inflate.c(146,1)
+  -> INLINE: (149,9) inflateStateCheck() (isz = 25) (sz = 34)
+  -> INLINE: (154,12) inflateResetKeep() (isz = 74) (sz = 82)
+    -> INLINE: (124,9) inflateStateCheck() (isz = 25) (sz = 34)
+
+
+    Report from: Code generation optimizations [cg]
+
+inflate.c(146,1):remark #34051: REGISTER ALLOCATION : [inflateReset] inflate.c:146
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    5[ rax rdx rcx rsi rdi]
+        
+    Routine temporaries
+        Total         :      18
+            Global    :      12
+            Local     :       6
+        Regenerable   :       4
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: inflateReset2()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (inflateReset2()) [5/23=21.7%] inflate.c(160,1)
+  -> INLINE: (165,9) inflateStateCheck() (isz = 25) (sz = 34)
+  -> INDIRECT-: (185,9)  strm_631_V$43.0.5->zfree_V$e
+     [[ Unable to inline indirect callsite  <1>]]
+  -> INLINE: (192,12) inflateReset() (isz = 114) (sz = 122)
+    -> INLINE: (149,9) inflateStateCheck() (isz = 25) (sz = 34)
+    -> INLINE: (154,12) inflateResetKeep() (isz = 74) (sz = 82)
+      -> INLINE: (124,9) inflateStateCheck() (isz = 25) (sz = 34)
+
+
+    Report from: Code generation optimizations [cg]
+
+inflate.c(160,1):remark #34051: REGISTER ALLOCATION : [inflateReset2] inflate.c:160
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    9[ rax rdx rcx rsi rdi r12-r15]
+        
+    Routine temporaries
+        Total         :      32
+            Global    :      19
+            Local     :      13
+        Regenerable   :       4
+        Spilled       :       4
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: inflatePrime()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (inflatePrime()) [6/23=26.1%] inflate.c(251,1)
+  -> INLINE: (254,9) inflateStateCheck() (isz = 25) (sz = 34)
+
+
+    Report from: Code generation optimizations [cg]
+
+inflate.c(251,1):remark #34051: REGISTER ALLOCATION : [inflatePrime] inflate.c:251
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    7[ rax rdx rcx rsi rdi r8-r9]
+        
+    Routine temporaries
+        Total         :      30
+            Global    :      13
+            Local     :      17
+        Regenerable   :       5
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: fixedtables()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (fixedtables()) inflate.c(280,1)
+
+===========================================================================
+
+Begin optimization report for: updatewindow()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (updatewindow()) inflate.c(400,1)
+
+===========================================================================
+
+Begin optimization report for: inflate()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (inflate()) [9/23=39.1%] inflate.c(625,1)
+  -> INLINE: (645,9) inflateStateCheck() (isz = 25) (sz = 34)
+  -> EXTERN: (667,32) crc32(uLong, const Bytef *, uInt)
+  -> EXTERN: (668,17) crc32(uLong, const Bytef *, uInt)
+  -> EXTERN: (701,42) adler32(uLong, const Bytef *, uInt)
+  -> EXTERN: (722,17) crc32(uLong, const Bytef *, uInt)
+  -> EXTERN: (730,17) crc32(uLong, const Bytef *, uInt)
+  -> EXTERN: (740,17) crc32(uLong, const Bytef *, uInt)
+  -> EXTERN: (750,21) crc32(uLong, const Bytef *, uInt)
+  -> INLINE (MANUAL): (764,25) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+  -> EXTERN: (769,40) crc32(uLong, const Bytef *, uInt)
+  -> EXTERN: (790,36) crc32(uLong, const Bytef *, uInt)
+  -> EXTERN: (811,36) crc32(uLong, const Bytef *, uInt)
+  -> EXTERN: (833,42) crc32(uLong, const Bytef *, uInt)
+  -> EXTERN: (847,42) adler32(uLong, const Bytef *, uInt)
+  -> INLINE: (867,17) fixedtables() (isz = 10) (sz = 15)
+  -> INLINE (MANUAL): (909,17) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+  -> EXTERN: (949,19) inflate_table(codetype, unsigned short *, unsigned int, code **, unsigned int *, unsigned short *)
+  -> EXTERN: (1023,19) inflate_table(codetype, unsigned short *, unsigned int, code **, unsigned int *, unsigned short *)
+  -> EXTERN: (1032,19) inflate_table(codetype, unsigned short *, unsigned int, code **, unsigned int *, unsigned short *)
+  -> EXTERN: (1047,17) inflate_fast(z_streamp, unsigned int)
+  -> EXTERN: (1205,25) crc32(uLong, const Bytef *, uInt)
+  -> EXTERN: (1205,25) adler32(uLong, const Bytef *, uInt)
+  -> INLINE: (1257,13) updatewindow() (isz = 101) (sz = 113)
+    -> INDIRECT-: (409,25)  strm_665_V$61.0.10.68->zalloc_V$d
+       [[ Unable to inline indirect callsite  <1>]]
+    -> INLINE (MANUAL): (423,9) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+    -> INLINE (MANUAL): (430,9) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+    -> INLINE (MANUAL): (433,13) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+  -> EXTERN: (1268,13) crc32(uLong, const Bytef *, uInt)
+  -> EXTERN: (1268,13) adler32(uLong, const Bytef *, uInt)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at inflate.c(1223,17)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between hold (1223:17) and hold (1223:17)
+   remark #17106: parallel dependence: assumed FLOW dependence between hold (1223:17) and hold (1223:17)
+   remark #17106: parallel dependence: assumed FLOW dependence between hold (1223:17) and hold (1223:17)
+   remark #17106: parallel dependence: assumed ANTI dependence between hold (1223:17) and hold (1223:17)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+LOOP END
+
+LOOP BEGIN at inflate.c(1199,17)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between hold (1199:17) and hold (1199:17)
+   remark #17106: parallel dependence: assumed FLOW dependence between hold (1199:17) and hold (1199:17)
+   remark #17106: parallel dependence: assumed FLOW dependence between hold (1199:17) and hold (1199:17)
+   remark #17106: parallel dependence: assumed ANTI dependence between hold (1199:17) and hold (1199:17)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+LOOP END
+
+LOOP BEGIN at inflate.c(1185,13)
+   remark #25401: memcopy(with guard) generated
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between *from (1185:13) and *put (1187:18)
+   remark #17106: parallel dependence: assumed FLOW dependence between *put (1187:18) and *from (1185:13)
+   remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+
+   LOOP BEGIN at inflate.c(1185,13)
+   <Multiversioned v2>
+      remark #17104: loop was not parallelized: existence of parallel dependence
+      remark #17106: parallel dependence: assumed FLOW dependence between *put (1187:18) and *from (1187:18)
+      remark #17106: parallel dependence: assumed ANTI dependence between *from (1187:18) and *put (1187:18)
+      remark #15304: loop was not vectorized: non-vectorizable loop instance from multiversioning
+      remark #25439: unrolled with remainder by 2  
+      remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+   LOOP END
+
+   LOOP BEGIN at inflate.c(1185,13)
+   <Remainder, Multiversioned v2>
+      remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+   LOOP END
+LOOP END
+
+LOOP BEGIN at inflate.c(1132,17)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between hold (1132:17) and hold (1132:17)
+   remark #17106: parallel dependence: assumed FLOW dependence between hold (1132:17) and hold (1132:17)
+   remark #17106: parallel dependence: assumed FLOW dependence between hold (1132:17) and hold (1132:17)
+   remark #17106: parallel dependence: assumed ANTI dependence between hold (1132:17) and hold (1132:17)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+LOOP END
+
+LOOP BEGIN at inflate.c(1113,30)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at inflate.c(1095,17)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between hold (1095:17) and hold (1095:17)
+   remark #17106: parallel dependence: assumed FLOW dependence between hold (1095:17) and hold (1095:17)
+   remark #17106: parallel dependence: assumed FLOW dependence between hold (1095:17) and hold (1095:17)
+   remark #17106: parallel dependence: assumed ANTI dependence between hold (1095:17) and hold (1095:17)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+LOOP END
+
+LOOP BEGIN at inflate.c(1063,30)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at inflate.c(972,25)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15523: loop was not vectorized: loop control variable bits was found, but loop iteration count cannot be computed before executing the loop
+LOOP END
+
+LOOP BEGIN at inflate.c(984,25)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15523: loop was not vectorized: loop control variable bits was found, but loop iteration count cannot be computed before executing the loop
+LOOP END
+
+LOOP BEGIN at inflate.c(991,25)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15523: loop was not vectorized: loop control variable bits was found, but loop iteration count cannot be computed before executing the loop
+LOOP END
+
+LOOP BEGIN at inflate.c(1002,21)
+<Peeled loop for vectorization>
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+   remark #25015: Estimate of max trip count of loop=7
+LOOP END
+
+LOOP BEGIN at inflate.c(1002,21)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ inflate.c(1003,37) ]
+   remark #17108: loop was not parallelized: insufficient computational work
+   remark #15388: vectorization support: reference state->lens[state->have] has aligned access   [ inflate.c(1003,25) ]
+   remark #15305: vectorization support: vector length 8
+   remark #15309: vectorization support: normalized vectorization overhead 4.500
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15449: unmasked aligned unit stride stores: 1 
+   remark #15475: --- begin vector cost summary ---
+   remark #15476: scalar cost: 3 
+   remark #15477: vector cost: 0.500 
+   remark #15478: estimated potential speedup: 4.840 
+   remark #15488: --- end vector cost summary ---
+   remark #25015: Estimate of max trip count of loop=40
+LOOP END
+
+LOOP BEGIN at inflate.c(1002,21)
+<Remainder loop for vectorization>
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+   remark #25015: Estimate of max trip count of loop=320
+LOOP END
+
+LOOP BEGIN at inflate.c(940,17)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between hold (940:17) and hold (940:17)
+   remark #17106: parallel dependence: assumed FLOW dependence between hold (940:17) and hold (940:17)
+   remark #17106: parallel dependence: assumed FLOW dependence between hold (940:17) and hold (940:17)
+   remark #17106: parallel dependence: assumed ANTI dependence between hold (940:17) and hold (940:17)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+LOOP END
+
+LOOP BEGIN at inflate.c(944,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ inflate.c(945,35) ]
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed OUTPUT dependence between state->lens[order[state->have]] (945:17) and state->lens[order[state->have]] (945:17)
+   remark #17106: parallel dependence: assumed OUTPUT dependence between state->lens[order[state->have]] (945:17) and state->lens[order[state->have]] (945:17)
+   remark #15389: vectorization support: reference order[state->have] has unaligned access   [ inflate.c(945,29) ]
+   remark #15381: vectorization support: unaligned access used inside loop body
+   remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+   remark #15329: vectorization support: irregularly indexed store was emulated for the variable <state->lens[order[state->have]]>, part of index is read from memory   [ inflate.c(945,17) ]
+   remark #15305: vectorization support: vector length 2
+   remark #15309: vectorization support: normalized vectorization overhead 0.115
+   remark #15450: unmasked unaligned unit stride loads: 1 
+   remark #15463: unmasked indexed (or scatter) stores: 1 
+   remark #15475: --- begin vector cost summary ---
+   remark #15476: scalar cost: 5 
+   remark #15477: vector cost: 13.000 
+   remark #15478: estimated potential speedup: 0.390 
+   remark #15488: --- end vector cost summary ---
+   remark #25439: unrolled with remainder by 2  
+   remark #25015: Estimate of max trip count of loop=19
+LOOP END
+
+LOOP BEGIN at inflate.c(944,13)
+<Remainder>
+   remark #25015: Estimate of max trip count of loop=19
+LOOP END
+
+LOOP BEGIN at inflate.c(921,13)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between hold (921:13) and hold (921:13)
+   remark #17106: parallel dependence: assumed FLOW dependence between hold (921:13) and hold (921:13)
+   remark #17106: parallel dependence: assumed FLOW dependence between hold (921:13) and hold (921:13)
+   remark #17106: parallel dependence: assumed ANTI dependence between hold (921:13) and hold (921:13)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+LOOP END
+
+LOOP BEGIN at inflate.c(889,13)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between hold (889:13) and hold (889:13)
+   remark #17106: parallel dependence: assumed FLOW dependence between hold (889:13) and hold (889:13)
+   remark #17106: parallel dependence: assumed FLOW dependence between hold (889:13) and hold (889:13)
+   remark #17106: parallel dependence: assumed ANTI dependence between hold (889:13) and hold (889:13)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+LOOP END
+
+LOOP BEGIN at inflate.c(857,13)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between hold (857:13) and hold (857:13)
+   remark #17106: parallel dependence: assumed FLOW dependence between hold (857:13) and hold (857:13)
+   remark #17106: parallel dependence: assumed FLOW dependence between hold (857:13) and hold (857:13)
+   remark #17106: parallel dependence: assumed ANTI dependence between hold (857:13) and hold (857:13)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+LOOP END
+
+LOOP BEGIN at inflate.c(838,13)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between hold (838:13) and hold (838:13)
+   remark #17106: parallel dependence: assumed FLOW dependence between hold (838:13) and hold (838:13)
+   remark #17106: parallel dependence: assumed FLOW dependence between hold (838:13) and hold (838:13)
+   remark #17106: parallel dependence: assumed ANTI dependence between hold (838:13) and hold (838:13)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+LOOP END
+
+LOOP BEGIN at inflate.c(821,17)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between hold (821:17) and hold (821:17)
+   remark #17106: parallel dependence: assumed FLOW dependence between hold (821:17) and hold (821:17)
+   remark #17106: parallel dependence: assumed FLOW dependence between hold (821:17) and hold (821:17)
+   remark #17106: parallel dependence: assumed ANTI dependence between hold (821:17) and hold (821:17)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+LOOP END
+
+LOOP BEGIN at inflate.c(802,17)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15324: loop was not vectorized: unsigned types for induction variable and/or for lower/upper iteration bounds make loop uncountable
+LOOP END
+
+LOOP BEGIN at inflate.c(781,17)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15324: loop was not vectorized: unsigned types for induction variable and/or for lower/upper iteration bounds make loop uncountable
+LOOP END
+
+LOOP BEGIN at inflate.c(745,17)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between hold (745:17) and hold (745:17)
+   remark #17106: parallel dependence: assumed FLOW dependence between hold (745:17) and hold (745:17)
+   remark #17106: parallel dependence: assumed FLOW dependence between hold (745:17) and hold (745:17)
+   remark #17106: parallel dependence: assumed ANTI dependence between hold (745:17) and hold (745:17)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+LOOP END
+
+LOOP BEGIN at inflate.c(734,13)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between hold (734:13) and hold (734:13)
+   remark #17106: parallel dependence: assumed FLOW dependence between hold (734:13) and hold (734:13)
+   remark #17106: parallel dependence: assumed FLOW dependence between hold (734:13) and hold (734:13)
+   remark #17106: parallel dependence: assumed ANTI dependence between hold (734:13) and hold (734:13)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+LOOP END
+
+LOOP BEGIN at inflate.c(726,13)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between hold (726:13) and hold (726:13)
+   remark #17106: parallel dependence: assumed FLOW dependence between hold (726:13) and hold (726:13)
+   remark #17106: parallel dependence: assumed FLOW dependence between hold (726:13) and hold (726:13)
+   remark #17106: parallel dependence: assumed ANTI dependence between hold (726:13) and hold (726:13)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+LOOP END
+
+LOOP BEGIN at inflate.c(707,13)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between hold (707:13) and hold (707:13)
+   remark #17106: parallel dependence: assumed FLOW dependence between hold (707:13) and hold (707:13)
+   remark #17106: parallel dependence: assumed FLOW dependence between hold (707:13) and hold (707:13)
+   remark #17106: parallel dependence: assumed ANTI dependence between hold (707:13) and hold (707:13)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+LOOP END
+
+LOOP BEGIN at inflate.c(662,13)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between hold (662:13) and hold (662:13)
+   remark #17106: parallel dependence: assumed FLOW dependence between hold (662:13) and hold (662:13)
+   remark #17106: parallel dependence: assumed FLOW dependence between hold (662:13) and hold (662:13)
+   remark #17106: parallel dependence: assumed ANTI dependence between hold (662:13) and hold (662:13)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria
+LOOP END
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at inflate.c(1226,21)
+   remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+   remark #17102: loop was not parallelized: not a parallelization candidate
+
+   LOOP BEGIN at inflate.c(1107,17)
+      remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+      remark #17102: loop was not parallelized: not a parallelization candidate
+   LOOP END
+
+   LOOP BEGIN at inflate.c(1057,17)
+      remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+      remark #17102: loop was not parallelized: not a parallelization candidate
+   LOOP END
+
+   LOOP BEGIN at inflate.c(960,13)
+      remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+      remark #17102: loop was not parallelized: not a parallelization candidate
+   LOOP END
+
+   LOOP BEGIN at inflate.c(939,13)
+      remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+      remark #17102: loop was not parallelized: not a parallelization candidate
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+inflate.c(1185,13):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+inflate.c(1185,13):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+inflate.c(1185,13):remark #34026: call to memcpy implemented as a call to optimized library version
+inflate.c(1105,24):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (1, 0), and destination (alignment, offset): (16, 0)
+inflate.c(1055,24):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (1, 0), and destination (alignment, offset): (16, 0)
+inflate.c(962,28):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (1, 0), and destination (alignment, offset): (16, 0)
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+inflate.c(1110,24):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (16, 0)
+inflate.c(1112,28):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (1, 0), and destination (alignment, offset): (16, 0)
+inflate.c(1060,24):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (16, 0)
+inflate.c(1062,28):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (1, 0), and destination (alignment, offset): (16, 0)
+inflate.c(625,1):remark #34051: REGISTER ALLOCATION : [inflate] inflate.c:625
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   16[ rax rdx rcx rbx rbp rsi rdi r8-r15 zmm0]
+        
+    Routine temporaries
+        Total         :     697
+            Global    :     182
+            Local     :     515
+        Regenerable   :      48
+        Spilled       :      35
+        
+    Routine stack
+        Variables     :       8 bytes*
+            Reads     :       9 [7.13e-01 ~ 0.3%]
+            Writes    :      17 [2.46e+00 ~ 0.9%]
+        Spills        :     224 bytes*
+            Reads     :     331 [4.55e+00 ~ 1.7%]
+            Writes    :      46 [1.02e+01 ~ 3.8%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: inflateEnd()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (inflateEnd()) [10/23=43.5%] inflate.c(1279,1)
+  -> INLINE: (1281,9) inflateStateCheck() (isz = 25) (sz = 34)
+  -> INDIRECT-: (1284,34)  strm_1171_V$ad.0.12->zfree_V$e
+     [[ Unable to inline indirect callsite  <1>]]
+  -> INDIRECT-: (1285,5)  strm_1171_V$ad.0.12->zfree_V$e
+     [[ Unable to inline indirect callsite  <1>]]
+
+
+    Report from: Code generation optimizations [cg]
+
+inflate.c(1279,1):remark #34051: REGISTER ALLOCATION : [inflateEnd] inflate.c:1279
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    6[ rax rdx rcx rsi rdi r15]
+        
+    Routine temporaries
+        Total         :      20
+            Global    :      11
+            Local     :       9
+        Regenerable   :       2
+        Spilled       :       1
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: inflateGetDictionary()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (inflateGetDictionary()) [11/23=47.8%] inflate.c(1295,1)
+  -> INLINE: (1299,9) inflateStateCheck() (isz = 25) (sz = 34)
+  -> INLINE (MANUAL): (1304,9) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+  -> INLINE (MANUAL): (1306,9) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+
+
+    Report from: Code generation optimizations [cg]
+
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+inflate.c(1295,1):remark #34051: REGISTER ALLOCATION : [inflateGetDictionary] inflate.c:1295
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    7[ rax rdx rbp rsi rdi r12-r13]
+        
+    Routine temporaries
+        Total         :      34
+            Global    :      12
+            Local     :      22
+        Regenerable   :       2
+        Spilled       :       3
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: inflateSetDictionary()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (inflateSetDictionary()) [12/23=52.2%] inflate.c(1318,1)
+  -> INLINE: (1324,9) inflateStateCheck() (isz = 25) (sz = 34)
+  -> EXTERN: (1331,18) adler32(uLong, const Bytef *, uInt)
+  -> EXTERN: (1332,18) adler32(uLong, const Bytef *, uInt)
+  -> INLINE: (1339,11) updatewindow() (isz = 101) (sz = 113)
+    -> INDIRECT-: (409,25)  strm_665_V$61.0.10.64->zalloc_V$d
+       [[ Unable to inline indirect callsite  <1>]]
+    -> INLINE (MANUAL): (423,9) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+    -> INLINE (MANUAL): (430,9) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+    -> INLINE (MANUAL): (433,13) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+
+
+    Report from: Code generation optimizations [cg]
+
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+inflate.c(1318,1):remark #34051: REGISTER ALLOCATION : [inflateSetDictionary] inflate.c:1318
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   11[ rax rdx rcx rbx rbp rsi rdi r12-r15]
+        
+    Routine temporaries
+        Total         :      76
+            Global    :      25
+            Local     :      51
+        Regenerable   :      12
+        Spilled       :       6
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: inflateGetHeader()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (inflateGetHeader()) [13/23=56.5%] inflate.c(1352,1)
+  -> INLINE: (1356,9) inflateStateCheck() (isz = 25) (sz = 34)
+
+
+    Report from: Code generation optimizations [cg]
+
+inflate.c(1352,1):remark #34051: REGISTER ALLOCATION : [inflateGetHeader] inflate.c:1352
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    4[ rax rdx rsi rdi]
+        
+    Routine temporaries
+        Total         :      15
+            Global    :      11
+            Local     :       4
+        Regenerable   :       1
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: syncsearch()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (syncsearch()) inflate.c(1381,1)
+
+===========================================================================
+
+Begin optimization report for: inflateSync()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (inflateSync()) [15/23=65.2%] inflate.c(1402,1)
+  -> INLINE: (1409,9) inflateStateCheck() (isz = 25) (sz = 34)
+  -> INLINE: (1425,9) syncsearch() (isz = 32) (sz = 43)
+  -> INLINE: (1429,11) syncsearch() (isz = 32) (sz = 43)
+  -> INLINE: (1437,5) inflateReset() (isz = 114) (sz = 122)
+    -> INLINE: (149,9) inflateStateCheck() (isz = 25) (sz = 34)
+    -> INLINE: (154,12) inflateResetKeep() (isz = 74) (sz = 82)
+      -> INLINE: (124,9) inflateStateCheck() (isz = 25) (sz = 34)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at inflate.c(1419,9)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ inflate.c(1421,13) ]
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ inflate.c(1422,13) ]
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between state->hold (1420:13) and state->hold (1421:13)
+   remark #17106: parallel dependence: assumed FLOW dependence between state->hold (1421:13) and state->hold (1420:13)
+   remark #17106: parallel dependence: assumed FLOW dependence between state->hold (1421:13) and state->hold (1420:13)
+   remark #17106: parallel dependence: assumed ANTI dependence between state->hold (1420:13) and state->hold (1421:13)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between state->hold (1420:13) and state->hold (1421:13)
+   remark #15346: vector dependence: assumed FLOW dependence between state->hold (1421:13) and state->hold (1420:13)
+   remark #15346: vector dependence: assumed FLOW dependence between state->hold (1421:13) and state->hold (1420:13)
+   remark #15346: vector dependence: assumed ANTI dependence between state->hold (1420:13) and state->hold (1421:13)
+   remark #25439: unrolled with remainder by 2  
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 2
+   remark #25457: Number of partial sums replaced: 1
+   remark #25015: Estimate of max trip count of loop=4
+LOOP END
+
+LOOP BEGIN at inflate.c(1419,9)
+<Remainder>
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+   remark #25015: Estimate of max trip count of loop=4
+LOOP END
+
+LOOP BEGIN at inflate.c(1387,5) inlined into inflate.c(1425,9)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between got (1387:5) and got (1389:13)
+   remark #17106: parallel dependence: assumed FLOW dependence between got (1389:13) and got (1387:5)
+   remark #17106: parallel dependence: assumed ANTI dependence between got (1387:5) and got (1389:13)
+   remark #17106: parallel dependence: assumed ANTI dependence between got (1387:5) and got (1391:13)
+   remark #17106: parallel dependence: assumed FLOW dependence between got (1391:13) and got (1387:5)
+   remark #17106: parallel dependence: assumed ANTI dependence between got (1387:5) and got (1391:13)
+   remark #17106: parallel dependence: assumed ANTI dependence between got (1387:5) and got (1393:13)
+   remark #17106: parallel dependence: assumed FLOW dependence between got (1393:13) and got (1387:5)
+   remark #17106: parallel dependence: assumed ANTI dependence between got (1387:5) and got (1393:13)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria   [ inflate.c(1388,9) ]
+   remark #25015: Estimate of max trip count of loop=4
+LOOP END
+
+LOOP BEGIN at inflate.c(1387,5) inlined into inflate.c(1429,11)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between got (1387:5) and got (1389:13)
+   remark #17106: parallel dependence: assumed FLOW dependence between got (1389:13) and got (1387:5)
+   remark #17106: parallel dependence: assumed ANTI dependence between got (1387:5) and got (1389:13)
+   remark #17106: parallel dependence: assumed ANTI dependence between got (1387:5) and got (1391:13)
+   remark #17106: parallel dependence: assumed FLOW dependence between got (1391:13) and got (1387:5)
+   remark #17106: parallel dependence: assumed ANTI dependence between got (1387:5) and got (1391:13)
+   remark #17106: parallel dependence: assumed ANTI dependence between got (1387:5) and got (1393:13)
+   remark #17106: parallel dependence: assumed FLOW dependence between got (1393:13) and got (1387:5)
+   remark #17106: parallel dependence: assumed ANTI dependence between got (1387:5) and got (1393:13)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria   [ inflate.c(1394,9) ]
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+inflate.c(1402,1):remark #34051: REGISTER ALLOCATION : [inflateSync] inflate.c:1402
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   10[ rax rdx rcx rsi rdi r8-r12]
+        
+    Routine temporaries
+        Total         :      68
+            Global    :      35
+            Local     :      33
+        Regenerable   :       6
+        Spilled       :       1
+        
+    Routine stack
+        Variables     :       4 bytes*
+            Reads     :       1 [6.48e-01 ~ 0.6%]
+            Writes    :       3 [1.83e+00 ~ 1.8%]
+        Spills        :       8 bytes*
+            Reads     :       1 [2.79e-01 ~ 0.3%]
+            Writes    :       1 [2.79e-01 ~ 0.3%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: inflateSyncPoint()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (inflateSyncPoint()) [16/23=69.6%] inflate.c(1453,1)
+  -> INLINE: (1456,9) inflateStateCheck() (isz = 25) (sz = 34)
+
+
+    Report from: Code generation optimizations [cg]
+
+inflate.c(1453,1):remark #34051: REGISTER ALLOCATION : [inflateSyncPoint] inflate.c:1453
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    3[ rax rdx rdi]
+        
+    Routine temporaries
+        Total         :      14
+            Global    :      10
+            Local     :       4
+        Regenerable   :       2
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: inflateCopy()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (inflateCopy()) [17/23=73.9%] inflate.c(1464,1)
+  -> INLINE: (1471,9) inflateStateCheck() (isz = 25) (sz = 34)
+  -> INDIRECT-: (1477,12)  source_1222_V$ca.0.19->zalloc_V$d
+     [[ Unable to inline indirect callsite  <1>]]
+  -> INDIRECT-: (1482,18)  source_1222_V$ca.0.19->zalloc_V$d
+     [[ Unable to inline indirect callsite  <1>]]
+  -> INDIRECT-: (1484,13)  source_1222_V$ca.0.19->zfree_V$e
+     [[ Unable to inline indirect callsite  <1>]]
+  -> INLINE (MANUAL): (1490,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+  -> INLINE (MANUAL): (1491,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+  -> INLINE (MANUAL): (1501,9) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+
+
+    Report from: Code generation optimizations [cg]
+
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to increase the width of loads
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to increase the width of stores
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (1, 0), and destination (alignment, offset): (1, 0)
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+inflate.c(1464,1):remark #34051: REGISTER ALLOCATION : [inflateCopy] inflate.c:1464
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   18[ rax rdx rcx rbp rsi rdi r8 r12-r15 zmm0-zmm6]
+        
+    Routine temporaries
+        Total         :      69
+            Global    :      17
+            Local     :      52
+        Regenerable   :      10
+        Spilled       :       5
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: inflateUndermine()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (inflateUndermine()) [18/23=78.3%] inflate.c(1511,1)
+  -> INLINE: (1514,9) inflateStateCheck() (isz = 25) (sz = 34)
+
+
+    Report from: Code generation optimizations [cg]
+
+inflate.c(1511,1):remark #34051: REGISTER ALLOCATION : [inflateUndermine] inflate.c:1511
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    4[ rax rdx rsi rdi]
+        
+    Routine temporaries
+        Total         :      13
+            Global    :       9
+            Local     :       4
+        Regenerable   :       2
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: inflateValidate()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (inflateValidate()) [19/23=82.6%] inflate.c(1529,1)
+  -> INLINE: (1532,9) inflateStateCheck() (isz = 25) (sz = 34)
+
+
+    Report from: Code generation optimizations [cg]
+
+inflate.c(1529,1):remark #34051: REGISTER ALLOCATION : [inflateValidate] inflate.c:1529
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    4[ rax rdx rsi rdi]
+        
+    Routine temporaries
+        Total         :      17
+            Global    :      11
+            Local     :       6
+        Regenerable   :       2
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: inflateMark()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (inflateMark()) [20/23=87.0%] inflate.c(1543,1)
+  -> INLINE: (1546,9) inflateStateCheck() (isz = 25) (sz = 34)
+
+
+    Report from: Code generation optimizations [cg]
+
+inflate.c(1543,1):remark #34051: REGISTER ALLOCATION : [inflateMark] inflate.c:1543
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    4[ rax rdx rcx rdi]
+        
+    Routine temporaries
+        Total         :      18
+            Global    :      10
+            Local     :       8
+        Regenerable   :       1
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: inflateCodesUsed()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (inflateCodesUsed()) [21/23=91.3%] inflate.c(1556,1)
+  -> INLINE: (1558,9) inflateStateCheck() (isz = 25) (sz = 34)
+
+
+    Report from: Code generation optimizations [cg]
+
+inflate.c(1556,1):remark #34051: REGISTER ALLOCATION : [inflateCodesUsed] inflate.c:1556
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    4[ rax rdx rcx rdi]
+        
+    Routine temporaries
+        Total         :      16
+            Global    :       9
+            Local     :       7
+        Regenerable   :       1
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: inflateInit_()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (inflateInit_()) [22/23=95.7%] inflate.c(243,1)
+  -> INLINE: (244,12) inflateInit2_() (isz = 246) (sz = 262)
+    -> INDIRECT-: (224,13)  strm_643_V$47.0.6.57->zalloc_V$d
+       [[ Unable to inline indirect callsite  <1>]]
+    -> INLINE: (231,11) inflateReset2() (isz = 188) (sz = 199)
+      -> INLINE: (165,9) inflateStateCheck() (isz = 25) (sz = 34)
+      -> INDIRECT-: (185,9)  strm_631_V$43.0.5.78->zfree_V$e
+         [[ Unable to inline indirect callsite  <1>]]
+      -> INLINE: (192,12) inflateReset() (isz = 114) (sz = 122)
+        -> INLINE: (149,9) inflateStateCheck() (isz = 25) (sz = 34)
+        -> INLINE: (154,12) inflateResetKeep() (isz = 74) (sz = 82)
+          -> INLINE: (124,9) inflateStateCheck() (isz = 25) (sz = 34)
+    -> INDIRECT-: (233,9)  strm_643_V$47.0.6.57->zfree_V$e
+       [[ Unable to inline indirect callsite  <1>]]
+
+
+    Report from: Code generation optimizations [cg]
+
+inflate.c(243,1):remark #34051: REGISTER ALLOCATION : [inflateInit_] inflate.c:243
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    8[ rax rdx rcx rbx rbp rsi rdi r15]
+        
+    Routine temporaries
+        Total         :      39
+            Global    :      23
+            Local     :      16
+        Regenerable   :       4
+        Spilled       :       3
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: inflateInit2_()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (inflateInit2_()) [23/23=100.0%] inflate.c(200,1)
+  -> INDIRECT-: (224,13)  strm_643_V$47.0.6->zalloc_V$d
+     [[ Unable to inline indirect callsite  <1>]]
+  -> INLINE: (231,11) inflateReset2() (isz = 188) (sz = 199)
+    -> INLINE: (165,9) inflateStateCheck() (isz = 25) (sz = 34)
+    -> INDIRECT-: (185,9)  strm_631_V$43.0.5.72->zfree_V$e
+       [[ Unable to inline indirect callsite  <1>]]
+    -> INLINE: (192,12) inflateReset() (isz = 114) (sz = 122)
+      -> INLINE: (149,9) inflateStateCheck() (isz = 25) (sz = 34)
+      -> INLINE: (154,12) inflateResetKeep() (isz = 74) (sz = 82)
+        -> INLINE: (124,9) inflateStateCheck() (isz = 25) (sz = 34)
+  -> INDIRECT-: (233,9)  strm_643_V$47.0.6->zfree_V$e
+     [[ Unable to inline indirect callsite  <1>]]
+
+
+    Report from: Code generation optimizations [cg]
+
+inflate.c(200,1):remark #34051: REGISTER ALLOCATION : [inflateInit2_] inflate.c:200
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    9[ rax rdx rcx rsi rdi r12-r15]
+        
+    Routine temporaries
+        Total         :      47
+            Global    :      25
+            Local     :      22
+        Regenerable   :       7
+        Spilled       :       4
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINING FOOTNOTES:
+
+<1> The indirectly called function must be resolved to its targets before it 
+can be inlined.  Consider compiling with -ipo or -prof-gen followed by 
+-prof-use.
+

@@ -1,0 +1,2151 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+Intel(R) C Intel(R) 64 Compiler for applications running on Intel(R) 64, Version 19.0.1.144 Build 20181018
+
+Compiler options: -O3 -diag-disable=10013,10385,10237,10346 -fabi-version=13 -falign-functions -falign-loops -fbuiltin -fdata-sections -ffunction-sections -ffat-lto-objects -fpermissive -gcc-name=gcc.intel -gnu-prefix=x86_64-linux-gnu- -gxx-name=g++.intel -inline-level=2 -inline-min-caller-growth=0 -ipo -march=native -no-inline-max-per-compile -no-inline-max-per-routine -no-inline-max-size -no-inline-max-total-size -par-schedule-auto -parallel -qopt-matmul -qopt-mem-layout-trans -qopt-multi-version-aggressive -qopt-prefetch -qoverride-limits -static-intel -qopt-report=5 -qno-opt-report-embed -g -Wformat -Wformat-security -Wall -O3 -qopt-report-file=gzwrite.o.optrpt -D_FORTIFY_SOURCE=2 -D_REENTRANT -DUNALIGNED_OK -D_LARGEFILE64_SOURCE=1 -c -o gzwrite.o -Wl,--as-needed,--relax,--gc-sections,-O,2 -pipe
+
+    Report from: Interprocedural optimizations [ipo]
+
+  WHOLE PROGRAM (SAFE) [EITHER METHOD]: false
+  WHOLE PROGRAM (SEEN) [TABLE METHOD]: false
+  WHOLE PROGRAM (READ) [OBJECT READER METHOD]: false
+
+INLINING OPTION VALUES:
+  -inline-factor: 100
+  -inline-min-size: 30
+  -inline-max-size: disabled (user-specified)
+  -inline-max-total-size: disabled (user-specified)
+  -inline-max-per-routine: disabled (user-specified)
+  -inline-max-per-compile: disabled (user-specified)
+
+In the inlining report below:
+   "sz" refers to the "size" of the routine. The smaller a routine's size,
+      the more likely it is to be inlined.
+   "isz" refers to the "inlined size" of the routine. This is the amount
+      the calling routine will grow if the called routine is inlined into it.
+      The compiler generally limits the amount a routine can grow by having
+      routines inlined into it.
+
+Begin optimization report for: vsnprintf(char *__restrict__, size_t, const char *__restrict__, struct __va_list_tag *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+NEVER EMIT DEFINITION FUNCTION: (vsnprintf(char *__restrict__, size_t, const char *__restrict__, struct __va_list_tag *))/usr/include/x86_64-linux-gnu/bits/stdio2.h(79,1)
+
+===========================================================================
+
+Begin optimization report for: memcpy(void *__restrict__, const void *__restrict__, size_t)
+
+    Report from: Interprocedural optimizations [ipo]
+
+NEVER EMIT DEFINITION FUNCTION: (memcpy(void *__restrict__, const void *__restrict__, size_t))/usr/include/x86_64-linux-gnu/bits/string_fortified.h(33,1)
+
+===========================================================================
+
+Begin optimization report for: memset(void *, int, size_t)
+
+    Report from: Interprocedural optimizations [ipo]
+
+NEVER EMIT DEFINITION FUNCTION: (memset(void *, int, size_t))/usr/include/x86_64-linux-gnu/bits/string_fortified.h(60,1)
+
+===========================================================================
+
+Begin optimization report for: gz_comp()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (gz_comp()) gzwrite.c(76,1)
+
+===========================================================================
+
+Begin optimization report for: gz_zero()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (gz_zero()) gzwrite.c(148,1)
+
+===========================================================================
+
+Begin optimization report for: gz_comp..0()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (gz_comp..0()) gzwrite.c(76,1)
+  CLONED FROM: gz_comp()(X,0)
+
+===========================================================================
+
+Begin optimization report for: gz_write()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (gz_write()) gzwrite.c(182,1)
+
+===========================================================================
+
+Begin optimization report for: gzwrite()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (gzwrite()) [8/17=47.1%] gzwrite.c(250,1)
+  -> EXTERN: (265,9) gz_error(gz_statep, int, const char *)
+  -> INLINE: (270,17) gz_write() (isz = 1546) (sz = 1563)
+    -> INLINE: (190,29) gz_init() (isz = 92) (sz = 102)
+      -> EXTERN: (24,34) malloc(size_t)
+      -> EXTERN: (26,9) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (33,39) malloc(size_t)
+      -> EXTERN: (35,13) free(void *)
+      -> EXTERN: (36,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (44,15) deflateInit2_(z_streamp, int, int, int, int, int, const char *, int)
+      -> EXTERN: (47,13) free(void *)
+      -> EXTERN: (48,13) free(void *)
+      -> EXTERN: (49,13) gz_error(gz_statep, int, const char *)
+    -> INLINE: (196,13) gz_zero() (isz = 56) (sz = 67)
+      -> INLINE: (154,27) gz_comp() (isz = 256) (sz = 270)
+        -> INLINE: (82,29) gz_init() (isz = 92) (sz = 102)
+          -> EXTERN: (24,34) malloc(size_t)
+          -> EXTERN: (26,9) gz_error(gz_statep, int, const char *)
+          -> EXTERN: (33,39) malloc(size_t)
+          -> EXTERN: (35,13) free(void *)
+          -> EXTERN: (36,13) gz_error(gz_statep, int, const char *)
+          -> EXTERN: (44,15) deflateInit2_(z_streamp, int, int, int, int, int, const char *, int)
+          -> EXTERN: (47,13) free(void *)
+          -> EXTERN: (48,13) free(void *)
+          -> EXTERN: (49,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (89,20) write(int, const void *, size_t)
+        -> EXTERN: (91,17) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (91,42) strerror(int)
+        -> EXTERN: (91,42) __errno_location(void)
+        -> EXTERN: (110,24) write(int, const void *, size_t)
+        -> EXTERN: (112,21) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (112,46) strerror(int)
+        -> EXTERN: (112,46) __errno_location(void)
+        -> EXTERN: (126,15) deflate(z_streamp, int)
+        -> EXTERN: (128,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (137,9) deflateReset(z_streamp)
+      -> INLINE (MANUAL): (163,13) memset(void *, int, size_t) (isz = 6) (sz = 17)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,10) __builtin___memset_chk(void *, int, unsigned long, unsigned long)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,55) __builtin_object_size(const void *, int)
+      -> INLINE: (169,13) gz_comp() (isz = 256) (sz = 270)
+        -> INLINE: (82,29) gz_init() (isz = 92) (sz = 102)
+          -> EXTERN: (24,34) malloc(size_t)
+          -> EXTERN: (26,9) gz_error(gz_statep, int, const char *)
+          -> EXTERN: (33,39) malloc(size_t)
+          -> EXTERN: (35,13) free(void *)
+          -> EXTERN: (36,13) gz_error(gz_statep, int, const char *)
+          -> EXTERN: (44,15) deflateInit2_(z_streamp, int, int, int, int, int, const char *, int)
+          -> EXTERN: (47,13) free(void *)
+          -> EXTERN: (48,13) free(void *)
+          -> EXTERN: (49,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (89,20) write(int, const void *, size_t)
+        -> EXTERN: (91,17) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (91,42) strerror(int)
+        -> EXTERN: (91,42) __errno_location(void)
+        -> EXTERN: (110,24) write(int, const void *, size_t)
+        -> EXTERN: (112,21) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (112,46) strerror(int)
+        -> EXTERN: (112,46) __errno_location(void)
+        -> EXTERN: (126,15) deflate(z_streamp, int)
+        -> EXTERN: (128,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (137,9) deflateReset(z_streamp)
+    -> INLINE (MANUAL): (213,13) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+    -> INLINE: (218,24) gz_comp() (isz = 256) (sz = 270)
+      -> INLINE: (82,29) gz_init() (isz = 92) (sz = 102)
+        -> EXTERN: (24,34) malloc(size_t)
+        -> EXTERN: (26,9) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (33,39) malloc(size_t)
+        -> EXTERN: (35,13) free(void *)
+        -> EXTERN: (36,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (44,15) deflateInit2_(z_streamp, int, int, int, int, int, const char *, int)
+        -> EXTERN: (47,13) free(void *)
+        -> EXTERN: (48,13) free(void *)
+        -> EXTERN: (49,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (89,20) write(int, const void *, size_t)
+      -> EXTERN: (91,17) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (91,42) strerror(int)
+      -> EXTERN: (91,42) __errno_location(void)
+      -> EXTERN: (110,24) write(int, const void *, size_t)
+      -> EXTERN: (112,21) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (112,46) strerror(int)
+      -> EXTERN: (112,46) __errno_location(void)
+      -> EXTERN: (126,15) deflate(z_streamp, int)
+      -> EXTERN: (128,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (137,9) deflateReset(z_streamp)
+    -> INLINE: (224,37) gz_comp() (isz = 256) (sz = 270)
+      -> INLINE: (82,29) gz_init() (isz = 92) (sz = 102)
+        -> EXTERN: (24,34) malloc(size_t)
+        -> EXTERN: (26,9) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (33,39) malloc(size_t)
+        -> EXTERN: (35,13) free(void *)
+        -> EXTERN: (36,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (44,15) deflateInit2_(z_streamp, int, int, int, int, int, const char *, int)
+        -> EXTERN: (47,13) free(void *)
+        -> EXTERN: (48,13) free(void *)
+        -> EXTERN: (49,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (89,20) write(int, const void *, size_t)
+      -> EXTERN: (91,17) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (91,42) strerror(int)
+      -> EXTERN: (91,42) __errno_location(void)
+      -> EXTERN: (110,24) write(int, const void *, size_t)
+      -> EXTERN: (112,21) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (112,46) strerror(int)
+      -> EXTERN: (112,46) __errno_location(void)
+      -> EXTERN: (126,15) deflate(z_streamp, int)
+      -> EXTERN: (128,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (137,9) deflateReset(z_streamp)
+    -> INLINE: (235,17) gz_comp() (isz = 256) (sz = 270)
+      -> INLINE: (82,29) gz_init() (isz = 92) (sz = 102)
+        -> EXTERN: (24,34) malloc(size_t)
+        -> EXTERN: (26,9) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (33,39) malloc(size_t)
+        -> EXTERN: (35,13) free(void *)
+        -> EXTERN: (36,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (44,15) deflateInit2_(z_streamp, int, int, int, int, int, const char *, int)
+        -> EXTERN: (47,13) free(void *)
+        -> EXTERN: (48,13) free(void *)
+        -> EXTERN: (49,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (89,20) write(int, const void *, size_t)
+      -> EXTERN: (91,17) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (91,42) strerror(int)
+      -> EXTERN: (91,42) __errno_location(void)
+      -> EXTERN: (110,24) write(int, const void *, size_t)
+      -> EXTERN: (112,21) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (112,46) strerror(int)
+      -> EXTERN: (112,46) __errno_location(void)
+      -> EXTERN: (126,15) deflate(z_streamp, int)
+      -> EXTERN: (128,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (137,9) deflateReset(z_streamp)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at gzwrite.c(87,9) inlined into gzwrite.c(270,17)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzwrite.c(107,13) inlined into gzwrite.c(270,17)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzwrite.c(87,9) inlined into gzwrite.c(270,17)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzwrite.c(87,9) inlined into gzwrite.c(270,17)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzwrite.c(87,9) inlined into gzwrite.c(270,17)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzwrite.c(107,13) inlined into gzwrite.c(270,17)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzwrite.c(87,9) inlined into gzwrite.c(270,17)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at gzwrite.c(133,14) inlined into gzwrite.c(270,17)
+   remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+   remark #17102: loop was not parallelized: not a parallelization candidate
+LOOP END
+
+LOOP BEGIN at gzwrite.c(159,5) inlined into gzwrite.c(270,17)
+   remark #15536: loop was not vectorized: inner loop throttling prevents vectorization of this outer loop. Refer to inner loop message for more details.   [ gzwrite.c(133,14) ]
+   remark #17102: loop was not parallelized: not a parallelization candidate
+
+   LOOP BEGIN at gzwrite.c(133,14) inlined into gzwrite.c(270,17)
+      remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+      remark #17102: loop was not parallelized: not a parallelization candidate
+
+      LOOP BEGIN at gzwrite.c(107,13) inlined into gzwrite.c(270,17)
+         remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+         remark #17102: loop was not parallelized: not a parallelization candidate
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gzwrite.c(220,18) inlined into gzwrite.c(270,17)
+   remark #15536: loop was not vectorized: inner loop throttling prevents vectorization of this outer loop. Refer to inner loop message for more details.   [ gzwrite.c(133,14) ]
+   remark #17102: loop was not parallelized: not a parallelization candidate
+
+   LOOP BEGIN at gzwrite.c(133,14) inlined into gzwrite.c(270,17)
+      remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+      remark #17102: loop was not parallelized: not a parallelization candidate
+
+      LOOP BEGIN at gzwrite.c(107,13) inlined into gzwrite.c(270,17)
+         remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+         remark #17102: loop was not parallelized: not a parallelization candidate
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gzwrite.c(133,14) inlined into gzwrite.c(270,17)
+   remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+   remark #17102: loop was not parallelized: not a parallelization candidate
+LOOP END
+
+LOOP BEGIN at gzwrite.c(238,18) inlined into gzwrite.c(270,17)
+   remark #15536: loop was not vectorized: inner loop throttling prevents vectorization of this outer loop. Refer to inner loop message for more details.   [ gzwrite.c(133,14) ]
+   remark #17102: loop was not parallelized: not a parallelization candidate
+
+   LOOP BEGIN at gzwrite.c(133,14) inlined into gzwrite.c(270,17)
+      remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+      remark #17102: loop was not parallelized: not a parallelization candidate
+
+      LOOP BEGIN at gzwrite.c(107,13) inlined into gzwrite.c(270,17)
+         remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+         remark #17102: loop was not parallelized: not a parallelization candidate
+      LOOP END
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34014: optimization advice for memset: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34026: call to memset implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+gzwrite.c(250,1):remark #34051: REGISTER ALLOCATION : [gzwrite] gzwrite.c:250
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   15[ rax rdx rcx rbx rbp rsi rdi r8-r15]
+        
+    Routine temporaries
+        Total         :     589
+            Global    :     166
+            Local     :     423
+        Regenerable   :     125
+        Spilled       :       9
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :      24 bytes*
+            Reads     :       6 [5.04e-02 ~ 0.0%]
+            Writes    :       6 [1.23e-01 ~ 0.1%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: gzfwrite()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (gzfwrite()) [9/17=52.9%] gzwrite.c(279,1)
+  -> EXTERN: (295,9) gz_error(gz_statep, int, const char *)
+  -> INLINE: (300,18) gz_write() (isz = 1546) (sz = 1563)
+    -> INLINE: (190,29) gz_init() (isz = 92) (sz = 102)
+      -> EXTERN: (24,34) malloc(size_t)
+      -> EXTERN: (26,9) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (33,39) malloc(size_t)
+      -> EXTERN: (35,13) free(void *)
+      -> EXTERN: (36,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (44,15) deflateInit2_(z_streamp, int, int, int, int, int, const char *, int)
+      -> EXTERN: (47,13) free(void *)
+      -> EXTERN: (48,13) free(void *)
+      -> EXTERN: (49,13) gz_error(gz_statep, int, const char *)
+    -> INLINE: (196,13) gz_zero() (isz = 56) (sz = 67)
+      -> INLINE: (154,27) gz_comp() (isz = 256) (sz = 270)
+        -> INLINE: (82,29) gz_init() (isz = 92) (sz = 102)
+          -> EXTERN: (24,34) malloc(size_t)
+          -> EXTERN: (26,9) gz_error(gz_statep, int, const char *)
+          -> EXTERN: (33,39) malloc(size_t)
+          -> EXTERN: (35,13) free(void *)
+          -> EXTERN: (36,13) gz_error(gz_statep, int, const char *)
+          -> EXTERN: (44,15) deflateInit2_(z_streamp, int, int, int, int, int, const char *, int)
+          -> EXTERN: (47,13) free(void *)
+          -> EXTERN: (48,13) free(void *)
+          -> EXTERN: (49,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (89,20) write(int, const void *, size_t)
+        -> EXTERN: (91,17) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (91,42) strerror(int)
+        -> EXTERN: (91,42) __errno_location(void)
+        -> EXTERN: (110,24) write(int, const void *, size_t)
+        -> EXTERN: (112,21) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (112,46) strerror(int)
+        -> EXTERN: (112,46) __errno_location(void)
+        -> EXTERN: (126,15) deflate(z_streamp, int)
+        -> EXTERN: (128,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (137,9) deflateReset(z_streamp)
+      -> INLINE (MANUAL): (163,13) memset(void *, int, size_t) (isz = 6) (sz = 17)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,10) __builtin___memset_chk(void *, int, unsigned long, unsigned long)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,55) __builtin_object_size(const void *, int)
+      -> INLINE: (169,13) gz_comp() (isz = 256) (sz = 270)
+        -> INLINE: (82,29) gz_init() (isz = 92) (sz = 102)
+          -> EXTERN: (24,34) malloc(size_t)
+          -> EXTERN: (26,9) gz_error(gz_statep, int, const char *)
+          -> EXTERN: (33,39) malloc(size_t)
+          -> EXTERN: (35,13) free(void *)
+          -> EXTERN: (36,13) gz_error(gz_statep, int, const char *)
+          -> EXTERN: (44,15) deflateInit2_(z_streamp, int, int, int, int, int, const char *, int)
+          -> EXTERN: (47,13) free(void *)
+          -> EXTERN: (48,13) free(void *)
+          -> EXTERN: (49,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (89,20) write(int, const void *, size_t)
+        -> EXTERN: (91,17) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (91,42) strerror(int)
+        -> EXTERN: (91,42) __errno_location(void)
+        -> EXTERN: (110,24) write(int, const void *, size_t)
+        -> EXTERN: (112,21) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (112,46) strerror(int)
+        -> EXTERN: (112,46) __errno_location(void)
+        -> EXTERN: (126,15) deflate(z_streamp, int)
+        -> EXTERN: (128,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (137,9) deflateReset(z_streamp)
+    -> INLINE (MANUAL): (213,13) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+    -> INLINE: (218,24) gz_comp() (isz = 256) (sz = 270)
+      -> INLINE: (82,29) gz_init() (isz = 92) (sz = 102)
+        -> EXTERN: (24,34) malloc(size_t)
+        -> EXTERN: (26,9) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (33,39) malloc(size_t)
+        -> EXTERN: (35,13) free(void *)
+        -> EXTERN: (36,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (44,15) deflateInit2_(z_streamp, int, int, int, int, int, const char *, int)
+        -> EXTERN: (47,13) free(void *)
+        -> EXTERN: (48,13) free(void *)
+        -> EXTERN: (49,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (89,20) write(int, const void *, size_t)
+      -> EXTERN: (91,17) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (91,42) strerror(int)
+      -> EXTERN: (91,42) __errno_location(void)
+      -> EXTERN: (110,24) write(int, const void *, size_t)
+      -> EXTERN: (112,21) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (112,46) strerror(int)
+      -> EXTERN: (112,46) __errno_location(void)
+      -> EXTERN: (126,15) deflate(z_streamp, int)
+      -> EXTERN: (128,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (137,9) deflateReset(z_streamp)
+    -> INLINE: (224,37) gz_comp() (isz = 256) (sz = 270)
+      -> INLINE: (82,29) gz_init() (isz = 92) (sz = 102)
+        -> EXTERN: (24,34) malloc(size_t)
+        -> EXTERN: (26,9) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (33,39) malloc(size_t)
+        -> EXTERN: (35,13) free(void *)
+        -> EXTERN: (36,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (44,15) deflateInit2_(z_streamp, int, int, int, int, int, const char *, int)
+        -> EXTERN: (47,13) free(void *)
+        -> EXTERN: (48,13) free(void *)
+        -> EXTERN: (49,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (89,20) write(int, const void *, size_t)
+      -> EXTERN: (91,17) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (91,42) strerror(int)
+      -> EXTERN: (91,42) __errno_location(void)
+      -> EXTERN: (110,24) write(int, const void *, size_t)
+      -> EXTERN: (112,21) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (112,46) strerror(int)
+      -> EXTERN: (112,46) __errno_location(void)
+      -> EXTERN: (126,15) deflate(z_streamp, int)
+      -> EXTERN: (128,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (137,9) deflateReset(z_streamp)
+    -> INLINE: (235,17) gz_comp() (isz = 256) (sz = 270)
+      -> INLINE: (82,29) gz_init() (isz = 92) (sz = 102)
+        -> EXTERN: (24,34) malloc(size_t)
+        -> EXTERN: (26,9) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (33,39) malloc(size_t)
+        -> EXTERN: (35,13) free(void *)
+        -> EXTERN: (36,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (44,15) deflateInit2_(z_streamp, int, int, int, int, int, const char *, int)
+        -> EXTERN: (47,13) free(void *)
+        -> EXTERN: (48,13) free(void *)
+        -> EXTERN: (49,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (89,20) write(int, const void *, size_t)
+      -> EXTERN: (91,17) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (91,42) strerror(int)
+      -> EXTERN: (91,42) __errno_location(void)
+      -> EXTERN: (110,24) write(int, const void *, size_t)
+      -> EXTERN: (112,21) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (112,46) strerror(int)
+      -> EXTERN: (112,46) __errno_location(void)
+      -> EXTERN: (126,15) deflate(z_streamp, int)
+      -> EXTERN: (128,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (137,9) deflateReset(z_streamp)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at gzwrite.c(87,9) inlined into gzwrite.c(300,18)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzwrite.c(107,13) inlined into gzwrite.c(300,18)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzwrite.c(87,9) inlined into gzwrite.c(300,18)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzwrite.c(87,9) inlined into gzwrite.c(300,18)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzwrite.c(87,9) inlined into gzwrite.c(300,18)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzwrite.c(107,13) inlined into gzwrite.c(300,18)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzwrite.c(87,9) inlined into gzwrite.c(300,18)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at gzwrite.c(133,14) inlined into gzwrite.c(300,18)
+   remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+   remark #17102: loop was not parallelized: not a parallelization candidate
+LOOP END
+
+LOOP BEGIN at gzwrite.c(159,5) inlined into gzwrite.c(300,18)
+   remark #15536: loop was not vectorized: inner loop throttling prevents vectorization of this outer loop. Refer to inner loop message for more details.   [ gzwrite.c(133,14) ]
+   remark #17102: loop was not parallelized: not a parallelization candidate
+
+   LOOP BEGIN at gzwrite.c(133,14) inlined into gzwrite.c(300,18)
+      remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+      remark #17102: loop was not parallelized: not a parallelization candidate
+
+      LOOP BEGIN at gzwrite.c(107,13) inlined into gzwrite.c(300,18)
+         remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+         remark #17102: loop was not parallelized: not a parallelization candidate
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gzwrite.c(220,18) inlined into gzwrite.c(300,18)
+   remark #15536: loop was not vectorized: inner loop throttling prevents vectorization of this outer loop. Refer to inner loop message for more details.   [ gzwrite.c(133,14) ]
+   remark #17102: loop was not parallelized: not a parallelization candidate
+
+   LOOP BEGIN at gzwrite.c(133,14) inlined into gzwrite.c(300,18)
+      remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+      remark #17102: loop was not parallelized: not a parallelization candidate
+
+      LOOP BEGIN at gzwrite.c(107,13) inlined into gzwrite.c(300,18)
+         remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+         remark #17102: loop was not parallelized: not a parallelization candidate
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gzwrite.c(133,14) inlined into gzwrite.c(300,18)
+   remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+   remark #17102: loop was not parallelized: not a parallelization candidate
+LOOP END
+
+LOOP BEGIN at gzwrite.c(238,18) inlined into gzwrite.c(300,18)
+   remark #15536: loop was not vectorized: inner loop throttling prevents vectorization of this outer loop. Refer to inner loop message for more details.   [ gzwrite.c(133,14) ]
+   remark #17102: loop was not parallelized: not a parallelization candidate
+
+   LOOP BEGIN at gzwrite.c(133,14) inlined into gzwrite.c(300,18)
+      remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+      remark #17102: loop was not parallelized: not a parallelization candidate
+
+      LOOP BEGIN at gzwrite.c(107,13) inlined into gzwrite.c(300,18)
+         remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+         remark #17102: loop was not parallelized: not a parallelization candidate
+      LOOP END
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34014: optimization advice for memset: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34026: call to memset implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+gzwrite.c(279,1):remark #34051: REGISTER ALLOCATION : [gzfwrite] gzwrite.c:279
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   15[ rax rdx rcx rbx rbp rsi rdi r8-r15]
+        
+    Routine temporaries
+        Total         :     598
+            Global    :     169
+            Local     :     429
+        Regenerable   :     127
+        Spilled       :      11
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :      40 bytes*
+            Reads     :      40 [1.75e-01 ~ 0.3%]
+            Writes    :      16 [1.75e-01 ~ 0.3%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: gzputc()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (gzputc()) [10/17=58.8%] gzwrite.c(307,1)
+  -> INLINE: (326,13) gz_zero() (isz = 56) (sz = 67)
+    -> INLINE: (154,27) gz_comp() (isz = 256) (sz = 270)
+      -> INLINE: (82,29) gz_init() (isz = 92) (sz = 102)
+        -> EXTERN: (24,34) malloc(size_t)
+        -> EXTERN: (26,9) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (33,39) malloc(size_t)
+        -> EXTERN: (35,13) free(void *)
+        -> EXTERN: (36,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (44,15) deflateInit2_(z_streamp, int, int, int, int, int, const char *, int)
+        -> EXTERN: (47,13) free(void *)
+        -> EXTERN: (48,13) free(void *)
+        -> EXTERN: (49,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (89,20) write(int, const void *, size_t)
+      -> EXTERN: (91,17) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (91,42) __errno_location(void)
+      -> EXTERN: (91,42) strerror(int)
+      -> EXTERN: (110,24) write(int, const void *, size_t)
+      -> EXTERN: (112,21) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (112,46) __errno_location(void)
+      -> EXTERN: (112,46) strerror(int)
+      -> EXTERN: (126,15) deflate(z_streamp, int)
+      -> EXTERN: (128,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (137,9) deflateReset(z_streamp)
+    -> INLINE (MANUAL): (163,13) memset(void *, int, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,10) __builtin___memset_chk(void *, int, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,55) __builtin_object_size(const void *, int)
+    -> INLINE: (169,13) gz_comp() (isz = 256) (sz = 270)
+      -> INLINE: (82,29) gz_init() (isz = 92) (sz = 102)
+        -> EXTERN: (24,34) malloc(size_t)
+        -> EXTERN: (26,9) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (33,39) malloc(size_t)
+        -> EXTERN: (35,13) free(void *)
+        -> EXTERN: (36,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (44,15) deflateInit2_(z_streamp, int, int, int, int, int, const char *, int)
+        -> EXTERN: (47,13) free(void *)
+        -> EXTERN: (48,13) free(void *)
+        -> EXTERN: (49,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (89,20) write(int, const void *, size_t)
+      -> EXTERN: (91,17) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (91,42) __errno_location(void)
+      -> EXTERN: (91,42) strerror(int)
+      -> EXTERN: (110,24) write(int, const void *, size_t)
+      -> EXTERN: (112,21) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (112,46) __errno_location(void)
+      -> EXTERN: (112,46) strerror(int)
+      -> EXTERN: (126,15) deflate(z_streamp, int)
+      -> EXTERN: (128,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (137,9) deflateReset(z_streamp)
+  -> INLINE: (346,9) gz_write() (isz = 1546) (sz = 1563)
+    -> INLINE: (190,29) gz_init() (isz = 92) (sz = 102)
+      -> EXTERN: (24,34) malloc(size_t)
+      -> EXTERN: (26,9) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (33,39) malloc(size_t)
+      -> EXTERN: (35,13) free(void *)
+      -> EXTERN: (36,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (44,15) deflateInit2_(z_streamp, int, int, int, int, int, const char *, int)
+      -> EXTERN: (47,13) free(void *)
+      -> EXTERN: (48,13) free(void *)
+      -> EXTERN: (49,13) gz_error(gz_statep, int, const char *)
+    -> INLINE: (196,13) gz_zero() (isz = 56) (sz = 67)
+      -> INLINE: (154,27) gz_comp() (isz = 256) (sz = 270)
+        -> INLINE: (82,29) gz_init() (isz = 92) (sz = 102)
+          -> EXTERN: (24,34) malloc(size_t)
+          -> EXTERN: (26,9) gz_error(gz_statep, int, const char *)
+          -> EXTERN: (33,39) malloc(size_t)
+          -> EXTERN: (35,13) free(void *)
+          -> EXTERN: (36,13) gz_error(gz_statep, int, const char *)
+          -> EXTERN: (44,15) deflateInit2_(z_streamp, int, int, int, int, int, const char *, int)
+          -> EXTERN: (47,13) free(void *)
+          -> EXTERN: (48,13) free(void *)
+          -> EXTERN: (49,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (89,20) write(int, const void *, size_t)
+        -> EXTERN: (91,17) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (91,42) strerror(int)
+        -> EXTERN: (91,42) __errno_location(void)
+        -> EXTERN: (110,24) write(int, const void *, size_t)
+        -> EXTERN: (112,21) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (112,46) strerror(int)
+        -> EXTERN: (112,46) __errno_location(void)
+        -> EXTERN: (126,15) deflate(z_streamp, int)
+        -> EXTERN: (128,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (137,9) deflateReset(z_streamp)
+      -> INLINE (MANUAL): (163,13) memset(void *, int, size_t) (isz = 6) (sz = 17)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,10) __builtin___memset_chk(void *, int, unsigned long, unsigned long)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,55) __builtin_object_size(const void *, int)
+      -> INLINE: (169,13) gz_comp() (isz = 256) (sz = 270)
+        -> INLINE: (82,29) gz_init() (isz = 92) (sz = 102)
+          -> EXTERN: (24,34) malloc(size_t)
+          -> EXTERN: (26,9) gz_error(gz_statep, int, const char *)
+          -> EXTERN: (33,39) malloc(size_t)
+          -> EXTERN: (35,13) free(void *)
+          -> EXTERN: (36,13) gz_error(gz_statep, int, const char *)
+          -> EXTERN: (44,15) deflateInit2_(z_streamp, int, int, int, int, int, const char *, int)
+          -> EXTERN: (47,13) free(void *)
+          -> EXTERN: (48,13) free(void *)
+          -> EXTERN: (49,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (89,20) write(int, const void *, size_t)
+        -> EXTERN: (91,17) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (91,42) strerror(int)
+        -> EXTERN: (91,42) __errno_location(void)
+        -> EXTERN: (110,24) write(int, const void *, size_t)
+        -> EXTERN: (112,21) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (112,46) strerror(int)
+        -> EXTERN: (112,46) __errno_location(void)
+        -> EXTERN: (126,15) deflate(z_streamp, int)
+        -> EXTERN: (128,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (137,9) deflateReset(z_streamp)
+    -> INLINE (MANUAL): (213,13) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+    -> INLINE: (218,24) gz_comp() (isz = 256) (sz = 270)
+      -> INLINE: (82,29) gz_init() (isz = 92) (sz = 102)
+        -> EXTERN: (24,34) malloc(size_t)
+        -> EXTERN: (26,9) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (33,39) malloc(size_t)
+        -> EXTERN: (35,13) free(void *)
+        -> EXTERN: (36,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (44,15) deflateInit2_(z_streamp, int, int, int, int, int, const char *, int)
+        -> EXTERN: (47,13) free(void *)
+        -> EXTERN: (48,13) free(void *)
+        -> EXTERN: (49,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (89,20) write(int, const void *, size_t)
+      -> EXTERN: (91,17) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (91,42) strerror(int)
+      -> EXTERN: (91,42) __errno_location(void)
+      -> EXTERN: (110,24) write(int, const void *, size_t)
+      -> EXTERN: (112,21) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (112,46) strerror(int)
+      -> EXTERN: (112,46) __errno_location(void)
+      -> EXTERN: (126,15) deflate(z_streamp, int)
+      -> EXTERN: (128,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (137,9) deflateReset(z_streamp)
+    -> INLINE: (224,37) gz_comp() (isz = 256) (sz = 270)
+      -> INLINE: (82,29) gz_init() (isz = 92) (sz = 102)
+        -> EXTERN: (24,34) malloc(size_t)
+        -> EXTERN: (26,9) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (33,39) malloc(size_t)
+        -> EXTERN: (35,13) free(void *)
+        -> EXTERN: (36,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (44,15) deflateInit2_(z_streamp, int, int, int, int, int, const char *, int)
+        -> EXTERN: (47,13) free(void *)
+        -> EXTERN: (48,13) free(void *)
+        -> EXTERN: (49,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (89,20) write(int, const void *, size_t)
+      -> EXTERN: (91,17) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (91,42) strerror(int)
+      -> EXTERN: (91,42) __errno_location(void)
+      -> EXTERN: (110,24) write(int, const void *, size_t)
+      -> EXTERN: (112,21) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (112,46) strerror(int)
+      -> EXTERN: (112,46) __errno_location(void)
+      -> EXTERN: (126,15) deflate(z_streamp, int)
+      -> EXTERN: (128,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (137,9) deflateReset(z_streamp)
+    -> INLINE: (235,17) gz_comp() (isz = 256) (sz = 270)
+      -> INLINE: (82,29) gz_init() (isz = 92) (sz = 102)
+        -> EXTERN: (24,34) malloc(size_t)
+        -> EXTERN: (26,9) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (33,39) malloc(size_t)
+        -> EXTERN: (35,13) free(void *)
+        -> EXTERN: (36,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (44,15) deflateInit2_(z_streamp, int, int, int, int, int, const char *, int)
+        -> EXTERN: (47,13) free(void *)
+        -> EXTERN: (48,13) free(void *)
+        -> EXTERN: (49,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (89,20) write(int, const void *, size_t)
+      -> EXTERN: (91,17) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (91,42) strerror(int)
+      -> EXTERN: (91,42) __errno_location(void)
+      -> EXTERN: (110,24) write(int, const void *, size_t)
+      -> EXTERN: (112,21) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (112,46) strerror(int)
+      -> EXTERN: (112,46) __errno_location(void)
+      -> EXTERN: (126,15) deflate(z_streamp, int)
+      -> EXTERN: (128,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (137,9) deflateReset(z_streamp)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at gzwrite.c(87,9) inlined into gzwrite.c(326,13)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzwrite.c(107,13) inlined into gzwrite.c(326,13)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzwrite.c(87,9) inlined into gzwrite.c(326,13)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzwrite.c(87,9) inlined into gzwrite.c(346,9)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzwrite.c(107,13) inlined into gzwrite.c(346,9)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzwrite.c(87,9) inlined into gzwrite.c(346,9)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzwrite.c(87,9) inlined into gzwrite.c(346,9)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzwrite.c(87,9) inlined into gzwrite.c(346,9)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzwrite.c(107,13) inlined into gzwrite.c(346,9)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzwrite.c(87,9) inlined into gzwrite.c(346,9)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzwrite.c(107,13) inlined into gzwrite.c(346,9)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at gzwrite.c(133,14) inlined into gzwrite.c(326,13)
+   remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+   remark #17102: loop was not parallelized: not a parallelization candidate
+LOOP END
+
+LOOP BEGIN at gzwrite.c(159,5) inlined into gzwrite.c(326,13)
+   remark #15536: loop was not vectorized: inner loop throttling prevents vectorization of this outer loop. Refer to inner loop message for more details.   [ gzwrite.c(133,14) ]
+   remark #17102: loop was not parallelized: not a parallelization candidate
+
+   LOOP BEGIN at gzwrite.c(133,14) inlined into gzwrite.c(326,13)
+      remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+      remark #17102: loop was not parallelized: not a parallelization candidate
+
+      LOOP BEGIN at gzwrite.c(107,13) inlined into gzwrite.c(326,13)
+         remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+         remark #17102: loop was not parallelized: not a parallelization candidate
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gzwrite.c(133,14) inlined into gzwrite.c(346,9)
+   remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+   remark #17102: loop was not parallelized: not a parallelization candidate
+LOOP END
+
+LOOP BEGIN at gzwrite.c(159,5) inlined into gzwrite.c(346,9)
+   remark #15536: loop was not vectorized: inner loop throttling prevents vectorization of this outer loop. Refer to inner loop message for more details.   [ gzwrite.c(133,14) ]
+   remark #17102: loop was not parallelized: not a parallelization candidate
+
+   LOOP BEGIN at gzwrite.c(133,14) inlined into gzwrite.c(346,9)
+      remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+      remark #17102: loop was not parallelized: not a parallelization candidate
+
+      LOOP BEGIN at gzwrite.c(107,13) inlined into gzwrite.c(346,9)
+         remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+         remark #17102: loop was not parallelized: not a parallelization candidate
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gzwrite.c(220,18) inlined into gzwrite.c(346,9)
+   remark #15536: loop was not vectorized: inner loop throttling prevents vectorization of this outer loop. Refer to inner loop message for more details.   [ gzwrite.c(133,14) ]
+   remark #17102: loop was not parallelized: not a parallelization candidate
+
+   LOOP BEGIN at gzwrite.c(133,14) inlined into gzwrite.c(346,9)
+      remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+      remark #17102: loop was not parallelized: not a parallelization candidate
+
+      LOOP BEGIN at gzwrite.c(107,13) inlined into gzwrite.c(346,9)
+         remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+         remark #17102: loop was not parallelized: not a parallelization candidate
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gzwrite.c(133,14) inlined into gzwrite.c(346,9)
+   remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+   remark #17102: loop was not parallelized: not a parallelization candidate
+LOOP END
+
+LOOP BEGIN at gzwrite.c(133,14) inlined into gzwrite.c(346,9)
+   remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+   remark #17102: loop was not parallelized: not a parallelization candidate
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34014: optimization advice for memset: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34026: call to memset implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34014: optimization advice for memset: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34026: call to memset implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+gzwrite.c(307,1):remark #34051: REGISTER ALLOCATION : [gzputc] gzwrite.c:307
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   13[ rax rdx rcx rbx rbp rsi rdi r8-r9 r12-r15]
+        
+    Routine temporaries
+        Total         :     794
+            Global    :     215
+            Local     :     579
+        Regenerable   :     167
+        Spilled       :       9
+        
+    Routine stack
+        Variables     :       1 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       1 [8.73e-02 ~ 0.1%]
+        Spills        :      24 bytes*
+            Reads     :       6 [4.35e-02 ~ 0.0%]
+            Writes    :       6 [1.05e-01 ~ 0.1%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: gzputs()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (gzputs()) [11/17=64.7%] gzwrite.c(355,1)
+  -> EXTERN: (370,11) strlen(const char *)
+  -> INLINE: (371,11) gz_write() (isz = 1546) (sz = 1563)
+    -> INLINE: (190,29) gz_init() (isz = 92) (sz = 102)
+      -> EXTERN: (24,34) malloc(size_t)
+      -> EXTERN: (26,9) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (33,39) malloc(size_t)
+      -> EXTERN: (35,13) free(void *)
+      -> EXTERN: (36,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (44,15) deflateInit2_(z_streamp, int, int, int, int, int, const char *, int)
+      -> EXTERN: (47,13) free(void *)
+      -> EXTERN: (48,13) free(void *)
+      -> EXTERN: (49,13) gz_error(gz_statep, int, const char *)
+    -> INLINE: (196,13) gz_zero() (isz = 56) (sz = 67)
+      -> INLINE: (154,27) gz_comp() (isz = 256) (sz = 270)
+        -> INLINE: (82,29) gz_init() (isz = 92) (sz = 102)
+          -> EXTERN: (24,34) malloc(size_t)
+          -> EXTERN: (26,9) gz_error(gz_statep, int, const char *)
+          -> EXTERN: (33,39) malloc(size_t)
+          -> EXTERN: (35,13) free(void *)
+          -> EXTERN: (36,13) gz_error(gz_statep, int, const char *)
+          -> EXTERN: (44,15) deflateInit2_(z_streamp, int, int, int, int, int, const char *, int)
+          -> EXTERN: (47,13) free(void *)
+          -> EXTERN: (48,13) free(void *)
+          -> EXTERN: (49,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (89,20) write(int, const void *, size_t)
+        -> EXTERN: (91,17) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (91,42) strerror(int)
+        -> EXTERN: (91,42) __errno_location(void)
+        -> EXTERN: (110,24) write(int, const void *, size_t)
+        -> EXTERN: (112,21) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (112,46) strerror(int)
+        -> EXTERN: (112,46) __errno_location(void)
+        -> EXTERN: (126,15) deflate(z_streamp, int)
+        -> EXTERN: (128,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (137,9) deflateReset(z_streamp)
+      -> INLINE (MANUAL): (163,13) memset(void *, int, size_t) (isz = 6) (sz = 17)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,10) __builtin___memset_chk(void *, int, unsigned long, unsigned long)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,55) __builtin_object_size(const void *, int)
+      -> INLINE: (169,13) gz_comp() (isz = 256) (sz = 270)
+        -> INLINE: (82,29) gz_init() (isz = 92) (sz = 102)
+          -> EXTERN: (24,34) malloc(size_t)
+          -> EXTERN: (26,9) gz_error(gz_statep, int, const char *)
+          -> EXTERN: (33,39) malloc(size_t)
+          -> EXTERN: (35,13) free(void *)
+          -> EXTERN: (36,13) gz_error(gz_statep, int, const char *)
+          -> EXTERN: (44,15) deflateInit2_(z_streamp, int, int, int, int, int, const char *, int)
+          -> EXTERN: (47,13) free(void *)
+          -> EXTERN: (48,13) free(void *)
+          -> EXTERN: (49,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (89,20) write(int, const void *, size_t)
+        -> EXTERN: (91,17) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (91,42) strerror(int)
+        -> EXTERN: (91,42) __errno_location(void)
+        -> EXTERN: (110,24) write(int, const void *, size_t)
+        -> EXTERN: (112,21) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (112,46) strerror(int)
+        -> EXTERN: (112,46) __errno_location(void)
+        -> EXTERN: (126,15) deflate(z_streamp, int)
+        -> EXTERN: (128,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (137,9) deflateReset(z_streamp)
+    -> INLINE (MANUAL): (213,13) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+    -> INLINE: (218,24) gz_comp() (isz = 256) (sz = 270)
+      -> INLINE: (82,29) gz_init() (isz = 92) (sz = 102)
+        -> EXTERN: (24,34) malloc(size_t)
+        -> EXTERN: (26,9) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (33,39) malloc(size_t)
+        -> EXTERN: (35,13) free(void *)
+        -> EXTERN: (36,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (44,15) deflateInit2_(z_streamp, int, int, int, int, int, const char *, int)
+        -> EXTERN: (47,13) free(void *)
+        -> EXTERN: (48,13) free(void *)
+        -> EXTERN: (49,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (89,20) write(int, const void *, size_t)
+      -> EXTERN: (91,17) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (91,42) strerror(int)
+      -> EXTERN: (91,42) __errno_location(void)
+      -> EXTERN: (110,24) write(int, const void *, size_t)
+      -> EXTERN: (112,21) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (112,46) strerror(int)
+      -> EXTERN: (112,46) __errno_location(void)
+      -> EXTERN: (126,15) deflate(z_streamp, int)
+      -> EXTERN: (128,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (137,9) deflateReset(z_streamp)
+    -> INLINE: (224,37) gz_comp() (isz = 256) (sz = 270)
+      -> INLINE: (82,29) gz_init() (isz = 92) (sz = 102)
+        -> EXTERN: (24,34) malloc(size_t)
+        -> EXTERN: (26,9) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (33,39) malloc(size_t)
+        -> EXTERN: (35,13) free(void *)
+        -> EXTERN: (36,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (44,15) deflateInit2_(z_streamp, int, int, int, int, int, const char *, int)
+        -> EXTERN: (47,13) free(void *)
+        -> EXTERN: (48,13) free(void *)
+        -> EXTERN: (49,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (89,20) write(int, const void *, size_t)
+      -> EXTERN: (91,17) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (91,42) strerror(int)
+      -> EXTERN: (91,42) __errno_location(void)
+      -> EXTERN: (110,24) write(int, const void *, size_t)
+      -> EXTERN: (112,21) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (112,46) strerror(int)
+      -> EXTERN: (112,46) __errno_location(void)
+      -> EXTERN: (126,15) deflate(z_streamp, int)
+      -> EXTERN: (128,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (137,9) deflateReset(z_streamp)
+    -> INLINE: (235,17) gz_comp() (isz = 256) (sz = 270)
+      -> INLINE: (82,29) gz_init() (isz = 92) (sz = 102)
+        -> EXTERN: (24,34) malloc(size_t)
+        -> EXTERN: (26,9) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (33,39) malloc(size_t)
+        -> EXTERN: (35,13) free(void *)
+        -> EXTERN: (36,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (44,15) deflateInit2_(z_streamp, int, int, int, int, int, const char *, int)
+        -> EXTERN: (47,13) free(void *)
+        -> EXTERN: (48,13) free(void *)
+        -> EXTERN: (49,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (89,20) write(int, const void *, size_t)
+      -> EXTERN: (91,17) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (91,42) strerror(int)
+      -> EXTERN: (91,42) __errno_location(void)
+      -> EXTERN: (110,24) write(int, const void *, size_t)
+      -> EXTERN: (112,21) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (112,46) strerror(int)
+      -> EXTERN: (112,46) __errno_location(void)
+      -> EXTERN: (126,15) deflate(z_streamp, int)
+      -> EXTERN: (128,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (137,9) deflateReset(z_streamp)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at gzwrite.c(87,9) inlined into gzwrite.c(371,11)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzwrite.c(107,13) inlined into gzwrite.c(371,11)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzwrite.c(87,9) inlined into gzwrite.c(371,11)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzwrite.c(87,9) inlined into gzwrite.c(371,11)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzwrite.c(87,9) inlined into gzwrite.c(371,11)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzwrite.c(107,13) inlined into gzwrite.c(371,11)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzwrite.c(87,9) inlined into gzwrite.c(371,11)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at gzwrite.c(133,14) inlined into gzwrite.c(371,11)
+   remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+   remark #17102: loop was not parallelized: not a parallelization candidate
+LOOP END
+
+LOOP BEGIN at gzwrite.c(159,5) inlined into gzwrite.c(371,11)
+   remark #15536: loop was not vectorized: inner loop throttling prevents vectorization of this outer loop. Refer to inner loop message for more details.   [ gzwrite.c(133,14) ]
+   remark #17102: loop was not parallelized: not a parallelization candidate
+
+   LOOP BEGIN at gzwrite.c(133,14) inlined into gzwrite.c(371,11)
+      remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+      remark #17102: loop was not parallelized: not a parallelization candidate
+
+      LOOP BEGIN at gzwrite.c(107,13) inlined into gzwrite.c(371,11)
+         remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+         remark #17102: loop was not parallelized: not a parallelization candidate
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gzwrite.c(220,18) inlined into gzwrite.c(371,11)
+   remark #15536: loop was not vectorized: inner loop throttling prevents vectorization of this outer loop. Refer to inner loop message for more details.   [ gzwrite.c(133,14) ]
+   remark #17102: loop was not parallelized: not a parallelization candidate
+
+   LOOP BEGIN at gzwrite.c(133,14) inlined into gzwrite.c(371,11)
+      remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+      remark #17102: loop was not parallelized: not a parallelization candidate
+
+      LOOP BEGIN at gzwrite.c(107,13) inlined into gzwrite.c(371,11)
+         remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+         remark #17102: loop was not parallelized: not a parallelization candidate
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gzwrite.c(133,14) inlined into gzwrite.c(371,11)
+   remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+   remark #17102: loop was not parallelized: not a parallelization candidate
+LOOP END
+
+LOOP BEGIN at gzwrite.c(238,18) inlined into gzwrite.c(371,11)
+   remark #15536: loop was not vectorized: inner loop throttling prevents vectorization of this outer loop. Refer to inner loop message for more details.   [ gzwrite.c(133,14) ]
+   remark #17102: loop was not parallelized: not a parallelization candidate
+
+   LOOP BEGIN at gzwrite.c(133,14) inlined into gzwrite.c(371,11)
+      remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+      remark #17102: loop was not parallelized: not a parallelization candidate
+
+      LOOP BEGIN at gzwrite.c(107,13) inlined into gzwrite.c(371,11)
+         remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+         remark #17102: loop was not parallelized: not a parallelization candidate
+      LOOP END
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34014: optimization advice for memset: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34026: call to memset implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+gzwrite.c(355,1):remark #34051: REGISTER ALLOCATION : [gzputs] gzwrite.c:355
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   15[ rax rdx rcx rbx rbp rsi rdi r8-r15]
+        
+    Routine temporaries
+        Total         :     584
+            Global    :     168
+            Local     :     416
+        Regenerable   :     121
+        Spilled       :       9
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :      24 bytes*
+            Reads     :       6 [2.97e-02 ~ 0.0%]
+            Writes    :       6 [7.23e-02 ~ 0.1%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: gzvprintf(gzFile, const char *, struct __va_list_tag *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (gzvprintf(gzFile, const char *, struct __va_list_tag *)) [12/17=70.6%] gzwrite.c(380,1)
+  -> INLINE: (398,29) gz_init() (isz = 92) (sz = 102)
+    -> EXTERN: (24,34) malloc(size_t)
+    -> EXTERN: (26,9) gz_error(gz_statep, int, const char *)
+    -> EXTERN: (33,39) malloc(size_t)
+    -> EXTERN: (35,13) free(void *)
+    -> EXTERN: (36,13) gz_error(gz_statep, int, const char *)
+    -> EXTERN: (44,15) deflateInit2_(z_streamp, int, int, int, int, int, const char *, int)
+    -> EXTERN: (47,13) free(void *)
+    -> EXTERN: (48,13) free(void *)
+    -> EXTERN: (49,13) gz_error(gz_statep, int, const char *)
+  -> INLINE: (404,13) gz_zero() (isz = 56) (sz = 67)
+    -> INLINE: (154,27) gz_comp() (isz = 256) (sz = 270)
+      -> INLINE: (82,29) gz_init() (isz = 92) (sz = 102)
+        -> EXTERN: (24,34) malloc(size_t)
+        -> EXTERN: (26,9) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (33,39) malloc(size_t)
+        -> EXTERN: (35,13) free(void *)
+        -> EXTERN: (36,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (44,15) deflateInit2_(z_streamp, int, int, int, int, int, const char *, int)
+        -> EXTERN: (47,13) free(void *)
+        -> EXTERN: (48,13) free(void *)
+        -> EXTERN: (49,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (89,20) write(int, const void *, size_t)
+      -> EXTERN: (91,17) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (91,42) __errno_location(void)
+      -> EXTERN: (91,42) strerror(int)
+      -> EXTERN: (110,24) write(int, const void *, size_t)
+      -> EXTERN: (112,21) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (112,46) __errno_location(void)
+      -> EXTERN: (112,46) strerror(int)
+      -> EXTERN: (126,15) deflate(z_streamp, int)
+      -> EXTERN: (128,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (137,9) deflateReset(z_streamp)
+    -> INLINE (MANUAL): (163,13) memset(void *, int, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,10) __builtin___memset_chk(void *, int, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,55) __builtin_object_size(const void *, int)
+    -> INLINE: (169,13) gz_comp() (isz = 256) (sz = 270)
+      -> INLINE: (82,29) gz_init() (isz = 92) (sz = 102)
+        -> EXTERN: (24,34) malloc(size_t)
+        -> EXTERN: (26,9) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (33,39) malloc(size_t)
+        -> EXTERN: (35,13) free(void *)
+        -> EXTERN: (36,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (44,15) deflateInit2_(z_streamp, int, int, int, int, int, const char *, int)
+        -> EXTERN: (47,13) free(void *)
+        -> EXTERN: (48,13) free(void *)
+        -> EXTERN: (49,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (89,20) write(int, const void *, size_t)
+      -> EXTERN: (91,17) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (91,42) __errno_location(void)
+      -> EXTERN: (91,42) strerror(int)
+      -> EXTERN: (110,24) write(int, const void *, size_t)
+      -> EXTERN: (112,21) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (112,46) __errno_location(void)
+      -> EXTERN: (112,46) strerror(int)
+      -> EXTERN: (126,15) deflate(z_streamp, int)
+      -> EXTERN: (128,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (137,9) deflateReset(z_streamp)
+  -> INLINE (MANUAL): (428,11) vsnprintf(char *__restrict__, size_t, const char *__restrict__, struct __va_list_tag *) (isz = 7) (sz = 20)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(80,10) __builtin___vsnprintf_chk(char *, unsigned long, int, unsigned long, const char *, struct __va_list_tag *)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(81,9) __builtin_object_size(const void *, int)
+  -> INLINE: (442,13) gz_comp() (isz = 256) (sz = 270)
+    -> INLINE: (82,29) gz_init() (isz = 92) (sz = 102)
+      -> EXTERN: (24,34) malloc(size_t)
+      -> EXTERN: (26,9) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (33,39) malloc(size_t)
+      -> EXTERN: (35,13) free(void *)
+      -> EXTERN: (36,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (44,15) deflateInit2_(z_streamp, int, int, int, int, int, const char *, int)
+      -> EXTERN: (47,13) free(void *)
+      -> EXTERN: (48,13) free(void *)
+      -> EXTERN: (49,13) gz_error(gz_statep, int, const char *)
+    -> EXTERN: (89,20) write(int, const void *, size_t)
+    -> EXTERN: (91,17) gz_error(gz_statep, int, const char *)
+    -> EXTERN: (91,42) __errno_location(void)
+    -> EXTERN: (91,42) strerror(int)
+    -> EXTERN: (110,24) write(int, const void *, size_t)
+    -> EXTERN: (112,21) gz_error(gz_statep, int, const char *)
+    -> EXTERN: (112,46) __errno_location(void)
+    -> EXTERN: (112,46) strerror(int)
+    -> EXTERN: (126,15) deflate(z_streamp, int)
+    -> EXTERN: (128,13) gz_error(gz_statep, int, const char *)
+    -> EXTERN: (137,9) deflateReset(z_streamp)
+  -> INLINE (MANUAL): (444,9) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at gzwrite.c(87,9) inlined into gzwrite.c(404,13)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzwrite.c(107,13) inlined into gzwrite.c(404,13)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzwrite.c(87,9) inlined into gzwrite.c(404,13)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzwrite.c(87,9) inlined into gzwrite.c(442,13)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzwrite.c(107,13) inlined into gzwrite.c(442,13)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at gzwrite.c(133,14) inlined into gzwrite.c(404,13)
+   remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+   remark #17102: loop was not parallelized: not a parallelization candidate
+LOOP END
+
+LOOP BEGIN at gzwrite.c(159,5) inlined into gzwrite.c(404,13)
+   remark #15536: loop was not vectorized: inner loop throttling prevents vectorization of this outer loop. Refer to inner loop message for more details.   [ gzwrite.c(133,14) ]
+   remark #17102: loop was not parallelized: not a parallelization candidate
+
+   LOOP BEGIN at gzwrite.c(133,14) inlined into gzwrite.c(404,13)
+      remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+      remark #17102: loop was not parallelized: not a parallelization candidate
+
+      LOOP BEGIN at gzwrite.c(107,13) inlined into gzwrite.c(404,13)
+         remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+         remark #17102: loop was not parallelized: not a parallelization candidate
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gzwrite.c(133,14) inlined into gzwrite.c(442,13)
+   remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+   remark #17102: loop was not parallelized: not a parallelization candidate
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34014: optimization advice for memset: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34026: call to memset implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+gzwrite.c(380,1):remark #34051: REGISTER ALLOCATION : [gzvprintf] gzwrite.c:380
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   14[ rax rdx rcx rbx rbp rsi rdi r8-r10 r12-r15]
+        
+    Routine temporaries
+        Total         :     399
+            Global    :     107
+            Local     :     292
+        Regenerable   :      82
+        Spilled       :       8
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :      24 bytes*
+            Reads     :      14 [1.64e-01 ~ 0.2%]
+            Writes    :       5 [1.50e-01 ~ 0.2%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: gzprintf(gzFile, const char *, ...)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (gzprintf(gzFile, const char *, ...)) [13/17=76.5%] gzwrite.c(452,1)
+  -> EXTERN: (456,5) __builtin_stdarg_start
+  -> INLINE: (457,11) gzvprintf(gzFile, const char *, struct __va_list_tag *) (isz = 1041) (sz = 1058)
+    -> INLINE: (398,29) gz_init() (isz = 92) (sz = 102)
+      -> EXTERN: (24,34) malloc(size_t)
+      -> EXTERN: (26,9) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (33,39) malloc(size_t)
+      -> EXTERN: (35,13) free(void *)
+      -> EXTERN: (36,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (44,15) deflateInit2_(z_streamp, int, int, int, int, int, const char *, int)
+      -> EXTERN: (47,13) free(void *)
+      -> EXTERN: (48,13) free(void *)
+      -> EXTERN: (49,13) gz_error(gz_statep, int, const char *)
+    -> INLINE: (404,13) gz_zero() (isz = 56) (sz = 67)
+      -> INLINE: (154,27) gz_comp() (isz = 256) (sz = 270)
+        -> INLINE: (82,29) gz_init() (isz = 92) (sz = 102)
+          -> EXTERN: (24,34) malloc(size_t)
+          -> EXTERN: (26,9) gz_error(gz_statep, int, const char *)
+          -> EXTERN: (33,39) malloc(size_t)
+          -> EXTERN: (35,13) free(void *)
+          -> EXTERN: (36,13) gz_error(gz_statep, int, const char *)
+          -> EXTERN: (44,15) deflateInit2_(z_streamp, int, int, int, int, int, const char *, int)
+          -> EXTERN: (47,13) free(void *)
+          -> EXTERN: (48,13) free(void *)
+          -> EXTERN: (49,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (89,20) write(int, const void *, size_t)
+        -> EXTERN: (91,17) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (91,42) strerror(int)
+        -> EXTERN: (91,42) __errno_location(void)
+        -> EXTERN: (110,24) write(int, const void *, size_t)
+        -> EXTERN: (112,21) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (112,46) strerror(int)
+        -> EXTERN: (112,46) __errno_location(void)
+        -> EXTERN: (126,15) deflate(z_streamp, int)
+        -> EXTERN: (128,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (137,9) deflateReset(z_streamp)
+      -> INLINE (MANUAL): (163,13) memset(void *, int, size_t) (isz = 6) (sz = 17)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,10) __builtin___memset_chk(void *, int, unsigned long, unsigned long)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,55) __builtin_object_size(const void *, int)
+      -> INLINE: (169,13) gz_comp() (isz = 256) (sz = 270)
+        -> INLINE: (82,29) gz_init() (isz = 92) (sz = 102)
+          -> EXTERN: (24,34) malloc(size_t)
+          -> EXTERN: (26,9) gz_error(gz_statep, int, const char *)
+          -> EXTERN: (33,39) malloc(size_t)
+          -> EXTERN: (35,13) free(void *)
+          -> EXTERN: (36,13) gz_error(gz_statep, int, const char *)
+          -> EXTERN: (44,15) deflateInit2_(z_streamp, int, int, int, int, int, const char *, int)
+          -> EXTERN: (47,13) free(void *)
+          -> EXTERN: (48,13) free(void *)
+          -> EXTERN: (49,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (89,20) write(int, const void *, size_t)
+        -> EXTERN: (91,17) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (91,42) strerror(int)
+        -> EXTERN: (91,42) __errno_location(void)
+        -> EXTERN: (110,24) write(int, const void *, size_t)
+        -> EXTERN: (112,21) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (112,46) strerror(int)
+        -> EXTERN: (112,46) __errno_location(void)
+        -> EXTERN: (126,15) deflate(z_streamp, int)
+        -> EXTERN: (128,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (137,9) deflateReset(z_streamp)
+    -> INLINE (MANUAL): (428,11) vsnprintf(char *__restrict__, size_t, const char *__restrict__, struct __va_list_tag *) (isz = 7) (sz = 20)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(80,10) __builtin___vsnprintf_chk(char *, unsigned long, int, unsigned long, const char *, struct __va_list_tag *)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(81,9) __builtin_object_size(const void *, int)
+    -> INLINE: (442,13) gz_comp() (isz = 256) (sz = 270)
+      -> INLINE: (82,29) gz_init() (isz = 92) (sz = 102)
+        -> EXTERN: (24,34) malloc(size_t)
+        -> EXTERN: (26,9) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (33,39) malloc(size_t)
+        -> EXTERN: (35,13) free(void *)
+        -> EXTERN: (36,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (44,15) deflateInit2_(z_streamp, int, int, int, int, int, const char *, int)
+        -> EXTERN: (47,13) free(void *)
+        -> EXTERN: (48,13) free(void *)
+        -> EXTERN: (49,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (89,20) write(int, const void *, size_t)
+      -> EXTERN: (91,17) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (91,42) strerror(int)
+      -> EXTERN: (91,42) __errno_location(void)
+      -> EXTERN: (110,24) write(int, const void *, size_t)
+      -> EXTERN: (112,21) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (112,46) strerror(int)
+      -> EXTERN: (112,46) __errno_location(void)
+      -> EXTERN: (126,15) deflate(z_streamp, int)
+      -> EXTERN: (128,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (137,9) deflateReset(z_streamp)
+    -> INLINE (MANUAL): (444,9) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+  -> EXTERN: (458,5) __builtin_va_end
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at gzwrite.c(87,9) inlined into gzwrite.c(457,11)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzwrite.c(107,13) inlined into gzwrite.c(457,11)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzwrite.c(87,9) inlined into gzwrite.c(457,11)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzwrite.c(87,9) inlined into gzwrite.c(457,11)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzwrite.c(107,13) inlined into gzwrite.c(457,11)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at gzwrite.c(133,14) inlined into gzwrite.c(457,11)
+   remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+   remark #17102: loop was not parallelized: not a parallelization candidate
+LOOP END
+
+LOOP BEGIN at gzwrite.c(159,5) inlined into gzwrite.c(457,11)
+   remark #15536: loop was not vectorized: inner loop throttling prevents vectorization of this outer loop. Refer to inner loop message for more details.   [ gzwrite.c(133,14) ]
+   remark #17102: loop was not parallelized: not a parallelization candidate
+
+   LOOP BEGIN at gzwrite.c(133,14) inlined into gzwrite.c(457,11)
+      remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+      remark #17102: loop was not parallelized: not a parallelization candidate
+
+      LOOP BEGIN at gzwrite.c(107,13) inlined into gzwrite.c(457,11)
+         remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+         remark #17102: loop was not parallelized: not a parallelization candidate
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gzwrite.c(133,14) inlined into gzwrite.c(457,11)
+   remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+   remark #17102: loop was not parallelized: not a parallelization candidate
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34014: optimization advice for memset: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34026: call to memset implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+gzwrite.c(452,1):remark #34051: REGISTER ALLOCATION : [gzprintf] gzwrite.c:452
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   14[ rax rdx rcx rbx rbp rsi rdi r8-r10 r12-r15]
+        
+    Routine temporaries
+        Total         :     391
+            Global    :     106
+            Local     :     285
+        Regenerable   :      83
+        Spilled       :       7
+        
+    Routine stack
+        Variables     :     200 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       4 [4.00e+00 ~ 5.1%]
+        Spills        :      24 bytes*
+            Reads     :      25 [2.93e-01 ~ 0.4%]
+            Writes    :       7 [1.85e-01 ~ 0.2%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: gzflush()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (gzflush()) [14/17=82.4%] gzwrite.c(556,1)
+  -> INLINE: (575,13) gz_zero() (isz = 56) (sz = 67)
+    -> INLINE: (154,27) gz_comp() (isz = 256) (sz = 270)
+      -> INLINE: (82,29) gz_init() (isz = 92) (sz = 102)
+        -> EXTERN: (24,34) malloc(size_t)
+        -> EXTERN: (26,9) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (33,39) malloc(size_t)
+        -> EXTERN: (35,13) free(void *)
+        -> EXTERN: (36,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (44,15) deflateInit2_(z_streamp, int, int, int, int, int, const char *, int)
+        -> EXTERN: (47,13) free(void *)
+        -> EXTERN: (48,13) free(void *)
+        -> EXTERN: (49,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (89,20) write(int, const void *, size_t)
+      -> EXTERN: (91,17) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (91,42) __errno_location(void)
+      -> EXTERN: (91,42) strerror(int)
+      -> EXTERN: (110,24) write(int, const void *, size_t)
+      -> EXTERN: (112,21) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (112,46) __errno_location(void)
+      -> EXTERN: (112,46) strerror(int)
+      -> EXTERN: (126,15) deflate(z_streamp, int)
+      -> EXTERN: (128,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (137,9) deflateReset(z_streamp)
+    -> INLINE (MANUAL): (163,13) memset(void *, int, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,10) __builtin___memset_chk(void *, int, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,55) __builtin_object_size(const void *, int)
+    -> INLINE: (169,13) gz_comp() (isz = 256) (sz = 270)
+      -> INLINE: (82,29) gz_init() (isz = 92) (sz = 102)
+        -> EXTERN: (24,34) malloc(size_t)
+        -> EXTERN: (26,9) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (33,39) malloc(size_t)
+        -> EXTERN: (35,13) free(void *)
+        -> EXTERN: (36,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (44,15) deflateInit2_(z_streamp, int, int, int, int, int, const char *, int)
+        -> EXTERN: (47,13) free(void *)
+        -> EXTERN: (48,13) free(void *)
+        -> EXTERN: (49,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (89,20) write(int, const void *, size_t)
+      -> EXTERN: (91,17) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (91,42) __errno_location(void)
+      -> EXTERN: (91,42) strerror(int)
+      -> EXTERN: (110,24) write(int, const void *, size_t)
+      -> EXTERN: (112,21) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (112,46) __errno_location(void)
+      -> EXTERN: (112,46) strerror(int)
+      -> EXTERN: (126,15) deflate(z_streamp, int)
+      -> EXTERN: (128,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (137,9) deflateReset(z_streamp)
+  -> INLINE: (580,11) gz_comp() (isz = 256) (sz = 270)
+    -> INLINE: (82,29) gz_init() (isz = 92) (sz = 102)
+      -> EXTERN: (24,34) malloc(size_t)
+      -> EXTERN: (26,9) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (33,39) malloc(size_t)
+      -> EXTERN: (35,13) free(void *)
+      -> EXTERN: (36,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (44,15) deflateInit2_(z_streamp, int, int, int, int, int, const char *, int)
+      -> EXTERN: (47,13) free(void *)
+      -> EXTERN: (48,13) free(void *)
+      -> EXTERN: (49,13) gz_error(gz_statep, int, const char *)
+    -> EXTERN: (89,20) write(int, const void *, size_t)
+    -> EXTERN: (91,17) gz_error(gz_statep, int, const char *)
+    -> EXTERN: (91,42) __errno_location(void)
+    -> EXTERN: (91,42) strerror(int)
+    -> EXTERN: (110,24) write(int, const void *, size_t)
+    -> EXTERN: (112,21) gz_error(gz_statep, int, const char *)
+    -> EXTERN: (112,46) __errno_location(void)
+    -> EXTERN: (112,46) strerror(int)
+    -> EXTERN: (126,15) deflate(z_streamp, int)
+    -> EXTERN: (128,13) gz_error(gz_statep, int, const char *)
+    -> EXTERN: (137,9) deflateReset(z_streamp)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at gzwrite.c(87,9) inlined into gzwrite.c(575,13)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzwrite.c(107,13) inlined into gzwrite.c(575,13)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzwrite.c(87,9) inlined into gzwrite.c(575,13)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzwrite.c(87,9) inlined into gzwrite.c(580,11)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzwrite.c(107,13) inlined into gzwrite.c(580,11)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at gzwrite.c(133,14) inlined into gzwrite.c(575,13)
+   remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+   remark #17102: loop was not parallelized: not a parallelization candidate
+LOOP END
+
+LOOP BEGIN at gzwrite.c(159,5) inlined into gzwrite.c(575,13)
+   remark #15536: loop was not vectorized: inner loop throttling prevents vectorization of this outer loop. Refer to inner loop message for more details.   [ gzwrite.c(133,14) ]
+   remark #17102: loop was not parallelized: not a parallelization candidate
+
+   LOOP BEGIN at gzwrite.c(133,14) inlined into gzwrite.c(575,13)
+      remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+      remark #17102: loop was not parallelized: not a parallelization candidate
+
+      LOOP BEGIN at gzwrite.c(107,13) inlined into gzwrite.c(575,13)
+         remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+         remark #17102: loop was not parallelized: not a parallelization candidate
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gzwrite.c(133,14) inlined into gzwrite.c(580,11)
+   remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+   remark #17102: loop was not parallelized: not a parallelization candidate
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34014: optimization advice for memset: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34026: call to memset implemented as a call to optimized library version
+gzwrite.c(556,1):remark #34051: REGISTER ALLOCATION : [gzflush] gzwrite.c:556
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   13[ rax rdx rcx rbx rbp rsi rdi r8-r9 r12-r15]
+        
+    Routine temporaries
+        Total         :     325
+            Global    :      92
+            Local     :     233
+        Regenerable   :      66
+        Spilled       :       7
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :      24 bytes*
+            Reads     :      20 [6.12e-01 ~ 0.5%]
+            Writes    :       5 [3.55e-01 ~ 0.3%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: gzsetparams()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (gzsetparams()) [15/17=88.2%] gzwrite.c(589,1)
+  -> INLINE: (610,13) gz_zero() (isz = 56) (sz = 67)
+    -> INLINE: (154,27) gz_comp() (isz = 256) (sz = 270)
+      -> INLINE: (82,29) gz_init() (isz = 92) (sz = 102)
+        -> EXTERN: (24,34) malloc(size_t)
+        -> EXTERN: (26,9) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (33,39) malloc(size_t)
+        -> EXTERN: (35,13) free(void *)
+        -> EXTERN: (36,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (44,15) deflateInit2_(z_streamp, int, int, int, int, int, const char *, int)
+        -> EXTERN: (47,13) free(void *)
+        -> EXTERN: (48,13) free(void *)
+        -> EXTERN: (49,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (89,20) write(int, const void *, size_t)
+      -> EXTERN: (91,17) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (91,42) __errno_location(void)
+      -> EXTERN: (91,42) strerror(int)
+      -> EXTERN: (110,24) write(int, const void *, size_t)
+      -> EXTERN: (112,21) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (112,46) __errno_location(void)
+      -> EXTERN: (112,46) strerror(int)
+      -> EXTERN: (126,15) deflate(z_streamp, int)
+      -> EXTERN: (128,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (137,9) deflateReset(z_streamp)
+    -> INLINE (MANUAL): (163,13) memset(void *, int, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,10) __builtin___memset_chk(void *, int, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,55) __builtin_object_size(const void *, int)
+    -> INLINE: (169,13) gz_comp() (isz = 256) (sz = 270)
+      -> INLINE: (82,29) gz_init() (isz = 92) (sz = 102)
+        -> EXTERN: (24,34) malloc(size_t)
+        -> EXTERN: (26,9) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (33,39) malloc(size_t)
+        -> EXTERN: (35,13) free(void *)
+        -> EXTERN: (36,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (44,15) deflateInit2_(z_streamp, int, int, int, int, int, const char *, int)
+        -> EXTERN: (47,13) free(void *)
+        -> EXTERN: (48,13) free(void *)
+        -> EXTERN: (49,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (89,20) write(int, const void *, size_t)
+      -> EXTERN: (91,17) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (91,42) __errno_location(void)
+      -> EXTERN: (91,42) strerror(int)
+      -> EXTERN: (110,24) write(int, const void *, size_t)
+      -> EXTERN: (112,21) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (112,46) __errno_location(void)
+      -> EXTERN: (112,46) strerror(int)
+      -> EXTERN: (126,15) deflate(z_streamp, int)
+      -> EXTERN: (128,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (137,9) deflateReset(z_streamp)
+  -> INLINE: (617,31) gz_comp() (isz = 256) (sz = 270)
+    -> INLINE: (82,29) gz_init() (isz = 92) (sz = 102)
+      -> EXTERN: (24,34) malloc(size_t)
+      -> EXTERN: (26,9) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (33,39) malloc(size_t)
+      -> EXTERN: (35,13) free(void *)
+      -> EXTERN: (36,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (44,15) deflateInit2_(z_streamp, int, int, int, int, int, const char *, int)
+      -> EXTERN: (47,13) free(void *)
+      -> EXTERN: (48,13) free(void *)
+      -> EXTERN: (49,13) gz_error(gz_statep, int, const char *)
+    -> EXTERN: (89,20) write(int, const void *, size_t)
+    -> EXTERN: (91,17) gz_error(gz_statep, int, const char *)
+    -> EXTERN: (91,42) __errno_location(void)
+    -> EXTERN: (91,42) strerror(int)
+    -> EXTERN: (110,24) write(int, const void *, size_t)
+    -> EXTERN: (112,21) gz_error(gz_statep, int, const char *)
+    -> EXTERN: (112,46) __errno_location(void)
+    -> EXTERN: (112,46) strerror(int)
+    -> EXTERN: (126,15) deflate(z_streamp, int)
+    -> EXTERN: (128,13) gz_error(gz_statep, int, const char *)
+    -> EXTERN: (137,9) deflateReset(z_streamp)
+  -> EXTERN: (619,9) deflateParams(z_streamp, int, int)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at gzwrite.c(87,9) inlined into gzwrite.c(610,13)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzwrite.c(107,13) inlined into gzwrite.c(610,13)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzwrite.c(87,9) inlined into gzwrite.c(610,13)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzwrite.c(107,13) inlined into gzwrite.c(617,31)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzwrite.c(87,9) inlined into gzwrite.c(617,31)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at gzwrite.c(133,14) inlined into gzwrite.c(610,13)
+   remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+   remark #17102: loop was not parallelized: not a parallelization candidate
+LOOP END
+
+LOOP BEGIN at gzwrite.c(159,5) inlined into gzwrite.c(610,13)
+   remark #15536: loop was not vectorized: inner loop throttling prevents vectorization of this outer loop. Refer to inner loop message for more details.   [ gzwrite.c(133,14) ]
+   remark #17102: loop was not parallelized: not a parallelization candidate
+
+   LOOP BEGIN at gzwrite.c(133,14) inlined into gzwrite.c(610,13)
+      remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+      remark #17102: loop was not parallelized: not a parallelization candidate
+
+      LOOP BEGIN at gzwrite.c(107,13) inlined into gzwrite.c(610,13)
+         remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+         remark #17102: loop was not parallelized: not a parallelization candidate
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gzwrite.c(133,14) inlined into gzwrite.c(617,31)
+   remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+   remark #17102: loop was not parallelized: not a parallelization candidate
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34014: optimization advice for memset: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34026: call to memset implemented as a call to optimized library version
+gzwrite.c(589,1):remark #34051: REGISTER ALLOCATION : [gzsetparams] gzwrite.c:589
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   13[ rax rdx rcx rbx rbp rsi rdi r8-r9 r12-r15]
+        
+    Routine temporaries
+        Total         :     291
+            Global    :      84
+            Local     :     207
+        Regenerable   :      56
+        Spilled       :       8
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :      24 bytes*
+            Reads     :      14 [1.42e-01 ~ 0.2%]
+            Writes    :       5 [1.30e-01 ~ 0.2%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: gzclose_w()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (gzclose_w()) [16/17=94.1%] gzwrite.c(629,1)
+  -> INLINE: (645,13) gz_zero() (isz = 56) (sz = 67)
+    -> INLINE: (154,27) gz_comp() (isz = 256) (sz = 270)
+      -> INLINE: (82,29) gz_init() (isz = 92) (sz = 102)
+        -> EXTERN: (24,34) malloc(size_t)
+        -> EXTERN: (26,9) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (33,39) malloc(size_t)
+        -> EXTERN: (35,13) free(void *)
+        -> EXTERN: (36,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (44,15) deflateInit2_(z_streamp, int, int, int, int, int, const char *, int)
+        -> EXTERN: (47,13) free(void *)
+        -> EXTERN: (48,13) free(void *)
+        -> EXTERN: (49,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (89,20) write(int, const void *, size_t)
+      -> EXTERN: (91,17) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (91,42) __errno_location(void)
+      -> EXTERN: (91,42) strerror(int)
+      -> EXTERN: (110,24) write(int, const void *, size_t)
+      -> EXTERN: (112,21) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (112,46) __errno_location(void)
+      -> EXTERN: (112,46) strerror(int)
+      -> EXTERN: (126,15) deflate(z_streamp, int)
+      -> EXTERN: (128,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (137,9) deflateReset(z_streamp)
+    -> INLINE (MANUAL): (163,13) memset(void *, int, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,10) __builtin___memset_chk(void *, int, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,55) __builtin_object_size(const void *, int)
+    -> INLINE: (169,13) gz_comp() (isz = 256) (sz = 270)
+      -> INLINE: (82,29) gz_init() (isz = 92) (sz = 102)
+        -> EXTERN: (24,34) malloc(size_t)
+        -> EXTERN: (26,9) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (33,39) malloc(size_t)
+        -> EXTERN: (35,13) free(void *)
+        -> EXTERN: (36,13) gz_error(gz_statep, int, const char *)
+        -> EXTERN: (44,15) deflateInit2_(z_streamp, int, int, int, int, int, const char *, int)
+        -> EXTERN: (47,13) free(void *)
+        -> EXTERN: (48,13) free(void *)
+        -> EXTERN: (49,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (89,20) write(int, const void *, size_t)
+      -> EXTERN: (91,17) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (91,42) __errno_location(void)
+      -> EXTERN: (91,42) strerror(int)
+      -> EXTERN: (110,24) write(int, const void *, size_t)
+      -> EXTERN: (112,21) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (112,46) __errno_location(void)
+      -> EXTERN: (112,46) strerror(int)
+      -> EXTERN: (126,15) deflate(z_streamp, int)
+      -> EXTERN: (128,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (137,9) deflateReset(z_streamp)
+  -> INLINE: (650,9) gz_comp() (isz = 256) (sz = 270)
+    -> INLINE: (82,29) gz_init() (isz = 92) (sz = 102)
+      -> EXTERN: (24,34) malloc(size_t)
+      -> EXTERN: (26,9) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (33,39) malloc(size_t)
+      -> EXTERN: (35,13) free(void *)
+      -> EXTERN: (36,13) gz_error(gz_statep, int, const char *)
+      -> EXTERN: (44,15) deflateInit2_(z_streamp, int, int, int, int, int, const char *, int)
+      -> EXTERN: (47,13) free(void *)
+      -> EXTERN: (48,13) free(void *)
+      -> EXTERN: (49,13) gz_error(gz_statep, int, const char *)
+    -> EXTERN: (89,20) write(int, const void *, size_t)
+    -> EXTERN: (91,17) gz_error(gz_statep, int, const char *)
+    -> EXTERN: (91,42) __errno_location(void)
+    -> EXTERN: (91,42) strerror(int)
+    -> EXTERN: (110,24) write(int, const void *, size_t)
+    -> EXTERN: (112,21) gz_error(gz_statep, int, const char *)
+    -> EXTERN: (112,46) __errno_location(void)
+    -> EXTERN: (112,46) strerror(int)
+    -> EXTERN: (126,15) deflate(z_streamp, int)
+    -> EXTERN: (128,13) gz_error(gz_statep, int, const char *)
+    -> EXTERN: (137,9) deflateReset(z_streamp)
+  -> EXTERN: (654,19) deflateEnd(z_streamp)
+  -> EXTERN: (655,13) free(void *)
+  -> EXTERN: (657,9) free(void *)
+  -> EXTERN: (659,5) gz_error(gz_statep, int, const char *)
+  -> EXTERN: (660,5) free(void *)
+  -> EXTERN: (661,9) close(int)
+  -> EXTERN: (663,5) free(void *)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at gzwrite.c(87,9) inlined into gzwrite.c(645,13)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzwrite.c(107,13) inlined into gzwrite.c(645,13)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzwrite.c(87,9) inlined into gzwrite.c(645,13)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzwrite.c(87,9) inlined into gzwrite.c(650,9)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at gzwrite.c(107,13) inlined into gzwrite.c(650,9)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at gzwrite.c(133,14) inlined into gzwrite.c(645,13)
+   remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+   remark #17102: loop was not parallelized: not a parallelization candidate
+LOOP END
+
+LOOP BEGIN at gzwrite.c(159,5) inlined into gzwrite.c(645,13)
+   remark #15536: loop was not vectorized: inner loop throttling prevents vectorization of this outer loop. Refer to inner loop message for more details.   [ gzwrite.c(133,14) ]
+   remark #17102: loop was not parallelized: not a parallelization candidate
+
+   LOOP BEGIN at gzwrite.c(133,14) inlined into gzwrite.c(645,13)
+      remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+      remark #17102: loop was not parallelized: not a parallelization candidate
+
+      LOOP BEGIN at gzwrite.c(107,13) inlined into gzwrite.c(645,13)
+         remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+         remark #17102: loop was not parallelized: not a parallelization candidate
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at gzwrite.c(133,14) inlined into gzwrite.c(650,9)
+   remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+   remark #17102: loop was not parallelized: not a parallelization candidate
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34014: optimization advice for memset: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34026: call to memset implemented as a call to optimized library version
+gzwrite.c(629,1):remark #34051: REGISTER ALLOCATION : [gzclose_w] gzwrite.c:629
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   13[ rax rdx rcx rbx rbp rsi rdi r8-r9 r12-r15]
+        
+    Routine temporaries
+        Total         :     338
+            Global    :      94
+            Local     :     244
+        Regenerable   :      70
+        Spilled       :       7
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :      24 bytes*
+            Reads     :      20 [3.61e-01 ~ 0.3%]
+            Writes    :       5 [2.10e-01 ~ 0.2%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: gz_init()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (gz_init()) gzwrite.c(19,1)
+
+===========================================================================

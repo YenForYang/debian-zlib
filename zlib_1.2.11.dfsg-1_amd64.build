@@ -1,0 +1,160 @@
+ dpkg-buildpackage -D -us -uc -ui -b -Jauto -Pnobiarch,nocheck,nodoc
+dpkg-buildpackage: info: source package zlib
+dpkg-buildpackage: info: source version 1:1.2.11.dfsg-1
+dpkg-buildpackage: info: source distribution unstable
+dpkg-buildpackage: info: source changed by Mark Brown <broonie@debian.org>
+Could not create response fileicc: remark #10397: optimization reports are generated in *.optrpt files in the output location
+ dpkg-source --before-build .
+dpkg-buildpackage: info: host architecture amd64
+ fakeroot debian/rules clean
+dh_testdir
+dh_testroot
+/usr/bin/make distclean
+make[1]: Entering directory '/dev/shm/zlib/zlib-1.2.11.dfsg'
+rm -f *.o *.lo *~ \
+   example minigzip examplesh minigzipsh \
+   example64 minigzip64 \
+   infcover \
+   libz.* foo.gz so_locations \
+   _match.s maketree contrib/infback9/*.o
+rm -rf objs
+rm -f *.gcda *.gcno *.gcov
+rm -f contrib/infback9/*.gcda contrib/infback9/*.gcno contrib/infback9/*.gcov
+cp -p zconf.h.in zconf.h
+rm -f Makefile zlib.pc configure.log
+make[1]: Leaving directory '/dev/shm/zlib/zlib-1.2.11.dfsg'
+rm -f build-stamp configure-stamp foo.gz 
+rm -rf debian/64 build64-stamp configure64-stamp
+rm -rf debian/32 build32-stamp configure32-stamp
+rm -rf debian/n32 buildn32-stamp configuren32-stamp
+mv Makefile.stash Makefile
+mv zlibdefs.h.stash zlibdefs.h
+mv: cannot stat 'zlibdefs.h.stash': No such file or directory
+make: [debian/rules:155: clean] Error 1 (ignored)
+dh_clean 
+FAKEROOTKEY=1091896652 LD_LIBRARY_PATH= LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libfakeroot/libfakeroot-sysv.so debian/rules clean
+ debian/rules build
+dh_testdir
+if [ ! -f Makefile.stash ]; then cp Makefile Makefile.stash ; fi
+AR=xiar CC="icc.pl" CFLAGS="`dpkg-buildflags --get CFLAGS` `dpkg-buildflags --get CPPFLAGS` -Wall -D_REENTRANT -O3 -DUNALIGNED_OK" LDFLAGS="`dpkg-buildflags --get LDFLAGS`" uname=GNU ./configure --shared --prefix=/usr --libdir=\${prefix}/lib/x86_64-linux-gnu
+Checking for shared library support...
+Building shared library libz.so.1.2.11 with icc.pl.
+Checking for size_t... Yes.
+Checking for off64_t... Yes.
+Checking for fseeko... Yes.
+Checking for strerror... Yes.
+Checking for unistd.h... Yes.
+Checking for stdarg.h... Yes.
+Checking whether to use vs[n]printf() or s[n]printf()... using vs[n]printf().
+Checking for vsnprintf() in stdio.h... Yes.
+Checking for return value of vsnprintf()... Yes.
+Checking for attribute(visibility) support... No.
+touch configure-stamp
+dh_testdir
+/usr/bin/make
+make[1]: Entering directory '/dev/shm/zlib/zlib-1.2.11.dfsg'
+icc.pl -g -O2 -fdebug-prefix-map=/dev/shm/zlib/zlib-1.2.11.dfsg=. -Wformat -march=native -pipe -Wformat-security -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -D_REENTRANT -O3 -DUNALIGNED_OK -D_LARGEFILE64_SOURCE=1 -I. -c -o example.o test/example.c
+icc.pl -g -O2 -fdebug-prefix-map=/dev/shm/zlib/zlib-1.2.11.dfsg=. -Wformat -march=native -pipe -Wformat-security -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -D_REENTRANT -O3 -DUNALIGNED_OK -D_LARGEFILE64_SOURCE=1  -c -o adler32.o adler32.c
+icc.pl -g -O2 -fdebug-prefix-map=/dev/shm/zlib/zlib-1.2.11.dfsg=. -Wformat -march=native -pipe -Wformat-security -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -D_REENTRANT -O3 -DUNALIGNED_OK -D_LARGEFILE64_SOURCE=1  -c -o crc32.o crc32.c
+icc.pl -g -O2 -fdebug-prefix-map=/dev/shm/zlib/zlib-1.2.11.dfsg=. -Wformat -march=native -pipe -Wformat-security -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -D_REENTRANT -O3 -DUNALIGNED_OK -D_LARGEFILE64_SOURCE=1  -c -o deflate.o deflate.c
+icc.pl -g -O2 -fdebug-prefix-map=/dev/shm/zlib/zlib-1.2.11.dfsg=. -Wformat -march=native -pipe -Wformat-security -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -D_REENTRANT -O3 -DUNALIGNED_OK -D_LARGEFILE64_SOURCE=1  -c -o infback.o infback.c
+icc.pl -g -O2 -fdebug-prefix-map=/dev/shm/zlib/zlib-1.2.11.dfsg=. -Wformat -march=native -pipe -Wformat-security -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -D_REENTRANT -O3 -DUNALIGNED_OK -D_LARGEFILE64_SOURCE=1  -c -o inffast.o inffast.c
+icc.pl -g -O2 -fdebug-prefix-map=/dev/shm/zlib/zlib-1.2.11.dfsg=. -Wformat -march=native -pipe -Wformat-security -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -D_REENTRANT -O3 -DUNALIGNED_OK -D_LARGEFILE64_SOURCE=1  -c -o inflate.o inflate.c
+icc.pl -g -O2 -fdebug-prefix-map=/dev/shm/zlib/zlib-1.2.11.dfsg=. -Wformat -march=native -pipe -Wformat-security -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -D_REENTRANT -O3 -DUNALIGNED_OK -D_LARGEFILE64_SOURCE=1  -c -o inftrees.o inftrees.c
+icc.pl -g -O2 -fdebug-prefix-map=/dev/shm/zlib/zlib-1.2.11.dfsg=. -Wformat -march=native -pipe -Wformat-security -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -D_REENTRANT -O3 -DUNALIGNED_OK -D_LARGEFILE64_SOURCE=1  -c -o trees.o trees.c
+icc.pl -g -O2 -fdebug-prefix-map=/dev/shm/zlib/zlib-1.2.11.dfsg=. -Wformat -march=native -pipe -Wformat-security -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -D_REENTRANT -O3 -DUNALIGNED_OK -D_LARGEFILE64_SOURCE=1  -c -o zutil.o zutil.c
+icc.pl -g -O2 -fdebug-prefix-map=/dev/shm/zlib/zlib-1.2.11.dfsg=. -Wformat -march=native -pipe -Wformat-security -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -D_REENTRANT -O3 -DUNALIGNED_OK -D_LARGEFILE64_SOURCE=1  -c -o compress.o compress.c
+icc.pl -g -O2 -fdebug-prefix-map=/dev/shm/zlib/zlib-1.2.11.dfsg=. -Wformat -march=native -pipe -Wformat-security -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -D_REENTRANT -O3 -DUNALIGNED_OK -D_LARGEFILE64_SOURCE=1  -c -o uncompr.o uncompr.c
+icc.pl -g -O2 -fdebug-prefix-map=/dev/shm/zlib/zlib-1.2.11.dfsg=. -Wformat -march=native -pipe -Wformat-security -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -D_REENTRANT -O3 -DUNALIGNED_OK -D_LARGEFILE64_SOURCE=1  -c -o gzclose.o gzclose.c
+icc.pl -g -O2 -fdebug-prefix-map=/dev/shm/zlib/zlib-1.2.11.dfsg=. -Wformat -march=native -pipe -Wformat-security -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -D_REENTRANT -O3 -DUNALIGNED_OK -D_LARGEFILE64_SOURCE=1  -c -o gzlib.o gzlib.c
+icc.pl -g -O2 -fdebug-prefix-map=/dev/shm/zlib/zlib-1.2.11.dfsg=. -Wformat -march=native -pipe -Wformat-security -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -D_REENTRANT -O3 -DUNALIGNED_OK -D_LARGEFILE64_SOURCE=1  -c -o gzread.o gzread.c
+icc.pl -g -O2 -fdebug-prefix-map=/dev/shm/zlib/zlib-1.2.11.dfsg=. -Wformat -march=native -pipe -Wformat-security -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -D_REENTRANT -O3 -DUNALIGNED_OK -D_LARGEFILE64_SOURCE=1  -c -o gzwrite.o gzwrite.c
+xiar rc libz.a adler32.o crc32.o deflate.o infback.o inffast.o inflate.o inftrees.o trees.o zutil.o compress.o uncompr.o gzclose.o gzlib.o gzread.o gzwrite.o 
+xiar: executing 'x86_64-linux-gnu-ar'
+icc.pl -g -O2 -fdebug-prefix-map=/dev/shm/zlib/zlib-1.2.11.dfsg=. -Wformat -march=native -pipe -Wformat-security -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -D_REENTRANT -O3 -DUNALIGNED_OK -D_LARGEFILE64_SOURCE=1 -o example example.o -L. libz.a
+ipo: warning #11021: unresolved __open_missing_mode
+        Referenced in libz.a(gzlib.o)
+ipo: warning #11021: unresolved __open_too_many_args
+        Referenced in libz.a(gzlib.o)
+icc.pl -g -O2 -fdebug-prefix-map=/dev/shm/zlib/zlib-1.2.11.dfsg=. -Wformat -march=native -pipe -Wformat-security -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -D_REENTRANT -O3 -DUNALIGNED_OK -D_LARGEFILE64_SOURCE=1 -I. -c -o minigzip.o test/minigzip.c
+icc.pl -g -O2 -fdebug-prefix-map=/dev/shm/zlib/zlib-1.2.11.dfsg=. -Wformat -march=native -pipe -Wformat-security -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -D_REENTRANT -O3 -DUNALIGNED_OK -D_LARGEFILE64_SOURCE=1 -o minigzip minigzip.o -L. libz.a
+ipo: warning #11021: unresolved __open_missing_mode
+        Referenced in libz.a(gzlib.o)
+ipo: warning #11021: unresolved __open_too_many_args
+        Referenced in libz.a(gzlib.o)
+icc.pl -g -O2 -fdebug-prefix-map=/dev/shm/zlib/zlib-1.2.11.dfsg=. -Wformat -march=native -pipe -Wformat-security -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -D_REENTRANT -O3 -DUNALIGNED_OK -fPIC -D_LARGEFILE64_SOURCE=1  -DPIC -c -o objs/adler32.o adler32.c
+icc.pl -g -O2 -fdebug-prefix-map=/dev/shm/zlib/zlib-1.2.11.dfsg=. -Wformat -march=native -pipe -Wformat-security -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -D_REENTRANT -O3 -DUNALIGNED_OK -fPIC -D_LARGEFILE64_SOURCE=1  -DPIC -c -o objs/crc32.o crc32.c
+icc.pl -g -O2 -fdebug-prefix-map=/dev/shm/zlib/zlib-1.2.11.dfsg=. -Wformat -march=native -pipe -Wformat-security -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -D_REENTRANT -O3 -DUNALIGNED_OK -fPIC -D_LARGEFILE64_SOURCE=1  -DPIC -c -o objs/deflate.o deflate.c
+icc.pl -g -O2 -fdebug-prefix-map=/dev/shm/zlib/zlib-1.2.11.dfsg=. -Wformat -march=native -pipe -Wformat-security -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -D_REENTRANT -O3 -DUNALIGNED_OK -fPIC -D_LARGEFILE64_SOURCE=1  -DPIC -c -o objs/infback.o infback.c
+icc.pl -g -O2 -fdebug-prefix-map=/dev/shm/zlib/zlib-1.2.11.dfsg=. -Wformat -march=native -pipe -Wformat-security -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -D_REENTRANT -O3 -DUNALIGNED_OK -fPIC -D_LARGEFILE64_SOURCE=1  -DPIC -c -o objs/inffast.o inffast.c
+icc.pl -g -O2 -fdebug-prefix-map=/dev/shm/zlib/zlib-1.2.11.dfsg=. -Wformat -march=native -pipe -Wformat-security -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -D_REENTRANT -O3 -DUNALIGNED_OK -fPIC -D_LARGEFILE64_SOURCE=1  -DPIC -c -o objs/inflate.o inflate.c
+icc.pl -g -O2 -fdebug-prefix-map=/dev/shm/zlib/zlib-1.2.11.dfsg=. -Wformat -march=native -pipe -Wformat-security -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -D_REENTRANT -O3 -DUNALIGNED_OK -fPIC -D_LARGEFILE64_SOURCE=1  -DPIC -c -o objs/inftrees.o inftrees.c
+icc.pl -g -O2 -fdebug-prefix-map=/dev/shm/zlib/zlib-1.2.11.dfsg=. -Wformat -march=native -pipe -Wformat-security -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -D_REENTRANT -O3 -DUNALIGNED_OK -fPIC -D_LARGEFILE64_SOURCE=1  -DPIC -c -o objs/trees.o trees.c
+icc.pl -g -O2 -fdebug-prefix-map=/dev/shm/zlib/zlib-1.2.11.dfsg=. -Wformat -march=native -pipe -Wformat-security -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -D_REENTRANT -O3 -DUNALIGNED_OK -fPIC -D_LARGEFILE64_SOURCE=1  -DPIC -c -o objs/zutil.o zutil.c
+icc.pl -g -O2 -fdebug-prefix-map=/dev/shm/zlib/zlib-1.2.11.dfsg=. -Wformat -march=native -pipe -Wformat-security -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -D_REENTRANT -O3 -DUNALIGNED_OK -fPIC -D_LARGEFILE64_SOURCE=1  -DPIC -c -o objs/compress.o compress.c
+icc.pl -g -O2 -fdebug-prefix-map=/dev/shm/zlib/zlib-1.2.11.dfsg=. -Wformat -march=native -pipe -Wformat-security -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -D_REENTRANT -O3 -DUNALIGNED_OK -fPIC -D_LARGEFILE64_SOURCE=1  -DPIC -c -o objs/uncompr.o uncompr.c
+icc.pl -g -O2 -fdebug-prefix-map=/dev/shm/zlib/zlib-1.2.11.dfsg=. -Wformat -march=native -pipe -Wformat-security -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -D_REENTRANT -O3 -DUNALIGNED_OK -fPIC -D_LARGEFILE64_SOURCE=1  -DPIC -c -o objs/gzclose.o gzclose.c
+icc.pl -g -O2 -fdebug-prefix-map=/dev/shm/zlib/zlib-1.2.11.dfsg=. -Wformat -march=native -pipe -Wformat-security -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -D_REENTRANT -O3 -DUNALIGNED_OK -fPIC -D_LARGEFILE64_SOURCE=1  -DPIC -c -o objs/gzlib.o gzlib.c
+icc.pl -g -O2 -fdebug-prefix-map=/dev/shm/zlib/zlib-1.2.11.dfsg=. -Wformat -march=native -pipe -Wformat-security -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -D_REENTRANT -O3 -DUNALIGNED_OK -fPIC -D_LARGEFILE64_SOURCE=1  -DPIC -c -o objs/gzread.o gzread.c
+icc.pl -g -O2 -fdebug-prefix-map=/dev/shm/zlib/zlib-1.2.11.dfsg=. -Wformat -march=native -pipe -Wformat-security -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -D_REENTRANT -O3 -DUNALIGNED_OK -fPIC -D_LARGEFILE64_SOURCE=1  -DPIC -c -o objs/gzwrite.o gzwrite.c
+icc.pl -shared -g -O2 -fdebug-prefix-map=/dev/shm/zlib/zlib-1.2.11.dfsg=. -Wformat -march=native -pipe -Wformat-security -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -D_REENTRANT -O3 -DUNALIGNED_OK -fPIC -D_LARGEFILE64_SOURCE=1 -o libz.so.1.2.11 adler32.lo crc32.lo deflate.lo infback.lo inffast.lo inflate.lo inftrees.lo trees.lo zutil.lo compress.lo uncompr.lo gzclose.lo gzlib.lo gzread.lo gzwrite.lo  -lc 
+rm -f libz.so libz.so.1
+ln -s libz.so.1.2.11 libz.so
+ln -s libz.so.1.2.11 libz.so.1
+rmdir: failed to remove 'objs': Directory not empty
+make[1]: [Makefile:286: libz.so.1.2.11] Error 1 (ignored)
+icc.pl -g -O2 -fdebug-prefix-map=/dev/shm/zlib/zlib-1.2.11.dfsg=. -Wformat -march=native -pipe -Wformat-security -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -D_REENTRANT -O3 -DUNALIGNED_OK -D_LARGEFILE64_SOURCE=1 -o examplesh example.o -L. libz.so.1.2.11
+x86_64-linux-gnu-ld: libz.so.1: no version information available (required by /usr/lib/x86_64-linux-gnu/libbfd-2.31.1-system.so)
+icc.pl -g -O2 -fdebug-prefix-map=/dev/shm/zlib/zlib-1.2.11.dfsg=. -Wformat -march=native -pipe -Wformat-security -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -D_REENTRANT -O3 -DUNALIGNED_OK -D_LARGEFILE64_SOURCE=1 -o minigzipsh minigzip.o -L. libz.so.1.2.11
+x86_64-linux-gnu-ld: libz.so.1: no version information available (required by /usr/lib/x86_64-linux-gnu/libbfd-2.31.1-system.so)
+icc.pl -g -O2 -fdebug-prefix-map=/dev/shm/zlib/zlib-1.2.11.dfsg=. -Wformat -march=native -pipe -Wformat-security -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -D_REENTRANT -O3 -DUNALIGNED_OK -D_LARGEFILE64_SOURCE=1 -I. -D_FILE_OFFSET_BITS=64 -c -o example64.o test/example.c
+icc.pl -g -O2 -fdebug-prefix-map=/dev/shm/zlib/zlib-1.2.11.dfsg=. -Wformat -march=native -pipe -Wformat-security -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -D_REENTRANT -O3 -DUNALIGNED_OK -D_LARGEFILE64_SOURCE=1 -o example64 example64.o -L. libz.a
+ipo: warning #11021: unresolved __open_missing_mode
+        Referenced in libz.a(gzlib.o)
+ipo: warning #11021: unresolved __open_too_many_args
+        Referenced in libz.a(gzlib.o)
+x86_64-linux-gnu-ld: libz.so.1: no version information available (required by /usr/lib/x86_64-linux-gnu/libbfd-2.31.1-system.so)
+icc.pl -g -O2 -fdebug-prefix-map=/dev/shm/zlib/zlib-1.2.11.dfsg=. -Wformat -march=native -pipe -Wformat-security -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -D_REENTRANT -O3 -DUNALIGNED_OK -D_LARGEFILE64_SOURCE=1 -I. -D_FILE_OFFSET_BITS=64 -c -o minigzip64.o test/minigzip.c
+icc.pl -g -O2 -fdebug-prefix-map=/dev/shm/zlib/zlib-1.2.11.dfsg=. -Wformat -march=native -pipe -Wformat-security -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -D_REENTRANT -O3 -DUNALIGNED_OK -D_LARGEFILE64_SOURCE=1 -o minigzip64 minigzip64.o -L. libz.a
+ipo: warning #11021: unresolved __open_missing_mode
+        Referenced in libz.a(gzlib.o)
+ipo: warning #11021: unresolved __open_too_many_args
+        Referenced in libz.a(gzlib.o)
+x86_64-linux-gnu-ld: libz.so.1: no version information available (required by /usr/lib/x86_64-linux-gnu/libbfd-2.31.1-system.so)
+make[1]: Leaving directory '/dev/shm/zlib/zlib-1.2.11.dfsg'
+/usr/bin/make test
+make[1]: Entering directory '/dev/shm/zlib/zlib-1.2.11.dfsg'
+hello world
+zlib version 1.2.11 = 0x12b0, compile flags = 0xa9
+uncompress(): hello, hello!
+gzread(): hello, hello!
+gzgets() after gzseek:  hello!
+inflate(): hello, hello!
+large_inflate(): OK
+after inflateSync(): hello, hello!
+inflate with dictionary: hello, hello!
+		*** zlib test OK ***
+hello world
+zlib version 1.2.11 = 0x12b0, compile flags = 0xa9
+uncompress(): hello, hello!
+gzread(): hello, hello!
+gzgets() after gzseek:  hello!
+inflate(): hello, hello!
+large_inflate(): OK
+after inflateSync(): hello, hello!
+inflate with dictionary: hello, hello!
+		*** zlib shared test OK ***
+hello world
+zlib version 1.2.11 = 0x12b0, compile flags = 0xa9
+uncompress(): hello, hello!
+gzread(): hello, hello!
+gzgets() after gzseek:  hello!
+inflate(): hello, hello!
+large_inflate(): OK
+after inflateSync(): hello, hello!
+inflate with dictionary: hello, hello!
+		*** zlib 64-bit test OK ***
+make[1]: Leaving directory '/dev/shm/zlib/zlib-1.2.11.dfsg'
+touch build-stamp
+make: *** No rule to make target 'build32-stamp', needed by 'build'.  Stop.
+dpkg-buildpackage: error: debian/rules build subprocess returned exit status 2

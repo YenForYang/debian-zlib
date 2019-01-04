@@ -1,0 +1,15 @@
+-g
+-Wformat
+-Wformat-security
+-D_FORTIFY_SOURCE=2
+-Wall
+-D_REENTRANT
+-O3
+-DUNALIGNED_OK
+-D_LARGEFILE64_SOURCE=1
+-I.
+-D_FILE_OFFSET_BITS=64
+-c
+-oexample64.o
+-qopt-report-file=example64.o.optrpt
+test/example.c

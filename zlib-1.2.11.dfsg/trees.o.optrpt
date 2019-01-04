@@ -1,0 +1,1263 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+Intel(R) C Intel(R) 64 Compiler for applications running on Intel(R) 64, Version 19.0.1.144 Build 20181018
+
+Compiler options: -O3 -diag-disable=10013,10385,10237,10346 -fabi-version=13 -falign-functions -falign-loops -fbuiltin -fdata-sections -ffunction-sections -ffat-lto-objects -fpermissive -gcc-name=gcc.intel -gnu-prefix=x86_64-linux-gnu- -gxx-name=g++.intel -inline-level=2 -inline-min-caller-growth=0 -ipo -march=native -no-inline-max-per-compile -no-inline-max-per-routine -no-inline-max-size -no-inline-max-total-size -par-schedule-auto -parallel -qopt-matmul -qopt-mem-layout-trans -qopt-multi-version-aggressive -qopt-prefetch -qoverride-limits -static-intel -qopt-report=5 -qno-opt-report-embed -g -Wformat -Wformat-security -Wall -O3 -qopt-report-file=trees.o.optrpt -D_FORTIFY_SOURCE=2 -D_REENTRANT -DUNALIGNED_OK -D_LARGEFILE64_SOURCE=1 -c -o trees.o -Wl,--as-needed,--relax,--gc-sections,-O,2 -pipe
+
+    Report from: Interprocedural optimizations [ipo]
+
+  WHOLE PROGRAM (SAFE) [EITHER METHOD]: false
+  WHOLE PROGRAM (SEEN) [TABLE METHOD]: false
+  WHOLE PROGRAM (READ) [OBJECT READER METHOD]: false
+
+INLINING OPTION VALUES:
+  -inline-factor: 100
+  -inline-min-size: 30
+  -inline-max-size: disabled (user-specified)
+  -inline-max-total-size: disabled (user-specified)
+  -inline-max-per-routine: disabled (user-specified)
+  -inline-max-per-compile: disabled (user-specified)
+
+In the inlining report below:
+   "sz" refers to the "size" of the routine. The smaller a routine's size,
+      the more likely it is to be inlined.
+   "isz" refers to the "inlined size" of the routine. This is the amount
+      the calling routine will grow if the called routine is inlined into it.
+      The compiler generally limits the amount a routine can grow by having
+      routines inlined into it.
+
+Begin optimization report for: memcpy(void *__restrict__, const void *__restrict__, size_t)
+
+    Report from: Interprocedural optimizations [ipo]
+
+NEVER EMIT DEFINITION FUNCTION: (memcpy(void *__restrict__, const void *__restrict__, size_t))/usr/include/x86_64-linux-gnu/bits/string_fortified.h(33,1)
+
+===========================================================================
+
+Begin optimization report for: pqdownheap()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (pqdownheap()) trees.c(455,1)
+
+===========================================================================
+
+Begin optimization report for: gen_bitlen()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (gen_bitlen()) trees.c(489,1)
+
+===========================================================================
+
+Begin optimization report for: gen_codes()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (gen_codes()) trees.c(576,1)
+
+===========================================================================
+
+Begin optimization report for: build_bl_tree()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (build_bl_tree()) trees.c(801,1)
+
+===========================================================================
+
+Begin optimization report for: scan_tree()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (scan_tree()) trees.c(707,1)
+
+===========================================================================
+
+Begin optimization report for: build_tree()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (build_tree()) trees.c(618,1)
+
+===========================================================================
+
+Begin optimization report for: send_all_trees()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (send_all_trees()) trees.c(837,1)
+
+===========================================================================
+
+Begin optimization report for: send_tree()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (send_tree()) trees.c(752,1)
+
+===========================================================================
+
+Begin optimization report for: _tr_stored_block()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (_tr_stored_block()) [10/22=45.5%] trees.c(868,1)
+  -> INLINE: (870,5) bi_windup() (isz = 51) (sz = 56)
+  -> INLINE (MANUAL): (873,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+
+
+    Report from: Code generation optimizations [cg]
+
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+trees.c(868,1):remark #34051: REGISTER ALLOCATION : [_tr_stored_block] trees.c:868
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   11[ rax rdx rcx rsi rdi r8-r11 r14-r15]
+        
+    Routine temporaries
+        Total         :      52
+            Global    :      14
+            Local     :      38
+        Regenerable   :       1
+        Spilled       :       2
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: _tr_flush_bits()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (_tr_flush_bits()) [11/22=50.0%] trees.c(888,1)
+  -> INLINE: (889,5) bi_flush() (isz = 61) (sz = 66)
+
+
+    Report from: Code generation optimizations [cg]
+
+trees.c(888,1):remark #34051: REGISTER ALLOCATION : [_tr_flush_bits] trees.c:888
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    7[ rax rdx rcx rsi rdi r8-r9]
+        
+    Routine temporaries
+        Total         :      21
+            Global    :       8
+            Local     :      13
+        Regenerable   :       1
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: _tr_align()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (_tr_align()) [12/22=54.5%] trees.c(898,1)
+  -> INLINE: (904,5) bi_flush() (isz = 61) (sz = 66)
+
+
+    Report from: Code generation optimizations [cg]
+
+trees.c(898,1):remark #34051: REGISTER ALLOCATION : [_tr_align] trees.c:898
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    6[ rax rdx rcx rsi rdi r8]
+        
+    Routine temporaries
+        Total         :      44
+            Global    :      12
+            Local     :      32
+        Regenerable   :       3
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: _tr_flush_block()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (_tr_flush_block()) [13/22=59.1%] trees.c(916,1)
+  -> INLINE: (925,34) detect_data_type() (isz = 48) (sz = 58)
+  -> INLINE: (928,9) build_tree() (isz = 834) (sz = 841)
+    -> INLINE: (658,42) pqdownheap() (isz = 108) (sz = 117)
+    -> INLINE: (665,9) pqdownheap() (isz = 108) (sz = 117)
+    -> INLINE: (684,9) pqdownheap() (isz = 108) (sz = 117)
+    -> INLINE: (693,5) gen_bitlen() (isz = 217) (sz = 225)
+    -> INLINE: (696,5) gen_codes() (isz = 68) (sz = 77)
+      -> INLINE: (600,29) bi_reverse() (isz = 17) (sz = 26)
+  -> INLINE: (932,9) build_tree() (isz = 834) (sz = 841)
+    -> INLINE: (658,42) pqdownheap() (isz = 108) (sz = 117)
+    -> INLINE: (665,9) pqdownheap() (isz = 108) (sz = 117)
+    -> INLINE: (684,9) pqdownheap() (isz = 108) (sz = 117)
+    -> INLINE: (693,5) gen_bitlen() (isz = 217) (sz = 225)
+    -> INLINE: (696,5) gen_codes() (isz = 68) (sz = 77)
+      -> INLINE: (600,29) bi_reverse() (isz = 17) (sz = 26)
+  -> INLINE: (942,23) build_bl_tree() (isz = 38) (sz = 45)
+    -> INLINE: (805,5) scan_tree() (isz = 98) (sz = 107)
+    -> INLINE: (806,5) scan_tree() (isz = 98) (sz = 107)
+    -> INLINE: (809,5) build_tree() (isz = 834) (sz = 841)
+      -> INLINE: (658,42) pqdownheap() (isz = 108) (sz = 117)
+      -> INLINE: (665,9) pqdownheap() (isz = 108) (sz = 117)
+      -> INLINE: (684,9) pqdownheap() (isz = 108) (sz = 117)
+      -> INLINE: (693,5) gen_bitlen() (isz = 217) (sz = 225)
+      -> INLINE: (696,5) gen_codes() (isz = 68) (sz = 77)
+        -> INLINE: (600,29) bi_reverse() (isz = 17) (sz = 26)
+  -> INLINE: (971,9) _tr_stored_block() (isz = 193) (sz = 204)
+    -> INLINE: (870,5) bi_windup() (isz = 51) (sz = 56)
+    -> INLINE (MANUAL): (873,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+  -> INLINE: (979,9) compress_block() (isz = 546) (sz = 555)
+  -> INLINE: (986,9) send_all_trees() (isz = 317) (sz = 328)
+    -> INLINE: (853,5) send_tree() (isz = 692) (sz = 701)
+    -> INLINE: (856,5) send_tree() (isz = 692) (sz = 701)
+  -> INLINE: (988,9) compress_block() (isz = 546) (sz = 555)
+  -> INLINE: (998,5) init_block() (isz = 39) (sz = 44)
+  -> INLINE: (1001,9) bi_windup() (isz = 51) (sz = 56)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at trees.c(1135,5) inlined into trees.c(925,34)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between black_mask (1136:9) and black_mask (1135:31)
+   remark #17106: parallel dependence: assumed FLOW dependence between black_mask (1135:31) and black_mask (1136:9)
+   remark #17106: parallel dependence: assumed ANTI dependence between black_mask (1136:9) and black_mask (1135:31)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria   [ trees.c(925,34) ]
+   remark #25438: unrolled without remainder by 2  
+LOOP END
+
+LOOP BEGIN at trees.c(632,5) inlined into trees.c(928,9)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ trees.c(634,24) ]
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between s->heap_len (634:24) and s->heap_len (634:24)
+   remark #17106: parallel dependence: assumed FLOW dependence between s->heap_len (634:24) and s->heap_len (634:24)
+   remark #17106: parallel dependence: assumed FLOW dependence between s->heap_len (634:24) and s->heap_len (634:24)
+   remark #17106: parallel dependence: assumed ANTI dependence between s->heap_len (634:24) and s->heap_len (634:24)
+   remark #17106: parallel dependence: assumed OUTPUT dependence between s->heap[:] (634:13) and s->heap[:] (634:13)
+   remark #17106: parallel dependence: assumed OUTPUT dependence between s->heap[:] (634:13) and s->heap[:] (634:13)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between s->heap_len (634:24) and s->heap_len (634:24)
+   remark #15346: vector dependence: assumed FLOW dependence between s->heap_len (634:24) and s->heap_len (634:24)
+   remark #15346: vector dependence: assumed FLOW dependence between s->heap_len (634:24) and s->heap_len (634:24)
+   remark #15346: vector dependence: assumed ANTI dependence between s->heap_len (634:24) and s->heap_len (634:24)
+   remark #25439: unrolled with remainder by 2  
+   remark #25015: Estimate of max trip count of loop=573
+LOOP END
+
+LOOP BEGIN at trees.c(632,5) inlined into trees.c(928,9)
+<Remainder>
+   remark #25015: Estimate of max trip count of loop=573
+LOOP END
+
+LOOP BEGIN at trees.c(646,5) inlined into trees.c(928,9)
+<Predicate Optimized v1>
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ trees.c(647,27) ]
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ trees.c(650,9) ]
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between max_code (647:55) and max_code (647:61)
+   remark #17106: parallel dependence: assumed FLOW dependence between max_code (647:61) and max_code (647:55)
+   remark #17106: parallel dependence: assumed FLOW dependence between max_code (647:61) and max_code (647:55)
+   remark #17106: parallel dependence: assumed ANTI dependence between max_code (647:55) and max_code (647:61)
+   remark #17106: parallel dependence: assumed OUTPUT dependence between tree->freq[node] (648:9) and tree->freq[node] (648:9)
+   remark #17106: parallel dependence: assumed OUTPUT dependence between tree->freq[node] (648:9) and tree->freq[node] (648:9)
+   remark #17106: parallel dependence: assumed OUTPUT dependence between s->depth[node] (649:9) and s->depth[node] (649:9)
+   remark #17106: parallel dependence: assumed OUTPUT dependence between s->depth[node] (649:9) and s->depth[node] (649:9)
+   remark #25427: Loop Statements Reordered
+   remark #25422: Invariant Condition at line 650 hoisted out of this loop
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between max_code (647:55) and max_code (647:61)
+   remark #15346: vector dependence: assumed FLOW dependence between max_code (647:61) and max_code (647:55)
+   remark #15346: vector dependence: assumed FLOW dependence between max_code (647:61) and max_code (647:55)
+   remark #15346: vector dependence: assumed ANTI dependence between max_code (647:55) and max_code (647:61)
+   remark #25439: unrolled with remainder by 2  
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 4
+   remark #25015: Estimate of max trip count of loop=573
+LOOP END
+
+LOOP BEGIN at trees.c(646,5) inlined into trees.c(928,9)
+<Remainder, Predicate Optimized v1>
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+   remark #25015: Estimate of max trip count of loop=573
+LOOP END
+
+LOOP BEGIN at trees.c(646,5) inlined into trees.c(928,9)
+<Predicate Optimized v2>
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between max_code (647:55) and max_code (647:61)
+   remark #15346: vector dependence: assumed FLOW dependence between max_code (647:61) and max_code (647:55)
+   remark #15346: vector dependence: assumed FLOW dependence between max_code (647:61) and max_code (647:55)
+   remark #15346: vector dependence: assumed ANTI dependence between max_code (647:55) and max_code (647:61)
+   remark #25439: unrolled with remainder by 2  
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+   remark #25015: Estimate of max trip count of loop=573
+LOOP END
+
+LOOP BEGIN at trees.c(646,5) inlined into trees.c(928,9)
+<Remainder, Predicate Optimized v2>
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+   remark #25015: Estimate of max trip count of loop=573
+LOOP END
+
+LOOP BEGIN at trees.c(658,5) inlined into trees.c(928,9)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between s->heap[n] (456:13) and s->heap[k] (473:5)
+   remark #17106: parallel dependence: assumed FLOW dependence between s->heap[k] (473:5) and s->heap[n] (456:13)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between s->heap[n] (456:13) and s->heap[k] (473:5)
+   remark #15346: vector dependence: assumed FLOW dependence between s->heap[k] (473:5) and s->heap[n] (456:13)
+   remark #25015: Estimate of max trip count of loop=573
+
+   LOOP BEGIN at trees.c(458,5) inlined into trees.c(928,9)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+   LOOP END
+LOOP END
+
+LOOP BEGIN at trees.c(663,5) inlined into trees.c(928,9)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between s->heap[1] (665:9) and s->heap[k] (473:5)
+   remark #17106: parallel dependence: assumed FLOW dependence between s->heap[k] (473:5) and s->heap[1] (665:9)
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+   remark #25015: Estimate of max trip count of loop=286
+
+   LOOP BEGIN at trees.c(458,5) inlined into trees.c(928,9)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+   LOOP END
+
+   LOOP BEGIN at trees.c(458,5) inlined into trees.c(928,9)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+   LOOP END
+LOOP END
+
+LOOP BEGIN at trees.c(503,5) inlined into trees.c(928,9)
+   remark #17108: loop was not parallelized: insufficient computational work
+   remark #15389: vectorization support: reference s->bl_count[bits] has unaligned access   [ trees.c(503,46) ]
+   remark #15381: vectorization support: unaligned access used inside loop body
+   remark #15305: vectorization support: vector length 8
+   remark #15427: loop was completely unrolled
+   remark #15399: vectorization support: unroll factor set to 2
+   remark #15309: vectorization support: normalized vectorization overhead 0.300
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15451: unmasked unaligned unit stride stores: 1 
+   remark #15475: --- begin vector cost summary ---
+   remark #15476: scalar cost: 2 
+   remark #15477: vector cost: 0.620 
+   remark #15478: estimated potential speedup: 2.460 
+   remark #15488: --- end vector cost summary ---
+LOOP END
+
+LOOP BEGIN at trees.c(510,5) inlined into trees.c(928,9)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between tree->dad[n] (512:9) and tree->dad[n] (514:9)
+   remark #17106: parallel dependence: assumed FLOW dependence between tree->dad[n] (514:9) and tree->dad[n] (512:9)
+   remark #25427: Loop Statements Reordered
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between tree->dad[n] (512:9) and tree->dad[n] (514:9)
+   remark #15346: vector dependence: assumed FLOW dependence between tree->dad[n] (514:9) and tree->dad[n] (512:9)
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+   remark #25015: Estimate of max trip count of loop=573
+LOOP END
+
+LOOP BEGIN at trees.c(526,5) inlined into trees.c(928,9)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between s->bl_count[bits] (534:9) and s->bl_count[max_length] (537:9)
+   remark #17106: parallel dependence: assumed FLOW dependence between s->bl_count[max_length] (537:9) and s->bl_count[bits] (534:9)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between s->bl_count[bits] (534:9) and s->bl_count[max_length] (537:9)
+   remark #15346: vector dependence: assumed FLOW dependence between s->bl_count[max_length] (537:9) and s->bl_count[bits] (534:9)
+
+   LOOP BEGIN at trees.c(534,9) inlined into trees.c(928,9)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15523: loop was not vectorized: loop control variable bits was found, but loop iteration count cannot be computed before executing the loop
+      remark #25478: While Loop Unrolled by 2  
+   LOOP END
+LOOP END
+
+LOOP BEGIN at trees.c(549,5) inlined into trees.c(928,9)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed OUTPUT dependence between s->opt_len (556:17) and s->opt_len (556:17)
+   remark #17106: parallel dependence: assumed OUTPUT dependence between s->opt_len (556:17) and s->opt_len (556:17)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed OUTPUT dependence between s->opt_len (556:17) and s->opt_len (556:17)
+   remark #15346: vector dependence: assumed OUTPUT dependence between s->opt_len (556:17) and s->opt_len (556:17)
+   remark #25015: Estimate of max trip count of loop=16
+
+   LOOP BEGIN at trees.c(551,9) inlined into trees.c(928,9)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15523: loop was not vectorized: loop control variable h was found, but loop iteration count cannot be computed before executing the loop
+      remark #25478: While Loop Unrolled by 2  
+   LOOP END
+LOOP END
+
+LOOP BEGIN at trees.c(585,5) inlined into trees.c(928,9)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between code (586:9) and code (586:9)
+   remark #17106: parallel dependence: assumed FLOW dependence between code (586:9) and code (586:9)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between code (586:9) and code (586:9)
+   remark #15346: vector dependence: assumed FLOW dependence between code (586:9) and code (586:9)
+   remark #25436: completely unrolled by 15  
+LOOP END
+
+LOOP BEGIN at trees.c(596,5) inlined into trees.c(928,9)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ trees.c(597,19) ]
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between next_code[len] (600:40) and next_code[len] (600:40)
+   remark #17106: parallel dependence: assumed FLOW dependence between next_code[len] (600:40) and next_code[len] (600:40)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between next_code[len] (600:40) and next_code[len] (600:40)
+   remark #15346: vector dependence: assumed FLOW dependence between next_code[len] (600:40) and next_code[len] (600:40)
+
+   LOOP BEGIN at trees.c(598,9) inlined into trees.c(928,9)
+      remark #17104: loop was not parallelized: existence of parallel dependence
+      remark #17106: parallel dependence: assumed ANTI dependence between code (1164:9) and code (1165:9)
+      remark #17106: parallel dependence: assumed FLOW dependence between code (1165:9) and code (1164:9)
+      remark #17106: parallel dependence: assumed FLOW dependence between code (1165:9) and code (1164:9)
+      remark #17106: parallel dependence: assumed ANTI dependence between code (1164:9) and code (1165:9)
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+      remark #15346: vector dependence: assumed ANTI dependence between code (1164:9) and code (1165:9)
+      remark #15346: vector dependence: assumed FLOW dependence between code (1165:9) and code (1164:9)
+      remark #15346: vector dependence: assumed FLOW dependence between code (1165:9) and code (1164:9)
+      remark #15346: vector dependence: assumed ANTI dependence between code (1164:9) and code (1165:9)
+   LOOP END
+LOOP END
+
+LOOP BEGIN at trees.c(632,5) inlined into trees.c(932,9)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ trees.c(634,24) ]
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between s->heap_len (634:24) and s->heap_len (634:24)
+   remark #17106: parallel dependence: assumed FLOW dependence between s->heap_len (634:24) and s->heap_len (634:24)
+   remark #17106: parallel dependence: assumed FLOW dependence between s->heap_len (634:24) and s->heap_len (634:24)
+   remark #17106: parallel dependence: assumed ANTI dependence between s->heap_len (634:24) and s->heap_len (634:24)
+   remark #17106: parallel dependence: assumed OUTPUT dependence between s->heap[:] (634:13) and s->heap[:] (634:13)
+   remark #17106: parallel dependence: assumed OUTPUT dependence between s->heap[:] (634:13) and s->heap[:] (634:13)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between s->heap_len (634:24) and s->heap_len (634:24)
+   remark #15346: vector dependence: assumed FLOW dependence between s->heap_len (634:24) and s->heap_len (634:24)
+   remark #15346: vector dependence: assumed FLOW dependence between s->heap_len (634:24) and s->heap_len (634:24)
+   remark #15346: vector dependence: assumed ANTI dependence between s->heap_len (634:24) and s->heap_len (634:24)
+   remark #25439: unrolled with remainder by 2  
+   remark #25015: Estimate of max trip count of loop=573
+LOOP END
+
+LOOP BEGIN at trees.c(632,5) inlined into trees.c(932,9)
+<Remainder>
+   remark #25015: Estimate of max trip count of loop=573
+LOOP END
+
+LOOP BEGIN at trees.c(646,5) inlined into trees.c(932,9)
+<Predicate Optimized v1>
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ trees.c(647,27) ]
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ trees.c(650,9) ]
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between max_code (647:55) and max_code (647:61)
+   remark #17106: parallel dependence: assumed FLOW dependence between max_code (647:61) and max_code (647:55)
+   remark #17106: parallel dependence: assumed FLOW dependence between max_code (647:61) and max_code (647:55)
+   remark #17106: parallel dependence: assumed ANTI dependence between max_code (647:55) and max_code (647:61)
+   remark #17106: parallel dependence: assumed OUTPUT dependence between tree->freq[node] (648:9) and tree->freq[node] (648:9)
+   remark #17106: parallel dependence: assumed OUTPUT dependence between tree->freq[node] (648:9) and tree->freq[node] (648:9)
+   remark #17106: parallel dependence: assumed OUTPUT dependence between s->depth[node] (649:9) and s->depth[node] (649:9)
+   remark #17106: parallel dependence: assumed OUTPUT dependence between s->depth[node] (649:9) and s->depth[node] (649:9)
+   remark #25427: Loop Statements Reordered
+   remark #25422: Invariant Condition at line 650 hoisted out of this loop
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between max_code (647:55) and max_code (647:61)
+   remark #15346: vector dependence: assumed FLOW dependence between max_code (647:61) and max_code (647:55)
+   remark #15346: vector dependence: assumed FLOW dependence between max_code (647:61) and max_code (647:55)
+   remark #15346: vector dependence: assumed ANTI dependence between max_code (647:55) and max_code (647:61)
+   remark #25439: unrolled with remainder by 2  
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 4
+   remark #25015: Estimate of max trip count of loop=573
+LOOP END
+
+LOOP BEGIN at trees.c(646,5) inlined into trees.c(932,9)
+<Remainder, Predicate Optimized v1>
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+   remark #25015: Estimate of max trip count of loop=573
+LOOP END
+
+LOOP BEGIN at trees.c(646,5) inlined into trees.c(932,9)
+<Predicate Optimized v2>
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between max_code (647:55) and max_code (647:61)
+   remark #15346: vector dependence: assumed FLOW dependence between max_code (647:61) and max_code (647:55)
+   remark #15346: vector dependence: assumed FLOW dependence between max_code (647:61) and max_code (647:55)
+   remark #15346: vector dependence: assumed ANTI dependence between max_code (647:55) and max_code (647:61)
+   remark #25439: unrolled with remainder by 2  
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+   remark #25015: Estimate of max trip count of loop=573
+LOOP END
+
+LOOP BEGIN at trees.c(646,5) inlined into trees.c(932,9)
+<Remainder, Predicate Optimized v2>
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+   remark #25015: Estimate of max trip count of loop=573
+LOOP END
+
+LOOP BEGIN at trees.c(658,5) inlined into trees.c(932,9)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between s->heap[n] (456:13) and s->heap[k] (473:5)
+   remark #17106: parallel dependence: assumed FLOW dependence between s->heap[k] (473:5) and s->heap[n] (456:13)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between s->heap[n] (456:13) and s->heap[k] (473:5)
+   remark #15346: vector dependence: assumed FLOW dependence between s->heap[k] (473:5) and s->heap[n] (456:13)
+   remark #25015: Estimate of max trip count of loop=573
+
+   LOOP BEGIN at trees.c(458,5) inlined into trees.c(932,9)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+   LOOP END
+LOOP END
+
+LOOP BEGIN at trees.c(663,5) inlined into trees.c(932,9)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between s->heap[1] (665:9) and s->heap[k] (473:5)
+   remark #17106: parallel dependence: assumed FLOW dependence between s->heap[k] (473:5) and s->heap[1] (665:9)
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+   remark #25015: Estimate of max trip count of loop=286
+
+   LOOP BEGIN at trees.c(458,5) inlined into trees.c(932,9)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+   LOOP END
+
+   LOOP BEGIN at trees.c(458,5) inlined into trees.c(932,9)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+   LOOP END
+LOOP END
+
+LOOP BEGIN at trees.c(503,5) inlined into trees.c(932,9)
+   remark #17108: loop was not parallelized: insufficient computational work
+   remark #15389: vectorization support: reference s->bl_count[bits] has unaligned access   [ trees.c(503,46) ]
+   remark #15381: vectorization support: unaligned access used inside loop body
+   remark #15305: vectorization support: vector length 8
+   remark #15427: loop was completely unrolled
+   remark #15399: vectorization support: unroll factor set to 2
+   remark #15309: vectorization support: normalized vectorization overhead 0.300
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15451: unmasked unaligned unit stride stores: 1 
+   remark #15475: --- begin vector cost summary ---
+   remark #15476: scalar cost: 2 
+   remark #15477: vector cost: 0.620 
+   remark #15478: estimated potential speedup: 2.460 
+   remark #15488: --- end vector cost summary ---
+LOOP END
+
+LOOP BEGIN at trees.c(510,5) inlined into trees.c(932,9)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between tree->dad[n] (512:9) and tree->dad[n] (514:9)
+   remark #17106: parallel dependence: assumed FLOW dependence between tree->dad[n] (514:9) and tree->dad[n] (512:9)
+   remark #25427: Loop Statements Reordered
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between tree->dad[n] (512:9) and tree->dad[n] (514:9)
+   remark #15346: vector dependence: assumed FLOW dependence between tree->dad[n] (514:9) and tree->dad[n] (512:9)
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+   remark #25015: Estimate of max trip count of loop=573
+LOOP END
+
+LOOP BEGIN at trees.c(526,5) inlined into trees.c(932,9)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between s->bl_count[bits] (534:9) and s->bl_count[max_length] (537:9)
+   remark #17106: parallel dependence: assumed FLOW dependence between s->bl_count[max_length] (537:9) and s->bl_count[bits] (534:9)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between s->bl_count[bits] (534:9) and s->bl_count[max_length] (537:9)
+   remark #15346: vector dependence: assumed FLOW dependence between s->bl_count[max_length] (537:9) and s->bl_count[bits] (534:9)
+
+   LOOP BEGIN at trees.c(534,9) inlined into trees.c(932,9)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15523: loop was not vectorized: loop control variable bits was found, but loop iteration count cannot be computed before executing the loop
+      remark #25478: While Loop Unrolled by 2  
+   LOOP END
+LOOP END
+
+LOOP BEGIN at trees.c(549,5) inlined into trees.c(932,9)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed OUTPUT dependence between s->opt_len (556:17) and s->opt_len (556:17)
+   remark #17106: parallel dependence: assumed OUTPUT dependence between s->opt_len (556:17) and s->opt_len (556:17)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed OUTPUT dependence between s->opt_len (556:17) and s->opt_len (556:17)
+   remark #15346: vector dependence: assumed OUTPUT dependence between s->opt_len (556:17) and s->opt_len (556:17)
+   remark #25015: Estimate of max trip count of loop=16
+
+   LOOP BEGIN at trees.c(551,9) inlined into trees.c(932,9)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15523: loop was not vectorized: loop control variable h was found, but loop iteration count cannot be computed before executing the loop
+      remark #25478: While Loop Unrolled by 2  
+   LOOP END
+LOOP END
+
+LOOP BEGIN at trees.c(585,5) inlined into trees.c(932,9)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between code (586:9) and code (586:9)
+   remark #17106: parallel dependence: assumed FLOW dependence between code (586:9) and code (586:9)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between code (586:9) and code (586:9)
+   remark #15346: vector dependence: assumed FLOW dependence between code (586:9) and code (586:9)
+   remark #25436: completely unrolled by 15  
+LOOP END
+
+LOOP BEGIN at trees.c(596,5) inlined into trees.c(932,9)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ trees.c(597,19) ]
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between next_code[len] (600:40) and next_code[len] (600:40)
+   remark #17106: parallel dependence: assumed FLOW dependence between next_code[len] (600:40) and next_code[len] (600:40)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between next_code[len] (600:40) and next_code[len] (600:40)
+   remark #15346: vector dependence: assumed FLOW dependence between next_code[len] (600:40) and next_code[len] (600:40)
+
+   LOOP BEGIN at trees.c(598,9) inlined into trees.c(932,9)
+      remark #17104: loop was not parallelized: existence of parallel dependence
+      remark #17106: parallel dependence: assumed ANTI dependence between code (1164:9) and code (1165:9)
+      remark #17106: parallel dependence: assumed FLOW dependence between code (1165:9) and code (1164:9)
+      remark #17106: parallel dependence: assumed FLOW dependence between code (1165:9) and code (1164:9)
+      remark #17106: parallel dependence: assumed ANTI dependence between code (1164:9) and code (1165:9)
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+      remark #15346: vector dependence: assumed ANTI dependence between code (1164:9) and code (1165:9)
+      remark #15346: vector dependence: assumed FLOW dependence between code (1165:9) and code (1164:9)
+      remark #15346: vector dependence: assumed FLOW dependence between code (1165:9) and code (1164:9)
+      remark #15346: vector dependence: assumed ANTI dependence between code (1164:9) and code (1165:9)
+   LOOP END
+LOOP END
+
+LOOP BEGIN at trees.c(719,5) inlined into trees.c(942,23)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed OUTPUT dependence between s->freq[curlen] (724:13) and s->freq[18] (731:13)
+   remark #17106: parallel dependence: assumed OUTPUT dependence between s->freq[18] (731:13) and s->freq[curlen] (724:13)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed OUTPUT dependence between s->freq[curlen] (724:13) and s->freq[18] (731:13)
+   remark #15346: vector dependence: assumed OUTPUT dependence between s->freq[18] (731:13) and s->freq[curlen] (724:13)
+LOOP END
+
+LOOP BEGIN at trees.c(719,5) inlined into trees.c(942,23)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed OUTPUT dependence between s->freq[curlen] (724:13) and s->freq[18] (731:13)
+   remark #17106: parallel dependence: assumed OUTPUT dependence between s->freq[18] (731:13) and s->freq[curlen] (724:13)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed OUTPUT dependence between s->freq[curlen] (724:13) and s->freq[18] (731:13)
+   remark #15346: vector dependence: assumed OUTPUT dependence between s->freq[18] (731:13) and s->freq[curlen] (724:13)
+LOOP END
+
+LOOP BEGIN at trees.c(632,5) inlined into trees.c(942,23)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ trees.c(634,24) ]
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed OUTPUT dependence between s->heap[:] (634:13) and s->heap[:] (634:13)
+   remark #17106: parallel dependence: assumed OUTPUT dependence between s->heap[:] (634:13) and s->heap[:] (634:13)
+   remark #17106: parallel dependence: assumed ANTI dependence between s->heap_len (634:24) and s->heap_len (634:24)
+   remark #17106: parallel dependence: assumed FLOW dependence between s->heap_len (634:24) and s->heap_len (634:24)
+   remark #17106: parallel dependence: assumed FLOW dependence between s->heap_len (634:24) and s->heap_len (634:24)
+   remark #17106: parallel dependence: assumed ANTI dependence between s->heap_len (634:24) and s->heap_len (634:24)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between s->heap_len (634:24) and s->heap_len (634:24)
+   remark #15346: vector dependence: assumed FLOW dependence between s->heap_len (634:24) and s->heap_len (634:24)
+   remark #15346: vector dependence: assumed FLOW dependence between s->heap_len (634:24) and s->heap_len (634:24)
+   remark #15346: vector dependence: assumed ANTI dependence between s->heap_len (634:24) and s->heap_len (634:24)
+   remark #25439: unrolled with remainder by 2  
+   remark #25015: Estimate of max trip count of loop=573
+LOOP END
+
+LOOP BEGIN at trees.c(632,5) inlined into trees.c(942,23)
+<Remainder>
+   remark #25015: Estimate of max trip count of loop=573
+LOOP END
+
+LOOP BEGIN at trees.c(646,5) inlined into trees.c(942,23)
+<Predicate Optimized v1>
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ trees.c(650,34) ]
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ trees.c(647,27) ]
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ trees.c(650,9) ]
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between max_code (647:55) and max_code (647:61)
+   remark #17106: parallel dependence: assumed FLOW dependence between max_code (647:61) and max_code (647:55)
+   remark #17106: parallel dependence: assumed FLOW dependence between max_code (647:61) and max_code (647:55)
+   remark #17106: parallel dependence: assumed ANTI dependence between max_code (647:55) and max_code (647:61)
+   remark #17106: parallel dependence: assumed OUTPUT dependence between tree->freq[node] (648:9) and tree->freq[node] (648:9)
+   remark #17106: parallel dependence: assumed OUTPUT dependence between tree->freq[node] (648:9) and tree->freq[node] (648:9)
+   remark #17106: parallel dependence: assumed OUTPUT dependence between s->depth[node] (649:9) and s->depth[node] (649:9)
+   remark #17106: parallel dependence: assumed OUTPUT dependence between s->depth[node] (649:9) and s->depth[node] (649:9)
+   remark #25422: Invariant Condition at line 650 hoisted out of this loop
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between max_code (647:55) and max_code (647:61)
+   remark #15346: vector dependence: assumed FLOW dependence between max_code (647:61) and max_code (647:55)
+   remark #15346: vector dependence: assumed FLOW dependence between max_code (647:61) and max_code (647:55)
+   remark #15346: vector dependence: assumed ANTI dependence between max_code (647:55) and max_code (647:61)
+   remark #25439: unrolled with remainder by 2  
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+   remark #25015: Estimate of max trip count of loop=573
+LOOP END
+
+LOOP BEGIN at trees.c(646,5) inlined into trees.c(942,23)
+<Remainder, Predicate Optimized v1>
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+   remark #25015: Estimate of max trip count of loop=573
+LOOP END
+
+LOOP BEGIN at trees.c(646,5) inlined into trees.c(942,23)
+<Predicate Optimized v2>
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between max_code (647:55) and max_code (647:61)
+   remark #15346: vector dependence: assumed FLOW dependence between max_code (647:61) and max_code (647:55)
+   remark #15346: vector dependence: assumed FLOW dependence between max_code (647:61) and max_code (647:55)
+   remark #15346: vector dependence: assumed ANTI dependence between max_code (647:55) and max_code (647:61)
+   remark #25439: unrolled with remainder by 2  
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+   remark #25015: Estimate of max trip count of loop=573
+LOOP END
+
+LOOP BEGIN at trees.c(646,5) inlined into trees.c(942,23)
+<Remainder, Predicate Optimized v2>
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+   remark #25015: Estimate of max trip count of loop=573
+LOOP END
+
+LOOP BEGIN at trees.c(658,5) inlined into trees.c(942,23)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between s->heap[n] (456:13) and s->heap[k] (473:5)
+   remark #17106: parallel dependence: assumed FLOW dependence between s->heap[k] (473:5) and s->heap[n] (456:13)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between s->heap[n] (456:13) and s->heap[k] (473:5)
+   remark #15346: vector dependence: assumed FLOW dependence between s->heap[k] (473:5) and s->heap[n] (456:13)
+   remark #25015: Estimate of max trip count of loop=573
+
+   LOOP BEGIN at trees.c(458,5) inlined into trees.c(942,23)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+   LOOP END
+LOOP END
+
+LOOP BEGIN at trees.c(663,5) inlined into trees.c(942,23)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between s->heap[1] (665:9) and s->heap[k] (473:5)
+   remark #17106: parallel dependence: assumed FLOW dependence between s->heap[k] (473:5) and s->heap[1] (665:9)
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+   remark #25015: Estimate of max trip count of loop=286
+
+   LOOP BEGIN at trees.c(458,5) inlined into trees.c(942,23)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+   LOOP END
+
+   LOOP BEGIN at trees.c(458,5) inlined into trees.c(942,23)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+   LOOP END
+LOOP END
+
+LOOP BEGIN at trees.c(503,5) inlined into trees.c(942,23)
+   remark #17108: loop was not parallelized: insufficient computational work
+   remark #15389: vectorization support: reference s->bl_count[bits] has unaligned access   [ trees.c(503,46) ]
+   remark #15381: vectorization support: unaligned access used inside loop body
+   remark #15305: vectorization support: vector length 8
+   remark #15427: loop was completely unrolled
+   remark #15399: vectorization support: unroll factor set to 2
+   remark #15309: vectorization support: normalized vectorization overhead 0.300
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15451: unmasked unaligned unit stride stores: 1 
+   remark #15475: --- begin vector cost summary ---
+   remark #15476: scalar cost: 2 
+   remark #15477: vector cost: 0.620 
+   remark #15478: estimated potential speedup: 2.460 
+   remark #15488: --- end vector cost summary ---
+LOOP END
+
+LOOP BEGIN at trees.c(510,5) inlined into trees.c(942,23)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between tree->dad[n] (512:9) and tree->dad[n] (514:9)
+   remark #17106: parallel dependence: assumed FLOW dependence between tree->dad[n] (514:9) and tree->dad[n] (512:9)
+   remark #25427: Loop Statements Reordered
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between tree->dad[n] (512:9) and tree->dad[n] (514:9)
+   remark #15346: vector dependence: assumed FLOW dependence between tree->dad[n] (514:9) and tree->dad[n] (512:9)
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+   remark #25015: Estimate of max trip count of loop=573
+LOOP END
+
+LOOP BEGIN at trees.c(526,5) inlined into trees.c(942,23)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between s->bl_count[bits] (534:9) and s->bl_count[max_length] (537:9)
+   remark #17106: parallel dependence: assumed FLOW dependence between s->bl_count[max_length] (537:9) and s->bl_count[bits] (534:9)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between s->bl_count[bits] (534:9) and s->bl_count[max_length] (537:9)
+   remark #15346: vector dependence: assumed FLOW dependence between s->bl_count[max_length] (537:9) and s->bl_count[bits] (534:9)
+
+   LOOP BEGIN at trees.c(534,9) inlined into trees.c(942,23)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15523: loop was not vectorized: loop control variable bits was found, but loop iteration count cannot be computed before executing the loop
+      remark #25478: While Loop Unrolled by 2  
+   LOOP END
+LOOP END
+
+LOOP BEGIN at trees.c(549,5) inlined into trees.c(942,23)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between tree->dad[m] (556:17) and tree->dad[m] (557:17)
+   remark #17106: parallel dependence: assumed FLOW dependence between tree->dad[m] (557:17) and tree->dad[m] (556:17)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between tree->dad[m] (556:17) and tree->dad[m] (557:17)
+   remark #15346: vector dependence: assumed FLOW dependence between tree->dad[m] (557:17) and tree->dad[m] (556:17)
+   remark #25015: Estimate of max trip count of loop=16
+
+   LOOP BEGIN at trees.c(551,9) inlined into trees.c(942,23)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15523: loop was not vectorized: loop control variable h was found, but loop iteration count cannot be computed before executing the loop
+      remark #25478: While Loop Unrolled by 2  
+   LOOP END
+LOOP END
+
+LOOP BEGIN at trees.c(585,5) inlined into trees.c(942,23)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between code (586:9) and code (586:9)
+   remark #17106: parallel dependence: assumed FLOW dependence between code (586:9) and code (586:9)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between code (586:9) and code (586:9)
+   remark #15346: vector dependence: assumed FLOW dependence between code (586:9) and code (586:9)
+   remark #25436: completely unrolled by 15  
+LOOP END
+
+LOOP BEGIN at trees.c(596,5) inlined into trees.c(942,23)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ trees.c(597,19) ]
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between next_code[len] (600:40) and next_code[len] (600:40)
+   remark #17106: parallel dependence: assumed FLOW dependence between next_code[len] (600:40) and next_code[len] (600:40)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between next_code[len] (600:40) and next_code[len] (600:40)
+   remark #15346: vector dependence: assumed FLOW dependence between next_code[len] (600:40) and next_code[len] (600:40)
+
+   LOOP BEGIN at trees.c(598,9) inlined into trees.c(942,23)
+      remark #17104: loop was not parallelized: existence of parallel dependence
+      remark #17106: parallel dependence: assumed ANTI dependence between code (1164:9) and code (1165:9)
+      remark #17106: parallel dependence: assumed FLOW dependence between code (1165:9) and code (1164:9)
+      remark #17106: parallel dependence: assumed FLOW dependence between code (1165:9) and code (1164:9)
+      remark #17106: parallel dependence: assumed ANTI dependence between code (1164:9) and code (1165:9)
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+      remark #15346: vector dependence: assumed ANTI dependence between code (1164:9) and code (1165:9)
+      remark #15346: vector dependence: assumed FLOW dependence between code (1165:9) and code (1164:9)
+      remark #15346: vector dependence: assumed FLOW dependence between code (1165:9) and code (1164:9)
+      remark #15346: vector dependence: assumed ANTI dependence between code (1164:9) and code (1165:9)
+   LOOP END
+LOOP END
+
+LOOP BEGIN at trees.c(818,5) inlined into trees.c(942,23)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria   [ trees.c(818,54) ]
+LOOP END
+
+LOOP BEGIN at trees.c(847,5) inlined into trees.c(986,9)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed OUTPUT dependence between s->bi_buf (849:9) and s->bi_buf (849:9)
+   remark #17106: parallel dependence: assumed OUTPUT dependence between s->bi_buf (849:9) and s->bi_buf (849:9)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed OUTPUT dependence between s->bi_buf (849:9) and s->bi_buf (849:9)
+   remark #15346: vector dependence: assumed OUTPUT dependence between s->bi_buf (849:9) and s->bi_buf (849:9)
+   remark #25439: unrolled with remainder by 16  
+   remark #25015: Estimate of max trip count of loop=19
+LOOP END
+
+LOOP BEGIN at trees.c(847,5) inlined into trees.c(986,9)
+<Remainder>
+   remark #25015: Estimate of max trip count of loop=19
+LOOP END
+
+LOOP BEGIN at trees.c(764,5) inlined into trees.c(986,9)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between tree->dad[n+1] (765:27) and *(s->pending_buf+s->pending) (782:52)
+   remark #17106: parallel dependence: assumed FLOW dependence between *(s->pending_buf+s->pending) (782:52) and tree->dad[n+1] (765:27)
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at trees.c(768,16) inlined into trees.c(986,9)
+      remark #17104: loop was not parallelized: existence of parallel dependence
+      remark #17106: parallel dependence: assumed OUTPUT dependence between s->bi_buf (769:18) and s->bi_buf (769:18)
+      remark #17106: parallel dependence: assumed OUTPUT dependence between s->bi_buf (769:18) and s->bi_buf (769:18)
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+      remark #15346: vector dependence: assumed OUTPUT dependence between s->bi_buf (769:18) and s->bi_buf (769:18)
+      remark #15346: vector dependence: assumed OUTPUT dependence between s->bi_buf (769:18) and s->bi_buf (769:18)
+      remark #25439: unrolled with remainder by 2  
+   LOOP END
+
+   LOOP BEGIN at trees.c(768,16) inlined into trees.c(986,9)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at trees.c(764,5) inlined into trees.c(986,9)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between tree->dad[n+1] (765:27) and *(s->pending_buf+s->pending) (782:52)
+   remark #17106: parallel dependence: assumed FLOW dependence between *(s->pending_buf+s->pending) (782:52) and tree->dad[n+1] (765:27)
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at trees.c(768,16) inlined into trees.c(986,9)
+      remark #17104: loop was not parallelized: existence of parallel dependence
+      remark #17106: parallel dependence: assumed OUTPUT dependence between s->bi_buf (769:18) and s->bi_buf (769:18)
+      remark #17106: parallel dependence: assumed OUTPUT dependence between s->bi_buf (769:18) and s->bi_buf (769:18)
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+      remark #15346: vector dependence: assumed OUTPUT dependence between s->bi_buf (769:18) and s->bi_buf (769:18)
+      remark #15346: vector dependence: assumed OUTPUT dependence between s->bi_buf (769:18) and s->bi_buf (769:18)
+      remark #25439: unrolled with remainder by 2  
+   LOOP END
+
+   LOOP BEGIN at trees.c(768,16) inlined into trees.c(986,9)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at trees.c(1075,5) inlined into trees.c(988,9)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15523: loop was not vectorized: loop control variable lx was found, but loop iteration count cannot be computed before executing the loop
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+LOOP END
+
+LOOP BEGIN at trees.c(1075,5) inlined into trees.c(979,9)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15523: loop was not vectorized: loop control variable lx was found, but loop iteration count cannot be computed before executing the loop
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+LOOP END
+
+LOOP BEGIN at trees.c(413,5) inlined into trees.c(998,5)
+   remark #17108: loop was not parallelized: insufficient computational work
+   remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+   remark #15329: vectorization support: non-unit strided store was emulated for the variable <s->freq[n]>, stride is 2   [ trees.c(413,36) ]
+   remark #15305: vectorization support: vector length 2
+   remark #15399: vectorization support: unroll factor set to 4
+   remark #15453: unmasked strided stores: 1 
+   remark #15475: --- begin vector cost summary ---
+   remark #15476: scalar cost: 2 
+   remark #15477: vector cost: 3.000 
+   remark #15478: estimated potential speedup: 0.670 
+   remark #15488: --- end vector cost summary ---
+   remark #25438: unrolled without remainder by 2  
+   remark #25015: Estimate of max trip count of loop=286
+LOOP END
+
+LOOP BEGIN at trees.c(414,5) inlined into trees.c(998,5)
+   remark #17108: loop was not parallelized: insufficient computational work
+   remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+   remark #15329: vectorization support: non-unit strided store was emulated for the variable <s->freq[n]>, stride is 2   [ trees.c(414,36) ]
+   remark #15305: vectorization support: vector length 2
+   remark #15453: unmasked strided stores: 1 
+   remark #15475: --- begin vector cost summary ---
+   remark #15476: scalar cost: 2 
+   remark #15477: vector cost: 3.000 
+   remark #15478: estimated potential speedup: 0.660 
+   remark #15488: --- end vector cost summary ---
+   remark #25438: unrolled without remainder by 2  
+   remark #25015: Estimate of max trip count of loop=30
+LOOP END
+
+LOOP BEGIN at trees.c(415,5) inlined into trees.c(998,5)
+   remark #17108: loop was not parallelized: insufficient computational work
+   remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+   remark #15329: vectorization support: non-unit strided store was emulated for the variable <s->freq[n]>, stride is 2   [ trees.c(415,36) ]
+   remark #15305: vectorization support: vector length 2
+   remark #15399: vectorization support: unroll factor set to 9
+   remark #15453: unmasked strided stores: 1 
+   remark #15475: --- begin vector cost summary ---
+   remark #15476: scalar cost: 2 
+   remark #15477: vector cost: 3.000 
+   remark #15478: estimated potential speedup: 0.670 
+   remark #15488: --- end vector cost summary ---
+   remark #25439: unrolled with remainder by 2  
+   remark #25015: Estimate of max trip count of loop=19
+LOOP END
+
+LOOP BEGIN at trees.c(415,5) inlined into trees.c(998,5)
+<Remainder>
+   remark #25015: Estimate of max trip count of loop=19
+LOOP END
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at trees.c(1143,5) inlined into trees.c(925,34)
+   remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+   remark #17102: loop was not parallelized: not a parallelization candidate
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+trees.c(916,1):remark #34051: REGISTER ALLOCATION : [_tr_flush_block] trees.c:916
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   16[ rax rdx rcx rbx rbp rsi rdi r8-r15 zmm0]
+        
+    Routine temporaries
+        Total         :    2073
+            Global    :     515
+            Local     :    1558
+        Regenerable   :      21
+        Spilled       :      57
+        
+    Routine stack
+        Variables     :      96 bytes*
+            Reads     :       3 [2.77e+00 ~ 0.0%]
+            Writes    :      48 [4.06e+01 ~ 0.5%]
+        Spills        :     408 bytes*
+            Reads     :     138 [2.12e+02 ~ 2.8%]
+            Writes    :     107 [2.64e+02 ~ 3.5%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: _tr_tally()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (_tr_tally()) [14/22=63.6%] trees.c(1018,1)
+
+
+    Report from: Code generation optimizations [cg]
+
+trees.c(1018,1):remark #34051: REGISTER ALLOCATION : [_tr_tally] trees.c:1018
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    6[ rax rdx rcx rsi rdi r8]
+        
+    Routine temporaries
+        Total         :      30
+            Global    :      11
+            Local     :      19
+        Regenerable   :       1
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: compress_block()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (compress_block()) trees.c(1068,1)
+
+===========================================================================
+
+Begin optimization report for: detect_data_type()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (detect_data_type()) trees.c(1126,1)
+
+===========================================================================
+
+Begin optimization report for: bi_reverse()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (bi_reverse()) trees.c(1161,1)
+
+===========================================================================
+
+Begin optimization report for: bi_flush()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (bi_flush()) trees.c(1175,1)
+
+===========================================================================
+
+Begin optimization report for: bi_windup()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (bi_windup()) trees.c(1192,1)
+
+===========================================================================
+
+Begin optimization report for: init_block()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (init_block()) trees.c(409,1)
+
+===========================================================================
+
+Begin optimization report for: _tr_init()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (_tr_init()) [21/22=95.5%] trees.c(381,1)
+  -> DELETED: (382,5) tr_static_init() (isz = 0) (sz = 2)
+  -> INLINE: (401,5) init_block() (isz = 39) (sz = 44)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at trees.c(413,5) inlined into trees.c(401,5)
+   remark #17108: loop was not parallelized: insufficient computational work
+   remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+   remark #15329: vectorization support: non-unit strided store was emulated for the variable <s->freq[n]>, stride is 2   [ trees.c(413,36) ]
+   remark #15305: vectorization support: vector length 2
+   remark #15399: vectorization support: unroll factor set to 4
+   remark #15453: unmasked strided stores: 1 
+   remark #15475: --- begin vector cost summary ---
+   remark #15476: scalar cost: 2 
+   remark #15477: vector cost: 3.000 
+   remark #15478: estimated potential speedup: 0.670 
+   remark #15488: --- end vector cost summary ---
+   remark #25438: unrolled without remainder by 2  
+   remark #25015: Estimate of max trip count of loop=286
+LOOP END
+
+LOOP BEGIN at trees.c(414,5) inlined into trees.c(401,5)
+   remark #17108: loop was not parallelized: insufficient computational work
+   remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+   remark #15329: vectorization support: non-unit strided store was emulated for the variable <s->freq[n]>, stride is 2   [ trees.c(414,36) ]
+   remark #15305: vectorization support: vector length 2
+   remark #15453: unmasked strided stores: 1 
+   remark #15475: --- begin vector cost summary ---
+   remark #15476: scalar cost: 2 
+   remark #15477: vector cost: 3.000 
+   remark #15478: estimated potential speedup: 0.660 
+   remark #15488: --- end vector cost summary ---
+   remark #25438: unrolled without remainder by 2  
+   remark #25015: Estimate of max trip count of loop=30
+LOOP END
+
+LOOP BEGIN at trees.c(415,5) inlined into trees.c(401,5)
+   remark #17108: loop was not parallelized: insufficient computational work
+   remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+   remark #15329: vectorization support: non-unit strided store was emulated for the variable <s->freq[n]>, stride is 2   [ trees.c(415,36) ]
+   remark #15305: vectorization support: vector length 2
+   remark #15399: vectorization support: unroll factor set to 9
+   remark #15453: unmasked strided stores: 1 
+   remark #15475: --- begin vector cost summary ---
+   remark #15476: scalar cost: 2 
+   remark #15477: vector cost: 3.000 
+   remark #15478: estimated potential speedup: 0.670 
+   remark #15488: --- end vector cost summary ---
+   remark #25439: unrolled with remainder by 2  
+   remark #25015: Estimate of max trip count of loop=19
+LOOP END
+
+LOOP BEGIN at trees.c(415,5) inlined into trees.c(401,5)
+<Remainder>
+   remark #25015: Estimate of max trip count of loop=19
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+trees.c(381,1):remark #34051: REGISTER ALLOCATION : [_tr_init] trees.c:381
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    4[ rax rdx rcx rdi]
+        
+    Routine temporaries
+        Total         :      17
+            Global    :      12
+            Local     :       5
+        Regenerable   :       3
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: tr_static_init()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (tr_static_init()) trees.c(233,1)
+
+===========================================================================

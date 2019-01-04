@@ -1,0 +1,294 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+Intel(R) C Intel(R) 64 Compiler for applications running on Intel(R) 64, Version 19.0.1.144 Build 20181018
+
+Compiler options: -O3 -diag-disable=10013,10385,10237,10346 -fabi-version=13 -falign-functions -falign-loops -fbuiltin -fdata-sections -ffunction-sections -ffat-lto-objects -fpermissive -gcc-name=gcc.intel -gnu-prefix=x86_64-linux-gnu- -gxx-name=g++.intel -inline-level=2 -inline-min-caller-growth=0 -ipo -march=native -no-inline-max-per-compile -no-inline-max-per-routine -no-inline-max-size -no-inline-max-total-size -par-schedule-auto -parallel -qopt-matmul -qopt-mem-layout-trans -qopt-multi-version-aggressive -qopt-prefetch -qoverride-limits -static-intel -qopt-report=5 -qno-opt-report-embed -g -Wformat -Wformat-security -Wall -O3 -fpic -qopt-report-file=objs/adler32.o.optrpt -D_FORTIFY_SOURCE=2 -D_REENTRANT -DUNALIGNED_OK -D_LARGEFILE64_SOURCE=1 -DPIC -c -o objs/adler32.o -Wl,--as-needed,--relax,--gc-sections,-O,2 -pipe
+
+    Report from: Interprocedural optimizations [ipo]
+
+  WHOLE PROGRAM (SAFE) [EITHER METHOD]: false
+  WHOLE PROGRAM (SEEN) [TABLE METHOD]: false
+  WHOLE PROGRAM (READ) [OBJECT READER METHOD]: false
+
+INLINING OPTION VALUES:
+  -inline-factor: 100
+  -inline-min-size: 30
+  -inline-max-size: disabled (user-specified)
+  -inline-max-total-size: disabled (user-specified)
+  -inline-max-per-routine: disabled (user-specified)
+  -inline-max-per-compile: disabled (user-specified)
+
+In the inlining report below:
+   "sz" refers to the "size" of the routine. The smaller a routine's size,
+      the more likely it is to be inlined.
+   "isz" refers to the "inlined size" of the routine. This is the amount
+      the calling routine will grow if the called routine is inlined into it.
+      The compiler generally limits the amount a routine can grow by having
+      routines inlined into it.
+
+Begin optimization report for: adler32()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (adler32()) [1/5=20.0%] adler32.c(138,1)
+  -> (139,12) adler32_z() (isz = 340) (sz = 354)
+     [[ Unable to inline callsite  <1>]]
+
+
+    Report from: Code generation optimizations [cg]
+
+adler32.c(138,1):remark #34051: REGISTER ALLOCATION : [adler32] adler32.c:138
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    3[ rdx rsi rdi]
+        
+    Routine temporaries
+        Total         :      16
+            Global    :       0
+            Local     :      16
+        Regenerable   :       0
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: adler32_z()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (adler32_z()) [2/5=40.0%] adler32.c(67,1)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at adler32.c(92,9)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between adler (93:13) and adler (93:13)
+   remark #17106: parallel dependence: assumed FLOW dependence between adler (93:13) and adler (93:13)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between adler (93:13) and adler (93:13)
+   remark #15346: vector dependence: assumed FLOW dependence between adler (93:13) and adler (93:13)
+   remark #25439: unrolled with remainder by 2  
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+   remark #25457: Number of partial sums replaced: 1
+LOOP END
+
+LOOP BEGIN at adler32.c(92,9)
+<Remainder>
+LOOP END
+
+LOOP BEGIN at adler32.c(103,5)
+   remark #25096: Loop Interchange not done due to: Imperfect Loop Nest (Either at Source or due to other Compiler Transformations)
+   remark #25452: Original Order found to be proper, but by a close margin
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between adler (107:13) and adler (107:13)
+   remark #17106: parallel dependence: assumed FLOW dependence between adler (107:13) and adler (107:13)
+   remark #17106: parallel dependence: assumed FLOW dependence between adler (107:13) and adler (107:13)
+   remark #17106: parallel dependence: assumed ANTI dependence between adler (107:13) and adler (107:13)
+   remark #17106: parallel dependence: assumed ANTI dependence between adler (107:13) and adler (110:9)
+   remark #17106: parallel dependence: assumed FLOW dependence between adler (110:9) and adler (107:13)
+   remark #17106: parallel dependence: assumed FLOW dependence between adler (110:9) and adler (107:13)
+   remark #17106: parallel dependence: assumed ANTI dependence between adler (107:13) and adler (110:9)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between adler (107:13) and adler (107:13)
+   remark #15346: vector dependence: assumed FLOW dependence between adler (107:13) and adler (107:13)
+   remark #15346: vector dependence: assumed FLOW dependence between adler (107:13) and adler (107:13)
+   remark #15346: vector dependence: assumed ANTI dependence between adler (107:13) and adler (107:13)
+   remark #15346: vector dependence: assumed ANTI dependence between adler (107:13) and adler (110:9)
+   remark #15346: vector dependence: assumed FLOW dependence between adler (110:9) and adler (107:13)
+   remark #15346: vector dependence: assumed FLOW dependence between adler (110:9) and adler (107:13)
+   remark #15346: vector dependence: assumed ANTI dependence between adler (107:13) and adler (110:9)
+
+   LOOP BEGIN at adler32.c(105,9)
+      remark #17104: loop was not parallelized: existence of parallel dependence
+      remark #17106: parallel dependence: assumed ANTI dependence between adler (107:13) and adler (107:13)
+      remark #17106: parallel dependence: assumed FLOW dependence between adler (107:13) and adler (107:13)
+      remark #17106: parallel dependence: assumed FLOW dependence between adler (107:13) and adler (107:13)
+      remark #17106: parallel dependence: assumed ANTI dependence between adler (107:13) and adler (107:13)
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+      remark #15346: vector dependence: assumed ANTI dependence between adler (107:13) and adler (107:13)
+      remark #15346: vector dependence: assumed FLOW dependence between adler (107:13) and adler (107:13)
+      remark #15346: vector dependence: assumed FLOW dependence between adler (107:13) and adler (107:13)
+      remark #15346: vector dependence: assumed ANTI dependence between adler (107:13) and adler (107:13)
+   LOOP END
+LOOP END
+
+LOOP BEGIN at adler32.c(116,9)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between adler (118:13) and adler (118:13)
+   remark #17106: parallel dependence: assumed FLOW dependence between adler (118:13) and adler (118:13)
+   remark #17106: parallel dependence: assumed FLOW dependence between adler (118:13) and adler (118:13)
+   remark #17106: parallel dependence: assumed ANTI dependence between adler (118:13) and adler (118:13)
+   remark #25427: Loop Statements Reordered
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between adler (118:13) and adler (118:13)
+   remark #15346: vector dependence: assumed FLOW dependence between adler (118:13) and adler (118:13)
+   remark #15346: vector dependence: assumed FLOW dependence between adler (118:13) and adler (118:13)
+   remark #15346: vector dependence: assumed ANTI dependence between adler (118:13) and adler (118:13)
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 2
+LOOP END
+
+LOOP BEGIN at adler32.c(121,9)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between adler (122:13) and adler (122:13)
+   remark #17106: parallel dependence: assumed FLOW dependence between adler (122:13) and adler (122:13)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between adler (122:13) and adler (122:13)
+   remark #15346: vector dependence: assumed FLOW dependence between adler (122:13) and adler (122:13)
+   remark #25439: unrolled with remainder by 2  
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+   remark #25457: Number of partial sums replaced: 1
+LOOP END
+
+LOOP BEGIN at adler32.c(121,9)
+<Remainder>
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+adler32.c(67,1):remark #34051: REGISTER ALLOCATION : [adler32_z] adler32.c:67
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   11[ rax rdx rcx rbx rbp rsi rdi r8-r11]
+        
+    Routine temporaries
+        Total         :     202
+            Global    :      31
+            Local     :     171
+        Regenerable   :       6
+        Spilled       :       2
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :      16 bytes*
+            Reads     :       2 [1.62e-01 ~ 0.0%]
+            Writes    :       2 [1.62e-01 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: adler32_combine_()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (adler32_combine_()) adler32.c(147,1)
+
+===========================================================================
+
+Begin optimization report for: adler32_combine()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (adler32_combine()) [4/5=80.0%] adler32.c(176,1)
+  -> INLINE: (177,12) adler32_combine_() (isz = 41) (sz = 53)
+
+
+    Report from: Code generation optimizations [cg]
+
+adler32.c(176,1):remark #34051: REGISTER ALLOCATION : [adler32_combine] adler32.c:176
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    9[ rax rdx rcx rsi rdi r8-r11]
+        
+    Routine temporaries
+        Total         :      58
+            Global    :      13
+            Local     :      45
+        Regenerable   :       5
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: adler32_combine64()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (adler32_combine64()) [5/5=100.0%] adler32.c(184,1)
+  -> INLINE: (185,12) adler32_combine_() (isz = 41) (sz = 53)
+
+
+    Report from: Code generation optimizations [cg]
+
+adler32.c(184,1):remark #34051: REGISTER ALLOCATION : [adler32_combine64] adler32.c:184
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    9[ rax rdx rcx rsi rdi r8-r11]
+        
+    Routine temporaries
+        Total         :      58
+            Global    :      13
+            Local     :      45
+        Regenerable   :       5
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINING FOOTNOTES:
+
+<1> Inlining the function will lead to incorrect program behavior.
+

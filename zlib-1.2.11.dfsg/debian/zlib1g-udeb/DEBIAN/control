@@ -1,0 +1,12 @@
+Package: zlib1g-udeb
+Source: zlib
+Version: 1:1.2.11.dfsg-1
+Architecture: amd64
+Maintainer: Mark Brown <broonie@debian.org>
+Installed-Size: 931
+Section: debian-installer
+Priority: optional
+Description: compression library - runtime for Debian installer
+ zlib is a library implementing the deflate compression method found
+ in gzip and PKZIP.  This minimal package includes the shared library
+ for use with the Debian installer.

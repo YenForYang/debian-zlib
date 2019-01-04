@@ -1,0 +1,785 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+Intel(R) C Intel(R) 64 Compiler for applications running on Intel(R) 64, Version 19.0.1.144 Build 20181018
+
+Compiler options: -I. -O3 -diag-disable=10013,10385,10237,10346 -fabi-version=13 -falign-functions -falign-loops -fbuiltin -fdata-sections -ffunction-sections -ffat-lto-objects -fpermissive -gcc-name=gcc.intel -gnu-prefix=x86_64-linux-gnu- -gxx-name=g++.intel -inline-level=2 -inline-min-caller-growth=0 -ipo -march=native -no-inline-max-per-compile -no-inline-max-per-routine -no-inline-max-size -no-inline-max-total-size -par-schedule-auto -parallel -qopt-matmul -qopt-mem-layout-trans -qopt-multi-version-aggressive -qopt-prefetch -qoverride-limits -static-intel -qopt-report=5 -qno-opt-report-embed -g -Wformat -Wformat-security -Wall -O3 -qopt-report-file=minigzip64.o.optrpt -D_FORTIFY_SOURCE=2 -D_REENTRANT -DUNALIGNED_OK -D_LARGEFILE64_SOURCE=1 -D_FILE_OFFSET_BITS=64 -c -o minigzip64.o -Wl,--as-needed,--relax,--gc-sections,-O,2 -pipe
+
+    Report from: Interprocedural optimizations [ipo]
+
+  WHOLE PROGRAM (SAFE) [EITHER METHOD]: false
+  WHOLE PROGRAM (SEEN) [TABLE METHOD]: false
+  WHOLE PROGRAM (READ) [OBJECT READER METHOD]: false
+
+INLINING OPTION VALUES:
+  -inline-factor: 100
+  -inline-min-size: 30
+  -inline-max-size: disabled (user-specified)
+  -inline-max-total-size: disabled (user-specified)
+  -inline-max-per-routine: disabled (user-specified)
+  -inline-max-per-compile: disabled (user-specified)
+
+In the inlining report below:
+   "sz" refers to the "size" of the routine. The smaller a routine's size,
+      the more likely it is to be inlined.
+   "isz" refers to the "inlined size" of the routine. This is the amount
+      the calling routine will grow if the called routine is inlined into it.
+      The compiler generally limits the amount a routine can grow by having
+      routines inlined into it.
+
+Begin optimization report for: main()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (main()) [1/9=11.1%] test/minigzip.c(559,1)
+  -> INLINE: (566,5) snprintf(char *__restrict__, size_t, const char *__restrict__, ...) (isz = 10) (sz = 21)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(67,10) __builtin___snprintf_chk(char *, unsigned long, int, unsigned long, const char *, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(68,8) __builtin_object_size(const void *, int)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(68,28) __builtin_va_arg_pack(void)
+  -> EXTERN: (572,13) strrchr(const char *, int)
+  -> EXTERN: (579,10) strcmp(const char *, const char *)
+  -> EXTERN: (581,15) strcmp(const char *, const char *)
+  -> EXTERN: (585,11) strcmp(const char *, const char *)
+  -> EXTERN: (587,16) strcmp(const char *, const char *)
+  -> EXTERN: (589,16) strcmp(const char *, const char *)
+  -> EXTERN: (591,16) strcmp(const char *, const char *)
+  -> EXTERN: (593,16) strcmp(const char *, const char *)
+  -> EXTERN: (608,20) gzdopen(int, const char *)
+  -> EXTERN: (608,28) fileno(FILE *)
+  -> INLINE: (609,31) error() (isz = 7) (sz = 11)
+    -> INLINE: (354,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (355,5) exit(int)
+  -> INLINE: (610,13) gz_uncompress() (isz = 79) (sz = 86)
+    -> EXTERN: (439,15) gzread(gzFile, voidp, unsigned int)
+    -> INLINE: (440,22) error() (isz = 7) (sz = 11)
+      -> INLINE: (354,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+      -> EXTERN: (355,5) exit(int)
+    -> EXTERN: (440,29) gzerror(gzFile, int *)
+    -> EXTERN: (443,18) fwrite(const void *__restrict__, size_t, size_t, FILE *__restrict__)
+    -> INLINE: (444,13) error() (isz = 7) (sz = 11)
+      -> INLINE: (354,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+      -> EXTERN: (355,5) exit(int)
+    -> EXTERN: (447,9) fclose(FILE *)
+    -> INLINE: (447,22) error() (isz = 7) (sz = 11)
+      -> INLINE: (354,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+      -> EXTERN: (355,5) exit(int)
+    -> EXTERN: (449,9) gzclose(gzFile)
+    -> INLINE: (449,30) error() (isz = 7) (sz = 11)
+      -> INLINE: (354,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+      -> EXTERN: (355,5) exit(int)
+  -> EXTERN: (612,20) gzdopen(int, const char *)
+  -> EXTERN: (612,28) fileno(FILE *)
+  -> INLINE: (613,31) error() (isz = 7) (sz = 11)
+    -> INLINE: (354,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (355,5) exit(int)
+  -> INLINE: (614,13) gz_compress() (isz = 65) (sz = 72)
+    -> INLINE (MANUAL): (377,20) fread(void *__restrict__, size_t, size_t, FILE *__restrict__) (isz = 54) (sz = 69)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(287,7) __builtin_object_size(const void *, int)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(289,12) __builtin_constant_p(...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(290,8) __builtin_constant_p(...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(292,9) __fread_chk(void *__restrict__, size_t, size_t, size_t, FILE *__restrict__)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(292,29) __builtin_object_size(const void *, int)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(294,26) __builtin_object_size(const void *, int)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(295,9) __fread_chk_warn(void *__restrict__, size_t, size_t, size_t, FILE *__restrict__)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(295,34) __builtin_object_size(const void *, int)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(297,10) __fread_alias(void *__restrict__, size_t, size_t, FILE *__restrict__)
+    -> EXTERN: (378,13) ferror(FILE *)
+    -> EXTERN: (379,13) perror(const char *)
+    -> EXTERN: (380,13) exit(int)
+    -> EXTERN: (384,13) gzwrite(gzFile, voidpc, unsigned int)
+    -> INLINE: (384,54) error() (isz = 7) (sz = 11)
+      -> INLINE: (354,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+      -> EXTERN: (355,5) exit(int)
+    -> EXTERN: (384,60) gzerror(gzFile, int *)
+    -> EXTERN: (386,5) fclose(FILE *)
+    -> EXTERN: (387,9) gzclose(gzFile)
+    -> INLINE: (387,31) error() (isz = 7) (sz = 11)
+      -> INLINE: (354,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+      -> EXTERN: (355,5) exit(int)
+  -> EXTERN: (623,28) gzopen64(const char *, const char *)
+  -> INLINE: (625,25) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> INLINE: (627,25) gz_uncompress() (isz = 79) (sz = 86)
+    -> EXTERN: (439,15) gzread(gzFile, voidp, unsigned int)
+    -> INLINE: (440,22) error() (isz = 7) (sz = 11)
+      -> INLINE: (354,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+      -> EXTERN: (355,5) exit(int)
+    -> EXTERN: (440,29) gzerror(gzFile, int *)
+    -> EXTERN: (443,18) fwrite(const void *__restrict__, size_t, size_t, FILE *__restrict__)
+    -> INLINE: (444,13) error() (isz = 7) (sz = 11)
+      -> INLINE: (354,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+      -> EXTERN: (355,5) exit(int)
+    -> EXTERN: (447,9) fclose(FILE *)
+    -> INLINE: (447,22) error() (isz = 7) (sz = 11)
+      -> INLINE: (354,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+      -> EXTERN: (355,5) exit(int)
+    -> EXTERN: (449,9) gzclose(gzFile)
+    -> INLINE: (449,30) error() (isz = 7) (sz = 11)
+      -> INLINE: (354,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+      -> EXTERN: (355,5) exit(int)
+  -> INLINE: (629,21) file_uncompress() (isz = 177) (sz = 182)
+    -> EXTERN: (503,20) strlen(const char *)
+    -> INLINE: (506,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (507,9) exit(int)
+    -> INLINE: (511,5) snprintf(char *__restrict__, size_t, const char *__restrict__, ...) (isz = 10) (sz = 21)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(67,10) __builtin___snprintf_chk(char *, unsigned long, int, unsigned long, const char *, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(68,8) __builtin_object_size(const void *, int)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(68,28) __builtin_va_arg_pack(void)
+    -> EXTERN: (516,29) strcmp(const char *, const char *)
+    -> INLINE: (524,9) snprintf(char *__restrict__, size_t, const char *__restrict__, ...) (isz = 10) (sz = 21)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(67,10) __builtin___snprintf_chk(char *, unsigned long, int, unsigned long, const char *, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(68,8) __builtin_object_size(const void *, int)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(68,28) __builtin_va_arg_pack(void)
+    -> EXTERN: (529,10) gzopen64(const char *, const char *)
+    -> INLINE: (531,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (532,9) exit(int)
+    -> EXTERN: (534,11) fopen(const char *__restrict__, const char *__restrict__)
+    -> EXTERN: (536,9) perror(const char *)
+    -> EXTERN: (537,9) exit(int)
+    -> INLINE: (540,5) gz_uncompress() (isz = 79) (sz = 86)
+      -> EXTERN: (439,15) gzread(gzFile, voidp, unsigned int)
+      -> INLINE: (440,22) error() (isz = 7) (sz = 11)
+        -> INLINE: (354,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+        -> EXTERN: (355,5) exit(int)
+      -> EXTERN: (440,29) gzerror(gzFile, int *)
+      -> EXTERN: (443,18) fwrite(const void *__restrict__, size_t, size_t, FILE *__restrict__)
+      -> INLINE: (444,13) error() (isz = 7) (sz = 11)
+        -> INLINE: (354,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+        -> EXTERN: (355,5) exit(int)
+      -> EXTERN: (447,9) fclose(FILE *)
+      -> INLINE: (447,22) error() (isz = 7) (sz = 11)
+        -> INLINE: (354,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+        -> EXTERN: (355,5) exit(int)
+      -> EXTERN: (449,9) gzclose(gzFile)
+      -> INLINE: (449,30) error() (isz = 7) (sz = 11)
+        -> INLINE: (354,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+        -> EXTERN: (355,5) exit(int)
+    -> EXTERN: (542,5) unlink(const char *)
+  -> EXTERN: (633,33) fopen(const char *__restrict__, const char *__restrict__)
+  -> EXTERN: (636,25) perror(const char *)
+  -> EXTERN: (638,32) gzdopen(int, const char *)
+  -> EXTERN: (638,40) fileno(FILE *)
+  -> INLINE: (639,43) error() (isz = 7) (sz = 11)
+    -> INLINE: (354,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (355,5) exit(int)
+  -> INLINE: (641,25) gz_compress() (isz = 65) (sz = 72)
+    -> INLINE (MANUAL): (377,20) fread(void *__restrict__, size_t, size_t, FILE *__restrict__) (isz = 54) (sz = 69)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(287,7) __builtin_object_size(const void *, int)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(289,12) __builtin_constant_p(...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(290,8) __builtin_constant_p(...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(292,9) __fread_chk(void *__restrict__, size_t, size_t, size_t, FILE *__restrict__)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(292,29) __builtin_object_size(const void *, int)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(294,26) __builtin_object_size(const void *, int)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(295,9) __fread_chk_warn(void *__restrict__, size_t, size_t, size_t, FILE *__restrict__)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(295,34) __builtin_object_size(const void *, int)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(297,10) __fread_alias(void *__restrict__, size_t, size_t, FILE *__restrict__)
+    -> EXTERN: (378,13) ferror(FILE *)
+    -> EXTERN: (379,13) perror(const char *)
+    -> EXTERN: (380,13) exit(int)
+    -> EXTERN: (384,13) gzwrite(gzFile, voidpc, unsigned int)
+    -> INLINE: (384,54) error() (isz = 7) (sz = 11)
+      -> INLINE: (354,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+      -> EXTERN: (355,5) exit(int)
+    -> EXTERN: (384,60) gzerror(gzFile, int *)
+    -> EXTERN: (386,5) fclose(FILE *)
+    -> EXTERN: (387,9) gzclose(gzFile)
+    -> INLINE: (387,31) error() (isz = 7) (sz = 11)
+      -> INLINE: (354,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+      -> EXTERN: (355,5) exit(int)
+  -> INLINE: (645,21) file_compress() (isz = 127) (sz = 134)
+    -> EXTERN: (465,9) strlen(const char *)
+    -> INLINE: (466,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (467,9) exit(int)
+    -> INLINE: (471,5) snprintf(char *__restrict__, size_t, const char *__restrict__, ...) (isz = 10) (sz = 21)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(67,10) __builtin___snprintf_chk(char *, unsigned long, int, unsigned long, const char *, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(68,8) __builtin_object_size(const void *, int)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(68,28) __builtin_va_arg_pack(void)
+    -> EXTERN: (477,10) fopen(const char *__restrict__, const char *__restrict__)
+    -> EXTERN: (479,9) perror(const char *)
+    -> EXTERN: (480,9) exit(int)
+    -> EXTERN: (482,11) gzopen64(const char *, const char *)
+    -> INLINE: (484,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (485,9) exit(int)
+    -> INLINE: (487,5) gz_compress() (isz = 65) (sz = 72)
+      -> INLINE (MANUAL): (377,20) fread(void *__restrict__, size_t, size_t, FILE *__restrict__) (isz = 54) (sz = 69)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(287,7) __builtin_object_size(const void *, int)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(289,12) __builtin_constant_p(...)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(290,8) __builtin_constant_p(...)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(292,9) __fread_chk(void *__restrict__, size_t, size_t, size_t, FILE *__restrict__)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(292,29) __builtin_object_size(const void *, int)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(294,26) __builtin_object_size(const void *, int)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(295,9) __fread_chk_warn(void *__restrict__, size_t, size_t, size_t, FILE *__restrict__)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(295,34) __builtin_object_size(const void *, int)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(297,10) __fread_alias(void *__restrict__, size_t, size_t, FILE *__restrict__)
+      -> EXTERN: (378,13) ferror(FILE *)
+      -> EXTERN: (379,13) perror(const char *)
+      -> EXTERN: (380,13) exit(int)
+      -> EXTERN: (384,13) gzwrite(gzFile, voidpc, unsigned int)
+      -> INLINE: (384,54) error() (isz = 7) (sz = 11)
+        -> INLINE: (354,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+        -> EXTERN: (355,5) exit(int)
+      -> EXTERN: (384,60) gzerror(gzFile, int *)
+      -> EXTERN: (386,5) fclose(FILE *)
+      -> EXTERN: (387,9) gzclose(gzFile)
+      -> INLINE: (387,31) error() (isz = 7) (sz = 11)
+        -> INLINE: (354,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+        -> EXTERN: (355,5) exit(int)
+    -> EXTERN: (489,5) unlink(const char *)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at test/minigzip.c(584,5)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed FLOW dependence between outmode[3] (590:9) and *(*argv+1) (597:9)
+   remark #17106: parallel dependence: assumed ANTI dependence between *(*argv+1) (597:9) and outmode[3] (590:9)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria   [ test/minigzip.c(595,12) ]
+LOOP END
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at test/minigzip.c(648,28)
+   remark #15536: loop was not vectorized: inner loop throttling prevents vectorization of this outer loop. Refer to inner loop message for more details.   [ test/minigzip.c(443,9) ]
+   remark #17102: loop was not parallelized: not a parallelization candidate
+
+   LOOP BEGIN at test/minigzip.c(443,9) inlined into test/minigzip.c(627,25)
+      remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+      remark #17102: loop was not parallelized: not a parallelization candidate
+   LOOP END
+
+   LOOP BEGIN at test/minigzip.c(443,9) inlined into test/minigzip.c(629,21)
+      remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+      remark #17102: loop was not parallelized: not a parallelization candidate
+   LOOP END
+
+   LOOP BEGIN at test/minigzip.c(384,9) inlined into test/minigzip.c(641,25)
+      remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+      remark #17102: loop was not parallelized: not a parallelization candidate
+   LOOP END
+
+   LOOP BEGIN at test/minigzip.c(384,9) inlined into test/minigzip.c(645,21)
+      remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+      remark #17102: loop was not parallelized: not a parallelization candidate
+   LOOP END
+LOOP END
+
+LOOP BEGIN at test/minigzip.c(443,9) inlined into test/minigzip.c(610,13)
+   remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+   remark #17102: loop was not parallelized: not a parallelization candidate
+LOOP END
+
+LOOP BEGIN at test/minigzip.c(384,9) inlined into test/minigzip.c(614,13)
+   remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+   remark #17102: loop was not parallelized: not a parallelization candidate
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+test/minigzip.c(559,1):remark #34051: REGISTER ALLOCATION : [main] test/minigzip.c:559
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   14[ rax rdx rcx rbx rsi rdi r8-r15]
+        
+    Routine temporaries
+        Total         :     628
+            Global    :     130
+            Local     :     498
+        Regenerable   :     287
+        Spilled       :      14
+        
+    Routine stack
+        Variables     :   100400 bytes*
+            Reads     :       3 [1.00e+00 ~ 0.2%]
+            Writes    :       8 [1.79e+00 ~ 0.3%]
+        Spills        :      72 bytes*
+            Reads     :      21 [1.59e+01 ~ 2.5%]
+            Writes    :      17 [1.78e+01 ~ 2.8%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: snprintf(char *__restrict__, size_t, const char *__restrict__, ...)
+
+    Report from: Interprocedural optimizations [ipo]
+
+NEVER EMIT DEFINITION FUNCTION: (snprintf(char *__restrict__, size_t, const char *__restrict__, ...))/usr/include/x86_64-linux-gnu/bits/stdio2.h(66,1)
+
+===========================================================================
+
+Begin optimization report for: fprintf(FILE *__restrict__, const char *__restrict__, ...)
+
+    Report from: Interprocedural optimizations [ipo]
+
+NEVER EMIT DEFINITION FUNCTION: (fprintf(FILE *__restrict__, const char *__restrict__, ...))/usr/include/x86_64-linux-gnu/bits/stdio2.h(99,1)
+
+===========================================================================
+
+Begin optimization report for: fread(void *__restrict__, size_t, size_t, FILE *__restrict__)
+
+    Report from: Interprocedural optimizations [ipo]
+
+NEVER EMIT DEFINITION FUNCTION: (fread(void *__restrict__, size_t, size_t, FILE *__restrict__))/usr/include/x86_64-linux-gnu/bits/stdio2.h(286,1)
+
+===========================================================================
+
+Begin optimization report for: gz_compress()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (gz_compress()) [5/9=55.6%] test/minigzip.c(365,1)
+  -> INLINE (MANUAL): (377,20) fread(void *__restrict__, size_t, size_t, FILE *__restrict__) (isz = 54) (sz = 69)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(287,7) __builtin_object_size(const void *, int)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(289,12) __builtin_constant_p(...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(290,8) __builtin_constant_p(...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(292,9) __fread_chk(void *__restrict__, size_t, size_t, size_t, FILE *__restrict__)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(292,29) __builtin_object_size(const void *, int)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(294,26) __builtin_object_size(const void *, int)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(295,9) __fread_chk_warn(void *__restrict__, size_t, size_t, size_t, FILE *__restrict__)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(295,34) __builtin_object_size(const void *, int)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(297,10) __fread_alias(void *__restrict__, size_t, size_t, FILE *__restrict__)
+  -> EXTERN: (378,13) ferror(FILE *)
+  -> EXTERN: (379,13) perror(const char *)
+  -> EXTERN: (380,13) exit(int)
+  -> EXTERN: (384,13) gzwrite(gzFile, voidpc, unsigned int)
+  -> INLINE: (384,54) error() (isz = 7) (sz = 11)
+    -> INLINE: (354,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (355,5) exit(int)
+  -> EXTERN: (384,60) gzerror(gzFile, int *)
+  -> EXTERN: (386,5) fclose(FILE *)
+  -> EXTERN: (387,9) gzclose(gzFile)
+  -> INLINE: (387,31) error() (isz = 7) (sz = 11)
+    -> INLINE: (354,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (355,5) exit(int)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at test/minigzip.c(384,9)
+   remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+   remark #17102: loop was not parallelized: not a parallelization candidate
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+test/minigzip.c(365,1):remark #34051: REGISTER ALLOCATION : [gz_compress] test/minigzip.c:365
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    9[ rax rdx rcx rsi rdi r8 r12-r14]
+        
+    Routine temporaries
+        Total         :      59
+            Global    :      19
+            Local     :      40
+        Regenerable   :      22
+        Spilled       :       3
+        
+    Routine stack
+        Variables     :   16388 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: gz_uncompress()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (gz_uncompress()) [6/9=66.7%] test/minigzip.c(433,1)
+  -> EXTERN: (439,15) gzread(gzFile, voidp, unsigned int)
+  -> INLINE: (440,22) error() (isz = 7) (sz = 11)
+    -> INLINE: (354,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (355,5) exit(int)
+  -> EXTERN: (440,29) gzerror(gzFile, int *)
+  -> EXTERN: (443,18) fwrite(const void *__restrict__, size_t, size_t, FILE *__restrict__)
+  -> INLINE: (444,13) error() (isz = 7) (sz = 11)
+    -> INLINE: (354,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (355,5) exit(int)
+  -> EXTERN: (447,9) fclose(FILE *)
+  -> INLINE: (447,22) error() (isz = 7) (sz = 11)
+    -> INLINE: (354,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (355,5) exit(int)
+  -> EXTERN: (449,9) gzclose(gzFile)
+  -> INLINE: (449,30) error() (isz = 7) (sz = 11)
+    -> INLINE: (354,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+    -> EXTERN: (355,5) exit(int)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at test/minigzip.c(443,9)
+   remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+   remark #17102: loop was not parallelized: not a parallelization candidate
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+test/minigzip.c(433,1):remark #34051: REGISTER ALLOCATION : [gz_uncompress] test/minigzip.c:433
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    9[ rax rdx rcx rsi rdi r8 r12-r14]
+        
+    Routine temporaries
+        Total         :      78
+            Global    :      19
+            Local     :      59
+        Regenerable   :      33
+        Spilled       :       3
+        
+    Routine stack
+        Variables     :   16388 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: file_compress()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (file_compress()) [7/9=77.8%] test/minigzip.c(460,1)
+  -> EXTERN: (465,9) strlen(const char *)
+  -> INLINE: (466,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (467,9) exit(int)
+  -> INLINE: (471,5) snprintf(char *__restrict__, size_t, const char *__restrict__, ...) (isz = 10) (sz = 21)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(67,10) __builtin___snprintf_chk(char *, unsigned long, int, unsigned long, const char *, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(68,8) __builtin_object_size(const void *, int)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(68,28) __builtin_va_arg_pack(void)
+  -> EXTERN: (477,10) fopen(const char *__restrict__, const char *__restrict__)
+  -> EXTERN: (479,9) perror(const char *)
+  -> EXTERN: (480,9) exit(int)
+  -> EXTERN: (482,11) gzopen64(const char *, const char *)
+  -> INLINE: (484,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (485,9) exit(int)
+  -> INLINE: (487,5) gz_compress() (isz = 65) (sz = 72)
+    -> INLINE (MANUAL): (377,20) fread(void *__restrict__, size_t, size_t, FILE *__restrict__) (isz = 54) (sz = 69)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(287,7) __builtin_object_size(const void *, int)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(289,12) __builtin_constant_p(...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(290,8) __builtin_constant_p(...)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(292,9) __fread_chk(void *__restrict__, size_t, size_t, size_t, FILE *__restrict__)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(292,29) __builtin_object_size(const void *, int)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(294,26) __builtin_object_size(const void *, int)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(295,9) __fread_chk_warn(void *__restrict__, size_t, size_t, size_t, FILE *__restrict__)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(295,34) __builtin_object_size(const void *, int)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(297,10) __fread_alias(void *__restrict__, size_t, size_t, FILE *__restrict__)
+    -> EXTERN: (378,13) ferror(FILE *)
+    -> EXTERN: (379,13) perror(const char *)
+    -> EXTERN: (380,13) exit(int)
+    -> EXTERN: (384,13) gzwrite(gzFile, voidpc, unsigned int)
+    -> INLINE: (384,54) error() (isz = 7) (sz = 11)
+      -> INLINE: (354,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+      -> EXTERN: (355,5) exit(int)
+    -> EXTERN: (384,60) gzerror(gzFile, int *)
+    -> EXTERN: (386,5) fclose(FILE *)
+    -> EXTERN: (387,9) gzclose(gzFile)
+    -> INLINE: (387,31) error() (isz = 7) (sz = 11)
+      -> INLINE: (354,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+      -> EXTERN: (355,5) exit(int)
+  -> EXTERN: (489,5) unlink(const char *)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at test/minigzip.c(384,9) inlined into test/minigzip.c(487,5)
+   remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+   remark #17102: loop was not parallelized: not a parallelization candidate
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+test/minigzip.c(460,1):remark #34051: REGISTER ALLOCATION : [file_compress] test/minigzip.c:460
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   11[ rax rdx rcx rbx rbp rsi rdi r8-r9 r14-r15]
+        
+    Routine temporaries
+        Total         :     103
+            Global    :      25
+            Local     :      78
+        Regenerable   :      45
+        Spilled       :       4
+        
+    Routine stack
+        Variables     :   17412 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       8 bytes*
+            Reads     :       2 [4.94e-01 ~ 0.5%]
+            Writes    :       1 [1.01e+00 ~ 1.1%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: file_uncompress()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (file_uncompress()) [8/9=88.9%] test/minigzip.c(498,1)
+  -> EXTERN: (503,20) strlen(const char *)
+  -> INLINE: (506,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (507,9) exit(int)
+  -> INLINE: (511,5) snprintf(char *__restrict__, size_t, const char *__restrict__, ...) (isz = 10) (sz = 21)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(67,10) __builtin___snprintf_chk(char *, unsigned long, int, unsigned long, const char *, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(68,8) __builtin_object_size(const void *, int)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(68,28) __builtin_va_arg_pack(void)
+  -> EXTERN: (516,29) strcmp(const char *, const char *)
+  -> INLINE: (524,9) snprintf(char *__restrict__, size_t, const char *__restrict__, ...) (isz = 10) (sz = 21)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(67,10) __builtin___snprintf_chk(char *, unsigned long, int, unsigned long, const char *, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(68,8) __builtin_object_size(const void *, int)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(68,28) __builtin_va_arg_pack(void)
+  -> EXTERN: (529,10) gzopen64(const char *, const char *)
+  -> INLINE: (531,9) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (532,9) exit(int)
+  -> EXTERN: (534,11) fopen(const char *__restrict__, const char *__restrict__)
+  -> EXTERN: (536,9) perror(const char *)
+  -> EXTERN: (537,9) exit(int)
+  -> INLINE: (540,5) gz_uncompress() (isz = 79) (sz = 86)
+    -> EXTERN: (439,15) gzread(gzFile, voidp, unsigned int)
+    -> INLINE: (440,22) error() (isz = 7) (sz = 11)
+      -> INLINE: (354,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+      -> EXTERN: (355,5) exit(int)
+    -> EXTERN: (440,29) gzerror(gzFile, int *)
+    -> EXTERN: (443,18) fwrite(const void *__restrict__, size_t, size_t, FILE *__restrict__)
+    -> INLINE: (444,13) error() (isz = 7) (sz = 11)
+      -> INLINE: (354,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+      -> EXTERN: (355,5) exit(int)
+    -> EXTERN: (447,9) fclose(FILE *)
+    -> INLINE: (447,22) error() (isz = 7) (sz = 11)
+      -> INLINE: (354,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+      -> EXTERN: (355,5) exit(int)
+    -> EXTERN: (449,9) gzclose(gzFile)
+    -> INLINE: (449,30) error() (isz = 7) (sz = 11)
+      -> INLINE: (354,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+      -> EXTERN: (355,5) exit(int)
+  -> EXTERN: (542,5) unlink(const char *)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at test/minigzip.c(443,9) inlined into test/minigzip.c(540,5)
+   remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+   remark #17102: loop was not parallelized: not a parallelization candidate
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+test/minigzip.c(498,1):remark #34051: REGISTER ALLOCATION : [file_uncompress] test/minigzip.c:498
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   11[ rax rdx rcx rbx rbp rsi rdi r8-r9 r14-r15]
+        
+    Routine temporaries
+        Total         :     143
+            Global    :      30
+            Local     :     113
+        Regenerable   :      63
+        Spilled       :       4
+        
+    Routine stack
+        Variables     :   17412 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       1 [3.70e-01 ~ 0.3%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: error()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (error()) [9/9=100.0%] test/minigzip.c(353,1)
+  -> INLINE: (354,5) fprintf(FILE *__restrict__, const char *__restrict__, ...) (isz = 5) (sz = 14)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(100,10) __fprintf_chk(FILE *__restrict__, int, const char *__restrict__, ...)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/stdio2.h:(101,4) __builtin_va_arg_pack(void)
+  -> EXTERN: (355,5) exit(int)
+
+
+    Report from: Code generation optimizations [cg]
+
+test/minigzip.c(353,1):remark #34051: REGISTER ALLOCATION : [error] test/minigzip.c:353
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    6[ rax rdx rcx rsi rdi r8]
+        
+    Routine temporaries
+        Total         :      18
+            Global    :       0
+            Local     :      18
+        Regenerable   :       5
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================

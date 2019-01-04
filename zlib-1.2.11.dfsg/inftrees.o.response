@@ -1,0 +1,13 @@
+-g
+-Wformat
+-Wformat-security
+-D_FORTIFY_SOURCE=2
+-Wall
+-D_REENTRANT
+-O3
+-DUNALIGNED_OK
+-D_LARGEFILE64_SOURCE=1
+-c
+-oinftrees.o
+-qopt-report-file=inftrees.o.optrpt
+inftrees.c

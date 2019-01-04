@@ -1,0 +1,202 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+Intel(R) C Intel(R) 64 Compiler for applications running on Intel(R) 64, Version 19.0.1.144 Build 20181018
+
+Compiler options: -O3 -diag-disable=10013,10385,10237,10346 -fabi-version=13 -falign-functions -falign-loops -fbuiltin -fdata-sections -ffunction-sections -ffat-lto-objects -fpermissive -gcc-name=gcc.intel -gnu-prefix=x86_64-linux-gnu- -gxx-name=g++.intel -inline-level=2 -inline-min-caller-growth=0 -ipo -march=native -no-inline-max-per-compile -no-inline-max-per-routine -no-inline-max-size -no-inline-max-total-size -par-schedule-auto -parallel -qopt-matmul -qopt-mem-layout-trans -qopt-multi-version-aggressive -qopt-prefetch -qoverride-limits -static-intel -qopt-report=5 -qno-opt-report-embed -g -Wformat -Wformat-security -Wall -O3 -fpic -qopt-report-file=objs/inffast.o.optrpt -D_FORTIFY_SOURCE=2 -D_REENTRANT -DUNALIGNED_OK -D_LARGEFILE64_SOURCE=1 -DPIC -c -o objs/inffast.o -Wl,--as-needed,--relax,--gc-sections,-O,2 -pipe
+
+    Report from: Interprocedural optimizations [ipo]
+
+  WHOLE PROGRAM (SAFE) [EITHER METHOD]: false
+  WHOLE PROGRAM (SEEN) [TABLE METHOD]: false
+  WHOLE PROGRAM (READ) [OBJECT READER METHOD]: false
+
+INLINING OPTION VALUES:
+  -inline-factor: 100
+  -inline-min-size: 30
+  -inline-max-size: disabled (user-specified)
+  -inline-max-total-size: disabled (user-specified)
+  -inline-max-per-routine: disabled (user-specified)
+  -inline-max-per-compile: disabled (user-specified)
+
+In the inlining report below:
+   "sz" refers to the "size" of the routine. The smaller a routine's size,
+      the more likely it is to be inlined.
+   "isz" refers to the "inlined size" of the routine. This is the amount
+      the calling routine will grow if the called routine is inlined into it.
+      The compiler generally limits the amount a routine can grow by having
+      routines inlined into it.
+
+Begin optimization report for: inflate_fast()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (inflate_fast()) [1/1=100.0%] inffast.c(53,1)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at inffast.c(147,13)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at inffast.c(202,25)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed FLOW dependence between *out (205:34) and *from (205:34)
+   remark #17106: parallel dependence: assumed ANTI dependence between *from (205:34) and *out (205:34)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed FLOW dependence between *out (205:34) and *from (205:34)
+   remark #15346: vector dependence: assumed ANTI dependence between *from (205:34) and *out (205:34)
+   remark #25439: unrolled with remainder by 2  
+LOOP END
+
+LOOP BEGIN at inffast.c(202,25)
+<Remainder>
+LOOP END
+
+LOOP BEGIN at inffast.c(213,25)
+   remark #25401: memcopy(with guard) generated
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between *from (213:25) and *out (216:34)
+   remark #17106: parallel dependence: assumed FLOW dependence between *out (216:34) and *from (213:25)
+   remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+
+   LOOP BEGIN at inffast.c(213,25)
+   <Multiversioned v2>
+      remark #17104: loop was not parallelized: existence of parallel dependence
+      remark #17106: parallel dependence: assumed FLOW dependence between *out (216:34) and *from (216:34)
+      remark #17106: parallel dependence: assumed ANTI dependence between *from (216:34) and *out (216:34)
+      remark #15304: loop was not vectorized: non-vectorizable loop instance from multiversioning
+      remark #25439: unrolled with remainder by 2  
+      remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+   LOOP END
+
+   LOOP BEGIN at inffast.c(213,25)
+   <Remainder, Multiversioned v2>
+      remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+   LOOP END
+LOOP END
+
+LOOP BEGIN at inffast.c(219,29)
+   remark #25401: memcopy(with guard) generated
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed ANTI dependence between *from (219:29) and *out (223:38)
+   remark #17106: parallel dependence: assumed FLOW dependence between *out (223:38) and *from (219:29)
+   remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+
+   LOOP BEGIN at inffast.c(219,29)
+   <Multiversioned v2>
+      remark #17104: loop was not parallelized: existence of parallel dependence
+      remark #17106: parallel dependence: assumed FLOW dependence between *out (223:38) and *from (223:38)
+      remark #17106: parallel dependence: assumed ANTI dependence between *from (223:38) and *out (223:38)
+      remark #15304: loop was not vectorized: non-vectorizable loop instance from multiversioning
+      remark #25439: unrolled with remainder by 2  
+      remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+   LOOP END
+
+   LOOP BEGIN at inffast.c(219,29)
+   <Remainder, Multiversioned v2>
+      remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+   LOOP END
+LOOP END
+
+LOOP BEGIN at inffast.c(231,25)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed FLOW dependence between *out (234:34) and *from (234:34)
+   remark #17106: parallel dependence: assumed ANTI dependence between *from (234:34) and *out (234:34)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed FLOW dependence between *out (234:34) and *from (234:34)
+   remark #15346: vector dependence: assumed ANTI dependence between *from (234:34) and *out (234:34)
+   remark #25439: unrolled with remainder by 2  
+LOOP END
+
+LOOP BEGIN at inffast.c(231,25)
+<Remainder>
+LOOP END
+
+LOOP BEGIN at inffast.c(239,21)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed FLOW dependence between *out (240:26) and *(from+2) (242:26)
+   remark #17106: parallel dependence: assumed ANTI dependence between *(from+2) (242:26) and *out (240:26)
+   remark #25427: Loop Statements Reordered
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed FLOW dependence between *out (240:26) and *(from+2) (242:26)
+   remark #15346: vector dependence: assumed ANTI dependence between *(from+2) (242:26) and *out (240:26)
+   remark #25439: unrolled with remainder by 2  
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+LOOP END
+
+LOOP BEGIN at inffast.c(239,21)
+<Remainder>
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+LOOP END
+
+LOOP BEGIN at inffast.c(252,21)
+   remark #17104: loop was not parallelized: existence of parallel dependence
+   remark #17106: parallel dependence: assumed FLOW dependence between *out (254:26) and *(from+2) (256:26)
+   remark #17106: parallel dependence: assumed ANTI dependence between *(from+2) (256:26) and *out (254:26)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed FLOW dependence between *out (254:26) and *(from+2) (256:26)
+   remark #15346: vector dependence: assumed ANTI dependence between *(from+2) (256:26) and *out (254:26)
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+LOOP END
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at inffast.c(290,19)
+   remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+   remark #17102: loop was not parallelized: not a parallelization candidate
+
+   LOOP BEGIN at inffast.c(277,20)
+      remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+      remark #17102: loop was not parallelized: not a parallelization candidate
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+inffast.c(110,16):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (1, 0), and destination (alignment, offset): (16, 0)
+inffast.c(277,20):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (1, 0), and destination (alignment, offset): (16, 0)
+inffast.c(141,20):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (1, 0), and destination (alignment, offset): (16, 0)
+inffast.c(267,24):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (1, 0), and destination (alignment, offset): (16, 0)
+inffast.c(213,25):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+inffast.c(213,25):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+inffast.c(213,25):remark #34026: call to memcpy implemented as a call to optimized library version
+inffast.c(219,29):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+inffast.c(219,29):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+inffast.c(219,29):remark #34026: call to memcpy implemented as a call to optimized library version
+inffast.c(53,1):remark #34051: REGISTER ALLOCATION : [inflate_fast] inffast.c:53
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   15[ rax rdx rcx rbx rbp rsi rdi r8-r15]
+        
+    Routine temporaries
+        Total         :     249
+            Global    :      61
+            Local     :     188
+        Regenerable   :       9
+        Spilled       :      26
+        
+    Routine stack
+        Variables     :       4 bytes*
+            Reads     :       7 [1.42e+01 ~ 4.6%]
+            Writes    :       4 [7.02e+00 ~ 2.3%]
+        Spills        :     152 bytes*
+            Reads     :      49 [5.61e+00 ~ 1.8%]
+            Writes    :      23 [1.41e+01 ~ 4.5%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================

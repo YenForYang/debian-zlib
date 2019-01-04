@@ -1,0 +1,4 @@
+../trees.c
+-c
+-oblah.o
+-qopt-report-file=blah.o.optrpt

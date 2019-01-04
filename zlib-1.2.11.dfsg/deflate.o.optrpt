@@ -1,0 +1,2618 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+Intel(R) C Intel(R) 64 Compiler for applications running on Intel(R) 64, Version 19.0.1.144 Build 20181018
+
+Compiler options: -O3 -diag-disable=10013,10385,10237,10346 -fabi-version=13 -falign-functions -falign-loops -fbuiltin -fdata-sections -ffunction-sections -ffat-lto-objects -fpermissive -gcc-name=gcc.intel -gnu-prefix=x86_64-linux-gnu- -gxx-name=g++.intel -inline-level=2 -inline-min-caller-growth=0 -ipo -march=native -no-inline-max-per-compile -no-inline-max-per-routine -no-inline-max-size -no-inline-max-total-size -par-schedule-auto -parallel -qopt-matmul -qopt-mem-layout-trans -qopt-multi-version-aggressive -qopt-prefetch -qoverride-limits -static-intel -qopt-report=5 -qno-opt-report-embed -g -Wformat -Wformat-security -Wall -O3 -qopt-report-file=deflate.o.optrpt -D_FORTIFY_SOURCE=2 -D_REENTRANT -DUNALIGNED_OK -D_LARGEFILE64_SOURCE=1 -c -o deflate.o -Wl,--as-needed,--relax,--gc-sections,-O,2 -pipe
+
+    Report from: Interprocedural optimizations [ipo]
+
+  WHOLE PROGRAM (SAFE) [EITHER METHOD]: false
+  WHOLE PROGRAM (SEEN) [TABLE METHOD]: false
+  WHOLE PROGRAM (READ) [OBJECT READER METHOD]: false
+
+INLINING OPTION VALUES:
+  -inline-factor: 100
+  -inline-min-size: 30
+  -inline-max-size: disabled (user-specified)
+  -inline-max-total-size: disabled (user-specified)
+  -inline-max-per-routine: disabled (user-specified)
+  -inline-max-per-compile: disabled (user-specified)
+
+In the inlining report below:
+   "sz" refers to the "size" of the routine. The smaller a routine's size,
+      the more likely it is to be inlined.
+   "isz" refers to the "inlined size" of the routine. This is the amount
+      the calling routine will grow if the called routine is inlined into it.
+      The compiler generally limits the amount a routine can grow by having
+      routines inlined into it.
+
+Begin optimization report for: deflate_stored()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (deflate_stored()) [1/30=3.3%] deflate.c(1646,1)
+  -> EXTERN: (1690,9) _tr_stored_block(deflate_state *, charf *, ulg, int)
+  -> INLINE: (1699,9) flush_pending() (isz = 45) (sz = 51)
+    -> EXTERN: (736,5) _tr_flush_bits(deflate_state *)
+    -> INLINE (MANUAL): (741,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+  -> INLINE (MANUAL): (1711,13) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+  -> INLINE: (1723,13) read_buf() (isz = 45) (sz = 57)
+    -> INLINE (MANUAL): (1176,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+    -> EXTERN: (1178,23) adler32(uLong, const Bytef *, uInt)
+    -> EXTERN: (1182,23) crc32(uLong, const Bytef *, uInt)
+  -> INLINE (MANUAL): (1743,13) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+  -> INLINE (MANUAL): (1750,17) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+  -> INLINE (MANUAL): (1754,13) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+  -> INLINE (MANUAL): (1778,9) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+  -> INLINE: (1786,9) read_buf() (isz = 45) (sz = 57)
+    -> INLINE (MANUAL): (1176,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+    -> EXTERN: (1178,23) adler32(uLong, const Bytef *, uInt)
+    -> EXTERN: (1182,23) crc32(uLong, const Bytef *, uInt)
+  -> EXTERN: (1808,9) _tr_stored_block(deflate_state *, charf *, ulg, int)
+  -> INLINE: (1810,9) flush_pending() (isz = 45) (sz = 51)
+    -> EXTERN: (736,5) _tr_flush_bits(deflate_state *)
+    -> INLINE (MANUAL): (741,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at deflate.c(1658,21)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+deflate.c(1646,1):remark #34051: REGISTER ALLOCATION : [deflate_stored] deflate.c:1646
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   15[ rax rdx rcx rbx rbp rsi rdi r8-r15]
+        
+    Routine temporaries
+        Total         :     231
+            Global    :      69
+            Local     :     162
+        Regenerable   :       7
+        Spilled       :      13
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :      56 bytes*
+            Reads     :      20 [6.53e+00 ~ 2.9%]
+            Writes    :       7 [4.13e+00 ~ 1.9%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: deflate_fast()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (deflate_fast()) [2/30=6.7%] deflate.c(1827,1)
+  -> INLINE: (1838,13) fill_window() (isz = 307) (sz = 312)
+    -> INLINE (MANUAL): (1512,13) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+    -> INLINE: (1516,13) slide_hash() (isz = 51) (sz = 56)
+    -> INLINE: (1534,13) read_buf() (isz = 45) (sz = 57)
+      -> INLINE (MANUAL): (1176,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+      -> EXTERN: (1178,23) adler32(uLong, const Bytef *, uInt)
+      -> EXTERN: (1182,23) crc32(uLong, const Bytef *, uInt)
+    -> INLINE (MANUAL): (1581,13) memset(void *, int, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,10) __builtin___memset_chk(void *, int, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,55) __builtin_object_size(const void *, int)
+    -> INLINE (MANUAL): (1592,13) memset(void *, int, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,10) __builtin___memset_chk(void *, int, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,55) __builtin_object_size(const void *, int)
+  -> INLINE: (1861,31) longest_match() (isz = 187) (sz = 197)
+  -> INLINE: (1908,21) flush_pending() (isz = 45) (sz = 51)
+    -> EXTERN: (736,5) _tr_flush_bits(deflate_state *)
+    -> INLINE (MANUAL): (741,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+  -> EXTERN: (1908,21) _tr_flush_block(deflate_state *, charf *, ulg, int)
+  -> INLINE: (1912,9) flush_pending() (isz = 45) (sz = 51)
+    -> EXTERN: (736,5) _tr_flush_bits(deflate_state *)
+    -> INLINE (MANUAL): (741,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+  -> EXTERN: (1912,9) _tr_flush_block(deflate_state *, charf *, ulg, int)
+  -> EXTERN: (1916,9) _tr_flush_block(deflate_state *, charf *, ulg, int)
+  -> INLINE: (1916,9) flush_pending() (isz = 45) (sz = 51)
+    -> EXTERN: (736,5) _tr_flush_bits(deflate_state *)
+    -> INLINE (MANUAL): (741,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at deflate.c(1827,1)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at deflate.c(1487,18) inlined into deflate.c(1838,13)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15542: loop was not vectorized: inner loop was already vectorized
+
+      LOOP BEGIN at deflate.c(209,5) inlined into deflate.c(1838,13)
+      <Peeled loop for vectorization>
+         remark #25015: Estimate of max trip count of loop=7
+      LOOP END
+
+      LOOP BEGIN at deflate.c(209,5) inlined into deflate.c(1838,13)
+         remark #17108: loop was not parallelized: insufficient computational work
+         remark #25453: Loop Reversed
+         remark #15388: vectorization support: reference *p has aligned access   [ deflate.c(212,10) ]
+         remark #15388: vectorization support: reference *p has aligned access   [ deflate.c(211,16) ]
+         remark #15305: vectorization support: vector length 8
+         remark #15309: vectorization support: normalized vectorization overhead 1.667
+         remark #15301: REVERSED LOOP WAS VECTORIZED
+         remark #15442: entire loop may be executed in remainder
+         remark #15448: unmasked aligned unit stride loads: 1 
+         remark #15449: unmasked aligned unit stride stores: 1 
+         remark #15475: --- begin vector cost summary ---
+         remark #15476: scalar cost: 8 
+         remark #15477: vector cost: 1.500 
+         remark #15478: estimated potential speedup: 4.370 
+         remark #15488: --- end vector cost summary ---
+      LOOP END
+
+      LOOP BEGIN at deflate.c(209,5) inlined into deflate.c(1838,13)
+      <Remainder loop for vectorization>
+      LOOP END
+
+      LOOP BEGIN at deflate.c(216,5) inlined into deflate.c(1838,13)
+      <Peeled loop for vectorization>
+         remark #25015: Estimate of max trip count of loop=7
+      LOOP END
+
+      LOOP BEGIN at deflate.c(216,5) inlined into deflate.c(1838,13)
+         remark #17108: loop was not parallelized: insufficient computational work
+         remark #25453: Loop Reversed
+         remark #15388: vectorization support: reference *p has aligned access   [ deflate.c(219,10) ]
+         remark #15388: vectorization support: reference *p has aligned access   [ deflate.c(218,16) ]
+         remark #15305: vectorization support: vector length 8
+         remark #15309: vectorization support: normalized vectorization overhead 1.667
+         remark #15301: REVERSED LOOP WAS VECTORIZED
+         remark #15442: entire loop may be executed in remainder
+         remark #15448: unmasked aligned unit stride loads: 1 
+         remark #15449: unmasked aligned unit stride stores: 1 
+         remark #15475: --- begin vector cost summary ---
+         remark #15476: scalar cost: 8 
+         remark #15477: vector cost: 1.500 
+         remark #15478: estimated potential speedup: 4.370 
+         remark #15488: --- end vector cost summary ---
+      LOOP END
+
+      LOOP BEGIN at deflate.c(216,5) inlined into deflate.c(1838,13)
+      <Remainder loop for vectorization>
+      LOOP END
+
+      LOOP BEGIN at deflate.c(1545,13) inlined into deflate.c(1838,13)
+         remark #17104: loop was not parallelized: existence of parallel dependence
+         remark #17106: parallel dependence: assumed ANTI dependence between s->window[str+2] (1546:17) and s->insert (1552:17)
+         remark #17106: parallel dependence: assumed FLOW dependence between s->insert (1552:17) and s->window[str+2] (1546:17)
+         remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria   [ deflate.c(1553,17) ]
+      LOOP END
+   LOOP END
+
+   LOOP BEGIN at deflate.c(1279,42) inlined into deflate.c(1861,31)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15324: loop was not vectorized: unsigned types for induction variable and/or for lower/upper iteration bounds make loop uncountable
+
+      LOOP BEGIN at deflate.c(1314,48) inlined into deflate.c(1861,31)
+         remark #17102: loop was not parallelized: not a parallelization candidate
+         remark #15523: loop was not vectorized: loop control variable match was found, but loop iteration count cannot be computed before executing the loop
+      LOOP END
+   LOOP END
+
+   LOOP BEGIN at deflate.c(1876,13)
+      remark #17104: loop was not parallelized: existence of parallel dependence
+      remark #17106: parallel dependence: assumed FLOW dependence between s->strstart (1880:21) and s->window[s->strstart+2] (1881:21)
+      remark #17106: parallel dependence: assumed ANTI dependence between s->window[s->strstart+2] (1881:21) and s->strstart (1880:21)
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+      remark #15346: vector dependence: assumed FLOW dependence between s->strstart (1880:21) and s->window[s->strstart+2] (1881:21)
+      remark #15346: vector dependence: assumed ANTI dependence between s->window[s->strstart+2] (1881:21) and s->strstart (1880:21)
+      remark #25439: unrolled with remainder by 2  
+      remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+   LOOP END
+
+   LOOP BEGIN at deflate.c(1876,13)
+   <Remainder>
+      remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34014: optimization advice for memset: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34026: call to memset implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34014: optimization advice for memset: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34026: call to memset implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+deflate.c(1827,1):remark #34051: REGISTER ALLOCATION : [deflate_fast] deflate.c:1827
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   20[ rax rdx rcx rbx rbp rsi rdi r8-r15 zmm0-zmm4]
+        
+    Routine temporaries
+        Total         :     472
+            Global    :     134
+            Local     :     338
+        Regenerable   :      14
+        Spilled       :      28
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :     168 bytes*
+            Reads     :      50 [3.63e+01 ~ 2.7%]
+            Writes    :      28 [2.06e+01 ~ 1.5%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: deflate_slow()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (deflate_slow()) [3/30=10.0%] deflate.c(1929,1)
+  -> INLINE: (1941,13) fill_window() (isz = 307) (sz = 312)
+    -> INLINE (MANUAL): (1512,13) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+    -> INLINE: (1516,13) slide_hash() (isz = 51) (sz = 56)
+    -> INLINE: (1534,13) read_buf() (isz = 45) (sz = 57)
+      -> INLINE (MANUAL): (1176,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+      -> EXTERN: (1178,23) adler32(uLong, const Bytef *, uInt)
+      -> EXTERN: (1182,23) crc32(uLong, const Bytef *, uInt)
+    -> INLINE (MANUAL): (1581,13) memset(void *, int, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,10) __builtin___memset_chk(void *, int, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,55) __builtin_object_size(const void *, int)
+    -> INLINE (MANUAL): (1592,13) memset(void *, int, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,10) __builtin___memset_chk(void *, int, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,55) __builtin_object_size(const void *, int)
+  -> INLINE: (1967,31) longest_match() (isz = 187) (sz = 197)
+  -> INLINE: (2011,25) flush_pending() (isz = 45) (sz = 51)
+    -> EXTERN: (736,5) _tr_flush_bits(deflate_state *)
+    -> INLINE (MANUAL): (741,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+  -> EXTERN: (2011,25) _tr_flush_block(deflate_state *, charf *, ulg, int)
+  -> EXTERN: (2021,17) _tr_flush_block(deflate_state *, charf *, ulg, int)
+  -> INLINE: (2021,17) flush_pending() (isz = 45) (sz = 51)
+    -> EXTERN: (736,5) _tr_flush_bits(deflate_state *)
+    -> INLINE (MANUAL): (741,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+  -> INLINE: (2043,9) flush_pending() (isz = 45) (sz = 51)
+    -> EXTERN: (736,5) _tr_flush_bits(deflate_state *)
+    -> INLINE (MANUAL): (741,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+  -> EXTERN: (2043,9) _tr_flush_block(deflate_state *, charf *, ulg, int)
+  -> EXTERN: (2047,9) _tr_flush_block(deflate_state *, charf *, ulg, int)
+  -> INLINE: (2047,9) flush_pending() (isz = 45) (sz = 51)
+    -> EXTERN: (736,5) _tr_flush_bits(deflate_state *)
+    -> INLINE (MANUAL): (741,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at deflate.c(1929,1)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at deflate.c(1487,18) inlined into deflate.c(1941,13)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15542: loop was not vectorized: inner loop was already vectorized
+
+      LOOP BEGIN at deflate.c(209,5) inlined into deflate.c(1941,13)
+      <Peeled loop for vectorization>
+         remark #25015: Estimate of max trip count of loop=7
+      LOOP END
+
+      LOOP BEGIN at deflate.c(209,5) inlined into deflate.c(1941,13)
+         remark #17108: loop was not parallelized: insufficient computational work
+         remark #25453: Loop Reversed
+         remark #15388: vectorization support: reference *p has aligned access   [ deflate.c(212,10) ]
+         remark #15388: vectorization support: reference *p has aligned access   [ deflate.c(211,16) ]
+         remark #15305: vectorization support: vector length 8
+         remark #15309: vectorization support: normalized vectorization overhead 1.667
+         remark #15301: REVERSED LOOP WAS VECTORIZED
+         remark #15442: entire loop may be executed in remainder
+         remark #15448: unmasked aligned unit stride loads: 1 
+         remark #15449: unmasked aligned unit stride stores: 1 
+         remark #15475: --- begin vector cost summary ---
+         remark #15476: scalar cost: 8 
+         remark #15477: vector cost: 1.500 
+         remark #15478: estimated potential speedup: 4.370 
+         remark #15488: --- end vector cost summary ---
+      LOOP END
+
+      LOOP BEGIN at deflate.c(209,5) inlined into deflate.c(1941,13)
+      <Remainder loop for vectorization>
+      LOOP END
+
+      LOOP BEGIN at deflate.c(216,5) inlined into deflate.c(1941,13)
+      <Peeled loop for vectorization>
+         remark #25015: Estimate of max trip count of loop=7
+      LOOP END
+
+      LOOP BEGIN at deflate.c(216,5) inlined into deflate.c(1941,13)
+         remark #17108: loop was not parallelized: insufficient computational work
+         remark #25453: Loop Reversed
+         remark #15388: vectorization support: reference *p has aligned access   [ deflate.c(219,10) ]
+         remark #15388: vectorization support: reference *p has aligned access   [ deflate.c(218,16) ]
+         remark #15305: vectorization support: vector length 8
+         remark #15309: vectorization support: normalized vectorization overhead 1.667
+         remark #15301: REVERSED LOOP WAS VECTORIZED
+         remark #15442: entire loop may be executed in remainder
+         remark #15448: unmasked aligned unit stride loads: 1 
+         remark #15449: unmasked aligned unit stride stores: 1 
+         remark #15475: --- begin vector cost summary ---
+         remark #15476: scalar cost: 8 
+         remark #15477: vector cost: 1.500 
+         remark #15478: estimated potential speedup: 4.370 
+         remark #15488: --- end vector cost summary ---
+      LOOP END
+
+      LOOP BEGIN at deflate.c(216,5) inlined into deflate.c(1941,13)
+      <Remainder loop for vectorization>
+      LOOP END
+
+      LOOP BEGIN at deflate.c(1545,13) inlined into deflate.c(1941,13)
+         remark #17104: loop was not parallelized: existence of parallel dependence
+         remark #17106: parallel dependence: assumed ANTI dependence between s->window[str+2] (1546:17) and s->insert (1552:17)
+         remark #17106: parallel dependence: assumed FLOW dependence between s->insert (1552:17) and s->window[str+2] (1546:17)
+         remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria   [ deflate.c(1553,17) ]
+      LOOP END
+   LOOP END
+
+   LOOP BEGIN at deflate.c(1279,42) inlined into deflate.c(1967,31)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15324: loop was not vectorized: unsigned types for induction variable and/or for lower/upper iteration bounds make loop uncountable
+
+      LOOP BEGIN at deflate.c(1314,48) inlined into deflate.c(1967,31)
+         remark #17102: loop was not parallelized: not a parallelization candidate
+         remark #15523: loop was not vectorized: loop control variable match was found, but loop iteration count cannot be computed before executing the loop
+      LOOP END
+   LOOP END
+
+   LOOP BEGIN at deflate.c(1548,44) inlined into deflate.c(1941,13)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15324: loop was not vectorized: unsigned types for induction variable and/or for lower/upper iteration bounds make loop uncountable
+      remark #25478: While Loop Unrolled by 8  
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34014: optimization advice for memset: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34026: call to memset implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34014: optimization advice for memset: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34026: call to memset implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+deflate.c(1929,1):remark #34051: REGISTER ALLOCATION : [deflate_slow] deflate.c:1929
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   20[ rax rdx rcx rbx rbp rsi rdi r8-r15 zmm0-zmm4]
+        
+    Routine temporaries
+        Total         :     560
+            Global    :     149
+            Local     :     411
+        Regenerable   :      19
+        Spilled       :      28
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :     176 bytes*
+            Reads     :      65 [2.28e+01 ~ 2.0%]
+            Writes    :      29 [1.24e+01 ~ 1.1%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: memcpy(void *__restrict__, const void *__restrict__, size_t)
+
+    Report from: Interprocedural optimizations [ipo]
+
+NEVER EMIT DEFINITION FUNCTION: (memcpy(void *__restrict__, const void *__restrict__, size_t))/usr/include/x86_64-linux-gnu/bits/string_fortified.h(33,1)
+
+===========================================================================
+
+Begin optimization report for: memset(void *, int, size_t)
+
+    Report from: Interprocedural optimizations [ipo]
+
+NEVER EMIT DEFINITION FUNCTION: (memset(void *, int, size_t))/usr/include/x86_64-linux-gnu/bits/string_fortified.h(60,1)
+
+===========================================================================
+
+Begin optimization report for: slide_hash()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (slide_hash()) deflate.c(203,1)
+
+===========================================================================
+
+Begin optimization report for: deflateStateCheck()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (deflateStateCheck()) deflate.c(355,1)
+
+===========================================================================
+
+Begin optimization report for: deflateSetDictionary()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (deflateSetDictionary()) [8/30=26.7%] deflate.c(380,1)
+  -> INLINE: (387,9) deflateStateCheck() (isz = 46) (sz = 55)
+  -> EXTERN: (396,23) adler32(uLong, const Bytef *, uInt)
+  -> INLINE (MANUAL): (402,13) memset(void *, int, size_t) (isz = 6) (sz = 17)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,10) __builtin___memset_chk(void *, int, unsigned long, unsigned long)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,55) __builtin_object_size(const void *, int)
+  -> INLINE: (416,5) fill_window() (isz = 307) (sz = 312)
+    -> INLINE (MANUAL): (1512,13) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+    -> INLINE: (1516,13) slide_hash() (isz = 51) (sz = 56)
+    -> INLINE: (1534,13) read_buf() (isz = 45) (sz = 57)
+      -> INLINE (MANUAL): (1176,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+      -> EXTERN: (1178,23) adler32(uLong, const Bytef *, uInt)
+      -> EXTERN: (1182,23) crc32(uLong, const Bytef *, uInt)
+    -> INLINE (MANUAL): (1581,13) memset(void *, int, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,10) __builtin___memset_chk(void *, int, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,55) __builtin_object_size(const void *, int)
+    -> INLINE (MANUAL): (1592,13) memset(void *, int, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,10) __builtin___memset_chk(void *, int, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,55) __builtin_object_size(const void *, int)
+  -> INLINE: (430,9) fill_window() (isz = 307) (sz = 312)
+    -> INLINE (MANUAL): (1512,13) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+    -> INLINE: (1516,13) slide_hash() (isz = 51) (sz = 56)
+    -> INLINE: (1534,13) read_buf() (isz = 45) (sz = 57)
+      -> INLINE (MANUAL): (1176,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+      -> EXTERN: (1178,23) adler32(uLong, const Bytef *, uInt)
+      -> EXTERN: (1182,23) crc32(uLong, const Bytef *, uInt)
+    -> INLINE (MANUAL): (1581,13) memset(void *, int, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,10) __builtin___memset_chk(void *, int, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,55) __builtin_object_size(const void *, int)
+    -> INLINE (MANUAL): (1592,13) memset(void *, int, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,10) __builtin___memset_chk(void *, int, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,55) __builtin_object_size(const void *, int)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at deflate.c(1492,48) inlined into deflate.c(416,5)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at deflate.c(209,5) inlined into deflate.c(416,5)
+   <Peeled loop for vectorization>
+      remark #25015: Estimate of max trip count of loop=7
+   LOOP END
+
+   LOOP BEGIN at deflate.c(209,5) inlined into deflate.c(416,5)
+      remark #17108: loop was not parallelized: insufficient computational work
+      remark #25453: Loop Reversed
+      remark #15388: vectorization support: reference *p has aligned access   [ deflate.c(212,10) ]
+      remark #15388: vectorization support: reference *p has aligned access   [ deflate.c(211,16) ]
+      remark #15305: vectorization support: vector length 8
+      remark #15309: vectorization support: normalized vectorization overhead 1.667
+      remark #15301: REVERSED LOOP WAS VECTORIZED
+      remark #15442: entire loop may be executed in remainder
+      remark #15448: unmasked aligned unit stride loads: 1 
+      remark #15449: unmasked aligned unit stride stores: 1 
+      remark #15475: --- begin vector cost summary ---
+      remark #15476: scalar cost: 8 
+      remark #15477: vector cost: 1.500 
+      remark #15478: estimated potential speedup: 4.370 
+      remark #15488: --- end vector cost summary ---
+   LOOP END
+
+   LOOP BEGIN at deflate.c(209,5) inlined into deflate.c(416,5)
+   <Remainder loop for vectorization>
+   LOOP END
+
+   LOOP BEGIN at deflate.c(216,5) inlined into deflate.c(416,5)
+   <Peeled loop for vectorization>
+      remark #25015: Estimate of max trip count of loop=7
+   LOOP END
+
+   LOOP BEGIN at deflate.c(216,5) inlined into deflate.c(416,5)
+      remark #17108: loop was not parallelized: insufficient computational work
+      remark #25453: Loop Reversed
+      remark #15388: vectorization support: reference *p has aligned access   [ deflate.c(219,10) ]
+      remark #15388: vectorization support: reference *p has aligned access   [ deflate.c(218,16) ]
+      remark #15305: vectorization support: vector length 8
+      remark #15309: vectorization support: normalized vectorization overhead 1.667
+      remark #15301: REVERSED LOOP WAS VECTORIZED
+      remark #15442: entire loop may be executed in remainder
+      remark #15448: unmasked aligned unit stride loads: 1 
+      remark #15449: unmasked aligned unit stride stores: 1 
+      remark #15475: --- begin vector cost summary ---
+      remark #15476: scalar cost: 8 
+      remark #15477: vector cost: 1.500 
+      remark #15478: estimated potential speedup: 4.370 
+      remark #15488: --- end vector cost summary ---
+   LOOP END
+
+   LOOP BEGIN at deflate.c(216,5) inlined into deflate.c(416,5)
+   <Remainder loop for vectorization>
+   LOOP END
+
+   LOOP BEGIN at deflate.c(1545,13) inlined into deflate.c(416,5)
+      remark #17104: loop was not parallelized: existence of parallel dependence
+      remark #17106: parallel dependence: assumed ANTI dependence between s->window[str+2] (1546:17) and s->insert (1552:17)
+      remark #17106: parallel dependence: assumed FLOW dependence between s->insert (1552:17) and s->window[str+2] (1546:17)
+      remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria   [ deflate.c(1553,17) ]
+   LOOP END
+LOOP END
+
+LOOP BEGIN at deflate.c(417,5)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at deflate.c(423,40)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15324: loop was not vectorized: unsigned types for induction variable and/or for lower/upper iteration bounds make loop uncountable
+      remark #25478: While Loop Unrolled by 2  
+   LOOP END
+
+   LOOP BEGIN at deflate.c(1487,18) inlined into deflate.c(430,9)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15542: loop was not vectorized: inner loop was already vectorized
+
+      LOOP BEGIN at deflate.c(209,5) inlined into deflate.c(430,9)
+      <Peeled loop for vectorization>
+         remark #25015: Estimate of max trip count of loop=7
+      LOOP END
+
+      LOOP BEGIN at deflate.c(209,5) inlined into deflate.c(430,9)
+         remark #17108: loop was not parallelized: insufficient computational work
+         remark #25453: Loop Reversed
+         remark #15388: vectorization support: reference *p has aligned access   [ deflate.c(212,10) ]
+         remark #15388: vectorization support: reference *p has aligned access   [ deflate.c(211,16) ]
+         remark #15305: vectorization support: vector length 8
+         remark #15309: vectorization support: normalized vectorization overhead 1.667
+         remark #15301: REVERSED LOOP WAS VECTORIZED
+         remark #15442: entire loop may be executed in remainder
+         remark #15448: unmasked aligned unit stride loads: 1 
+         remark #15449: unmasked aligned unit stride stores: 1 
+         remark #15475: --- begin vector cost summary ---
+         remark #15476: scalar cost: 8 
+         remark #15477: vector cost: 1.500 
+         remark #15478: estimated potential speedup: 4.370 
+         remark #15488: --- end vector cost summary ---
+      LOOP END
+
+      LOOP BEGIN at deflate.c(209,5) inlined into deflate.c(430,9)
+      <Remainder loop for vectorization>
+      LOOP END
+
+      LOOP BEGIN at deflate.c(216,5) inlined into deflate.c(430,9)
+      <Peeled loop for vectorization>
+         remark #25015: Estimate of max trip count of loop=7
+      LOOP END
+
+      LOOP BEGIN at deflate.c(216,5) inlined into deflate.c(430,9)
+         remark #17108: loop was not parallelized: insufficient computational work
+         remark #25453: Loop Reversed
+         remark #15388: vectorization support: reference *p has aligned access   [ deflate.c(219,10) ]
+         remark #15388: vectorization support: reference *p has aligned access   [ deflate.c(218,16) ]
+         remark #15305: vectorization support: vector length 8
+         remark #15309: vectorization support: normalized vectorization overhead 1.667
+         remark #15301: REVERSED LOOP WAS VECTORIZED
+         remark #15442: entire loop may be executed in remainder
+         remark #15448: unmasked aligned unit stride loads: 1 
+         remark #15449: unmasked aligned unit stride stores: 1 
+         remark #15475: --- begin vector cost summary ---
+         remark #15476: scalar cost: 8 
+         remark #15477: vector cost: 1.500 
+         remark #15478: estimated potential speedup: 4.370 
+         remark #15488: --- end vector cost summary ---
+      LOOP END
+
+      LOOP BEGIN at deflate.c(216,5) inlined into deflate.c(430,9)
+      <Remainder loop for vectorization>
+      LOOP END
+
+      LOOP BEGIN at deflate.c(1545,13) inlined into deflate.c(430,9)
+         remark #17104: loop was not parallelized: existence of parallel dependence
+         remark #17106: parallel dependence: assumed ANTI dependence between s->window[str+2] (1546:17) and s->insert (1552:17)
+         remark #17106: parallel dependence: assumed FLOW dependence between s->insert (1552:17) and s->window[str+2] (1546:17)
+         remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria   [ deflate.c(1553,17) ]
+      LOOP END
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34014: optimization advice for memset: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34026: call to memset implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34014: optimization advice for memset: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34026: call to memset implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34014: optimization advice for memset: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34026: call to memset implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34014: optimization advice for memset: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34026: call to memset implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34014: optimization advice for memset: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34026: call to memset implemented as a call to optimized library version
+deflate.c(380,1):remark #34051: REGISTER ALLOCATION : [deflateSetDictionary] deflate.c:380
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   20[ rax rdx rcx rbx rbp rsi rdi r8-r15 zmm0-zmm4]
+        
+    Routine temporaries
+        Total         :     480
+            Global    :     138
+            Local     :     342
+        Regenerable   :      13
+        Spilled       :      23
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :     136 bytes*
+            Reads     :      34 [1.73e+01 ~ 2.5%]
+            Writes    :      21 [1.39e+01 ~ 2.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: deflateGetDictionary()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (deflateGetDictionary()) [9/30=30.0%] deflate.c(449,1)
+  -> INLINE: (453,9) deflateStateCheck() (isz = 46) (sz = 55)
+  -> INLINE (MANUAL): (460,9) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+
+
+    Report from: Code generation optimizations [cg]
+
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+deflate.c(449,1):remark #34051: REGISTER ALLOCATION : [deflateGetDictionary] deflate.c:449
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    9[ rax rdx rcx rsi rdi r8-r9 r14-r15]
+        
+    Routine temporaries
+        Total         :      30
+            Global    :      14
+            Local     :      16
+        Regenerable   :       2
+        Spilled       :       2
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: deflateResetKeep()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (deflateResetKeep()) [10/30=33.3%] deflate.c(469,1)
+  -> INLINE: (472,9) deflateStateCheck() (isz = 46) (sz = 55)
+  -> EXTERN: (494,24) crc32(uLong, const Bytef *, uInt)
+  -> EXTERN: (496,9) adler32(uLong, const Bytef *, uInt)
+  -> EXTERN: (499,5) _tr_init(deflate_state *)
+
+
+    Report from: Code generation optimizations [cg]
+
+deflate.c(469,1):remark #34051: REGISTER ALLOCATION : [deflateResetKeep] deflate.c:469
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    8[ rax rdx rcx rbx rsi rdi r8 r15]
+        
+    Routine temporaries
+        Total         :      33
+            Global    :      13
+            Local     :      20
+        Regenerable   :      11
+        Spilled       :       2
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: deflateReset()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (deflateReset()) [11/30=36.7%] deflate.c(507,1)
+  -> INLINE: (510,11) deflateResetKeep() (isz = 101) (sz = 109)
+    -> INLINE: (472,9) deflateStateCheck() (isz = 46) (sz = 55)
+    -> EXTERN: (494,24) crc32(uLong, const Bytef *, uInt)
+    -> EXTERN: (496,9) adler32(uLong, const Bytef *, uInt)
+    -> EXTERN: (499,5) _tr_init(deflate_state *)
+  -> INLINE: (512,9) lm_init() (isz = 55) (sz = 60)
+    -> INLINE (MANUAL): (1199,5) memset(void *, int, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,10) __builtin___memset_chk(void *, int, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,55) __builtin_object_size(const void *, int)
+
+
+    Report from: Code generation optimizations [cg]
+
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34014: optimization advice for memset: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34026: call to memset implemented as a call to optimized library version
+deflate.c(507,1):remark #34051: REGISTER ALLOCATION : [deflateReset] deflate.c:507
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   10[ rax rdx rcx rbx rbp rsi rdi r8-r9 r12]
+        
+    Routine temporaries
+        Total         :      52
+            Global    :      16
+            Local     :      36
+        Regenerable   :      12
+        Spilled       :       3
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: deflateSetHeader()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (deflateSetHeader()) [12/30=40.0%] deflate.c(520,1)
+  -> INLINE: (521,9) deflateStateCheck() (isz = 46) (sz = 55)
+
+
+    Report from: Code generation optimizations [cg]
+
+deflate.c(520,1):remark #34051: REGISTER ALLOCATION : [deflateSetHeader] deflate.c:520
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    4[ rax rdx rsi rdi]
+        
+    Routine temporaries
+        Total         :      14
+            Global    :      10
+            Local     :       4
+        Regenerable   :       2
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: deflatePending()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (deflatePending()) [13/30=43.3%] deflate.c(532,1)
+  -> INLINE: (533,9) deflateStateCheck() (isz = 46) (sz = 55)
+
+
+    Report from: Code generation optimizations [cg]
+
+deflate.c(532,1):remark #34051: REGISTER ALLOCATION : [deflatePending] deflate.c:532
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    5[ rax rdx rcx rsi rdi]
+        
+    Routine temporaries
+        Total         :      18
+            Global    :      11
+            Local     :       7
+        Regenerable   :       2
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: deflatePrime()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (deflatePrime()) [14/30=46.7%] deflate.c(546,1)
+  -> INLINE: (550,9) deflateStateCheck() (isz = 46) (sz = 55)
+  -> EXTERN: (560,9) _tr_flush_bits(deflate_state *)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at deflate.c(552,5)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+deflate.c(546,1):remark #34051: REGISTER ALLOCATION : [deflatePrime] deflate.c:546
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   10[ rax rdx rcx rsi rdi r8 r12-r15]
+        
+    Routine temporaries
+        Total         :      37
+            Global    :      13
+            Local     :      24
+        Regenerable   :       5
+        Spilled       :       4
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :      32 bytes*
+            Reads     :       4 [2.76e+00 ~ 2.0%]
+            Writes    :       4 [2.76e+00 ~ 2.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: deflateParams()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (deflateParams()) [15/30=50.0%] deflate.c(572,1)
+  -> INLINE: (576,9) deflateStateCheck() (isz = 46) (sz = 55)
+  -> INLINE: (592,19) deflate() (isz = 3798) (sz = 3824)
+    -> INLINE: (770,9) deflateStateCheck() (isz = 46) (sz = 55)
+    -> INLINE: (787,9) flush_pending() (isz = 45) (sz = 51)
+      -> EXTERN: (736,5) _tr_flush_bits(deflate_state *)
+      -> INLINE (MANUAL): (741,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+    -> INLINE: (831,9) putShortMSB() (isz = 23) (sz = 30)
+    -> INLINE: (835,13) putShortMSB() (isz = 23) (sz = 30)
+    -> INLINE: (836,13) putShortMSB() (isz = 23) (sz = 30)
+    -> EXTERN: (838,23) adler32(uLong, const Bytef *, uInt)
+    -> INLINE: (842,9) flush_pending() (isz = 45) (sz = 51)
+      -> EXTERN: (736,5) _tr_flush_bits(deflate_state *)
+      -> INLINE (MANUAL): (741,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+    -> EXTERN: (851,23) crc32(uLong, const Bytef *, uInt)
+    -> INLINE: (868,13) flush_pending() (isz = 45) (sz = 51)
+      -> EXTERN: (736,5) _tr_flush_bits(deflate_state *)
+      -> INLINE (MANUAL): (741,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+    -> EXTERN: (894,31) crc32(uLong, const Bytef *, uInt)
+    -> INLINE (MANUAL): (906,17) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+    -> EXTERN: (909,17) crc32(uLong, const Bytef *, uInt)
+    -> INLINE: (911,17) flush_pending() (isz = 45) (sz = 51)
+      -> EXTERN: (736,5) _tr_flush_bits(deflate_state *)
+      -> INLINE (MANUAL): (741,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+    -> INLINE (MANUAL): (919,13) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+    -> EXTERN: (922,13) crc32(uLong, const Bytef *, uInt)
+    -> EXTERN: (933,21) crc32(uLong, const Bytef *, uInt)
+    -> INLINE: (934,21) flush_pending() (isz = 45) (sz = 51)
+      -> EXTERN: (736,5) _tr_flush_bits(deflate_state *)
+      -> INLINE (MANUAL): (741,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+    -> EXTERN: (944,13) crc32(uLong, const Bytef *, uInt)
+    -> EXTERN: (955,21) crc32(uLong, const Bytef *, uInt)
+    -> INLINE: (956,21) flush_pending() (isz = 45) (sz = 51)
+      -> EXTERN: (736,5) _tr_flush_bits(deflate_state *)
+      -> INLINE (MANUAL): (741,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+    -> EXTERN: (966,13) crc32(uLong, const Bytef *, uInt)
+    -> INLINE: (973,17) flush_pending() (isz = 45) (sz = 51)
+      -> EXTERN: (736,5) _tr_flush_bits(deflate_state *)
+      -> INLINE (MANUAL): (741,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+    -> EXTERN: (981,27) crc32(uLong, const Bytef *, uInt)
+    -> INLINE: (986,9) flush_pending() (isz = 45) (sz = 51)
+      -> EXTERN: (736,5) _tr_flush_bits(deflate_state *)
+      -> INLINE (MANUAL): (741,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+    -> INLINE: (1000,34) deflate_stored() (isz = 623) (sz = 634)
+      -> EXTERN: (1690,9) _tr_stored_block(deflate_state *, charf *, ulg, int)
+      -> INLINE: (1699,9) flush_pending() (isz = 45) (sz = 51)
+        -> EXTERN: (736,5) _tr_flush_bits(deflate_state *)
+        -> INLINE (MANUAL): (741,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+      -> INLINE (MANUAL): (1711,13) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+      -> INLINE: (1723,13) read_buf() (isz = 45) (sz = 57)
+        -> INLINE (MANUAL): (1176,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+        -> EXTERN: (1178,23) adler32(uLong, const Bytef *, uInt)
+        -> EXTERN: (1182,23) crc32(uLong, const Bytef *, uInt)
+      -> INLINE (MANUAL): (1743,13) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+      -> INLINE (MANUAL): (1750,17) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+      -> INLINE (MANUAL): (1754,13) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+      -> INLINE (MANUAL): (1778,9) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+      -> INLINE: (1786,9) read_buf() (isz = 45) (sz = 57)
+        -> INLINE (MANUAL): (1176,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+        -> EXTERN: (1178,23) adler32(uLong, const Bytef *, uInt)
+        -> EXTERN: (1182,23) crc32(uLong, const Bytef *, uInt)
+      -> EXTERN: (1808,9) _tr_stored_block(deflate_state *, charf *, ulg, int)
+      -> INLINE: (1810,9) flush_pending() (isz = 45) (sz = 51)
+        -> EXTERN: (736,5) _tr_flush_bits(deflate_state *)
+        -> INLINE (MANUAL): (741,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+    -> INLINE: (1001,50) deflate_huff() (isz = 297) (sz = 311)
+      -> INLINE: (2139,13) fill_window() (isz = 307) (sz = 312)
+        -> INLINE (MANUAL): (1512,13) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+        -> INLINE: (1516,13) slide_hash() (isz = 51) (sz = 56)
+        -> INLINE: (1534,13) read_buf() (isz = 45) (sz = 57)
+          -> INLINE (MANUAL): (1176,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+          -> EXTERN: (1178,23) adler32(uLong, const Bytef *, uInt)
+          -> EXTERN: (1182,23) crc32(uLong, const Bytef *, uInt)
+        -> INLINE (MANUAL): (1581,13) memset(void *, int, size_t) (isz = 6) (sz = 17)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,10) __builtin___memset_chk(void *, int, unsigned long, unsigned long)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,55) __builtin_object_size(const void *, int)
+        -> INLINE (MANUAL): (1592,13) memset(void *, int, size_t) (isz = 6) (sz = 17)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,10) __builtin___memset_chk(void *, int, unsigned long, unsigned long)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,55) __builtin_object_size(const void *, int)
+      -> INLINE: (2153,21) flush_pending() (isz = 45) (sz = 51)
+        -> EXTERN: (736,5) _tr_flush_bits(deflate_state *)
+        -> INLINE (MANUAL): (741,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+      -> EXTERN: (2153,21) _tr_flush_block(deflate_state *, charf *, ulg, int)
+      -> INLINE: (2157,9) flush_pending() (isz = 45) (sz = 51)
+        -> EXTERN: (736,5) _tr_flush_bits(deflate_state *)
+        -> INLINE (MANUAL): (741,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+      -> EXTERN: (2157,9) _tr_flush_block(deflate_state *, charf *, ulg, int)
+      -> EXTERN: (2161,9) _tr_flush_block(deflate_state *, charf *, ulg, int)
+      -> INLINE: (2161,9) flush_pending() (isz = 45) (sz = 51)
+        -> EXTERN: (736,5) _tr_flush_bits(deflate_state *)
+        -> INLINE (MANUAL): (741,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+    -> INLINE: (1002,41) deflate_rle() (isz = 803) (sz = 817)
+      -> INLINE: (2071,13) fill_window() (isz = 307) (sz = 312)
+        -> INLINE (MANUAL): (1512,13) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+        -> INLINE: (1516,13) slide_hash() (isz = 51) (sz = 56)
+        -> INLINE: (1534,13) read_buf() (isz = 45) (sz = 57)
+          -> INLINE (MANUAL): (1176,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+            -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+          -> EXTERN: (1178,23) adler32(uLong, const Bytef *, uInt)
+          -> EXTERN: (1182,23) crc32(uLong, const Bytef *, uInt)
+        -> INLINE (MANUAL): (1581,13) memset(void *, int, size_t) (isz = 6) (sz = 17)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,10) __builtin___memset_chk(void *, int, unsigned long, unsigned long)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,55) __builtin_object_size(const void *, int)
+        -> INLINE (MANUAL): (1592,13) memset(void *, int, size_t) (isz = 6) (sz = 17)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,10) __builtin___memset_chk(void *, int, unsigned long, unsigned long)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,55) __builtin_object_size(const void *, int)
+      -> INLINE: (2114,21) flush_pending() (isz = 45) (sz = 51)
+        -> EXTERN: (736,5) _tr_flush_bits(deflate_state *)
+        -> INLINE (MANUAL): (741,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+      -> EXTERN: (2114,21) _tr_flush_block(deflate_state *, charf *, ulg, int)
+      -> INLINE: (2118,9) flush_pending() (isz = 45) (sz = 51)
+        -> EXTERN: (736,5) _tr_flush_bits(deflate_state *)
+        -> INLINE (MANUAL): (741,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+      -> EXTERN: (2118,9) _tr_flush_block(deflate_state *, charf *, ulg, int)
+      -> EXTERN: (2122,9) _tr_flush_block(deflate_state *, charf *, ulg, int)
+      -> INLINE: (2122,9) flush_pending() (isz = 45) (sz = 51)
+        -> EXTERN: (736,5) _tr_flush_bits(deflate_state *)
+        -> INLINE (MANUAL): (741,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+    -> INDIRECT: (1003,18)  func_V$11_2.0.0[(EXPR_CONV.SI32.SI64(s.776_V$d4.0.22.229->level_V$3f))]
+       [[ Callee not marked with inlining pragma  <1>]]
+    -> EXTERN: (1023,17) _tr_align(deflate_state *)
+    -> EXTERN: (1025,17) _tr_stored_block(deflate_state *, charf *, ulg, int)
+    -> INLINE (MANUAL): (1030,21) memset(void *, int, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,10) __builtin___memset_chk(void *, int, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,55) __builtin_object_size(const void *, int)
+    -> INLINE: (1038,13) flush_pending() (isz = 45) (sz = 51)
+      -> EXTERN: (736,5) _tr_flush_bits(deflate_state *)
+      -> INLINE (MANUAL): (741,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+    -> INLINE: (1064,9) putShortMSB() (isz = 23) (sz = 30)
+    -> INLINE: (1065,9) putShortMSB() (isz = 23) (sz = 30)
+    -> INLINE: (1067,5) flush_pending() (isz = 45) (sz = 51)
+      -> EXTERN: (736,5) _tr_flush_bits(deflate_state *)
+      -> INLINE (MANUAL): (741,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+  -> INLINE: (601,17) slide_hash() (isz = 51) (sz = 56)
+  -> INLINE (MANUAL): (603,17) memset(void *, int, size_t) (isz = 6) (sz = 17)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,10) __builtin___memset_chk(void *, int, unsigned long, unsigned long)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,55) __builtin_object_size(const void *, int)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at deflate.c(904,13) inlined into deflate.c(592,19)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at deflate.c(929,23) inlined into deflate.c(592,19)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at deflate.c(951,23) inlined into deflate.c(592,19)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at deflate.c(1658,21) inlined into deflate.c(592,19)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at deflate.c(1001,33) inlined into deflate.c(592,19)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at deflate.c(1487,18) inlined into deflate.c(592,19)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15542: loop was not vectorized: inner loop was already vectorized
+
+      LOOP BEGIN at deflate.c(209,5) inlined into deflate.c(592,19)
+      <Peeled loop for vectorization>
+         remark #25015: Estimate of max trip count of loop=7
+      LOOP END
+
+      LOOP BEGIN at deflate.c(209,5) inlined into deflate.c(592,19)
+         remark #17108: loop was not parallelized: insufficient computational work
+         remark #25453: Loop Reversed
+         remark #15388: vectorization support: reference *p has aligned access   [ deflate.c(212,10) ]
+         remark #15388: vectorization support: reference *p has aligned access   [ deflate.c(211,16) ]
+         remark #15305: vectorization support: vector length 8
+         remark #15309: vectorization support: normalized vectorization overhead 1.667
+         remark #15301: REVERSED LOOP WAS VECTORIZED
+         remark #15442: entire loop may be executed in remainder
+         remark #15448: unmasked aligned unit stride loads: 1 
+         remark #15449: unmasked aligned unit stride stores: 1 
+         remark #15475: --- begin vector cost summary ---
+         remark #15476: scalar cost: 8 
+         remark #15477: vector cost: 1.500 
+         remark #15478: estimated potential speedup: 4.370 
+         remark #15488: --- end vector cost summary ---
+      LOOP END
+
+      LOOP BEGIN at deflate.c(209,5) inlined into deflate.c(592,19)
+      <Remainder loop for vectorization>
+      LOOP END
+
+      LOOP BEGIN at deflate.c(216,5) inlined into deflate.c(592,19)
+      <Peeled loop for vectorization>
+         remark #25015: Estimate of max trip count of loop=7
+      LOOP END
+
+      LOOP BEGIN at deflate.c(216,5) inlined into deflate.c(592,19)
+         remark #17108: loop was not parallelized: insufficient computational work
+         remark #25453: Loop Reversed
+         remark #15388: vectorization support: reference *p has aligned access   [ deflate.c(219,10) ]
+         remark #15388: vectorization support: reference *p has aligned access   [ deflate.c(218,16) ]
+         remark #15305: vectorization support: vector length 8
+         remark #15309: vectorization support: normalized vectorization overhead 1.667
+         remark #15301: REVERSED LOOP WAS VECTORIZED
+         remark #15442: entire loop may be executed in remainder
+         remark #15448: unmasked aligned unit stride loads: 1 
+         remark #15449: unmasked aligned unit stride stores: 1 
+         remark #15475: --- begin vector cost summary ---
+         remark #15476: scalar cost: 8 
+         remark #15477: vector cost: 1.500 
+         remark #15478: estimated potential speedup: 4.370 
+         remark #15488: --- end vector cost summary ---
+      LOOP END
+
+      LOOP BEGIN at deflate.c(216,5) inlined into deflate.c(592,19)
+      <Remainder loop for vectorization>
+      LOOP END
+
+      LOOP BEGIN at deflate.c(1545,13) inlined into deflate.c(592,19)
+         remark #17104: loop was not parallelized: existence of parallel dependence
+         remark #17106: parallel dependence: assumed ANTI dependence between s->window[str+2] (1546:17) and s->insert (1552:17)
+         remark #17106: parallel dependence: assumed FLOW dependence between s->insert (1552:17) and s->window[str+2] (1546:17)
+         remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria   [ deflate.c(1553,17) ]
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at deflate.c(2102,13) inlined into deflate.c(592,19)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at deflate.c(1487,18) inlined into deflate.c(592,19)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15542: loop was not vectorized: inner loop was already vectorized
+
+      LOOP BEGIN at deflate.c(209,5) inlined into deflate.c(592,19)
+      <Peeled loop for vectorization>
+         remark #25015: Estimate of max trip count of loop=7
+      LOOP END
+
+      LOOP BEGIN at deflate.c(209,5) inlined into deflate.c(592,19)
+         remark #17108: loop was not parallelized: insufficient computational work
+         remark #25453: Loop Reversed
+         remark #15388: vectorization support: reference *p has aligned access   [ deflate.c(212,10) ]
+         remark #15388: vectorization support: reference *p has aligned access   [ deflate.c(211,16) ]
+         remark #15305: vectorization support: vector length 8
+         remark #15309: vectorization support: normalized vectorization overhead 1.667
+         remark #15301: REVERSED LOOP WAS VECTORIZED
+         remark #15442: entire loop may be executed in remainder
+         remark #15448: unmasked aligned unit stride loads: 1 
+         remark #15449: unmasked aligned unit stride stores: 1 
+         remark #15475: --- begin vector cost summary ---
+         remark #15476: scalar cost: 8 
+         remark #15477: vector cost: 1.500 
+         remark #15478: estimated potential speedup: 4.370 
+         remark #15488: --- end vector cost summary ---
+      LOOP END
+
+      LOOP BEGIN at deflate.c(209,5) inlined into deflate.c(592,19)
+      <Remainder loop for vectorization>
+      LOOP END
+
+      LOOP BEGIN at deflate.c(216,5) inlined into deflate.c(592,19)
+      <Peeled loop for vectorization>
+         remark #25015: Estimate of max trip count of loop=7
+      LOOP END
+
+      LOOP BEGIN at deflate.c(216,5) inlined into deflate.c(592,19)
+         remark #17108: loop was not parallelized: insufficient computational work
+         remark #25453: Loop Reversed
+         remark #15388: vectorization support: reference *p has aligned access   [ deflate.c(219,10) ]
+         remark #15388: vectorization support: reference *p has aligned access   [ deflate.c(218,16) ]
+         remark #15305: vectorization support: vector length 8
+         remark #15309: vectorization support: normalized vectorization overhead 1.667
+         remark #15301: REVERSED LOOP WAS VECTORIZED
+         remark #15442: entire loop may be executed in remainder
+         remark #15448: unmasked aligned unit stride loads: 1 
+         remark #15449: unmasked aligned unit stride stores: 1 
+         remark #15475: --- begin vector cost summary ---
+         remark #15476: scalar cost: 8 
+         remark #15477: vector cost: 1.500 
+         remark #15478: estimated potential speedup: 4.370 
+         remark #15488: --- end vector cost summary ---
+      LOOP END
+
+      LOOP BEGIN at deflate.c(216,5) inlined into deflate.c(592,19)
+      <Remainder loop for vectorization>
+      LOOP END
+
+      LOOP BEGIN at deflate.c(1545,13) inlined into deflate.c(592,19)
+         remark #17104: loop was not parallelized: existence of parallel dependence
+         remark #17106: parallel dependence: assumed ANTI dependence between s->window[str+2] (1546:17) and s->insert (1552:17)
+         remark #17106: parallel dependence: assumed FLOW dependence between s->insert (1552:17) and s->window[str+2] (1546:17)
+         remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria   [ deflate.c(1553,17) ]
+      LOOP END
+   LOOP END
+
+   LOOP BEGIN at deflate.c(2086,37) inlined into deflate.c(592,19)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15523: loop was not vectorized: loop control variable scan was found, but loop iteration count cannot be computed before executing the loop
+   LOOP END
+LOOP END
+
+LOOP BEGIN at deflate.c(600,13)
+<Peeled loop for vectorization>
+   remark #25015: Estimate of max trip count of loop=7
+LOOP END
+
+LOOP BEGIN at deflate.c(600,13)
+   remark #17108: loop was not parallelized: insufficient computational work
+   remark #25453: Loop Reversed
+   remark #15388: vectorization support: reference *p has aligned access   [ deflate.c(212,10) ]
+   remark #15388: vectorization support: reference *p has aligned access   [ deflate.c(211,16) ]
+   remark #15305: vectorization support: vector length 8
+   remark #15309: vectorization support: normalized vectorization overhead 1.667
+   remark #15301: REVERSED LOOP WAS VECTORIZED
+   remark #15442: entire loop may be executed in remainder
+   remark #15448: unmasked aligned unit stride loads: 1 
+   remark #15449: unmasked aligned unit stride stores: 1 
+   remark #15475: --- begin vector cost summary ---
+   remark #15476: scalar cost: 8 
+   remark #15477: vector cost: 1.500 
+   remark #15478: estimated potential speedup: 4.370 
+   remark #15488: --- end vector cost summary ---
+LOOP END
+
+LOOP BEGIN at deflate.c(600,13)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at deflate.c(216,5) inlined into deflate.c(601,17)
+<Peeled loop for vectorization>
+   remark #25015: Estimate of max trip count of loop=7
+LOOP END
+
+LOOP BEGIN at deflate.c(216,5) inlined into deflate.c(601,17)
+   remark #17108: loop was not parallelized: insufficient computational work
+   remark #25453: Loop Reversed
+   remark #15388: vectorization support: reference *p has aligned access   [ deflate.c(219,10) ]
+   remark #15388: vectorization support: reference *p has aligned access   [ deflate.c(218,16) ]
+   remark #15305: vectorization support: vector length 8
+   remark #15309: vectorization support: normalized vectorization overhead 1.667
+   remark #15301: REVERSED LOOP WAS VECTORIZED
+   remark #15442: entire loop may be executed in remainder
+   remark #15448: unmasked aligned unit stride loads: 1 
+   remark #15449: unmasked aligned unit stride stores: 1 
+   remark #15475: --- begin vector cost summary ---
+   remark #15476: scalar cost: 8 
+   remark #15477: vector cost: 1.500 
+   remark #15478: estimated potential speedup: 4.370 
+   remark #15488: --- end vector cost summary ---
+LOOP END
+
+LOOP BEGIN at deflate.c(216,5) inlined into deflate.c(601,17)
+<Remainder loop for vectorization>
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34014: optimization advice for memset: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34026: call to memset implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34014: optimization advice for memset: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34026: call to memset implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34014: optimization advice for memset: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34026: call to memset implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34014: optimization advice for memset: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34026: call to memset implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34014: optimization advice for memset: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34026: call to memset implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+deflate.c(572,1):remark #34051: REGISTER ALLOCATION : [deflateParams] deflate.c:572
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   20[ rax rdx rcx rbx rbp rsi rdi r8-r15 zmm0-zmm4]
+        
+    Routine temporaries
+        Total         :    1300
+            Global    :     339
+            Local     :     961
+        Regenerable   :      50
+        Spilled       :      43
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :     272 bytes*
+            Reads     :      76 [5.01e-02 ~ 0.1%]
+            Writes    :      52 [4.41e-02 ~ 0.1%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: deflateTune()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (deflateTune()) [16/30=53.3%] deflate.c(623,1)
+  -> INLINE: (626,9) deflateStateCheck() (isz = 46) (sz = 55)
+
+
+    Report from: Code generation optimizations [cg]
+
+deflate.c(623,1):remark #34051: REGISTER ALLOCATION : [deflateTune] deflate.c:623
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    7[ rax rdx rcx rsi rdi r8-r9]
+        
+    Routine temporaries
+        Total         :      20
+            Global    :      13
+            Local     :       7
+        Regenerable   :       2
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: deflateBound()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (deflateBound()) [17/30=56.7%] deflate.c(655,1)
+  -> INLINE: (664,9) deflateStateCheck() (isz = 46) (sz = 55)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at deflate.c(684,13)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15523: loop was not vectorized: loop control variable str was found, but loop iteration count cannot be computed before executing the loop
+   remark #25478: While Loop Unrolled by 2  
+LOOP END
+
+LOOP BEGIN at deflate.c(689,13)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15523: loop was not vectorized: loop control variable str was found, but loop iteration count cannot be computed before executing the loop
+   remark #25478: While Loop Unrolled by 2  
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+deflate.c(655,1):remark #34051: REGISTER ALLOCATION : [deflateBound] deflate.c:655
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    8[ rax rdx rcx rsi rdi r8-r10]
+        
+    Routine temporaries
+        Total         :      49
+            Global    :      20
+            Local     :      29
+        Regenerable   :       3
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: putShortMSB()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (putShortMSB()) deflate.c(719,1)
+
+===========================================================================
+
+Begin optimization report for: flush_pending()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (flush_pending()) deflate.c(732,1)
+
+===========================================================================
+
+Begin optimization report for: deflate()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (deflate()) [20/30=66.7%] deflate.c(766,1)
+  -> INLINE: (770,9) deflateStateCheck() (isz = 46) (sz = 55)
+  -> INLINE: (787,9) flush_pending() (isz = 45) (sz = 51)
+    -> EXTERN: (736,5) _tr_flush_bits(deflate_state *)
+    -> INLINE (MANUAL): (741,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+  -> INLINE: (831,9) putShortMSB() (isz = 23) (sz = 30)
+  -> INLINE: (835,13) putShortMSB() (isz = 23) (sz = 30)
+  -> INLINE: (836,13) putShortMSB() (isz = 23) (sz = 30)
+  -> EXTERN: (838,23) adler32(uLong, const Bytef *, uInt)
+  -> INLINE: (842,9) flush_pending() (isz = 45) (sz = 51)
+    -> EXTERN: (736,5) _tr_flush_bits(deflate_state *)
+    -> INLINE (MANUAL): (741,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+  -> EXTERN: (851,23) crc32(uLong, const Bytef *, uInt)
+  -> INLINE: (868,13) flush_pending() (isz = 45) (sz = 51)
+    -> EXTERN: (736,5) _tr_flush_bits(deflate_state *)
+    -> INLINE (MANUAL): (741,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+  -> EXTERN: (894,31) crc32(uLong, const Bytef *, uInt)
+  -> INLINE (MANUAL): (906,17) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+  -> EXTERN: (909,17) crc32(uLong, const Bytef *, uInt)
+  -> INLINE: (911,17) flush_pending() (isz = 45) (sz = 51)
+    -> EXTERN: (736,5) _tr_flush_bits(deflate_state *)
+    -> INLINE (MANUAL): (741,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+  -> INLINE (MANUAL): (919,13) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+  -> EXTERN: (922,13) crc32(uLong, const Bytef *, uInt)
+  -> EXTERN: (933,21) crc32(uLong, const Bytef *, uInt)
+  -> INLINE: (934,21) flush_pending() (isz = 45) (sz = 51)
+    -> EXTERN: (736,5) _tr_flush_bits(deflate_state *)
+    -> INLINE (MANUAL): (741,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+  -> EXTERN: (944,13) crc32(uLong, const Bytef *, uInt)
+  -> EXTERN: (955,21) crc32(uLong, const Bytef *, uInt)
+  -> INLINE: (956,21) flush_pending() (isz = 45) (sz = 51)
+    -> EXTERN: (736,5) _tr_flush_bits(deflate_state *)
+    -> INLINE (MANUAL): (741,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+  -> EXTERN: (966,13) crc32(uLong, const Bytef *, uInt)
+  -> INLINE: (973,17) flush_pending() (isz = 45) (sz = 51)
+    -> EXTERN: (736,5) _tr_flush_bits(deflate_state *)
+    -> INLINE (MANUAL): (741,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+  -> EXTERN: (981,27) crc32(uLong, const Bytef *, uInt)
+  -> INLINE: (986,9) flush_pending() (isz = 45) (sz = 51)
+    -> EXTERN: (736,5) _tr_flush_bits(deflate_state *)
+    -> INLINE (MANUAL): (741,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+  -> INLINE: (1000,34) deflate_stored() (isz = 623) (sz = 634)
+    -> EXTERN: (1690,9) _tr_stored_block(deflate_state *, charf *, ulg, int)
+    -> INLINE: (1699,9) flush_pending() (isz = 45) (sz = 51)
+      -> EXTERN: (736,5) _tr_flush_bits(deflate_state *)
+      -> INLINE (MANUAL): (741,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+    -> INLINE (MANUAL): (1711,13) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+    -> INLINE: (1723,13) read_buf() (isz = 45) (sz = 57)
+      -> INLINE (MANUAL): (1176,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+      -> EXTERN: (1178,23) adler32(uLong, const Bytef *, uInt)
+      -> EXTERN: (1182,23) crc32(uLong, const Bytef *, uInt)
+    -> INLINE (MANUAL): (1743,13) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+    -> INLINE (MANUAL): (1750,17) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+    -> INLINE (MANUAL): (1754,13) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+    -> INLINE (MANUAL): (1778,9) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+    -> INLINE: (1786,9) read_buf() (isz = 45) (sz = 57)
+      -> INLINE (MANUAL): (1176,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+      -> EXTERN: (1178,23) adler32(uLong, const Bytef *, uInt)
+      -> EXTERN: (1182,23) crc32(uLong, const Bytef *, uInt)
+    -> EXTERN: (1808,9) _tr_stored_block(deflate_state *, charf *, ulg, int)
+    -> INLINE: (1810,9) flush_pending() (isz = 45) (sz = 51)
+      -> EXTERN: (736,5) _tr_flush_bits(deflate_state *)
+      -> INLINE (MANUAL): (741,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+  -> INLINE: (1001,50) deflate_huff() (isz = 297) (sz = 311)
+    -> INLINE: (2139,13) fill_window() (isz = 307) (sz = 312)
+      -> INLINE (MANUAL): (1512,13) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+      -> INLINE: (1516,13) slide_hash() (isz = 51) (sz = 56)
+      -> INLINE: (1534,13) read_buf() (isz = 45) (sz = 57)
+        -> INLINE (MANUAL): (1176,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+        -> EXTERN: (1178,23) adler32(uLong, const Bytef *, uInt)
+        -> EXTERN: (1182,23) crc32(uLong, const Bytef *, uInt)
+      -> INLINE (MANUAL): (1581,13) memset(void *, int, size_t) (isz = 6) (sz = 17)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,10) __builtin___memset_chk(void *, int, unsigned long, unsigned long)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,55) __builtin_object_size(const void *, int)
+      -> INLINE (MANUAL): (1592,13) memset(void *, int, size_t) (isz = 6) (sz = 17)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,10) __builtin___memset_chk(void *, int, unsigned long, unsigned long)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,55) __builtin_object_size(const void *, int)
+    -> EXTERN: (2153,21) _tr_flush_block(deflate_state *, charf *, ulg, int)
+    -> INLINE: (2153,21) flush_pending() (isz = 45) (sz = 51)
+      -> EXTERN: (736,5) _tr_flush_bits(deflate_state *)
+      -> INLINE (MANUAL): (741,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+    -> EXTERN: (2157,9) _tr_flush_block(deflate_state *, charf *, ulg, int)
+    -> INLINE: (2157,9) flush_pending() (isz = 45) (sz = 51)
+      -> EXTERN: (736,5) _tr_flush_bits(deflate_state *)
+      -> INLINE (MANUAL): (741,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+    -> INLINE: (2161,9) flush_pending() (isz = 45) (sz = 51)
+      -> EXTERN: (736,5) _tr_flush_bits(deflate_state *)
+      -> INLINE (MANUAL): (741,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+    -> EXTERN: (2161,9) _tr_flush_block(deflate_state *, charf *, ulg, int)
+  -> INLINE: (1002,41) deflate_rle() (isz = 803) (sz = 817)
+    -> INLINE: (2071,13) fill_window() (isz = 307) (sz = 312)
+      -> INLINE (MANUAL): (1512,13) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+      -> INLINE: (1516,13) slide_hash() (isz = 51) (sz = 56)
+      -> INLINE: (1534,13) read_buf() (isz = 45) (sz = 57)
+        -> INLINE (MANUAL): (1176,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+        -> EXTERN: (1178,23) adler32(uLong, const Bytef *, uInt)
+        -> EXTERN: (1182,23) crc32(uLong, const Bytef *, uInt)
+      -> INLINE (MANUAL): (1581,13) memset(void *, int, size_t) (isz = 6) (sz = 17)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,10) __builtin___memset_chk(void *, int, unsigned long, unsigned long)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,55) __builtin_object_size(const void *, int)
+      -> INLINE (MANUAL): (1592,13) memset(void *, int, size_t) (isz = 6) (sz = 17)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,10) __builtin___memset_chk(void *, int, unsigned long, unsigned long)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,55) __builtin_object_size(const void *, int)
+    -> EXTERN: (2114,21) _tr_flush_block(deflate_state *, charf *, ulg, int)
+    -> INLINE: (2114,21) flush_pending() (isz = 45) (sz = 51)
+      -> EXTERN: (736,5) _tr_flush_bits(deflate_state *)
+      -> INLINE (MANUAL): (741,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+    -> EXTERN: (2118,9) _tr_flush_block(deflate_state *, charf *, ulg, int)
+    -> INLINE: (2118,9) flush_pending() (isz = 45) (sz = 51)
+      -> EXTERN: (736,5) _tr_flush_bits(deflate_state *)
+      -> INLINE (MANUAL): (741,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+    -> INLINE: (2122,9) flush_pending() (isz = 45) (sz = 51)
+      -> EXTERN: (736,5) _tr_flush_bits(deflate_state *)
+      -> INLINE (MANUAL): (741,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+    -> EXTERN: (2122,9) _tr_flush_block(deflate_state *, charf *, ulg, int)
+  -> INDIRECT: (1003,18)  func_V$11_2.0.0[(EXPR_CONV.SI32.SI64(s.776_V$d4.0.22->level_V$3f))]
+     [[ Callee not marked with inlining pragma  <1>]]
+  -> EXTERN: (1023,17) _tr_align(deflate_state *)
+  -> EXTERN: (1025,17) _tr_stored_block(deflate_state *, charf *, ulg, int)
+  -> INLINE (MANUAL): (1030,21) memset(void *, int, size_t) (isz = 6) (sz = 17)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,10) __builtin___memset_chk(void *, int, unsigned long, unsigned long)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,55) __builtin_object_size(const void *, int)
+  -> INLINE: (1038,13) flush_pending() (isz = 45) (sz = 51)
+    -> EXTERN: (736,5) _tr_flush_bits(deflate_state *)
+    -> INLINE (MANUAL): (741,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+  -> INLINE: (1064,9) putShortMSB() (isz = 23) (sz = 30)
+  -> INLINE: (1065,9) putShortMSB() (isz = 23) (sz = 30)
+  -> INLINE: (1067,5) flush_pending() (isz = 45) (sz = 51)
+    -> EXTERN: (736,5) _tr_flush_bits(deflate_state *)
+    -> INLINE (MANUAL): (741,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+      -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at deflate.c(904,13)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at deflate.c(929,23)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at deflate.c(951,23)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at deflate.c(1658,21) inlined into deflate.c(1000,34)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at deflate.c(1001,33)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at deflate.c(1487,18) inlined into deflate.c(1001,50)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15542: loop was not vectorized: inner loop was already vectorized
+
+      LOOP BEGIN at deflate.c(209,5) inlined into deflate.c(1001,50)
+      <Peeled loop for vectorization>
+         remark #25015: Estimate of max trip count of loop=7
+      LOOP END
+
+      LOOP BEGIN at deflate.c(209,5) inlined into deflate.c(1001,50)
+         remark #17108: loop was not parallelized: insufficient computational work
+         remark #25453: Loop Reversed
+         remark #15388: vectorization support: reference *p has aligned access   [ deflate.c(212,10) ]
+         remark #15388: vectorization support: reference *p has aligned access   [ deflate.c(211,16) ]
+         remark #15305: vectorization support: vector length 8
+         remark #15309: vectorization support: normalized vectorization overhead 1.667
+         remark #15301: REVERSED LOOP WAS VECTORIZED
+         remark #15442: entire loop may be executed in remainder
+         remark #15448: unmasked aligned unit stride loads: 1 
+         remark #15449: unmasked aligned unit stride stores: 1 
+         remark #15475: --- begin vector cost summary ---
+         remark #15476: scalar cost: 8 
+         remark #15477: vector cost: 1.500 
+         remark #15478: estimated potential speedup: 4.370 
+         remark #15488: --- end vector cost summary ---
+      LOOP END
+
+      LOOP BEGIN at deflate.c(209,5) inlined into deflate.c(1001,50)
+      <Remainder loop for vectorization>
+      LOOP END
+
+      LOOP BEGIN at deflate.c(216,5) inlined into deflate.c(1001,50)
+      <Peeled loop for vectorization>
+         remark #25015: Estimate of max trip count of loop=7
+      LOOP END
+
+      LOOP BEGIN at deflate.c(216,5) inlined into deflate.c(1001,50)
+         remark #17108: loop was not parallelized: insufficient computational work
+         remark #25453: Loop Reversed
+         remark #15388: vectorization support: reference *p has aligned access   [ deflate.c(219,10) ]
+         remark #15388: vectorization support: reference *p has aligned access   [ deflate.c(218,16) ]
+         remark #15305: vectorization support: vector length 8
+         remark #15309: vectorization support: normalized vectorization overhead 1.667
+         remark #15301: REVERSED LOOP WAS VECTORIZED
+         remark #15442: entire loop may be executed in remainder
+         remark #15448: unmasked aligned unit stride loads: 1 
+         remark #15449: unmasked aligned unit stride stores: 1 
+         remark #15475: --- begin vector cost summary ---
+         remark #15476: scalar cost: 8 
+         remark #15477: vector cost: 1.500 
+         remark #15478: estimated potential speedup: 4.370 
+         remark #15488: --- end vector cost summary ---
+      LOOP END
+
+      LOOP BEGIN at deflate.c(216,5) inlined into deflate.c(1001,50)
+      <Remainder loop for vectorization>
+      LOOP END
+
+      LOOP BEGIN at deflate.c(1545,13) inlined into deflate.c(1001,50)
+         remark #17104: loop was not parallelized: existence of parallel dependence
+         remark #17106: parallel dependence: assumed ANTI dependence between s->window[str+2] (1546:17) and s->insert (1552:17)
+         remark #17106: parallel dependence: assumed FLOW dependence between s->insert (1552:17) and s->window[str+2] (1546:17)
+         remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria   [ deflate.c(1553,17) ]
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at deflate.c(2102,13) inlined into deflate.c(1002,41)
+   remark #17102: loop was not parallelized: not a parallelization candidate
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at deflate.c(1487,18) inlined into deflate.c(1002,41)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15542: loop was not vectorized: inner loop was already vectorized
+
+      LOOP BEGIN at deflate.c(209,5) inlined into deflate.c(1002,41)
+      <Peeled loop for vectorization>
+         remark #25015: Estimate of max trip count of loop=7
+      LOOP END
+
+      LOOP BEGIN at deflate.c(209,5) inlined into deflate.c(1002,41)
+         remark #17108: loop was not parallelized: insufficient computational work
+         remark #25453: Loop Reversed
+         remark #15388: vectorization support: reference *p has aligned access   [ deflate.c(212,10) ]
+         remark #15388: vectorization support: reference *p has aligned access   [ deflate.c(211,16) ]
+         remark #15305: vectorization support: vector length 8
+         remark #15309: vectorization support: normalized vectorization overhead 1.667
+         remark #15301: REVERSED LOOP WAS VECTORIZED
+         remark #15442: entire loop may be executed in remainder
+         remark #15448: unmasked aligned unit stride loads: 1 
+         remark #15449: unmasked aligned unit stride stores: 1 
+         remark #15475: --- begin vector cost summary ---
+         remark #15476: scalar cost: 8 
+         remark #15477: vector cost: 1.500 
+         remark #15478: estimated potential speedup: 4.370 
+         remark #15488: --- end vector cost summary ---
+      LOOP END
+
+      LOOP BEGIN at deflate.c(209,5) inlined into deflate.c(1002,41)
+      <Remainder loop for vectorization>
+      LOOP END
+
+      LOOP BEGIN at deflate.c(216,5) inlined into deflate.c(1002,41)
+      <Peeled loop for vectorization>
+         remark #25015: Estimate of max trip count of loop=7
+      LOOP END
+
+      LOOP BEGIN at deflate.c(216,5) inlined into deflate.c(1002,41)
+         remark #17108: loop was not parallelized: insufficient computational work
+         remark #25453: Loop Reversed
+         remark #15388: vectorization support: reference *p has aligned access   [ deflate.c(219,10) ]
+         remark #15388: vectorization support: reference *p has aligned access   [ deflate.c(218,16) ]
+         remark #15305: vectorization support: vector length 8
+         remark #15309: vectorization support: normalized vectorization overhead 1.667
+         remark #15301: REVERSED LOOP WAS VECTORIZED
+         remark #15442: entire loop may be executed in remainder
+         remark #15448: unmasked aligned unit stride loads: 1 
+         remark #15449: unmasked aligned unit stride stores: 1 
+         remark #15475: --- begin vector cost summary ---
+         remark #15476: scalar cost: 8 
+         remark #15477: vector cost: 1.500 
+         remark #15478: estimated potential speedup: 4.370 
+         remark #15488: --- end vector cost summary ---
+      LOOP END
+
+      LOOP BEGIN at deflate.c(216,5) inlined into deflate.c(1002,41)
+      <Remainder loop for vectorization>
+      LOOP END
+
+      LOOP BEGIN at deflate.c(1545,13) inlined into deflate.c(1002,41)
+         remark #17104: loop was not parallelized: existence of parallel dependence
+         remark #17106: parallel dependence: assumed ANTI dependence between s->window[str+2] (1546:17) and s->insert (1552:17)
+         remark #17106: parallel dependence: assumed FLOW dependence between s->insert (1552:17) and s->window[str+2] (1546:17)
+         remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria   [ deflate.c(1553,17) ]
+      LOOP END
+   LOOP END
+
+   LOOP BEGIN at deflate.c(2086,37) inlined into deflate.c(1002,41)
+      remark #17102: loop was not parallelized: not a parallelization candidate
+      remark #15523: loop was not vectorized: loop control variable scan was found, but loop iteration count cannot be computed before executing the loop
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34014: optimization advice for memset: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34026: call to memset implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34014: optimization advice for memset: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34026: call to memset implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34014: optimization advice for memset: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34026: call to memset implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34014: optimization advice for memset: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34026: call to memset implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34014: optimization advice for memset: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34026: call to memset implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+deflate.c(766,1):remark #34051: REGISTER ALLOCATION : [deflate] deflate.c:766
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   20[ rax rdx rcx rbx rbp rsi rdi r8-r15 zmm0-zmm4]
+        
+    Routine temporaries
+        Total         :    1311
+            Global    :     336
+            Local     :     975
+        Regenerable   :      63
+        Spilled       :      34
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :     216 bytes*
+            Reads     :      66 [5.60e-01 ~ 0.5%]
+            Writes    :      35 [3.98e-01 ~ 0.4%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: deflateEnd()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (deflateEnd()) [21/30=70.0%] deflate.c(1078,1)
+  -> INLINE: (1081,9) deflateStateCheck() (isz = 46) (sz = 55)
+  -> INDIRECT-: (1086,5)  strm_943_V$100.0.23->zfree_V$88
+     [[ Unable to inline indirect callsite  <2>]]
+  -> INDIRECT-: (1087,5)  strm_943_V$100.0.23->zfree_V$88
+     [[ Unable to inline indirect callsite  <2>]]
+  -> INDIRECT-: (1088,5)  strm_943_V$100.0.23->zfree_V$88
+     [[ Unable to inline indirect callsite  <2>]]
+  -> INDIRECT-: (1089,5)  strm_943_V$100.0.23->zfree_V$88
+     [[ Unable to inline indirect callsite  <2>]]
+  -> INDIRECT-: (1091,5)  strm_943_V$100.0.23->zfree_V$88
+     [[ Unable to inline indirect callsite  <2>]]
+
+
+    Report from: Code generation optimizations [cg]
+
+deflate.c(1078,1):remark #34051: REGISTER ALLOCATION : [deflateEnd] deflate.c:1078
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    6[ rax rdx rsi rdi r12-r13]
+        
+    Routine temporaries
+        Total         :      35
+            Global    :      14
+            Local     :      21
+        Regenerable   :       3
+        Spilled       :       2
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: deflateCopy()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (deflateCopy()) [22/30=73.3%] deflate.c(1105,1)
+  -> INLINE: (1114,9) deflateStateCheck() (isz = 46) (sz = 55)
+  -> INLINE (MANUAL): (1120,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+  -> INDIRECT-: (1122,28)  dest_958_V$102.0.24->zalloc_V$87
+     [[ Unable to inline indirect callsite  <2>]]
+  -> INLINE (MANUAL): (1125,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+  -> INDIRECT-: (1128,28)  dest_958_V$102.0.24->zalloc_V$87
+     [[ Unable to inline indirect callsite  <2>]]
+  -> INDIRECT-: (1129,28)  dest_958_V$102.0.24->zalloc_V$87
+     [[ Unable to inline indirect callsite  <2>]]
+  -> INDIRECT-: (1130,28)  dest_958_V$102.0.24->zalloc_V$87
+     [[ Unable to inline indirect callsite  <2>]]
+  -> INDIRECT-: (1131,24)  dest_958_V$102.0.24->zalloc_V$87
+     [[ Unable to inline indirect callsite  <2>]]
+  -> INLINE: (1136,9) deflateEnd() (isz = 109) (sz = 117)
+    -> INLINE: (1081,9) deflateStateCheck() (isz = 46) (sz = 55)
+    -> INDIRECT-: (1086,5)  strm_943_V$100.0.23.138->zfree_V$88
+       [[ Unable to inline indirect callsite  <2>]]
+    -> INDIRECT-: (1087,5)  strm_943_V$100.0.23.138->zfree_V$88
+       [[ Unable to inline indirect callsite  <2>]]
+    -> INDIRECT-: (1088,5)  strm_943_V$100.0.23.138->zfree_V$88
+       [[ Unable to inline indirect callsite  <2>]]
+    -> INDIRECT-: (1089,5)  strm_943_V$100.0.23.138->zfree_V$88
+       [[ Unable to inline indirect callsite  <2>]]
+    -> INDIRECT-: (1091,5)  strm_943_V$100.0.23.138->zfree_V$88
+       [[ Unable to inline indirect callsite  <2>]]
+  -> INLINE (MANUAL): (1140,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+  -> INLINE (MANUAL): (1141,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+  -> INLINE (MANUAL): (1142,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+  -> INLINE (MANUAL): (1143,5) memcpy(void *__restrict__, const void *__restrict__, size_t) (isz = 6) (sz = 17)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,10) __builtin___memcpy_chk(void *, const void *, unsigned long, unsigned long)
+    -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(34,56) __builtin_object_size(const void *, int)
+
+
+    Report from: Code generation optimizations [cg]
+
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to increase the width of loads
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to increase the width of stores
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (1, 0), and destination (alignment, offset): (1, 0)
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34014: optimization advice for memcpy: increase the source's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(34,10):remark #34026: call to memcpy implemented as a call to optimized library version
+deflate.c(1105,1):remark #34051: REGISTER ALLOCATION : [deflateCopy] deflate.c:1105
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   18[ rax rdx rcx rbx rbp rsi rdi r8-r9 r12-r13 zmm0-zmm6]
+        
+    Routine temporaries
+        Total         :     123
+            Global    :      30
+            Local     :      93
+        Regenerable   :      11
+        Spilled       :       4
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: read_buf()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (read_buf()) deflate.c(1168,1)
+
+===========================================================================
+
+Begin optimization report for: longest_match()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (longest_match()) deflate.c(1239,1)
+
+===========================================================================
+
+Begin optimization report for: deflate_rle()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (deflate_rle()) deflate.c(2060,1)
+
+===========================================================================
+
+Begin optimization report for: deflate_huff()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (deflate_huff()) deflate.c(2133,1)
+
+===========================================================================
+
+Begin optimization report for: fill_window()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (fill_window()) deflate.c(1484,1)
+
+===========================================================================
+
+Begin optimization report for: lm_init()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (lm_init()) deflate.c(1196,1)
+
+===========================================================================
+
+Begin optimization report for: deflateInit2_()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (deflateInit2_()) [29/30=96.7%] deflate.c(250,1)
+  -> INDIRECT-: (304,27)  strm_642_V$72.0.8->zalloc_V$87
+     [[ Unable to inline indirect callsite  <2>]]
+  -> INDIRECT-: (321,27)  strm_642_V$72.0.8->zalloc_V$87
+     [[ Unable to inline indirect callsite  <2>]]
+  -> INDIRECT-: (322,27)  strm_642_V$72.0.8->zalloc_V$87
+     [[ Unable to inline indirect callsite  <2>]]
+  -> INDIRECT-: (323,27)  strm_642_V$72.0.8->zalloc_V$87
+     [[ Unable to inline indirect callsite  <2>]]
+  -> INDIRECT-: (329,24)  strm_642_V$72.0.8->zalloc_V$87
+     [[ Unable to inline indirect callsite  <2>]]
+  -> INLINE: (337,9) deflateEnd() (isz = 109) (sz = 117)
+    -> INLINE: (1081,9) deflateStateCheck() (isz = 46) (sz = 55)
+    -> INDIRECT-: (1086,5)  strm_943_V$100.0.23.140->zfree_V$88
+       [[ Unable to inline indirect callsite  <2>]]
+    -> INDIRECT-: (1087,5)  strm_943_V$100.0.23.140->zfree_V$88
+       [[ Unable to inline indirect callsite  <2>]]
+    -> INDIRECT-: (1088,5)  strm_943_V$100.0.23.140->zfree_V$88
+       [[ Unable to inline indirect callsite  <2>]]
+    -> INDIRECT-: (1089,5)  strm_943_V$100.0.23.140->zfree_V$88
+       [[ Unable to inline indirect callsite  <2>]]
+    -> INDIRECT-: (1091,5)  strm_943_V$100.0.23.140->zfree_V$88
+       [[ Unable to inline indirect callsite  <2>]]
+  -> INLINE: (347,12) deflateReset() (isz = 163) (sz = 170)
+    -> INLINE: (510,11) deflateResetKeep() (isz = 101) (sz = 109)
+      -> INLINE: (472,9) deflateStateCheck() (isz = 46) (sz = 55)
+      -> EXTERN: (494,24) crc32(uLong, const Bytef *, uInt)
+      -> EXTERN: (496,9) adler32(uLong, const Bytef *, uInt)
+      -> EXTERN: (499,5) _tr_init(deflate_state *)
+    -> INLINE: (512,9) lm_init() (isz = 55) (sz = 60)
+      -> INLINE (MANUAL): (1199,5) memset(void *, int, size_t) (isz = 6) (sz = 17)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,10) __builtin___memset_chk(void *, int, unsigned long, unsigned long)
+        -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,55) __builtin_object_size(const void *, int)
+
+
+    Report from: Code generation optimizations [cg]
+
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34014: optimization advice for memset: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34026: call to memset implemented as a call to optimized library version
+deflate.c(250,1):remark #34051: REGISTER ALLOCATION : [deflateInit2_] deflate.c:250
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   15[ rax rdx rcx rbx rbp rsi rdi r8-r15]
+        
+    Routine temporaries
+        Total         :     156
+            Global    :      46
+            Local     :     110
+        Regenerable   :      29
+        Spilled       :       7
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       8 bytes*
+            Reads     :       1 [5.40e-03 ~ 0.0%]
+            Writes    :       1 [5.40e-03 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: deflateInit_()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (deflateInit_()) [30/30=100.0%] deflate.c(233,1)
+  -> INLINE: (234,12) deflateInit2_() (isz = 488) (sz = 514)
+    -> INDIRECT-: (304,27)  strm_642_V$72.0.8.193->zalloc_V$87
+       [[ Unable to inline indirect callsite  <2>]]
+    -> INDIRECT-: (321,27)  strm_642_V$72.0.8.193->zalloc_V$87
+       [[ Unable to inline indirect callsite  <2>]]
+    -> INDIRECT-: (322,27)  strm_642_V$72.0.8.193->zalloc_V$87
+       [[ Unable to inline indirect callsite  <2>]]
+    -> INDIRECT-: (323,27)  strm_642_V$72.0.8.193->zalloc_V$87
+       [[ Unable to inline indirect callsite  <2>]]
+    -> INDIRECT-: (329,24)  strm_642_V$72.0.8.193->zalloc_V$87
+       [[ Unable to inline indirect callsite  <2>]]
+    -> INLINE: (337,9) deflateEnd() (isz = 109) (sz = 117)
+      -> INLINE: (1081,9) deflateStateCheck() (isz = 46) (sz = 55)
+      -> INDIRECT-: (1086,5)  strm_943_V$100.0.23.199->zfree_V$88
+         [[ Unable to inline indirect callsite  <2>]]
+      -> INDIRECT-: (1087,5)  strm_943_V$100.0.23.199->zfree_V$88
+         [[ Unable to inline indirect callsite  <2>]]
+      -> INDIRECT-: (1088,5)  strm_943_V$100.0.23.199->zfree_V$88
+         [[ Unable to inline indirect callsite  <2>]]
+      -> INDIRECT-: (1089,5)  strm_943_V$100.0.23.199->zfree_V$88
+         [[ Unable to inline indirect callsite  <2>]]
+      -> INDIRECT-: (1091,5)  strm_943_V$100.0.23.199->zfree_V$88
+         [[ Unable to inline indirect callsite  <2>]]
+    -> INLINE: (347,12) deflateReset() (isz = 163) (sz = 170)
+      -> INLINE: (510,11) deflateResetKeep() (isz = 101) (sz = 109)
+        -> INLINE: (472,9) deflateStateCheck() (isz = 46) (sz = 55)
+        -> EXTERN: (494,24) crc32(uLong, const Bytef *, uInt)
+        -> EXTERN: (496,9) adler32(uLong, const Bytef *, uInt)
+        -> EXTERN: (499,5) _tr_init(deflate_state *)
+      -> INLINE: (512,9) lm_init() (isz = 55) (sz = 60)
+        -> INLINE (MANUAL): (1199,5) memset(void *, int, size_t) (isz = 6) (sz = 17)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,10) __builtin___memset_chk(void *, int, unsigned long, unsigned long)
+          -> EXTERN: /usr/include/x86_64-linux-gnu/bits/string_fortified.h:(71,55) __builtin_object_size(const void *, int)
+
+
+    Report from: Code generation optimizations [cg]
+
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34014: optimization advice for memset: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h(71,10):remark #34026: call to memset implemented as a call to optimized library version
+deflate.c(233,1):remark #34051: REGISTER ALLOCATION : [deflateInit_] deflate.c:233
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   10[ rax rdx rcx rbx rsi rdi r8-r9 r14-r15]
+        
+    Routine temporaries
+        Total         :     123
+            Global    :      38
+            Local     :      85
+        Regenerable   :      24
+        Spilled       :       3
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINING FOOTNOTES:
+
+<1> The compiler's heuristics indicate that the function is not profitable to 
+    inline.  Override this decision by adding "inline 
+    __attribute__((always_inline))" to the declaration of the called function, 
+    or add "#pragma forceinline" before the call site.
+
+<2> The indirectly called function must be resolved to its targets before it 
+can be inlined.  Consider compiling with -ipo or -prof-gen followed by 
+-prof-use.
+

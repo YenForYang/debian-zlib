@@ -1,0 +1,4 @@
+icc: command line warning #10121: overriding '-march=native' with '-march=native'
+icc: command line warning #10148: option '-Wdate-time' not supported
+icc: remark #10397: optimization reports are generated in *.optrpt files in the output location
+icc: command line warning #10385: option '-ffat-lto-objects' requires use of '-ipo -c'. Option ignored.

@@ -1,0 +1,7 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+Intel(R) C Intel(R) 64 Compiler for applications running on Intel(R) 64, Version 19.0.1.144 Build 20181018
+
+Compiler options: -O3 -diag-disable=10013 -diag-file -fabi-version=13 -falign-functions -falign-loops -fbuiltin -ffat-lto-objects -fpermissive -fuse-ld=bfd -gcc-name=gcc.intel -gnu-prefix=x86_64-linux-gnu- -gxx-name=g++.intel -inline-level=2 -inline-min-caller-growth=0 -ipo -march=native -no-inline-max-per-compile -no-inline-max-per-routine -no-inline-max-size -no-inline-max-total-size -par-schedule-auto -parallel -qopt-matmul -qopt-mem-layout-trans -qopt-multi-version-aggressive -qopt-prefetch -qoverride-limits -static-intel -diag-file -guide-file -qopt-report=5 -g -march=native -pipe -D_FORTIFY_SOURCE=2 -D_REENTRANT -O3 -DUNALIGNED_OK -D_LARGEFILE64_SOURCE=1 -ffunction-sections -fdata-sections -Wl,-O,2,--as-needed,--relax,--gc-sections -ipo-c -o libz.o -Wl,--as-needed,--relax,--gc-sections,-O,2 -pipe

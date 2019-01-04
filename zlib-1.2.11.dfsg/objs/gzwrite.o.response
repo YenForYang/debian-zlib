@@ -1,0 +1,15 @@
+-g
+-Wformat
+-Wformat-security
+-D_FORTIFY_SOURCE=2
+-Wall
+-D_REENTRANT
+-O3
+-DUNALIGNED_OK
+-fpic
+-D_LARGEFILE64_SOURCE=1
+-DPIC
+-c
+-oobjs/gzwrite.o
+-qopt-report-file=objs/gzwrite.o.optrpt
+gzwrite.c

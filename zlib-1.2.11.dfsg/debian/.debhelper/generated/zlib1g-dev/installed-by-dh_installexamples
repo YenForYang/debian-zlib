@@ -1,0 +1,16 @@
+./examples/enough.c
+./examples/fitblk.c
+./examples/gun.c
+./examples/gzappend.c
+./examples/gzjoin.c
+./examples/gzlog.c
+./examples/gzlog.h
+./examples/README.examples
+./examples/zlib_how.html
+./examples/zpipe.c
+./examples/zran.c
+./test/example.c
+./test/example.diag
+./test/infcover.c
+./test/minigzip.c
+./test/minigzip.diag

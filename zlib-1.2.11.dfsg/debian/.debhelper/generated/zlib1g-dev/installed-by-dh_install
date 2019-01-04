@@ -1,0 +1,6 @@
+debian/tmp/usr/include/zconf.h
+debian/tmp/usr/include/zlib.h
+debian/tmp/usr/lib/x86_64-linux-gnu/libz.a
+debian/tmp/usr/lib/x86_64-linux-gnu/libz.so
+debian/tmp/usr/share/man/man3/zlib.3
+debian/tmp/usr/lib/x86_64-linux-gnu/pkgconfig/zlib.pc

@@ -1,0 +1,13 @@
+-shared
+-g
+-Wformat
+-Wformat-security
+-D_FORTIFY_SOURCE=2
+-Wall
+-D_REENTRANT
+-O3
+-DUNALIGNED_OK
+-fpic
+-oztest20340.so
+-qopt-report-file=ztest20340.so.optrpt
+ztest20340.o

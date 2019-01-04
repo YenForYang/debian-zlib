@@ -1,0 +1,14 @@
+-g
+-Wformat
+-Wformat-security
+-D_FORTIFY_SOURCE=2
+-Wall
+-D_REENTRANT
+-O3
+-DUNALIGNED_OK
+-D_LARGEFILE64_SOURCE=1
+-ominigzipsh
+-qopt-report-file=minigzipsh.optrpt
+minigzip.o
+-L.
+libz.so.1.2.11
